@@ -5,6 +5,7 @@
 <!--Custom Theme files -->
 <link href="resources/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
 <link href="resources/css/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="resources/css/login.css" type="text/css" rel="stylesheet" media="all">
 <!-- //Custom Theme files -->
 <!--animate-->
 <link href="resources/css/animate.css" rel="stylesheet" type="text/css" media="all">
@@ -26,11 +27,13 @@
 			<div class="bnr-title wow zoomIn animated" data-wow-delay=".5s"><img src="resources/images/logo1.png" width="40%" alt=""/></div>	
 			<p class="wow fadeInUp animated" data-wow-delay=".7s">Human Resouce Managemnet System</p>	
 			<div class="more">
-				<a href="#about" class="button scroll" data-text="login">LogIn</a>
+			<nav class="main-nav">
+				<a href="javascript:void(0);" class="button scroll cd-signin" data-text="login">LogIn</a>
+			</nav>
 			</div>
 			<div class="social-icons wow slideInUp animated" data-wow-delay=".9s">
 				<ul>
-                                        <li><a href="http://www.ideas2it.com/" class="ideas"></a></li>
+                    <li><a href="http://www.ideas2it.com/" class="ideas"></a></li>
 					<li><a href="https://www.facebook.com/Ideas2itTechnologies/"> </a></li>
 					<li><a href="https://www.linkedin.com/company/ideas2it" class="in"> </a></li>
 					<li><a href="https://twitter.com/ideas2it" class="twi"> </a></li>
@@ -38,5 +41,58 @@
 			</div>
 		</div>	
 	</div>
+	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->			
+			<div id="cd-login"> <!-- log in form -->
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="signin-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<label class="image-replace cd-password" for="signin-password">Password</label>
+						<input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Password">
+						<a href="#0" class="hide-password">Show</a>
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<input type="checkbox" id="remember-me" checked>
+						<label for="remember-me">Remember me</label>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width" type="submit" value="Login">
+					</p>
+				</form>
+				
+				<p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+				<!-- <a href="#0" class="cd-close-form">Close</a> -->
+			</div> <!-- cd-login -->
+
+			<div id="cd-reset-password"> <!-- reset password form -->
+				<p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="reset-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Reset password">
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+			</div> <!-- cd-reset-password -->
+			<a href="#0" class="cd-close-form">Close</a>
+		</div> <!-- cd-user-modal-container -->
+	</div> <!-- cd-user-modal -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="resources/js/main.js"></script>
 </body>
 </html>
