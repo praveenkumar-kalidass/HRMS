@@ -34,12 +34,16 @@ public class Designation {
 	private int id;
 	
 	@Column(name="name")
-	private int name;
+	private String name;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "department_id")
 	private Department department;
 
+	public Designation(){	
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -48,11 +52,11 @@ public class Designation {
 		this.id = id;
 	}
 
-	public int getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 

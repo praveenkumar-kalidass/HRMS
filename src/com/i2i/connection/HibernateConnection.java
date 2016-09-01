@@ -33,7 +33,7 @@ public class HibernateConnection {
      * @return hibernateconnection
      *        Contains object for class hibernateConnection
      */
-    public static HibernateConnection createObeject() {
+    public static HibernateConnection createObject() {
         if(hibernateConnection==null){
             hibernateConnection = new HibernateConnection();
         }         
