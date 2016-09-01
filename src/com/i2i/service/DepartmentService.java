@@ -2,9 +2,8 @@ package com.i2i.service;
 
 import java.util.List;
 
-import org.hibernate.exception.DataException;
-
 import com.i2i.dao.DepartmentDao;
+import com.i2i.exception.DataException;
 import com.i2i.model.Department;
 
 /**
@@ -31,14 +30,11 @@ public class DepartmentService {
      *       model object that stores the department data associated with model.
      * @return boolean
      *       gives the status of the insertion into the database.
-     * @throws com.i2i.exception.DataException
+     * @throws DataException
      *       throws error message if problem arises with inserting the data in the database.
      */
-    public boolean addEmployee(Department department) throws DataException, com.i2i.exception.DataException {
-        if (departmentDao.findDepartment(department.getDepartmentId()) == null) {
-            return departmentDao.insertDepartment(department);
-        }
-        return false;
+    public boolean addDepartment(Department department) throws DataException {
+        return departmentDao.insertDepartment(department);
     }
     
     /**
@@ -51,10 +47,10 @@ public class DepartmentService {
      *       contains the ID of the department.
      * @return boolean
      *       gives the status of the deletion from the database.
-     * @throws com.i2i.exception.DataException
+     * @throws DataException
      *       throws error message if problem arises with deleting the data in the database.
      */
-    public boolean deleteDepartment(int departmentId) throws DataException, com.i2i.exception.DataException {
+    public boolean deleteDepartment(int departmentId) throws DataException {
         if (departmentDao.findDepartment(departmentId) != null) {
             return departmentDao.removeDepartment(departmentId);
         }
@@ -69,10 +65,13 @@ public class DepartmentService {
      *
      * @param departmentId
      *       contains the ID of the department.
-     * @throws com.i2i.exception.DataException
+     *       
+     * @return object
+     *       gives the appropriate department object for the corresponding department ID.
+     * @throws DataException
      *       throws error message if problem arises with searching the data in the database.
      */
-    public Department searchDepartment(int departmentId) throws DataException, DataException, com.i2i.exception.DataException {
+    public Department searchDepartment(int departmentId) throws DataException {
         return departmentDao.findDepartment(departmentId);
     }
     
@@ -80,10 +79,13 @@ public class DepartmentService {
      * <p>
      * This method retrieves the Department data from the records and returns the list of data to display.
      * </p>
-     * @throws com.i2i.exception.DataException
+     * 
+     * @return list
+     *       Gives the list of department details retrieved from the database.
+     * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      */
-    public List<Department> displayDepartments() throws DataException, com.i2i.exception.DataException {
+    public List<Department> displayDepartments() throws DataException {
         return departmentDao.retrieveDepartments();
     }
 }

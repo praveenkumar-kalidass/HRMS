@@ -37,13 +37,9 @@ public class DepartmentDao {
      * 
      * @param department
      *       model object that stores the department data associated with model class.
-     * @param transaction
-     *       object that instantiates a single unit of work.
-     * @param factory
-     *       factory of sessions from which one session is obtained for a single unit if work.
-     * @param session
-     *       object for a single request, a conversation or a single unit of work
-     * @throws com.i2i.exception.DataException
+     * @return true
+     *       Gives the success status of the insertion process.
+     * @throws DataException
      *       throws error message if problem arises with inserting the data in the database.
      */
     public boolean insertDepartment(Department department) throws DataException{
@@ -69,13 +65,9 @@ public class DepartmentDao {
      * 
      * @param departmentId
      *       contains the ID of the department.
-     * @param transaction
-     *       object that instantiates a single unit of work.
-     * @param factory
-     *       factory of sessions from which one session is obtained for a single unit of work.
-     * @param session
-     *       object for a single request, a conversation or a single unit of work
-     * @throws com.i2i.exception.DataException
+     * @return true
+     *       Gives the success status of the deletion process.
+     * @throws DataException
      *       throws error message if problem arises with deleting the data in the database.
      */
     public boolean removeDepartment(int departmentId) throws DataException {
@@ -103,13 +95,9 @@ public class DepartmentDao {
      * 
      * @param departementId
      *       contains the ID of the department.
-     * @param transaction
-     *       object that instantiates a single unit of work.
-     * @param factory
-     *       factory of sessions from which one session is obtained for a single unit of work.
-     * @param session
-     *       object for a single request, a conversation or a single unit of work
-     * @throws com.i2i.exception.DataException
+     * @return object
+     *       gives the appropriate department detail for the corresponding department ID.
+     * @throws DataException
      *       throws error message if problem arises with searching the data in the database.
      */
     public Department findDepartment(int departmentId) throws DataException {
@@ -131,13 +119,9 @@ public class DepartmentDao {
      * This method retrieves the department data from the records and returns the list of data.
      * </p>
      * 
-     * @param transaction
-     *       object that instantiates a single unit of work.
-     * @param factory
-     *       factory of sessions from which one session is obtained for a single unit of work.
-     * @param session
-     *       object for a single request, a conversation or a single unit of work
-     * @throws com.i2i.exception.DataException
+     * @return list
+     *       Gives the list of department details stored in the database.
+     * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      */
     public List<Department> retrieveDepartments() throws DataException {

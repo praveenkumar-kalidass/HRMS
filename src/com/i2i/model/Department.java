@@ -31,6 +31,9 @@ public class Department {
     	this.departmentId = departmentId;
     	this.departmentName = departmentName;
     }
+    
+    public Department() {
+    }
 
 	public int getDepartmentId() {
 		return departmentId;
