@@ -71,7 +71,6 @@ public class EmployeeController {
      */
     @RequestMapping(value ="/#", method = RequestMethod.GET)
     public String deleteDepartment(@RequestParam("departmentId")String departmentId, ModelMap model) {
-        String message = " ";
         try {
             DepartmentService departmentService = new DepartmentService();
             if (departmentService.deleteDepartment(Integer.parseInt(departmentId))) {

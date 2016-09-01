@@ -27,8 +27,6 @@ import com.i2i.model.Department;
 public class DepartmentDao {
     private HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory factory = hibernateConnection.establishConnection();
-    Session session;
-    Transaction transaction;
     
 /**
      * <p>
@@ -44,8 +42,8 @@ public class DepartmentDao {
      */
     public boolean insertDepartment(Department department) throws DataException{
         try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
+            Session session = factory.openSession();
+            Transaction transaction = session.beginTransaction();
 
             session.save(department);
             transaction.commit();
@@ -72,8 +70,8 @@ public class DepartmentDao {
      */
     public boolean removeDepartment(int departmentId) throws DataException {
         try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
+        	Session session = factory.openSession();
+        	Transaction transaction = session.beginTransaction();
             Department department = (Department)session.get(Department.class, departmentId); 
 
             session.delete(department);
@@ -101,9 +99,9 @@ public class DepartmentDao {
      *       throws error message if problem arises with searching the data in the database.
      */
     public Department findDepartment(int departmentId) throws DataException {
-            session = factory.openSession();
         try {
-            transaction = session.beginTransaction();
+    	    Session session = factory.openSession();
+    	    Transaction transaction = session.beginTransaction();
             return (Department)session.get(Department.class, departmentId);
 
         } catch (HibernateException exception) {
@@ -126,8 +124,8 @@ public class DepartmentDao {
      */
     public List<Department> retrieveDepartments() throws DataException {
         try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
+        	Session session = factory.openSession();
+        	Transaction transaction = session.beginTransaction();
 
             return session.createCriteria(Department.class).list();
         } catch (HibernateException exception) {
