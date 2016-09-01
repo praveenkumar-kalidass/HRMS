@@ -114,7 +114,7 @@ public class DepartmentDao {
         }
     }
     
-/**
+     /**
      * <p>
      * This method retrieves the department data from the records and returns the list of data.
      * </p>

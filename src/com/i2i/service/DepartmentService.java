@@ -2,6 +2,7 @@ package com.i2i.service;
 
 import java.util.List;
 
+
 import com.i2i.dao.DepartmentDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Department;
@@ -35,6 +36,13 @@ public class DepartmentService {
      */
     public boolean addDepartment(Department department) throws DataException {
         return departmentDao.insertDepartment(department);
+    }
+    
+    public boolean addEmployee(Department department) throws DataException {
+        if (departmentDao.findDepartment(department.getDepartmentId()) == null) {
+            return departmentDao.insertDepartment(department);
+        }
+        return false;
     }
     
     /**
