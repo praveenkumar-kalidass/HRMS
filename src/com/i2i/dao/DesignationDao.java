@@ -37,6 +37,19 @@ public class DesignationDao {
 	        transaction.commit();   
 		} catch (HibernateException ex) {
 			FileUtil.ErrorLogger("Error on DesignationDao insertDesignation() : " + ex.toString());
+	        throw new DataException("Error Occured while Inserting this" + designation.getName() + " : please verify your details... Any try again..!");
+		}
+	}
+	
+	
+	public void deleteDesignation(Designation designation) throws DataException {
+		Session session=sessionFactory.openSession();
+		try {
+			Transaction transaction=session.beginTransaction();	
+	        session.save(designation);  	
+	        transaction.commit();   
+		} catch (HibernateException ex) {
+			FileUtil.ErrorLogger("Error on DesignationDao insertDesignation() : " + ex.toString());
 	        throw new DataException("Error Occured while Adding this" + designation.getName() + " : please verify your details... Any try again..!");
 		}
 	}
