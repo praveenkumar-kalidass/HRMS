@@ -3,13 +3,13 @@
 <head>
 <title>Human Resource Management System @Ideas2IT</title>
 <!--Custom Theme files -->
-<link href="resources/images/logo1.png" rel="icon" />
-<link href="resources/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-<link href="resources/css/style.css" type="text/css" rel="stylesheet" media="all">
-<link href="resources/css/login.css" type="text/css" rel="stylesheet" media="all">
+<link href="images/logo1.png" rel="icon" />
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+<link href="css/login.css" type="text/css" rel="stylesheet" media="all">
 <!-- //Custom Theme files -->
 <!--animate-->
-<link href="resources/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
 <!--//end-animate-->
 </head>
 <body>
@@ -19,13 +19,13 @@
 		<div class="top-nav">
 			<div class="container">
 				<div class="navbar-header logo">
-                                        <div class="wow fadeInUp animated" data-wow-delay=".5s"><a href="index.html"><img src="resources/images/logo.png" alt=""/></a></div>
+                                        <div class="wow fadeInUp animated" data-wow-delay=".5s"><a href="index.html"><img src="images/logo.png" alt=""/></a></div>
 				</div>
 			</div>
 		</div>
 		<!--//navigation-->
 		<div class="banner-text">
-			<div class="bnr-title wow zoomIn animated" data-wow-delay=".5s"><img src="resources/images/logo1.png" width="40%" alt=""/></div>	
+			<div class="bnr-title wow zoomIn animated" data-wow-delay=".5s"><img src="images/logo1.png" width="40%" alt=""/></div>	
 			<p class="wow fadeInUp animated" data-wow-delay=".7s">Human Resource Management System</p>	
 			<div class="more">
 			<nav class="main-nav">
@@ -94,6 +94,6 @@
 		</div> <!-- cd-user-modal-container -->
 	</div> <!-- cd-user-modal -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="resources/js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -30,10 +30,10 @@ public class Designation {
 	@Id
 	@GeneratedValue(generator="increment")	
 	@Column(name="id")
-	private int id;
+	private int designationId;
 	
 	@Column(name="name")
-	private String name;
+	private String designationName;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "department_id")
@@ -42,28 +42,27 @@ public class Designation {
 	public Designation(){	
 	}
 	
-	
-	public int getId() {
-		return id;
+	public int getDesignationId() {
+		return designationId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDesignationId(int designationId) {
+		this.designationId = designationId;
 	}
 
-	public String getName() {
-		return name;
+	public String getDesignationName() {
+		return designationName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDesignationName(String designationName) {
+		this.designationName = designationName;
 	}
 
-	public Department getDepartment_id() {
+	public Department getDepartment() {
 		return department;
 	}
 
-	public void setDepartment_id(Department department) {
+	public void setDepartment(Department department) {
 		this.department = department;
 	}	
 }

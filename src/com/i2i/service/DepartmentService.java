@@ -34,8 +34,9 @@ public class DepartmentService {
      * @throws DataException
      *       throws error message if problem arises with inserting the data in the database.
      */
-    public boolean addDepartment(Department department) throws DataException {
-        return departmentDao.insertDepartment(department);
+    public boolean addDepartment(Department department) throws DataException {    	
+    	return departmentDao.insertDepartment(department);
+    	
     }
     
     /**
@@ -53,7 +54,7 @@ public class DepartmentService {
      */
     public boolean deleteDepartment(int departmentId) throws DataException {
         if (departmentDao.findDepartment(departmentId) != null) {
-            return departmentDao.removeDepartment(departmentId);
+            return departmentDao.removeDepartment(searchDepartment(departmentId));
         }
         return false;
     }

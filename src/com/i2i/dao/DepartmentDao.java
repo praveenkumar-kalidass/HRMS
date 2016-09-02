@@ -41,12 +41,12 @@ public class DepartmentDao {
      *       throws error message if problem arises with inserting the data in the database.
      */
     public boolean insertDepartment(Department department) throws DataException{
-    	Session session = factory.openSession();
-        try {
+        Session session = factory.openSession();
+    	try {
             Transaction transaction = session.beginTransaction();
-
             session.save(department);
             transaction.commit();
+            System.out.println("Dao out");
             return true;
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in insertDepartment() : " + exception.getMessage());
@@ -68,18 +68,16 @@ public class DepartmentDao {
      * @throws DataException
      *       throws error message if problem arises with deleting the data in the database.
      */
-    public boolean removeDepartment(int departmentId) throws DataException {
-    	Session session = factory.openSession();
-        try {
-        	Transaction transaction = session.beginTransaction();
-            Department department = (Department)session.get(Department.class, departmentId); 
-
+    public boolean removeDepartment(Department department) throws DataException {
+        Session session = factory.openSession();
+    	try {
+            Transaction transaction = session.beginTransaction();
             session.delete(department);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in removeDepartment() : " + exception.getMessage());
-            throw new DataException("Error while deleting Department ID : " + departmentId);
+            FileUtil.ErrorLogger("Exception in removeEmployee() : " + exception.getMessage());
+            throw new DataException("Error while deleting Department ID : " + department.getDepartmentId());
         } finally {
             session.close();
         }
@@ -100,7 +98,8 @@ public class DepartmentDao {
      */
     public Department findDepartment(int departmentId) throws DataException {
     	Session session = factory.openSession();
-        try {
+    	try {    	    
+    	    Transaction transaction = session.beginTransaction();
             return (Department)session.get(Department.class, departmentId);
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in findDepartment() : " + exception.getMessage());
@@ -122,7 +121,8 @@ public class DepartmentDao {
      */
     public List<Department> retrieveDepartments() throws DataException {
     	Session session = factory.openSession();
-        try {
+    	try {        	
+        	Transaction transaction = session.beginTransaction();
             return session.createCriteria(Department.class).list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveDepartments() : " + exception.getMessage());
