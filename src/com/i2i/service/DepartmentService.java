@@ -34,8 +34,7 @@ public class DepartmentService {
      * @throws DataException
      *       throws error message if problem arises with inserting the data in the database.
      */
-    public boolean addDepartment(Department department) throws DataException {
-    	System.out.println("Service in");
+    public boolean addDepartment(Department department) throws DataException {    	
     	return departmentDao.insertDepartment(department);
     	
     }

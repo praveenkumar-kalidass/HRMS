@@ -53,19 +53,20 @@ public class EmployeeController {
     @RequestMapping(value ="/department_insert", method = RequestMethod.POST)
     public String insertDepartment(@ModelAttribute("Department")Department department, ModelMap model) {
         try {
-        	System.out.println("Controller in");            
-            if (departmentService.addDepartment(department)) {            	
+            DepartmentService departmentService = new DepartmentService();
+            if (departmentService.addDepartment(department)) {
                 model.addAttribute("message", "Department details are successfully inserted");
             } else {
             	model.addAttribute("message", "Department details are not inserted");
             }
         } catch (DataException exception) {
-            model.addAttribute("message", (exception.getMessage() + " "));
+            model.addAttribute("message", exception.getMessage());
         } finally {
             return "department";
         }
     }
-	
+    
+    
 	
 	
 }
