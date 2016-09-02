@@ -36,7 +36,12 @@ public class EmployeeController {
 	
 	@RequestMapping("/department")
 	public String createDepartment(ModelMap model) {
+		try {
 		model.addAttribute("Department", new Department());
+		model.addAttribute("DepartmentList", departmentService.displayDepartments());
+		} catch (DataException e) {
+			model.addAttribute("message", e.getMessage());
+		}
 		return "department";
 	}
 	

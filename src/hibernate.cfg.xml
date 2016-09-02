@@ -11,7 +11,4 @@
     <property name="show_sql">true</property>                   
        <mapping class="com.i2i.model.Department" />    
     </session-factory>
-    
-    
-    
 </hibernate-configuration>
