@@ -105,7 +105,6 @@ public class DesignationDao {
     public Designation findDesignationById(int designationId) throws DataException {
     	Session session=sessionFactory.openSession();
         try {
-        	Transaction transaction = session.beginTransaction();	
             return (Designation)session.get(Designation.class, designationId);
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in findEmployee() : " + exception.getMessage());
@@ -130,7 +129,6 @@ public class DesignationDao {
     public List<Designation> retrieveDesignation() throws DataException {
     	Session session=sessionFactory.openSession();
     	try {           
-    		Transaction transaction = session.beginTransaction();    		
     		return session.createCriteria(Department.class).list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
@@ -157,7 +155,6 @@ public class DesignationDao {
     public List<Designation> retrieveDesignationByDepartment(int department_id) throws DataException {
     	Session session=sessionFactory.openSession();
     	try {           
-    		Transaction transaction = session.beginTransaction();            
             return session.createQuery("From Designation WHERE department_id = : department_id").list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
