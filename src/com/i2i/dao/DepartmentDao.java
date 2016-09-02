@@ -46,6 +46,35 @@ public class DepartmentDao {
             Transaction transaction = session.beginTransaction();
             session.save(department);
             transaction.commit();
+            return true;
+        } catch (HibernateException exception) {
+            FileUtil.ErrorLogger("Exception in insertDepartment() : " + exception.getMessage());
+            throw new DataException("Error while adding Department ID : " + department.getDepartmentId());
+        } finally {
+            session.close();
+        }
+    }
+    
+    
+    
+    /**
+     * <p>
+     * This method opens a new session and Inserts the model object of the department into the database.
+     * </p>
+     * 
+     * @param department
+     *       model object that stores the department data associated with model class.
+     * @return true
+     *       Gives the success status of the insertion process.
+     * @throws DataException
+     *       throws error message if problem arises with inserting the data in the database.
+     */
+    public boolean modifyDepartment(Department department) throws DataException{
+        Session session = factory.openSession();
+    	try {
+            Transaction transaction = session.beginTransaction();
+            session.update(department);
+            transaction.commit();
             System.out.println("Dao out");
             return true;
         } catch (HibernateException exception) {

@@ -45,6 +45,44 @@ public class EmployeeController {
 		return "department";
 	}
 	
+	
+	@RequestMapping(value ="/department_edit", method = RequestMethod.GET)
+	public String editDepartment(@RequestParam("id")int departmentId, ModelMap model) {
+		try {
+			System.out.println("Edit");
+		 model.addAttribute("DepartmentEdit", departmentService.searchDepartment(departmentId));		
+		} catch (DataException e) {
+			model.addAttribute("message", e.getMessage());
+		}
+		return "department";
+	}
+	
+	/**
+     * <p>
+     * This method passes the department detail as the model object into its Service class.
+     * </p>
+     * 
+     * @param department
+     *       model object that stores the department data associated with model.
+     * @return String
+     *       returns the redirecting page url based on the appropriate operation.
+     */
+    @RequestMapping(value ="/department_update", method = RequestMethod.POST)
+    public String updateDepartment(@ModelAttribute("DepartmentEdit")Department department, ModelMap model) {
+        try {
+            if (departmentService.updateDepartment(department)) {
+                model.addAttribute("message", "Department details are successfully Updated");
+            } else {
+            	model.addAttribute("message", "Department details are not updated");
+            }
+        } catch (DataException exception) {
+            model.addAttribute("message", exception.getMessage());
+        } finally {
+            return "department";
+        }
+    }
+	
+	
 	/**
      * <p>
      * This method passes the department detail as the model object into its Service class.
@@ -58,7 +96,6 @@ public class EmployeeController {
     @RequestMapping(value ="/department_insert", method = RequestMethod.POST)
     public String insertDepartment(@ModelAttribute("Department")Department department, ModelMap model) {
         try {
-            DepartmentService departmentService = new DepartmentService();
             if (departmentService.addDepartment(department)) {
                 model.addAttribute("message", "Department details are successfully inserted");
             } else {
@@ -71,7 +108,19 @@ public class EmployeeController {
         }
     }
     
-    
-	
+    @RequestMapping(value ="/department_delete", method = RequestMethod.GET)
+    public String deleteDepartment(@RequestParam("id")int departmentId, ModelMap model) {
+    	try {
+            if (departmentService.deleteDepartment(departmentId)) {
+                model.addAttribute("message", "Department details are successfully Deleted");
+            } else {
+            	model.addAttribute("message", "Department details are not deleted");
+            }
+        } catch (DataException exception) {
+            model.addAttribute("message", exception.getMessage());
+        } finally {
+            return "department";
+        }
+    }
 	
 }

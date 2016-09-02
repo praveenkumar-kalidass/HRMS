@@ -14,6 +14,7 @@
             </head>
 
             <body>
+            
                 <div id="dialog-confirm" title="Alert" style="display:none;">
                     <p><c:if test="${message!=null}"><c:out value="${message}" /></c:if></p>
                 </div>
@@ -30,60 +31,29 @@
                         <c:import url="top-menu.jsp" />
 
 
+
+
                         <div class="content-main">
-                           <div class="col-md-12">
-                            <!--  Main Start -->
-                            
-                            
-                             <ul class="tab">
-                                <li><a href="#" class="tablinks" onclick="openEvent(event, 'Department-Table')">Departments</a></li>
-                                <li><a href="#" class="tablinks" onclick="openEvent(event, 'Department-Form')">Add New</a></li>
-                            </ul>
-                           
-                           
-                            <div id="Department-Form" class="tabcontent">
-                            <div class="form">
-                            <div class="main-head">
-                                <h1 class="title"> Department Details </h1>
-                            </div>
-                                <c:if test="${Department!=null}">
-                                    <spring:form action="department_insert" method="post" class="form-group" modelAttribute="Department">
-                                            <div class="col-md-12">
-
-                                                <div class="col-md-6">
-                                                    
-                                                    
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Department Id</label>
-                                                        <div class="col-md-8">
-                                                            <spring:input path="departmentId" class="form-control" id="example-text-input" placeHolder="Department Id" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
-                                                        <div class="col-md-8">
-                                                            <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" />
-                                                        </div>
-                                                        </div>
-                                                   
-                                                   
-                                                    </div>
-
-                                            <div class="form-group row">
-                                                <div class="col-md-12" align="center">
-                                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save">
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </spring:form>
-                                </c:if>
-                                </div>
-                                </div>
-                          
-                           
                         
-                        <div id="Department-Table" class="tabcontent">
+                        
+                           <div class="col-md-12">
+           
+                            <!--  Main Start -->
+                             <ul class="nav nav-tabs" role="tablist">
+   								<li role="presentation" class="active"><a href="#Department-Table" aria-controls="Department-Table" role="tab" data-toggle="tab">Departments</a></li>
+    							<li role="presentation"><a href="#Department-Form" aria-controls="Department-Form" role="tab" data-toggle="tab">Add New</a></li>    							    						
+  						    </ul>
+                            
+                              
+                            
+                            
+                            
+                         
+                            
+                             <div class="tab-content">
+                             
+                             
+<div id="Department-Table" role="tabpanel" class="tab-pane active" >
                             <div class="form">
                             <div class="main-head">
                                 <h1 class="title"> Department Details </h1>
@@ -92,9 +62,11 @@
 <table class="pricing-table">
 <thead>
 <tr>
-<th class="price-top" onclick="sort_table(people, 0, asc1); asc1 *= -1; asc4 = 1; asc3 = 1; asc2 = 1;">Department-Id<div class="arrow-up"></div><div class="arrow-space"></div><div class="arrow-down"></div></th>
-<th class="price-top" onclick="sort_table(people, 1, asc2); asc2 *= -1; asc4 = 1; asc3 = 1; asc1 = 1;">Department-Name<div class="arrow-up"></div><div class="arrow-space"></div><div class="arrow-down"></div></th>
+<th class="price-top first" onclick="sort_table(people, 0, asc1); asc1 *= -1; asc4 = 1; asc3 = 1; asc2 = 1;"> <div class="fil-name">Department Id</div>  <div class="fil-ico"><span class="arrow-up"></span><span class="arrow-space"></span><span class="arrow-down"></span> </div>   </th>
+<th class="price-top last" onclick="sort_table(people, 1, asc2); asc2 *= -1; asc4 = 1; asc3 = 1; asc1 = 1;"> <div class="fil-name">Department Name</div>  <div class="fil-ico"><span class="arrow-up"></span><span class="arrow-space"></span><span class="arrow-down"></span> </div>   </th> 
+
 </tr>
+
 </thead>
 
 <tbody id="people">
@@ -102,6 +74,8 @@
 <tr>
 <td><c:out value="${department.departmentId}"></c:out></td>
 <td><c:out value="${department.departmentName}"></c:out></td>
+<td> <a href="department_edit.html?id=<c:out value='${department.departmentId} ' />"  class="edit"> <i class="fa fa-pencil"></i>  Edit </a> &nbsp;&nbsp; <a href="department_delete.html?id=<c:out value='${department.departmentId} ' />" class="delete"> <i class="fa fa-trash"></i>  Delete </a>  </td>
+
 </tr>
 </c:forEach>
 </tbody>
@@ -109,6 +83,53 @@
                                 </c:if>
                                 </div>
                                 </div>
+                             
+                             
+                             
+                             
+                             
+                            <div id="Department-Form" role="tabpanel" class="tab-pane">
+                            <div class="form">
+                            <div class="main-head">
+                                <h1 class="title"> Department Details </h1>
+                            </div>
+                            <div class="single-rowform">
+                                <c:if test="${Department!=null}">
+                                    <spring:form action="department_insert" method="post" class="form-group" modelAttribute="Department">
+                                            <div class="col-md-12">
+
+                                                <div class="col-md-6">
+                                                    
+                                                    
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
+                                                        <div class="col-md-8">
+                                                            <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" />
+                                                        </div>
+                                                        </div>
+                                                     <div class="form-group row" align="center">
+                                                <div class="col-md-12" >
+                                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save">
+                                                </div>
+                                               </div>
+                                                   
+                                                    </div>
+
+                                          
+
+                                        </div>
+                                    </spring:form>
+                                </c:if>
+                                </div>
+                                </div>
+                                </div>
+                          
+                           
+                        
+
+
+</div>
 
                             <!--  Main End -->
                               </div>
@@ -116,6 +137,55 @@
                             
                                 </div>
                             </div>
+                            
+                            
+                            
+                            <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Department</h4>
+      </div>
+      <div class="modal-body">
+      
+            <c:if test="${DepartmentEdit!=null}">                                                  
+                                    <spring:form action="department_update" method="post" class="form-group" modelAttribute="DepartmentEdit" >
+                                            <div class="col-md-12">
+
+                                              <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Department Id</label>
+                                                        <div class="col-md-8">
+                                                            <spring:input path="departmentId" class="form-control" id="example-text-input" placeHolder="Department Id" readonly="readOnly" />
+                                                        </div>
+                                                        </div>
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
+                                                        <div class="col-md-8">
+                                                            <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" />
+                                                        </div>
+                                                        </div>
+                                                     <div class="form-group row" align="center">
+                                                <div class="col-md-12" >
+                                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save">
+                                                </div>
+                                               </div>                                                                                                                                           
+                                        </div>
+                                    </spring:form>
+                                    </c:if>
+                    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="modalButton">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
                             
 
                 <link rel="stylesheet" href="css/jquery-ui.css" />
@@ -125,7 +195,9 @@
                 <script src="js/bootstrap.js"></script>
                 
 <c:if test="${message!=null}">
+  
   <script>
+  document.getElementById("modalButton").click();
   $( function() {
     $( "#dialog-confirm" ).dialog({
       modal: true,
@@ -199,6 +271,13 @@ function openEvent(evt, cityName) {
             }
         }
     </script>
+<c:if test="${message==null}">
+ <c:if test="${DepartmentEdit!=null}">
+<script>
+$("#myModal").modal();
+</script>
+</c:if>
+</c:if>
             </body>
 
             </html>

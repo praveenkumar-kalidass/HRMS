@@ -97,7 +97,7 @@
             width:14.6%;
             float:left;
             position:fixed;
-            z-index:10000;
+            z-index:999;
             
         }
         
@@ -114,7 +114,7 @@
            height:40px;
            background:#222d32;
            position:fixed;
-           z-index:10000;
+           z-index:99;
          }
         .containe .content-bar .top-menu a {
            color:#FFF;
@@ -157,47 +157,15 @@
           
        }
 
-ul.tab {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
-}
-
-/* Float the list items side by side */
-ul.tab li {float: left;}
-
-/* Style the links inside the list items */
-ul.tab li a {
-    display: inline-block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-/* Change background color of links on hover */
-ul.tab li a:hover {
-    background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-ul.tab li a:focus, .active {
-	color: white;
-    background-color: #0088cc;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ffffff;
-    border-top: none;
-}
+.nav-tabs { border-bottom: 2px solid #DDD; }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }
+    .nav-tabs > li > a { border: none; color: #666; }
+        .nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }
+        .nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }
+    .nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }
+.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }
+.tab-pane { padding: 15px 0; }
+.tab-content{padding:20px}
 
 
 /* TableSettings */
@@ -206,48 +174,80 @@ ul.tab li a:focus, .active {
             border-collapse: collapse;
             border: none;
         }
+        tr {
+           border-bottom: #DDD 1px solid;
+        }
         th,
-        td {
-            border: 1px solid #000000;
+        td {            
             padding: 8px;
         }
-        tr:hover {
-            background-color: #0099ff;
+        tr:hover {           
         }
+        
+        .first {
+           border-radius: 8px 0px 0px 0px;
+        }
+        .last {
+           border-radius: 0px 8px 0px 0px;
+        }
+        
+        .fil-ico{
+           width:3%;
+           float:left;
+           padding-top: 5px;
+        }
+        
+        .fil-name{
+           width:95%;
+           float:left;
+        }
+        
 .pricing-table {
-    margin: 5% auto 0 auto;
+    margin: 1% auto 0 auto;
     width: 65%;
 }
+.single-rowform {
+    margin: 1% auto 0 auto;
+}
+
 .price-top {
     cursor: pointer;
-    background: #bfbfbf;
-    padding: 1em;
+    background: #bfbfbf;   
     border-bottom: 5px solid #0099ff;
-    background-image: -moz-linear-gradient(#fff,#bfbfbf);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#bfbfbf));
-    background-image: -webkit-linear-gradient(#fff, #bfbfbf);
-    background-image: -o-linear-gradient(#fff, #bfbfbf);
-    background-image: -ms-linear-gradient(#fff, #bfbfbf);
-    background-image: linear-gradient(#fff, #bfbfbf);
 }
 .arrow-up {
-  width: 0; 
+  width: 100%;
   height: 0;
+  float:right;
   border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  
+  border-right: 5px solid transparent;  
   border-bottom: 5px solid black;
 }
 .arrow-down {
-  width: 0; 
+  width: 100%; 
+  float:right;
   height: 0; 
   border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  
+  border-right: 5px solid transparent;  
   border-top: 5px solid black;
 }
 .arrow-space {
-  width: 0; 
+  width: 100%; 
+  float:right;
   height: 0; 
   border-top: 1px solid white;
+}
+
+.edit:hover {
+	color:#0ECB4D;
+	text-decoration: none;
+}
+
+.delete:hover {
+	color:#F00;
+	text-decoration: none;
+}
+
+.modal-dialog {
+	z-index: 99999;
 }
