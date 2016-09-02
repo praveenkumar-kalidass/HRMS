@@ -17,13 +17,15 @@ import javax.persistence.Table;
  * @created 2016-09-01
  *
  */
+
 @Entity
 @Table(name = "department")
 public class Department {
-    @Id
-    @GeneratedValue(generator="increment")
+    
+	@Id
     @Column(name = "id", unique = true)
     private int departmentId;
+    
     @Column(name = "name")
     private String departmentName;
 

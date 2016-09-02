@@ -9,7 +9,7 @@ import com.i2i.model.Department;
 
 /**
  * <p>
- * Service class which does validations with the user input of employee details.
+ * Service class which does validations with the user input of department details.
  * Passes values to the Dao class to carry out manipulations.
  * Throws error messages in case of occurrence of any exceptions.
  * </p>
@@ -35,15 +35,11 @@ public class DepartmentService {
      *       throws error message if problem arises with inserting the data in the database.
      */
     public boolean addDepartment(Department department) throws DataException {
-        return departmentDao.insertDepartment(department);
+    	System.out.println("Service in");
+    	return departmentDao.insertDepartment(department);
+    	
     }
     
-    public boolean addEmployee(Department department) throws DataException {
-        if (departmentDao.findDepartment(department.getDepartmentId()) == null) {
-            return departmentDao.insertDepartment(department);
-        }
-        return false;
-    }
     
     /**
      * <p>
@@ -60,7 +56,7 @@ public class DepartmentService {
      */
     public boolean deleteDepartment(int departmentId) throws DataException {
         if (departmentDao.findDepartment(departmentId) != null) {
-            return departmentDao.removeDepartment(departmentId);
+            return departmentDao.removeDepartment(searchDepartment(departmentId));
         }
         return false;
     }

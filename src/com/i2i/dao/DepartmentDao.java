@@ -44,11 +44,12 @@ public class DepartmentDao {
      */
     public boolean insertDepartment(Department department) throws DataException{
         try {
+        	System.out.println("DAo in");
             session = factory.openSession();
             transaction = session.beginTransaction();
-
             session.save(department);
             transaction.commit();
+            System.out.println("Dao out");
             return true;
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in insertDepartment() : " + exception.getMessage());
@@ -70,18 +71,16 @@ public class DepartmentDao {
      * @throws DataException
      *       throws error message if problem arises with deleting the data in the database.
      */
-    public boolean removeDepartment(int departmentId) throws DataException {
+    public boolean removeDepartment(Department department) throws DataException {
         try {
             session = factory.openSession();
-            transaction = session.beginTransaction();
-            Department department = (Department)session.get(Department.class, departmentId); 
-
+            transaction = session.beginTransaction();            
             session.delete(department);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in removeEmployee() : " + exception.getMessage());
-            throw new DataException("Error while deleting Department ID : " + departmentId);
+            throw new DataException("Error while deleting Department ID : " + department.getDepartmentId());
         } finally {
             session.close();
         }

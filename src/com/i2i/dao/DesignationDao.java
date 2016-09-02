@@ -54,7 +54,7 @@ public class DesignationDao {
 	        return true;	       
 		} catch (HibernateException ex) {
 			FileUtil.ErrorLogger("Error on DesignationDao insertDesignation() : " + ex.toString());
-	        throw new DataException("Error Occured while Inserting this" + designation.getName() + " : please verify your details... Any try again..!");
+	        throw new DataException("Error Occured while Inserting this" + designation.getDesignationName() + " : please verify your details... Any try again..!");
 		} finally {
 			session.close();
 		}
@@ -81,7 +81,7 @@ public class DesignationDao {
 	        return true;
 		} catch (HibernateException ex) {
 			FileUtil.ErrorLogger("Error on DesignationDao insertDesignation() : " + ex.toString());
-	        throw new DataException("Error Occured while Adding this" + designation.getName() + " : please verify your details... Any try again..!");
+	        throw new DataException("Error Occured while Adding this" + designation.getDesignationName() + " : please verify your details... Any try again..!");
 		} finally {
 			session.close();
 		}
@@ -127,7 +127,7 @@ public class DesignationDao {
      * @return Designation.List
      *       return the full list of designation stored in database
      */
-    public List<Designation> retrieveDesignation() throws DataException {
+    public List<Designation> retrieveDesignations() throws DataException {
     	Session session=sessionFactory.openSession();
     	try {           
     		Transaction transaction = session.beginTransaction();    		

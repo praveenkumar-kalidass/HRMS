@@ -24,10 +24,20 @@ import com.i2i.service.DepartmentService;
  */
 @Controller
 public class EmployeeController {
-	@RequestMapping("/#")
+	
+	DepartmentService departmentService = new DepartmentService();
+	
+	@RequestMapping("/index")
+	public String indexPage() {
+		return "index";
+	}
+	
+	
+	
+	@RequestMapping("/department")
 	public String createDepartment(ModelMap model) {
-		model.addAttribute("department", new Department());
-		return "#";
+		model.addAttribute("Department", new Department());
+		return "department";
 	}
 	
 	/**
@@ -40,101 +50,22 @@ public class EmployeeController {
      * @return String
      *       returns the redirecting page url based on the appropriate operation.
      */
-    @RequestMapping(value ="/#", method = RequestMethod.POST)
-    public String insertDepartment(@ModelAttribute("department")Department department, ModelMap model) {
+    @RequestMapping(value ="/department_insert", method = RequestMethod.POST)
+    public String insertDepartment(@ModelAttribute("Department")Department department, ModelMap model) {
         try {
-            DepartmentService departmentService = new DepartmentService();
-            if (departmentService.addDepartment(department)) {
-                model.addAttribute("#", "Department details are successfully inserted");
+        	System.out.println("Controller in");            
+            if (departmentService.addDepartment(department)) {            	
+                model.addAttribute("message", "Department details are successfully inserted");
             } else {
-            	model.addAttribute("#", "Department details are not inserted");
+            	model.addAttribute("message", "Department details are not inserted");
             }
         } catch (DataException exception) {
-            model.addAttribute("#", exception.getMessage());
+            model.addAttribute("message", (exception.getMessage() + " "));
         } finally {
-            return "#";
+            return "department";
         }
     }
-    
-    /**
-     * <p>
-     * This method passes the department ID to be deleted to its service class.
-     * </p>
-     * 
-     * @param departmentId
-     *       contains the ID of the department.
-     * @param message
-     *       possess the message related to the status of the operation done. contains error message
-     *       if any exception occurs.
-     * @return String
-     *       returns the redirecting page url based on the appropriate operation.
-     */
-    @RequestMapping(value ="/#", method = RequestMethod.GET)
-    public String deleteDepartment(@RequestParam("departmentId")String departmentId, ModelMap model) {
-        String message = " ";
-        try {
-            DepartmentService departmentService = new DepartmentService();
-            if (departmentService.deleteDepartment(Integer.parseInt(departmentId))) {
-            	model.addAttribute("#", "Department details are successfully deleted");
-            } else {
-            	model.addAttribute("#", "Department details are not deleted");
-            }
-        } catch (DataException exception) {
-        	model.addAttribute("#", exception.getMessage());
-        } finally {
-            return "#";
-        }
-    }
-    
-    /**
-     * <p>
-     * This method passes the department ID to check its presence in the database.
-     * Returns the department details to display if present in the database.
-     * </p>
-     * 
-     * @param departmentId
-     *       contains the ID of the department.
-     * @return String
-     *       returns the redirecting page url based on the appropriate operation.
-     */
-    @RequestMapping(value ="/#", method = RequestMethod.GET)
-    public String searchDepartment(@RequestParam("departmentId")String departmentId, ModelMap model) {
-        try {
-        	DepartmentService departmentService = new DepartmentService();
-            if (null != departmentService.searchDepartment(Integer.parseInt(departmentId))) {
-                model.addAttribute("department", departmentService.searchDepartment(Integer.parseInt(departmentId)));
-            } else {
-                model.addAttribute("message", "Department detail is not present");
-            }
-        } catch (DataException exception) {
-        	model.addAttribute("message", exception.getMessage());
-        } finally {
-            return "#";
-        }
-    }
-    
-    /**
-     * <p>
-     * This method retrieves the list of department data from the service class
-     * and returns the data to display.
-     * </p>
-     * 
-     * @return String
-     *       returns the redirecting page url based on the appropriate operation.
-     */
-    @RequestMapping(value ="/#", method = RequestMethod.GET)
-    public String displayDepartments(ModelMap model) {
-        try {
-        	DepartmentService departmentService = new DepartmentService();
-            if (departmentService.displayDepartments().size() != 0) {
-                model.addAttribute("departments", departmentService.displayDepartments());
-            } else {
-            	model.addAttribute("message", "Records are empty");
-            }
-        } catch (DataException exception) {
-        	model.addAttribute("message", exception.getMessage());
-        } finally {
-            return "#";
-        }
-    }
+	
+	
+	
 }
