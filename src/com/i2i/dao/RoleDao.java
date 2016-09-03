@@ -11,7 +11,6 @@ import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
 import com.i2i.model.Role;
-import com.i2i.model.Role;
 
 /**
  * <p>
@@ -46,6 +45,34 @@ public class RoleDao {
             Transaction transaction = session.beginTransaction();
             session.save(role);
             transaction.commit();
+            return true;
+        } catch (HibernateException exception) {
+            FileUtil.ErrorLogger("Exception in insertRole() : " + exception.getMessage());
+            throw new DataException("Error while adding Role ID : " + role.getRoleId());
+        } finally {
+            session.close();
+        }
+    }
+    
+    /**
+     * <p>
+     * This method opens a new session and Inserts the model object of the role into the database.
+     * </p>
+     * 
+     * @param role
+     *       model object that stores the role data associated with model class.
+     * @return true
+     *       Gives the success status of the insertion process.
+     * @throws DataException
+     *       throws error message if problem arises with inserting the data in the database.
+     */
+    public boolean modifyRole(Role role) throws DataException{
+        Session session = factory.openSession();
+    	try {
+            Transaction transaction = session.beginTransaction();
+            session.update(role);
+            transaction.commit();
+            System.out.println("Dao out");
             return true;
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in insertRole() : " + exception.getMessage());
