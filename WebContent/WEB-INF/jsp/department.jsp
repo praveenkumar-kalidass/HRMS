@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Department</title>
@@ -36,12 +37,12 @@
                         </li>
                     </ul>
                     <div class="tab-content">
-                        <div id="Department-Table" role="tabpanel" class="tab-pane active" >
-                             <div class="main-head">
-                                    <h1 class="title"> Department Details </h1> </div>
-                            
+                        <div id="Department-Table" role="tabpanel" class="tab-pane active">
+                            <div class="main-head">
+                                <h1 class="title"> Department Details </h1> </div>
+
                             <div class="form">
-                               
+
                                 <c:if test="${Department!=null}">
                                     <table>
                                         <thead>
@@ -53,15 +54,15 @@
 
                                             <tr>
                                                 <th colspan="7" class="ts-pager form-horizontal">
-                                                    <button type="button" class="btn first"><i class="fa fa-fast-backward "></i> 
+                                                    <button type="button" class="btn first"><i class="fa fa-fast-backward "></i>
                                                     </button>
-                                                    <button type="button" class="btn prev"><i class="fa fa-step-backward "></i> 
+                                                    <button type="button" class="btn prev"><i class="fa fa-step-backward "></i>
                                                     </button>
                                                     <span class="pagedisplay"></span>
                                                     <!-- this can be any element, including an input -->
-                                                    <button type="button" class="btn next"><i class="fa fa-step-forward"></i> 
+                                                    <button type="button" class="btn next"><i class="fa fa-step-forward"></i>
                                                     </button>
-                                                    <button type="button" class="btn last"><i class="fa fa-fast-forward"></i> 
+                                                    <button type="button" class="btn last"><i class="fa fa-fast-forward"></i>
                                                     </button>
                                                     <select class="pagesize input-mini" title="Select page size">
                                                         <option selected="selected" value="10">10</option>
@@ -97,30 +98,30 @@
 
                             </div>
                         </div>
-                        <div id="Department-Form" role="tabpanel" class="tab-pane" >
-                         <div class="main-head">
-                                    <h1 class="title"> Add New Department  </h1> 
-                          </div>
-                                <div class="single-rowform col-md-12">
-                                    <c:if test="${Department!=null}">
-                                        <spring:form action="department_insert" method="post" class="form-group" modelAttribute="Department">
-                                            <div class="col-md-12 single-rowform">
+                        <div id="Department-Form" role="tabpanel" class="tab-pane">
+                            <div class="main-head">
+                                <h1 class="title"> Add New Department  </h1>
+                            </div>
+                            <div class="single-rowform col-md-12">
+                                <c:if test="${Department!=null}">
+                                    <spring:form action="department_insert" method="post" class="form-group" modelAttribute="Department">
+                                        <div class="col-md-12 single-rowform">
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
-                                                        <div class="col-md-8">
-                                                            <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" /> </div>
-                                                    </div>
-                                                    <div class="form-group row" align="center">
-                                                        <div class="col-md-12">
-                                                            <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
-                                                    </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
+                                                    <div class="col-md-8">
+                                                        <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" /> </div>
+                                                </div>
+                                                <div class="form-group row" align="center">
+                                                    <div class="col-md-12">
+                                                        <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
                                                 </div>
                                             </div>
-                                        </spring:form>
-                                    </c:if>
-                                    </div>
+                                        </div>
+                                    </spring:form>
+                                </c:if>
+                            </div>
                         </div>
 
                     </div>
@@ -142,28 +143,26 @@
                         <spring:form action="department_update" method="post" class="form-group" modelAttribute="DepartmentEdit">
                             <div class="col-md-12">
 
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-4 col-form-label">Department Id</label>
-                                    <div class="col-md-8">
-                                        <spring:input path="departmentId" class="form-control" id="example-text-input" placeHolder="Department Id" readonly="readOnly" /> </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
-                                    <div class="col-md-8">
-                                        <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" /> </div>
-                                </div>
-                                <div class="form-group row" align="center">
-                                    <div class="col-md-12">
-                                        <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
-                                </div>
-                            </div>
-                        </spring:form>
-                    </c:if>
-                </div>
-                <div class="modal-footer"> </div>
-            </div>
 
+                                <spring:input path="departmentId" type="hidden" class="form-control" id="example-text-input" placeHolder="Department Id" readonly="readOnly" /> </div>
+
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
+                                <div class="col-md-8">
+                                    <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" /> </div>
+                            </div>
+                            <div class="form-group row" align="center">
+                                <div class="col-md-12">
+                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
+                            </div>
+                </div>
+                </spring:form>
+                </c:if>
+            </div>
+            <div class="modal-footer"> </div>
         </div>
+
+    </div>
     </div>
 
     <link rel="stylesheet" href="css/jquery-ui.css" />
@@ -246,53 +245,6 @@
         });
     </script>
 
-    <script>
-        function openEvent(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-    </script>
-    <script type="text/javascript">
-        var people, asc1 = 1,
-            asc2 = 1,
-            asc3 = 1,
-            asc4 = 1;
-        window.onload = function() {
-            people = document.getElementById("people");
-        }
-
-        function sort_table(tbody, col, asc) {
-            var rows = tbody.rows,
-                rlen = rows.length,
-                arr = new Array(),
-                i, j, cells, clen; // fill the array with values from the table 
-            for (i = 0; i < rlen; i++) {
-                cells = rows[i].cells;
-                clen = cells.length;
-                arr[i] = new Array();
-                for (j = 0; j < clen; j++) {
-                    arr[i][j] = cells[j].innerHTML;
-                }
-            }
-            // sort the array by the specified column number (col) and order (asc) 
-            arr.sort(function(a, b) {
-                return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1 * asc);
-            });
-            // replace existing rows with new rows created from the sorted array 
-            for (i = 0; i < rlen; i++) {
-                rows[i].innerHTML = "<td>" + arr[i].join("</td><td>") + "</td>";
-            }
-        }
-    </script>
     <c:if test="${message==null}">
         <c:if test="${DepartmentEdit!=null}">
             <script>
@@ -321,4 +273,5 @@
         </script>
     </c:if>
 </body>
+
 </html>
