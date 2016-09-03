@@ -144,15 +144,14 @@
          }
         
         .containe .content-bar .content-main .main-head {
-           width:100%;
-           padding:5px;
-          
+           width:100%;          
+           padding-bottom: 10px;
         } 
 
        .containe .content-bar .content-main .main-head .title {
           padding-left:10px;
-          border-left:#008EC7 5px solid;
-          height:30px;
+          border-left:#008EC7 3px solid;
+          height:25px;
           font-size:25px;
           
        }
@@ -255,4 +254,11 @@
 .modal-footer {
 	border:none;
 	}
+.tab-pane{
+	padding:0px;
+}	
+
+.single-rowform {
+	width:100%;
+	margin: 0 auto;
 }
