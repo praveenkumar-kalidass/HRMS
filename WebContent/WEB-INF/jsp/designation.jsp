@@ -103,7 +103,7 @@
                                                                 <div class="form-group row">
                                                                     <label for="example-text-input" class="col-md-4 col-form-label">Designation Name</label>
                                                                     <div class="col-md-8">
-                                                                        <spring:input path="designationName" class="form-control" id="example-text-input" placeHolder="Department Name" /> </div>
+                                                                        <spring:input path="designationName" class="form-control" id="example-text-input" placeHolder="Designation Name" /> </div>
                                                                 </div>
                                                                 
                                                                 <div class="form-group row">
@@ -161,12 +161,12 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Designation Id</label>
                                                 <div class="col-md-8">
-                                                    <spring:input path="designationId" class="form-control" id="example-text-input" placeHolder="Department Id" readonly="readOnly" /> </div>
+                                                    <spring:input path="designationId" class="form-control" id="example-text-input" placeHolder="Designation Id" readonly="readOnly" /> </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Designation Name</label>
                                                 <div class="col-md-8">
-                                                    <spring:input path="designationName" class="form-control" id="example-text-input" placeHolder="Department Name" /> </div>
+                                                    <spring:input path="designationName" class="form-control" id="example-text-input" placeHolder="Designation Name" /> </div>
                                             </div>
                                             
                                             

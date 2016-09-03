@@ -60,7 +60,18 @@ public class DesignationDao {
 		}
 	}
 	
-	
+	/**
+	 * * <p>
+	 * Method is used to update existing designation
+     * create a new session and update the model object of the designation from the database.
+     * </p>
+	 * @param designation
+	 *      model object that stores the designation data associated with model class.
+	 * @throws DataException
+	 *      if any database connection error occurred error message will be logged and send context info to user 
+	 *  @return 
+	 *      if updated successfully true will be return to the Calling method   
+	 */
 	public boolean modifyDesignation(Designation designation) throws DataException {
 		Session session=sessionFactory.openSession();
 		try {

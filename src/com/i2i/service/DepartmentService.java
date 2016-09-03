@@ -43,15 +43,15 @@ public class DepartmentService {
     /**
      * <p>
      * This method checks the presence of department ID in the database.
-     * Passes the value to its dao class to insert if not present. 
+     * Passes the value to its dao class to update if present. 
      * </p>
      * 
      * @param department
      *       model object that stores the department data associated with model.
      * @return boolean
-     *       gives the status of the insertion into the database.
+     *       gives the status of the update from the database.
      * @throws DataException
-     *       throws error message if problem arises with inserting the data in the database.
+     *       throws error message if problem arises with updating the data in the database.
      */
     public boolean updateDepartment(Department department) throws DataException {    	
     	return departmentDao.modifyDepartment(department);

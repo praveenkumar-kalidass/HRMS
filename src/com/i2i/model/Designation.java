@@ -27,13 +27,13 @@ import com.i2i.model.Department;
 public class Designation {
     
 	@Id
-	@Column(name="id", unique = true)
+	@Column(name="id")
 	private int designationId;
 	
 	@Column(name="name")
 	private String designationName;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "department_id")
 	private Department department;
 

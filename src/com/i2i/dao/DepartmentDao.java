@@ -59,15 +59,15 @@ public class DepartmentDao {
     
     /**
      * <p>
-     * This method opens a new session and Inserts the model object of the department into the database.
+     * This method opens a new session and modify the model object of the department from the database.
      * </p>
      * 
      * @param department
      *       model object that stores the department data associated with model class.
      * @return true
-     *       Gives the success status of the insertion process.
+     *       Gives the success status of the updation process.
      * @throws DataException
-     *       throws error message if problem arises with inserting the data in the database.
+     *       throws error message if problem arises with updating the data in the database.
      */
     public boolean modifyDepartment(Department department) throws DataException{
         Session session = factory.openSession();

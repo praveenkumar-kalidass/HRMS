@@ -41,7 +41,19 @@ public class DesignationService {
     }
     
     
-    
+    /**
+     * <p>
+     * This method checks the presence of designation ID in the database.
+     * Passes the value to its dao class to update if present. 
+     * </p>
+     * 
+     * @param designation
+     *       model object that stores the designation data associated with model.
+     * @return boolean
+     *       gives the status of the update from the database.
+     * @throws DataException
+     *       throws error message if problem arises with updating the data in the database.
+     */
     public boolean updateDesignation(Designation designation) throws DataException {
         return designationtDao.modifyDesignation(designation);
     }
@@ -114,8 +126,5 @@ public class DesignationService {
     public List<Designation> getDesgignationByDepartment(int departmentId) throws DataException {
         return designationtDao.retrieveDesignationByDepartment(departmentId);
     }
-    
-    
-    
     
 }
