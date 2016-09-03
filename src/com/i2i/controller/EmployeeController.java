@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.i2i.exception.DataException;
 import com.i2i.model.Department;
 import com.i2i.model.Designation;
+import com.i2i.model.Role;
 import com.i2i.service.DepartmentService;
 import com.i2i.service.DesignationService;
+import com.i2i.service.RoleService;
 
 /**
  * <p>
@@ -32,6 +34,7 @@ public class EmployeeController {
 	
 	DepartmentService departmentService = new DepartmentService();
 	DesignationService designationService = new DesignationService();
+	RoleService roleService = new RoleService();
 	
 	/**
      * <p>
@@ -307,4 +310,96 @@ public class EmployeeController {
 	            return "designation";
 	        }
 	    }
+	    
+	    
+/*------------------------------------------------------------------*/
+	    @RequestMapping("/role")
+		public String createRole(ModelMap model) {
+			try {
+			model.addAttribute("Role", new Role());
+			model.addAttribute("RoleList", roleService.displayRoles());
+			} catch (DataException e) {
+				model.addAttribute("message", e.getMessage());
+			}
+			return "role";
+		}
+		
+		
+		@RequestMapping(value ="/role_edit", method = RequestMethod.GET)
+		public String editRole(@RequestParam("id")int roleId, ModelMap model) {
+			try {
+				System.out.println("Edit");
+			 model.addAttribute("RoleEdit", roleService.searchRole(roleId));		
+			} catch (DataException e) {
+				model.addAttribute("message", e.getMessage());
+			}
+			return "role";
+		}
+		
+		/**
+	     * <p>
+	     * This method passes the role detail as the model object into its Service class.
+	     * </p>
+	     * 
+	     * @param role
+	     *       model object that stores the role data associated with model.
+	     * @return String
+	     *       returns the redirecting page url based on the appropriate operation.
+	     */
+	    @RequestMapping(value ="/role_update", method = RequestMethod.POST)
+	    public String updateRole(@ModelAttribute("RoleEdit")Role role, ModelMap model) {
+	        try {
+	            if (roleService.updateRole(role)) {
+	                model.addAttribute("message", "Role details are successfully Updated");
+	            } else {
+	            	model.addAttribute("message", "Role details are not updated");
+	            }
+	        } catch (DataException exception) {
+	            model.addAttribute("message", exception.getMessage());
+	        } finally {
+	            return "role";
+	        }
+	    }
+		
+		
+		/**
+	     * <p>
+	     * This method passes the role detail as the model object into its Service class.
+	     * </p>
+	     * 
+	     * @param role
+	     *       model object that stores the role data associated with model.
+	     * @return String
+	     *       returns the redirecting page url based on the appropriate operation.
+	     */
+	    @RequestMapping(value ="/role_insert", method = RequestMethod.POST)
+	    public String insertRole(@ModelAttribute("Role")Role role, ModelMap model) {
+	        try {
+	            if (roleService.addRole(role)) {
+	                model.addAttribute("message", "Role details are successfully inserted");
+	            } else {
+	            	model.addAttribute("message", "Role details are not inserted");
+	            }
+	        } catch (DataException exception) {
+	            model.addAttribute("message", exception.getMessage());
+	        } finally {
+	            return "role";
+	        }
+	    }
+	    
+	    @RequestMapping(value ="/role_delete", method = RequestMethod.GET)
+	    public String deleteRole(@RequestParam("id")int roleId, ModelMap model) {
+	    	try {
+	            if (roleService.deleteRole(roleId)) {
+	                model.addAttribute("message", "Role details are successfully Deleted");
+	            } else {
+	            	model.addAttribute("message", "Role details are not deleted");
+	            }
+	        } catch (DataException exception) {
+	            model.addAttribute("message", exception.getMessage());
+	        } finally {
+	            return "role";
+	        }
+	    }
+/* ----------------------------------------------------------------------------------*/
 }

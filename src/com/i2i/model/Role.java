@@ -21,7 +21,6 @@ import javax.persistence.Table;
 @Table(name = "role")
 public class Role {
 	@Id
-    @GeneratedValue(generator="increment")
     @Column(name = "id", unique = true)
     private int roleId;
     @Column(name = "name")
@@ -30,6 +29,9 @@ public class Role {
     public Role(int roleId, String roleName) {
     	this.roleId = roleId;
     	this.roleName = roleName;
+    }
+    
+    public Role() {
     }
 
 	public int getRoleId() {
