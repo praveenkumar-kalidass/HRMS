@@ -17,7 +17,7 @@
         </li>
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-laptop"></i> <span>Projects</span>
+                <i class="fa fa-code"></i> <span>Projects</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
@@ -39,7 +39,7 @@
 
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-laptop"></i> <span>Salary</span>
+                <i class="fa fa-money"></i> <span>Salary</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
@@ -49,11 +49,15 @@
                 </li>
             </ul>
         </li>
-        <li><a href="#"><i class="fa fa-book"></i> <span>Departments</span></a>
+        <li><a href="department.html"><i class="fa fa-university"></i> <span>Departments</span></a>
         </li>
-        <li><a href="#"><i class="fa fa-book"></i> <span>Designations</span></a>
+        
+        <li><a href="designation.html"><i class="fa fa-code-fork"></i> <span>Designations</span></a>
         </li>
-
+       
+       <li><a href="role.html"><i class="fa fa-cogs"></i> <span>User Roles</span></a>
+        </li>
+       
 
     </ul>
 </section>
