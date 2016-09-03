@@ -60,6 +60,22 @@ public class DesignationDao {
 		}
 	}
 	
+	
+	public boolean modifyDesignation(Designation designation) throws DataException {
+		Session session=sessionFactory.openSession();
+		try {
+			Transaction transaction=session.beginTransaction();	
+	        session.update(designation);  	
+	        transaction.commit();
+	        return true;	       
+		} catch (HibernateException ex) {
+			FileUtil.ErrorLogger("Error on DesignationDao modifyDesignation() : " + ex.toString());
+	        throw new DataException("Error Occured while Updating this" + designation.getDesignationName() + " : please verify your details... Any try again..!");
+		} finally {
+			session.close();
+		}
+	}
+	
 	/**
 	 * * <p>
 	 * Method is used to delete existing designation
@@ -129,7 +145,7 @@ public class DesignationDao {
     public List<Designation> retrieveDesignations() throws DataException {
     	Session session=sessionFactory.openSession();
     	try {           
-    		return session.createCriteria(Department.class).list();
+    		return session.createCriteria(Designation.class).list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
             throw new DataException("Error while displaying all Departments");

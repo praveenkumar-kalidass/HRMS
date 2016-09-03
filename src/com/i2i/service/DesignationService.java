@@ -36,8 +36,14 @@ public class DesignationService {
      * @throws DataException
      *       throws error message if problem arises with inserting the data in the database.
      */
-    public boolean addDepartment(Designation designation) throws DataException {
+    public boolean addDesignation(Designation designation) throws DataException {
         return designationtDao.insertDesignation(designation);
+    }
+    
+    
+    
+    public boolean updateDesignation(Designation designation) throws DataException {
+        return designationtDao.modifyDesignation(designation);
     }
      
     

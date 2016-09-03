@@ -54,7 +54,4 @@ public class Department {
 		this.departmentName = departmentName;
 	}
 	
-	public String toString() {
-		return (departmentId + "/t" + departmentName);
-	}
 }
