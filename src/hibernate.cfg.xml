@@ -11,6 +11,7 @@
     <property name="show_sql">true</property>                   
        <mapping class="com.i2i.model.Department" />   
        <mapping class="com.i2i.model.Designation" />  
-       <mapping class="com.i2i.model.Role" />    
+       <mapping class="com.i2i.model.Role" />
+       <mapping class="com.i2i.model.Employee" />  
     </session-factory>
 </hibernate-configuration>
