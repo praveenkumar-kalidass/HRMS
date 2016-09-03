@@ -11,6 +11,7 @@ import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
 import com.i2i.model.Employee;
+import com.i2i.model.Employee;
 
 /**
  * <p>
@@ -45,6 +46,34 @@ public class EmployeeDao {
             Transaction transaction = session.beginTransaction();
             session.save(employee);
             transaction.commit();
+            return true;
+        } catch (HibernateException exception) {
+            FileUtil.ErrorLogger("Exception in insertEmployee() : " + exception.getMessage());
+            throw new DataException("Error while adding Employee ID : " + employee.getEmployeeId());
+        } finally {
+            session.close();
+        }
+    }
+    
+    /**
+     * <p>
+     * This method opens a new session and modify the model object of the employee from the database.
+     * </p>
+     * 
+     * @param employee
+     *       model object that stores the employee data associated with model class.
+     * @return true
+     *       Gives the success status of the updation process.
+     * @throws DataException
+     *       throws error message if problem arises with updating the data in the database.
+     */
+    public boolean modifyEmployee(Employee employee) throws DataException{
+        Session session = factory.openSession();
+    	try {
+            Transaction transaction = session.beginTransaction();
+            session.update(employee);
+            transaction.commit();
+            System.out.println("Dao out");
             return true;
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in insertEmployee() : " + exception.getMessage());

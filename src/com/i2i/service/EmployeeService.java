@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.i2i.dao.EmployeeDao;
 import com.i2i.exception.DataException;
+import com.i2i.model.Department;
 import com.i2i.model.Employee;
 
 /**
@@ -33,11 +34,26 @@ public class EmployeeService {
      * @throws DataException
      *       throws error message if problem arises with inserting the data in the database.
      */
-    public boolean addEmployee(int employeeId) throws DataException {
-    	if (employeeDao.findEmployee(employeeId) != null) {
-    	    return employeeDao.insertEmployee(searchEmployee(employeeId));
-        }
-        return false;
+    public boolean addEmployee(Employee employee) throws DataException {
+    	return employeeDao.insertEmployee(employee);
+    }
+    
+    /**
+     * <p>
+     * This method checks the presence of department ID in the database.
+     * Passes the value to its dao class to update if present. 
+     * </p>
+     * 
+     * @param department
+     *       model object that stores the department data associated with model.
+     * @return boolean
+     *       gives the status of the update from the database.
+     * @throws DataException
+     *       throws error message if problem arises with updating the data in the database.
+     */
+    public boolean updateEmployee(Employee employee) throws DataException {    	
+    	return employeeDao.modifyEmployee(employee);
+    	
     }
     
     /**

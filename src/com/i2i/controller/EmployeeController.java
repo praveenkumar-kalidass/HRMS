@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.i2i.exception.DataException;
 import com.i2i.model.Department;
 import com.i2i.model.Designation;
+import com.i2i.model.Employee;
 import com.i2i.model.Role;
 import com.i2i.service.DepartmentService;
 import com.i2i.service.DesignationService;
+import com.i2i.service.EmployeeService;
 import com.i2i.service.RoleService;
 
 /**
@@ -35,6 +37,7 @@ public class EmployeeController {
 	DepartmentService departmentService = new DepartmentService();
 	DesignationService designationService = new DesignationService();
 	RoleService roleService = new RoleService();
+	EmployeeService employeeService = new EmployeeService();
 	
 	/**
      * <p>
@@ -399,6 +402,99 @@ public class EmployeeController {
 	            model.addAttribute("message", exception.getMessage());
 	        } finally {
 	            return "role";
+	        }
+	    }
+/* ----------------------------------------------------------------------------------*/
+	    
+	    
+	    
+	    /*------------------------------------------------------------------*/
+	    @RequestMapping("/employee")
+		public String createEmployee(ModelMap model) {
+			try {
+			model.addAttribute("Employee", new Employee());
+			model.addAttribute("EmployeeList", employeeService.retrieveEmployees());
+			} catch (DataException e) {
+				model.addAttribute("message", e.getMessage());
+			}
+			return "employee";
+		}
+		
+		
+		@RequestMapping(value ="/employee_edit", method = RequestMethod.GET)
+		public String editEmployee(@RequestParam("id")int employeeId, ModelMap model) {
+			try {
+				System.out.println("Edit");
+			 model.addAttribute("EmployeeEdit", employeeService.searchEmployee(employeeId));		
+			} catch (DataException e) {
+				model.addAttribute("message", e.getMessage());
+			}
+			return "employee";
+		}
+		
+		/**
+	     * <p>
+	     * This method passes the employee detail as the model object into its Service class.
+	     * </p>
+	     * 
+	     * @param employee
+	     *       model object that stores the employee data associated with model.
+	     * @return String
+	     *       returns the redirecting page url based on the appropriate operation.
+	     */
+	    @RequestMapping(value ="/employee_update", method = RequestMethod.POST)
+	    public String updateEmployee(@ModelAttribute("EmployeeEdit")Employee employee, ModelMap model) {
+	        try {
+	            if (employeeService.updateEmployee(employee)) {
+	                model.addAttribute("message", "Employee details are successfully Updated");
+	            } else {
+	            	model.addAttribute("message", "Employee details are not updated");
+	            }
+	        } catch (DataException exception) {
+	            model.addAttribute("message", exception.getMessage());
+	        } finally {
+	            return "employee";
+	        }
+	    }
+		
+		
+		/**
+	     * <p>
+	     * This method passes the employee detail as the model object into its Service class.
+	     * </p>
+	     * 
+	     * @param employee
+	     *       model object that stores the employee data associated with model.
+	     * @return String
+	     *       returns the redirecting page url based on the appropriate operation.
+	     */
+	    @RequestMapping(value ="/employee_insert", method = RequestMethod.POST)
+	    public String insertEmployee(@ModelAttribute("Employee")Employee employee, ModelMap model) {
+	        try {
+	            if (employeeService.addEmployee(employee)) {
+	                model.addAttribute("message", "Employee details are successfully inserted");
+	            } else {
+	            	model.addAttribute("message", "Employee details are not inserted");
+	            }
+	        } catch (DataException exception) {
+	            model.addAttribute("message", exception.getMessage());
+	        } finally {
+	            return "employee";
+	        }
+	    }
+	    
+	    @RequestMapping(value ="/employee_delete", method = RequestMethod.GET)
+	    public String deleteEmployee(@RequestParam("id")int employeeId, ModelMap model) {
+	    	try {
+	            if (employeeService.deleteEmployee(employeeService.searchEmployee(employeeId))) {
+	                model.addAttribute("message", "Employee details are successfully Deleted");
+	            } else {
+	            	model.addAttribute("message", "Employee details are not deleted");
+	            }
+	        } catch (DataException exception) {
+	            model.addAttribute("message", exception.getMessage());
+	        } finally {
+	            return "employee";
 	        }
 	    }
 /* ----------------------------------------------------------------------------------*/

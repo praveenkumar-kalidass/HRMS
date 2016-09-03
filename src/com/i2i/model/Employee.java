@@ -54,6 +54,9 @@ public class Employee {
     @JoinColumn(name = "role_id")
     private Role employeeRole;
 	
+	public Employee() {
+	}
+	
 	public int getEmployeeId() {
 		return employeeId;
 	}
