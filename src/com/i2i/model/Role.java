@@ -23,6 +23,7 @@ public class Role {
 	@Id
     @Column(name = "id", unique = true)
     private int roleId;
+	
     @Column(name = "name")
     private String roleName;
     
