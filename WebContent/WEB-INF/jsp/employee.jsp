@@ -30,9 +30,13 @@
                 <div class="col-md-12">
                     <!-- Main Start -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#Employee-Table" aria-controls="Employee-Table" role="tab" data-toggle="tab">Employees</a>
+                        <li role="presentation" class="active"><a href="#Personal-Details" aria-controls="Personal-Details" role="tab" data-toggle="tab">Personal Details</a>
                         </li>
-                        <li role="presentation"><a href="#Employee-Form" aria-controls="Employee-Form" role="tab" data-toggle="tab">Add New</a>
+                        <li role="presentation"><a href="#Address-Details" aria-controls="Address-Details" role="tab" data-toggle="tab">Address Details</a>
+                        </li>
+                        <li role="presentation"><a href="#Education-Details" aria-controls="Education-Details" role="tab" data-toggle="tab">Education Details</a>
+                        </li>
+                        <li role="presentation"><a href="#Certification-Details" aria-controls="Certification-Details" role="tab" data-toggle="tab">Certification Details</a>
                         </li>
                     </ul>
                     <div class="tab-content">

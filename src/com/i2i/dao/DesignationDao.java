@@ -118,12 +118,12 @@ public class DesignationDao {
 	
 	/**
      * <p>
-     * this method searches the department from the records using department ID and 
+     * this method searches the designation from the records using designation ID and 
      * returns the data as a model object to display.
      * </p>
      * 
-     * @param departementId
-     *       contains the ID of the department.    
+     * @param designationId
+     *       contains the ID of the designation.    
      * @throws DataException
      *       throws error message if problem arises with searching the data in the database, error will stored in log file and context message to user.
      * @return Designation
@@ -143,11 +143,11 @@ public class DesignationDao {
     
     /**
      * <p>
-     * This method retrieves the department data from the records and returns the list of data.
+     * This method retrieves the designation data from the records and returns the list of data.
      * </p>
      * 
-     * @param department_id
-     *      contains identity of the department 
+     * @param designationId
+     *      contains identity of the designation 
      * @throws com.i2i.exception.DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      * @return Designation.List
@@ -169,11 +169,11 @@ public class DesignationDao {
     
     /**
      * <p>
-     * This method retrieves the department data from the records and returns the list of data.
+     * This method retrieves the designation data from the records and returns the list of data.
      * </p>
      * 
-     * @param department_id
-     *      contains identity of the department 
+     * @param designationId
+     *      contains identity of the designation 
      * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      * @return Designation.List
@@ -185,7 +185,7 @@ public class DesignationDao {
             return session.createQuery("From Designation WHERE department_id = : department_id").list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Departments");
+            throw new DataException("Error while displaying all Education");
         } finally {
             session.close();
         }
