@@ -64,10 +64,10 @@ public class Employee {
     private String employeePassword;
 	
 	@Column(name = "accountnumber")
-    private long employeeBankAccountNumber;
+    private String employeeBankAccountNumber;
 	
 	@Column(name = "basicpay")
-    private long employeeBasicPay;
+    private String employeeBasicPay;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "designation_id")	
@@ -88,7 +88,7 @@ public class Employee {
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "educationId")
     private List<Education> education = new ArrayList<Education>();
 	
-	
+
 	public Employee() {
 	}
 	
@@ -159,6 +159,22 @@ public class Employee {
 		return employeePicture;
 	}
 	
+	public String getEmployeeBankAccountNumber() {
+		return employeeBankAccountNumber;
+	}
+
+	public void setEmployeeBankAccountNumber(String employeeBankAccountNumber) {
+		this.employeeBankAccountNumber = employeeBankAccountNumber;
+	}
+
+	public String getEmployeeBasicPay() {
+		return employeeBasicPay;
+	}
+
+	public void setEmployeeBasicPay(String employeeBasicPay) {
+		this.employeeBasicPay = employeeBasicPay;
+	}
+
 	public void setEmployeePicture(String employeePicture) {
 		this.employeePicture = employeePicture;
 	}
@@ -179,22 +195,6 @@ public class Employee {
 		this.employeePassword = employeePassword;
 	}
 	
-	public long getEmployeeBankAccountNumber() {
-		return employeeBankAccountNumber;
-	}
-	
-	public void setEmployeeBankAccountNumber(long employeeBankAccountNumber) {
-		this.employeeBankAccountNumber = employeeBankAccountNumber;
-	}
-	
-	public long getEmployeeBasicPay() {
-		return employeeBasicPay;
-	}
-	
-	public void setEmployeeBasicPay(long employeeBasicPay) {
-		this.employeeBasicPay = employeeBasicPay;
-	}
-	
 	public Designation getEmployeeDesignation() {
 		return employeeDesignation;
 	}
@@ -210,7 +210,6 @@ public class Employee {
 	public void setEmployeeRole(Role employeeRole) {
 		this.employeeRole = employeeRole;
 	}
-
 	public List<Address> getAddresses() {
 		return addresses;
 	}
@@ -238,6 +237,4 @@ public class Employee {
 	public void setEducation(List<Education> education) {
 		this.education = education;
 	}
-	
-	
 }

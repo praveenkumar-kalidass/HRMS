@@ -47,6 +47,8 @@ public class AddressDao {
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
+        	System.out.println(exception);
+        	exception.printStackTrace();
             FileUtil.ErrorLogger("Exception in insertAddress() : " + exception.getMessage());
             throw new DataException("Error while adding Address ID : " + address.getAddressId());
         } finally {

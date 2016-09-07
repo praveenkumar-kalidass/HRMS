@@ -140,8 +140,4 @@ public class Address {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
-	public String toString() {
-		return (street + city + state);
-	}
 }
