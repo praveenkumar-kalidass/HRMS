@@ -13,5 +13,8 @@
        <mapping class="com.i2i.model.Designation" />  
        <mapping class="com.i2i.model.Role" />
        <mapping class="com.i2i.model.Employee" />  
+       <mapping class="com.i2i.model.Address" />  
+       <mapping class="com.i2i.model.Certification" /> 
+       <mapping class="com.i2i.model.Education" />       
     </session-factory>
 </hibernate-configuration>

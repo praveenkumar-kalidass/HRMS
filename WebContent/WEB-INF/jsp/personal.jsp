@@ -33,6 +33,15 @@
 
 
                         <div id="Department-Table" role="tabpanel" class="tab-pane active">
+                        
+                        <ol class="breadcrumb">
+                                <li class="active">Personal Details</li>
+                                <li><a href="javascript:void(0)">Communication Details</a></li>
+                                <li><a href="javascript:void(0)">Education Details</a></li>
+                                <li><a href="javascript:void(0)">Certification Details</a></li>
+                                <li><a href="javascript:void(0)">Profile Picture</a></li>                                
+                        </ol>
+                        
                             <div class="main-head">
                                 <h1 class="title"> Personal Details </h1> </div>
                             
@@ -148,7 +157,7 @@ function loadDoc() {
                                         <label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
                                         <div class="col-md-8">
                                         
-                                            <spring:select path="employeeDesignation" class="form-control" id="designationView" >                                           
+                                            <spring:select path="employeeDesignation.designationId" class="form-control" id="designationView" >                                           
                                                 <option value="0"> Select Department -- </option>	                                           											
                                             </spring:select>                                        
                                         </div>
@@ -191,18 +200,11 @@ function loadDoc() {
                                         <div class="col-md-8">
                                             <spring:input path="employeePassword" class="form-control" type="password"  placeHolder="Confirm Password" />
                                         </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Profile Picture</label>
-                                        <div class="col-md-8">
-                                            <spring:input path="employeePicture" class="form-control"   placeHolder="Confirm Password" />
-                                        </div>
-                                    </div>
+                                    </div>                                  
  								    <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Role of the Employee</label>
                                         <div class="col-md-8">
-                                            <spring:select path="employeeRole" class="form-control" >
+                                            <spring:select path="employeeRole.roleId" class="form-control" >
                                                 <option value="0"> -- Select -- </option>
 												<c:forEach items="${RoleList}" var="role">
                                                        <spring:option value="${role.roleId}">${role.roleName}</spring:option>
@@ -252,7 +254,7 @@ function loadDoc() {
     <script src="js/jquery.tablesorter.pager.js"></script>
     
     
-            <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
     
     <script type="text/javascript">

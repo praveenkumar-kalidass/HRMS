@@ -48,7 +48,7 @@ public class Address {
 	@Column(name="phonenumber")
 	private int phoneNumber;
 
-	@Column(name="email")
+	@Column(name="e_mail")
 	private String eMail;
 
 	@Column(name="type")

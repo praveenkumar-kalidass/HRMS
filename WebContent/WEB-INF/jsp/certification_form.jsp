@@ -1,6 +1,8 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ taglib uri="http://www.springframework.org/tags/form" prefix="spring" %>
     
                                <c:if test="${noof!=0}">
+                               <spring:form method="post" action="certification_insert"  modelAttribute="Employee" class="form-group" >
                                <table>
                                <tr>
                                <td>
@@ -19,23 +21,35 @@
                                Institution Name 
                                </td>
                                </tr>
-                               <form method="post"  class="form-group" >
-                               <c:forEach begin="1" end="${noof}" varStatus="form">
+                               
+                               <c:forEach items="${Employee.certification}" var="certification" varStatus="status">
                                <tr>
                                <td>
-                               <c:out value="${form.index}" />
+                               <c:out value="${status.index+1}" />
+                               
+                               <spring:input path="certification[${status.index}].employee.employeeId" type="hidden"  class="form-control" value="${Employee.employeeId}"  />
                                </td>
                                <td>
-                               <input type="text"  class="form-control" id="example-text-input"  >
+                               <spring:input path="certification[${status.index}].courseName" class="form-control"   />
+                                 
                                </td>
                                <td>
-                               <input type="date"  class="form-control" id="example-text-input"  >
+                               <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input1<c:out value='${status.index}' />" data-link-format="yyyy-mm-dd">
+             					       <input class="form-control" size="16" type="text" value="" readonly>            										      
+												<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+               					 </div>
+                              <spring:input path="certification[${status.index}].fromDate" id="dtp_input1${status.index}" type="hidden" class="form-control"    />
+                              </td>
+                               <td>
+                                <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2<c:out value='${status.index}' />" data-link-format="yyyy-mm-dd">
+             					       <input class="form-control" size="16" type="text" value="" readonly>            										      
+												<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+               					 </div>
+								<spring:input path="certification[${status.index}].toDate" id="dtp_input2${status.index}" type="hidden" class="form-control"  placeHolder="Date of Birth" />
+                               
                                </td>
                                <td>
-                               <input type="date"  class="form-control" id="example-text-input"  >
-                               </td>
-                               <td>
-                               <input type="text"  class="form-control" id="example-text-input"  >
+                               <spring:input path="certification[${status.index}].institution"  class="form-control"   />
                                </td>                               
                                </tr>
                                </c:forEach>
@@ -45,7 +59,8 @@
                                 </td>
                                </tr>
                                                               
-                               </form>
+                               
                                
                                </table>
+                               </spring:form>
                                </c:if>
