@@ -29,31 +29,44 @@ public class Employee {
 	@Id
     @Column(name = "id", unique = true)
     private int employeeId;
+	
 	@Column(name = "firstname")
     private String employeeFirstName;
+	
 	@Column(name = "lastname")
     private String employeeLastName;
+	
 	@Column(name = "dob")
     private String employeeDateOfBirth;
+	
 	@Column(name = "gender")
     private String employeeGender;
+	
 	@Column(name = "maritalstatus")
     private String employeeMaritalStatus;
+	
 	@Column(name = "doj")
     private String employeeDateOfJoining;
+	
 	@Column(name = "picture")
     private String employeePicture;
+	
 	@Column(name = "username")
     private String employeeUserName;
+	
 	@Column(name = "password")
     private String employeePassword;
+	
 	@Column(name = "accountnumber")
     private String employeeBankAccountNumber;
+	
 	@Column(name = "basicpay")
     private String employeeBasicPay;
+	
 	@ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "designation_id")
+    @JoinColumn(name = "designation_id")	
     private Designation employeeDesignation;
+	
 	@ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "role_id")
     private Role employeeRole;

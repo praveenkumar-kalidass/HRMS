@@ -67,7 +67,8 @@ public class EmployeeController {
 	@RequestMapping("/department")
 	public String createDepartment(ModelMap model) {
 		try {
-		model.addAttribute("Department", new Department());
+		Department department =  new Department();
+		model.addAttribute("Department", department);		
 		model.addAttribute("DepartmentList", departmentService.displayDepartments());
 		} catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
@@ -220,7 +221,7 @@ public class EmployeeController {
     @RequestMapping(value ="/designation_insert", method = RequestMethod.POST)
     public String insertDesignation(@ModelAttribute("Designation")Designation designation, BindingResult result, @RequestParam("department")int departmentId, ModelMap model) {   
         try {        	
-        	designation.setDepartment(departmentService.searchDepartment(departmentId));
+        	designation.setDepartment(departmentService.searchDepartment(departmentId));        	
             if (designationService.addDesignation(designation)) {
             	model.addAttribute("message", "Designation details are successfully inserted");
             } else {
@@ -469,7 +470,7 @@ public class EmployeeController {
 	     *       returns the redirecting page url based on the appropriate operation.
 	     */
 	    @RequestMapping(value ="/employee_insert", method = RequestMethod.POST)
-	    public String insertEmployee(@ModelAttribute("Employee")Employee employee, ModelMap model) {
+	    public String insertEmployee(@ModelAttribute("Employee")Employee employee, BindingResult result , ModelMap model) {
 	        try {
 	            if (employeeService.addEmployee(employee)) {
 	                model.addAttribute("message", "Employee details are successfully inserted");
@@ -497,5 +498,85 @@ public class EmployeeController {
 	            return "employee";
 	        }
 	    }
+	    /*******
+	     */
+	    @RequestMapping(value ="/certification", method = RequestMethod.GET)
+	    public String crtification() {
+	    	 return "certification";
+	        
+	    }
+	    
+	    
+	    
+	    
+	    @RequestMapping(value ="/certification_form", method = RequestMethod.GET)
+	    public String crtification_form(@RequestParam("noof") int noof, ModelMap map) {
+	    	map.addAttribute("noof", noof);
+	    	return "certification_form";
+	        
+	    }
+	    
+	    
+	    @RequestMapping(value ="/address", method = RequestMethod.GET)
+	    public String address() {
+	    	 return "address";
+	        
+	    }
+	    
+	    @RequestMapping(value ="/address_form", method = RequestMethod.GET)
+	    public String address_form(@RequestParam("same") String same, @RequestParam("address") String address,@RequestParam("countries") String countries, @RequestParam("states") String states, @RequestParam("cities") String cities, @RequestParam("pincode") String pincode, @RequestParam("email") String email, @RequestParam("mobile") String mobile , ModelMap map) {
+	    	map.addAttribute("same", same);
+	    	map.addAttribute("address", address);
+	        map.addAttribute("countries", countries);
+	        map.addAttribute("states", states);
+	        map.addAttribute("cities",cities);
+	        map.addAttribute("pincode", pincode);
+	        map.addAttribute("mobile", mobile);
+	        map.addAttribute("email", email);	        
+	    	return "address_form";
+	        
+	    }
+	    
+	    @RequestMapping(value ="/personal", method = RequestMethod.GET)
+	    public String personal(ModelMap map) {
+	    	try {
+	    	map.addAttribute("Employee", new Employee());
+	    	map.addAttribute("DepartmentList", departmentService.displayDepartments());
+	    	map.addAttribute("RoleList", roleService.displayRoles());
+	    	}
+	    	catch (Exception e) {
+
+			}
+	    	return "personal";	        
+	    }
+	    
+	    @RequestMapping(value ="/designationView", method = RequestMethod.GET)
+	    public String designationView(@RequestParam("departmentId") int departmentId, ModelMap map) {
+	    	try {
+	    	map.addAttribute("DesignationList", designationService.getDesgignationByDepartment(departmentId));
+	    	} catch (Exception e) {
+			
+			}
+	    	return "designationView";
+	        
+	    }
+	    
+	    @RequestMapping(value ="/employee_add", method = RequestMethod.POST)
+	    public String addEmployee(@ModelAttribute("Employee")Employee employee, BindingResult result, @RequestParam("employeeRole")int roleId, @RequestParam("employeeDesignation")int designationId, ModelMap model) {
+	        try {
+	        	employee.setEmployeeRole((roleService.searchRole(roleId)));
+	        	employee.setEmployeeDesignation((designationService.searchDesignation(designationId)));
+	        	if (employeeService.addEmployee(employee)) {
+	            	model.addAttribute("employeeId", employee.getEmployeeId());	            	
+	            } else {
+	            	model.addAttribute("message", "Employee details are not inserted");
+	            }
+	        } catch (DataException exception) {
+	            model.addAttribute("message", exception.getMessage());
+	        } finally {
+	            return "address";
+	        }
+	    }	        	
+	    /**/
 
 }

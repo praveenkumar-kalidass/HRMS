@@ -179,10 +179,10 @@ public class DesignationDao {
      * @return Designation.List
      *       return the list of designation which is stored under the given department
      */
-    public List<Designation> retrieveDesignationByDepartment(int department_id) throws DataException {
+    public List<Designation> retrieveDesignationByDepartment(int departmentId) throws DataException {
     	Session session=sessionFactory.openSession();
     	try {           
-            return session.createQuery("From Designation WHERE department_id = : department_id").list();
+            return session.createQuery("From Designation WHERE department_id="+departmentId).list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
             throw new DataException("Error while displaying all Education");
