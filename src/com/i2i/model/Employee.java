@@ -1,11 +1,15 @@
 package com.i2i.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -44,15 +48,18 @@ public class Employee {
 	@Column(name = "password")
     private String employeePassword;
 	@Column(name = "accountnumber")
-    private long employeeBankAccountNumber;
+    private String employeeBankAccountNumber;
 	@Column(name = "basicpay")
-    private long employeeBasicPay;
+    private String employeeBasicPay;
 	@ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "designation_id")
     private Designation employeeDesignation;
 	@ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "role_id")
     private Role employeeRole;
+	
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "addressId")
+	private List<Address> addresses = new ArrayList<Address>();
 	
 	public Employee() {
 	}
@@ -116,6 +123,22 @@ public class Employee {
 		return employeePicture;
 	}
 	
+	public String getEmployeeBankAccountNumber() {
+		return employeeBankAccountNumber;
+	}
+
+	public void setEmployeeBankAccountNumber(String employeeBankAccountNumber) {
+		this.employeeBankAccountNumber = employeeBankAccountNumber;
+	}
+
+	public String getEmployeeBasicPay() {
+		return employeeBasicPay;
+	}
+
+	public void setEmployeeBasicPay(String employeeBasicPay) {
+		this.employeeBasicPay = employeeBasicPay;
+	}
+
 	public void setEmployeePicture(String employeePicture) {
 		this.employeePicture = employeePicture;
 	}
@@ -136,22 +159,6 @@ public class Employee {
 		this.employeePassword = employeePassword;
 	}
 	
-	public long getEmployeeBankAccountNumber() {
-		return employeeBankAccountNumber;
-	}
-	
-	public void setEmployeeBankAccountNumber(long employeeBankAccountNumber) {
-		this.employeeBankAccountNumber = employeeBankAccountNumber;
-	}
-	
-	public long getEmployeeBasicPay() {
-		return employeeBasicPay;
-	}
-	
-	public void setEmployeeBasicPay(long employeeBasicPay) {
-		this.employeeBasicPay = employeeBasicPay;
-	}
-	
 	public Designation getEmployeeDesignation() {
 		return employeeDesignation;
 	}
@@ -166,5 +173,17 @@ public class Employee {
 	
 	public void setEmployeeRole(Role employeeRole) {
 		this.employeeRole = employeeRole;
+	}
+	
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+	
+	public void add(Address address) {
+		this.addresses.add(address);
 	}
 }

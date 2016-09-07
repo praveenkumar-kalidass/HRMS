@@ -48,7 +48,7 @@ public class Address {
 	@Column(name="phonenumber")
 	private int phoneNumber;
 
-	@Column(name="email")
+	@Column(name="e_mail")
 	private String eMail;
 
 	@Column(name="type")
@@ -139,9 +139,5 @@ public class Address {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
-	}
-	
-	public String toString() {
-		return (street + city + state);
 	}
 }
