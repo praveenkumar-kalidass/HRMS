@@ -1,6 +1,10 @@
 package com.i2i.controller;
 
-import java.util.Map;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,14 +13,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.i2i.exception.DataException;
+import com.i2i.model.Address;
+import com.i2i.model.Certification;
 import com.i2i.model.Department;
 import com.i2i.model.Designation;
+import com.i2i.model.Education;
 import com.i2i.model.Employee;
 import com.i2i.model.Role;
+import com.i2i.service.AddressService;
+import com.i2i.service.CertificationService;
 import com.i2i.service.DepartmentService;
 import com.i2i.service.DesignationService;
+import com.i2i.service.EducationService;
 import com.i2i.service.EmployeeService;
 import com.i2i.service.RoleService;
 
@@ -37,7 +48,10 @@ public class EmployeeController {
 	DepartmentService departmentService = new DepartmentService();
 	DesignationService designationService = new DesignationService();
 	RoleService roleService = new RoleService();
+	AddressService addressService = new AddressService();
 	EmployeeService employeeService = new EmployeeService();
+	CertificationService certficationService = new CertificationService();
+	EducationService educationService = new EducationService();
 	
 	/**
      * <p>
@@ -196,10 +210,9 @@ public class EmployeeController {
     @RequestMapping("/designation")
 	public String createDesignation(ModelMap model) {
 		try {
-		model.addAttribute("Designation", new Designation());
-		model.addAttribute("DesignationList", designationService.getDesignations());
-		model.addAttribute("DepartmentList", departmentService.displayDepartments());
-		
+		    model.addAttribute("Designation", new Designation());
+	    	model.addAttribute("DesignationList", designationService.getDesignations());
+	    	model.addAttribute("DepartmentList", departmentService.displayDepartments());
 		} catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
 		}
@@ -219,9 +232,8 @@ public class EmployeeController {
      *       returns the redirecting page url based on the appropriate operation.
      */
     @RequestMapping(value ="/designation_insert", method = RequestMethod.POST)
-    public String insertDesignation(@ModelAttribute("Designation")Designation designation, BindingResult result, @RequestParam("department")int departmentId, ModelMap model) {   
-        try {        	
-        	designation.setDepartment(departmentService.searchDepartment(departmentId));        	
+    public String insertDesignation(@ModelAttribute("Designation")Designation designation, BindingResult result,  ModelMap model) {   
+       try {        	
             if (designationService.addDesignation(designation)) {
             	model.addAttribute("message", "Designation details are successfully inserted");
             } else {
@@ -250,8 +262,8 @@ public class EmployeeController {
 	@RequestMapping(value ="/designation_edit", method = RequestMethod.GET)
 	public String editDesignation(@RequestParam("id")int designationId, ModelMap model) {
 		try {	
-		 model.addAttribute("DesignationEdit", designationService.searchDesignation(designationId));
-		 model.addAttribute("DepartmentList", departmentService.displayDepartments());
+   	        model.addAttribute("DesignationEdit", designationService.searchDesignation(designationId));
+		    model.addAttribute("DepartmentList", departmentService.displayDepartments());
 		} catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
 		}
@@ -405,100 +417,7 @@ public class EmployeeController {
 	            return "role";
 	        }
 	    }
-/* ----------------------------------------------------------------------------------*/
-	    
-	    
-	    
-	    /*------------------------------------------------------------------*/
-	    @RequestMapping("/employee")
-		public String createEmployee(ModelMap model) {
-			try {
-			model.addAttribute("Employee", new Employee());
-			model.addAttribute("EmployeeList", employeeService.retrieveEmployees());
-			} catch (DataException e) {
-				model.addAttribute("message", e.getMessage());
-			}
-			return "employee";
-		}
-		
-		
-		@RequestMapping(value ="/employee_edit", method = RequestMethod.GET)
-		public String editEmployee(@RequestParam("id")int employeeId, ModelMap model) {
-			try {
-				System.out.println("Edit");
-			 model.addAttribute("EmployeeEdit", employeeService.searchEmployee(employeeId));		
-			} catch (DataException e) {
-				model.addAttribute("message", e.getMessage());
-			}
-			return "employee";
-		}
-		
-		/**
-	     * <p>
-	     * This method passes the employee detail as the model object into its Service class.
-	     * </p>
-	     * 
-	     * @param employee
-	     *       model object that stores the employee data associated with model.
-	     * @return String
-	     *       returns the redirecting page url based on the appropriate operation.
-	     */
-	    @RequestMapping(value ="/employee_update", method = RequestMethod.POST)
-	    public String updateEmployee(@ModelAttribute("EmployeeEdit")Employee employee, ModelMap model) {
-	        try {
-	            if (employeeService.updateEmployee(employee)) {
-	                model.addAttribute("message", "Employee details are successfully Updated");
-	            } else {
-	            	model.addAttribute("message", "Employee details are not updated");
-	            }
-	        } catch (DataException exception) {
-	            model.addAttribute("message", exception.getMessage());
-	        } finally {
-	            return "employee";
-	        }
-	    }
-		
-		
-		/**
-	     * <p>
-	     * This method passes the employee detail as the model object into its Service class.
-	     * </p>
-	     * 
-	     * @param employee
-	     *       model object that stores the employee data associated with model.
-	     * @return String
-	     *       returns the redirecting page url based on the appropriate operation.
-	     */
-	    @RequestMapping(value ="/employee_insert", method = RequestMethod.POST)
-	    public String insertEmployee(@ModelAttribute("Employee")Employee employee, BindingResult result , ModelMap model) {
-	        try {
-	            if (employeeService.addEmployee(employee)) {
-	                model.addAttribute("message", "Employee details are successfully inserted");
-	            } else {
-	            	model.addAttribute("message", "Employee details are not inserted");
-	            }
-	        } catch (DataException exception) {
-	            model.addAttribute("message", exception.getMessage());
-	        } finally {
-	            return "employee";
-	        }
-	    }
-	    
-	    @RequestMapping(value ="/employee_delete", method = RequestMethod.GET)
-	    public String deleteEmployee(@RequestParam("id")int employeeId, ModelMap model) {
-	    	try {
-	            if (employeeService.deleteEmployee(employeeService.searchEmployee(employeeId))) {
-	                model.addAttribute("message", "Employee details are successfully Deleted");
-	            } else {
-	            	model.addAttribute("message", "Employee details are not deleted");
-	            }
-	        } catch (DataException exception) {
-	            model.addAttribute("message", exception.getMessage());
-	        } finally {
-	            return "employee";
-	        }
-	    }
-	    /*******
+		 /*******
 	     */
 	    @RequestMapping(value ="/certification", method = RequestMethod.GET)
 	    public String crtification() {
@@ -506,20 +425,16 @@ public class EmployeeController {
 	        
 	    }
 	    
-	    
-	    
-	    
-	    @RequestMapping(value ="/certification_form", method = RequestMethod.GET)
-	    public String crtification_form(@RequestParam("noof") int noof, ModelMap map) {
-	    	map.addAttribute("noof", noof);
-	    	return "certification_form";
+	    @RequestMapping(value ="/education", method = RequestMethod.GET)
+	    public String education() {
+	    	 return "education";
 	        
 	    }
 	    
-	    
-	    @RequestMapping(value ="/address", method = RequestMethod.GET)
-	    public String address() {
-	    	 return "address";
+	    @RequestMapping(value ="/picture", method = RequestMethod.GET)
+	    public String picture(@RequestParam("eid") int employeeId, ModelMap map) {
+	    	 map.addAttribute("EmployeeId", employeeId);
+	    	 return "picture";
 	        
 	    }
 	    
@@ -562,12 +477,12 @@ public class EmployeeController {
 	    }
 	    
 	    @RequestMapping(value ="/employee_add", method = RequestMethod.POST)
-	    public String addEmployee(@ModelAttribute("Employee")Employee employee, BindingResult result, @RequestParam("employeeRole")int roleId, @RequestParam("employeeDesignation")int designationId, ModelMap model) {
+	    public String addEmployee(@ModelAttribute("Employee")Employee employee, BindingResult result,  ModelMap model) {
 	        try {
-	        	employee.setEmployeeRole((roleService.searchRole(roleId)));
-	        	employee.setEmployeeDesignation((designationService.searchDesignation(designationId)));
 	        	if (employeeService.addEmployee(employee)) {
-	            	model.addAttribute("employeeId", employee.getEmployeeId());	            	
+	        		employee.add(new Address());
+	    			employee.add(new Address());  
+	    			model.addAttribute("Employee", employee);	
 	            } else {
 	            	model.addAttribute("message", "Employee details are not inserted");
 	            }
@@ -576,7 +491,115 @@ public class EmployeeController {
 	        } finally {
 	            return "address";
 	        }
-	    }	        	
-	    /**/
+	    }
+	    
+	    @RequestMapping(value ="/address_add", method = RequestMethod.POST)
+	    public String addAddress(@ModelAttribute("Employee") Employee employee, BindingResult result, ModelMap map) {
+	    	Employee employee1 =null;
+	    	try {
+	    		
+	    		for (Address address : employee.getAddresses()) {
+	 		    	addressService.addAddress(address);
+	 		    	employee1 = address.getEmployee();
+	 		     }	
+	    		 map.addAttribute("EmployeeId", employee1.getEmployeeId());
+	    	} catch (Exception e) {
+			
+			}
+	    	return "education";
+	    }
+	    
+	    @RequestMapping(value ="/certification_insert", method = RequestMethod.POST)
+	    public String addCertification(@ModelAttribute("Employee") Employee employee, BindingResult result, ModelMap map) {
+	    	Employee employee1 =null;
+	    	try {
+	    		 for (Certification certificate : employee.getCertification()) {
+	    			 certficationService.addCertification(certificate);
+	    			 employee1 = certificate.getEmployee();
+	 		     }
+	    		 map.addAttribute("EmployeeId", employee1.getEmployeeId());
+	    	} catch (Exception e) {
+			
+			}
+	    	return "picture";
+	    }
 
+	    @RequestMapping(value ="/certification_form", method = RequestMethod.GET)
+	    public String crtification_form(@RequestParam("noof") int noof,@RequestParam("eid") int employeeId, ModelMap map) {
+	    	try {
+	    		
+	    		Employee employee = employeeService.searchEmployee(employeeId);	    		
+	    		for(int i=1;i<=noof;i++){
+	    			employee.addCertification(new Certification());
+	    		}	    			    		
+	    	    map.addAttribute("Employee", employee);
+	    	} catch (Exception e) {
+				
+			}
+	    	return "certification_form";
+	    }
+	    
+	    @RequestMapping(value ="/education_form", method = RequestMethod.GET)
+	    public String education_form(@RequestParam("noof") int noof, @RequestParam("eid") int employeeId, ModelMap map) {
+	    	try {
+	    		System.out.println("Came");
+	    		System.out.println("Employee Id : " + employeeId);
+	    		Employee employee = employeeService.searchEmployee(employeeId);	    		
+	    		for(int i=1;i<=noof;i++){
+	    			employee.addEducation(new Education());
+	    		}	    			    		
+	    	    map.addAttribute("Employee", employee);
+	    	    System.out.println("First Name :" +employee.getEmployeeFirstName());
+	    	} catch (Exception e) {
+				System.out.println(e);
+			}
+	    	return "education_form";
+	    }
+	    
+	    
+	    @RequestMapping(value ="/education_insert", method = RequestMethod.POST)
+	    public String addEducation(@ModelAttribute("Employee") Employee employee, BindingResult result, ModelMap map) {
+	    	Employee employee1 =null;
+	    	try {
+	    		 for (Education education : employee.getEducation()) {
+	    			 educationService.addEducation(education);
+	    			 employee1 = education.getEmployee();
+	 		     }
+	    		 map.addAttribute("EmployeeId", employee1.getEmployeeId());
+	    	} catch (Exception e) {
+			
+			}
+	    	return "certification";
+	    }
+	    
+	    
+	    @RequestMapping(value ="/picture_add", method = RequestMethod.POST)
+	    public String addPicture(@RequestParam("profile")MultipartFile profile, @RequestParam("employeeId")int employeeId, ModelMap map) {
+	    	 InputStream inputStream = null;
+	    	 OutputStream outputStream = null;
+             
+	    	try {
+	    		Employee employee = employeeService.searchEmployee(employeeId);
+	    		String fileName = profile.getOriginalFilename();		    		
+	    		 inputStream = profile.getInputStream();
+	    		  File newFile = new File("/home/user/workspace/HRMS/WebContent/resources/upload/" + fileName);
+	    		   if (!newFile.exists()) {
+	    		    newFile.createNewFile();
+	    		   }
+	    		   outputStream = new FileOutputStream(newFile);
+	    		   int read = 0;
+	    		   byte[] bytes = new byte[1024];
+	    		   while ((read = inputStream.read(bytes)) != -1) {
+	    		    outputStream.write(bytes, 0, read);
+	    		   }
+	    		   employeeService.updateProfile(employee, fileName);
+	    		   map.addAttribute("message", "Employee details are inserted Successfully");
+	    	} catch (Exception e) {
+			    System.out.println(e);
+			}
+	    	return "personal";
+	    }
+	    
+	   
+	    
 }

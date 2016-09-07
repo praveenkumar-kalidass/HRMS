@@ -3,6 +3,7 @@ package com.i2i.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -33,8 +34,8 @@ public class Designation {
 	@Column(name="name")
 	private String designationName;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "department_id")
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+    @JoinColumn(name = "department_id" , nullable=false)
 	private Department department;
 
 	public Designation(){	

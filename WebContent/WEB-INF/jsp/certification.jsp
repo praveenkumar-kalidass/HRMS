@@ -33,13 +33,23 @@
 
 
                         <div id="Department-Table" role="tabpanel" class="tab-pane active">
+                             <ol class="breadcrumb">
+                                <li><a href="javascript:void(0)">Personal Details</a></li>
+                                <li><a href="javascript:void(0)">Communication Details</a></li>
+                                <li><a href="javascript:void(0)">Education Details</a></li>
+                                <li  class="active">Certification Details</li>
+                                <li><a href="javascript:void(0)">Profile Picture</a></li>                                
+                        </ol>
+                            
+                            
                             <div class="main-head">
                                 <h1 class="title"> Certification Details </h1> </div>
-                            
+                         
 <script>
 function loadDoc() {
   var xhttp;
   var noof = parseInt(document.getElementById('noof').value);
+  var employeeId = <c:out value='${EmployeeId}' />;
   if (window.XMLHttpRequest) {
     // code for modern browsers
     xhttp = new XMLHttpRequest();
@@ -50,9 +60,20 @@ function loadDoc() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("certifcation_form").innerHTML = this.responseText;
+      $('.form_date').datetimepicker({
+          language:  'en',
+          weekStart: 1,
+          todayBtn:  1,
+  		autoclose: 1,
+  		todayHighlight: 1,
+  		startView: 2,
+  		minView: 2,
+  		forceParse: 0
+      });
+  	
     }
   };
-  xhttp.open("GET", "certification_form.html?noof="+noof, true);
+  xhttp.open("GET", "certification_form.html?noof="+noof+"&eid="+employeeId, true);
   xhttp.send();
 }
 </script>
@@ -64,9 +85,14 @@ function loadDoc() {
                              </div>
                     
                                
-                               <div class="col-md-12" style="padding-left: 100px;">
+                              <div class="col-md-12" style="padding-left: 100px;">
                                <div id="certifcation_form">
                                </div>
+						    </div>
+						    
+						    
+						    <div>
+						     <a href="picture.html?eid=<c:out value='${EmployeeId}' />"> <button class="btn btn-primary btn-lg"> Skip this Step  </button> </a>
 						    </div>
                             </div>
                         </div>
@@ -95,60 +121,24 @@ function loadDoc() {
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
-
-    <script id="js">
-        $(function() {
-            $.tablesorter.themes.bootstrap = {
-                table: 'table table-bordered table-striped',
-                caption: 'caption',
-                header: 'bootstrap-header',
-                sortNone: '',
-                sortAsc: '',
-                sortDesc: '',
-                active: '',
-                hover: '',
-                icons: '',
-                iconSortNone: 'fa fa-sort',
-                iconSortAsc: 'fa fa-sort-asc',
-                iconSortDesc: 'fa fa-sort-desc ',
-                filterRow: '',
-                footerRow: '',
-                footerCells: '',
-                even: '',
-                odd: ''
-            };
-
-
-            $("table").tablesorter({
-                    theme: "bootstrap",
-
-                    widthFixed: true,
-
-                    headerTemplate: '{content} {icon}',
-
-                    widgets: ["uitheme", "filter", "zebra"],
-
-                    widgetOptions: {
-                        zebra: ["even", "odd"],
-
-                        filter_reset: ".reset",
-
-                        filter_cssFilter: "form-control",
-
-
-                    }
-                })
-                .tablesorterPager({
-
-                    container: $(".ts-pager"),
-                    cssGoto: ".pagenum",
-                    removeRows: false,
-                    output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
-
-                });
-
-        });
-    </script>
+    
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    
+   <script type="text/javascript">
+   
+	$('.form_date').datetimepicker({
+        language:  'en',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	
+</script>
 
     <script>
         $.sidebarMenu($('.sidebar-menu'));

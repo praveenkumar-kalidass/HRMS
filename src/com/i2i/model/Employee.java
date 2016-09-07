@@ -6,11 +6,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * <p>
@@ -27,6 +32,7 @@ import javax.persistence.Table;
 @Table(name = "employee")
 public class Employee {
 	@Id
+	@GeneratedValue
     @Column(name = "id", unique = true)
     private int employeeId;
 	
@@ -72,11 +78,28 @@ public class Employee {
     private Role employeeRole;
 	
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "addressId")
-	private List<Address> addresses = new ArrayList<Address>();
+    private List<Address> addresses = new ArrayList<Address>();
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "certificationId")
+    private List<Certification> certification = new ArrayList<Certification>();
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "educationId")
+    private List<Education> education = new ArrayList<Education>();
+	
+
 	public Employee() {
 	}
 	
+	public List<Certification> getCertification() {
+		return certification;
+	}
+
+	public void setCertification(List<Certification> certification) {
+		this.certification = certification;
+	}
+
 	public int getEmployeeId() {
 		return employeeId;
 	}
@@ -187,7 +210,6 @@ public class Employee {
 	public void setEmployeeRole(Role employeeRole) {
 		this.employeeRole = employeeRole;
 	}
-	
 	public List<Address> getAddresses() {
 		return addresses;
 	}
@@ -197,6 +219,22 @@ public class Employee {
 	}
 	
 	public void add(Address address) {
-		this.addresses.add(address);
+	        this.addresses.add(address);
+	}
+	
+	public void addCertification(Certification certification) {
+        this.certification.add(certification);
+    }
+	
+	public void addEducation(Education education) {
+        this.education.add(education);
+    }
+
+	public List<Education> getEducation() {
+		return education;
+	}
+
+	public void setEducation(List<Education> education) {
+		this.education = education;
 	}
 }

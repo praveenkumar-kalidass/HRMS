@@ -127,7 +127,7 @@
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                                         <div class="col-md-8">
 
-                                                            <spring:select path="department" class="form-control">
+                                                            <spring:select path="department.departmentId" class="form-control" >
                                                                 <spring:option value="0"> --Select --</spring:option>
                                                                 <c:forEach items="${DepartmentList}" var="department">
                                                                     <spring:option value="${department.departmentId}">${department.departmentName}</spring:option>

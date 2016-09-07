@@ -59,6 +59,223 @@ function loadDoc() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("address_form").innerHTML = this.responseText;
+      function ajaxCall() {
+          this.send = function(data, url, method, success, type) {
+            type = type||'json';
+            var successRes = function(data) {
+                success(data);
+            }
+
+            var errorRes = function(e) {
+                console.log(e);
+                //alert("Error found \nError Code: "+e.status+" \nError Message: "+e.statusText);
+                //$('#loader').modal('hide');
+            }
+              $.ajax({
+                  url: url,
+                  type: method,
+                  data: data,
+                  success: successRes,
+                  error: errorRes,
+                  dataType: type,
+                  timeout: 60000
+              });
+
+            }
+
+          }
+      
+      function locationInfo() {
+    	    var rootUrl = "http://iamrohit.in/lab/php_ajax_country_state_city_dropdown/api.php";
+    	    var call = new ajaxCall();
+    	    this.getCities = function(id) {
+    	        $(".cities option:gt(0)").remove();
+    	        var url = rootUrl+'?type=getCities&stateId=' + id;
+    	        var method = "post";
+    	        var data = {};
+    	        $('.cities').find("option:eq(0)").html("Please wait..");
+    	        call.send(data, url, method, function(data) {
+    	            $('.cities').find("option:eq(0)").html("Select City");
+    	            if(data.tp == 1){
+    	                $.each(data['result'], function(key, val) {
+    	                    var option = $('<option />');
+    	                    option.attr('value', val).text(val);
+    	                     option.attr('cityid', key);
+    	                    $('.cities').append(option);
+    	                });
+    	                $(".cities").prop("disabled",false);
+    	            }
+    	            else{
+    	                 alert(data.msg);
+    	            }
+    	        });
+    	    };
+    	    
+    	    this.getCities1 = function(id) {
+    	        $(".cities1 option:gt(0)").remove();
+    	        var url = rootUrl+'?type=getCities&stateId=' + id;
+    	        var method = "post";
+    	        var data = {};
+    	        $('.cities1').find("option:eq(0)").html("Please wait..");
+    	        call.send(data, url, method, function(data) {
+    	            $('.cities1').find("option:eq(0)").html("Select City");
+    	            if(data.tp == 1){
+    	                $.each(data['result'], function(key, val) {
+    	                    var option = $('<option />');
+    	                    option.attr('value', val).text(val);
+    	                     option.attr('cityid1', key);
+    	                    $('.cities1').append(option);
+    	                });
+    	                $(".cities1").prop("disabled",false);
+    	            }
+    	            else{
+    	                 alert(data.msg);
+    	            }
+    	        });
+    	    };
+
+
+    	    this.getStates = function(id) {
+    	        $(".states option:gt(0)").remove(); 
+    	        $(".cities option:gt(0)").remove(); 
+    	        var url = rootUrl+'?type=getStates&countryId=' + id;
+    	        var method = "post";
+    	        var data = {};
+    	        $('.states').find("option:eq(0)").html("Please wait..");
+    	        call.send(data, url, method, function(data) {
+    	            $('.states').find("option:eq(0)").html("Select State");
+    	            if(data.tp == 1){
+    	                $.each(data['result'], function(key, val) {
+    	                    var option = $('<option />');
+    	                        option.attr('value', val).text(val);
+    	                        option.attr('stateid', key);
+    	                    $('.states').append(option);
+    	                });
+    	                $(".states").prop("disabled",false);
+    	            }
+    	            else{
+    	                alert(data.msg);
+    	            }
+    	        }); 
+    	    };
+    	    
+    	    this.getStates1 = function(id) {
+    	        $(".states1 option:gt(0)").remove(); 
+    	        $(".cities1 option:gt(0)").remove(); 
+    	        var url = rootUrl+'?type=getStates&countryId=' + id;
+    	        var method = "post";
+    	        var data = {};
+    	        $('.states1').find("option:eq(0)").html("Please wait..");
+    	        call.send(data, url, method, function(data) {
+    	            $('.states1').find("option:eq(0)").html("Select State");
+    	            if(data.tp == 1){
+    	                $.each(data['result'], function(key, val) {
+    	                    var option = $('<option />');
+    	                        option.attr('value', val).text(val);
+    	                        option.attr('stateid1', key);
+    	                    $('.states1').append(option);
+    	                });
+    	                $(".states1").prop("disabled",false);
+    	            }
+    	            else{
+    	                alert(data.msg);
+    	            }
+    	        }); 
+    	    };
+
+    	    this.getCountries = function() {
+    	        var url = rootUrl+'?type=getCountries';
+    	        var method = "post";
+    	        var data = {};
+    	        $('.countries').find("option:eq(0)").html("Please wait..");
+    	        call.send(data, url, method, function(data) {
+    	            $('.countries').find("option:eq(0)").html("Select Country");
+    	            console.log(data);
+    	            if(data.tp == 1){
+    	                $.each(data['result'], function(key, val) {
+    	                    var option = $('<option />');
+    	                    option.attr('value', val).text(val);
+    	                     option.attr('countryid', key);
+    	                    $('.countries').append(option);
+    	                });
+    	                $(".countries").prop("disabled",false);
+    	            }
+    	            else{
+    	                alert(data.msg);
+    	            }
+    	        }); 
+    	    };
+    	    
+    	    
+    	    this.getCountries1 = function() {
+    	        var url = rootUrl+'?type=getCountries';
+    	        var method = "post";
+    	        var data = {};
+    	        $('.countries1').find("option:eq(0)").html("Please wait..");
+    	        call.send(data, url, method, function(data) {
+    	            $('.countries1').find("option:eq(0)").html("Select Country");
+    	            console.log(data);
+    	            if(data.tp == 1){
+    	                $.each(data['result'], function(key, val) {
+    	                    var option = $('<option />');
+    	                    option.attr('value', val).text(val);
+    	                     option.attr('countryid1', key);
+    	                    $('.countries1').append(option);
+    	                });
+    	                $(".countries1").prop("disabled",false);
+    	            }
+    	            else{
+    	                alert(data.msg);
+    	            }
+    	        }); 
+    	    };
+
+    	}
+
+    	$(function() {
+    	var loc = new locationInfo();
+    	loc.getCountries();
+    	loc.getCountries1();
+    	 $(".countries").on("change", function(ev) {
+    	        var countryId = $("option:selected", this).attr('countryid');
+    	        if(countryId != ''){
+    	        loc.getStates(countryId);
+    	        }
+    	        else{
+    	            $(".states option:gt(0)").remove();
+    	        }
+    	    });
+    	 $(".countries1").on("change", function(ev) {
+    	     var countryId = $("option:selected", this).attr('countryid1');
+    	     if(countryId != ''){
+    	     loc.getStates1(countryId);
+    	     }
+    	     else{
+    	         $(".states1 option:gt(0)").remove();
+    	     }
+    	 });
+    	 
+    	 
+    	 $(".states").on("change", function(ev) {
+    	        var stateId = $("option:selected", this).attr('stateid');
+    	        if(stateId != ''){
+    	        loc.getCities(stateId);
+    	        }
+    	        else{
+    	            $(".cities option:gt(0)").remove();
+    	        }
+    	    });
+    	 $(".states1").on("change", function(ev) {
+    	     var stateId = $("option:selected", this).attr('stateid1');
+    	     if(stateId != ''){
+    	     loc.getCities1(stateId);
+    	     }
+    	     else{
+    	         $(".cities1 option:gt(0)").remove();
+    	     }
+    	 });
+    	 
+    	});
     }
   };
   xhttp.open("GET", "address_form.html?same="+same+"&address="+address+"&countries="+countries+"&states="+states+"&cities="+cities+"&pincode="+pincode+"&mobile="+mobile+"&email="+email, true);
@@ -67,13 +284,22 @@ function loadDoc() {
 </script>
 
                         <div id="Department-Table" role="tabpanel" class="tab-pane active">
+                           
+                             <ol class="breadcrumb">
+                                <li><a href="javascript:void(0)">Personal Details</a></li>
+                                <li class="active">Communication Details</li>
+                                <li><a href="javascript:void(0)">Education Details</a></li>
+                                <li><a href="javascript:void(0)">Certification Details</a></li>
+                                <li><a href="javascript:void(0)">Profile Picture</a></li>                                
+                        </ol>
+                           
                             <div class="main-head">
                                 <h1 class="title"> Communication Details </h1> </div>
                             
 
                             <div class="form">
                                      
-                                        <form action="#" method="post" class="form-group">
+                                        <spring:form action="address_add" method="post" modelAttribute="Employee"  class="form-group">
                                      
                                      <div class="col-md-12">
 
@@ -82,49 +308,49 @@ function loadDoc() {
 
                                     <h5> Residential Address </h5>
                                     <hr>
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Address</label>
+                                    <div class="form-group row">                                        
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="employeeId" placeHolder="Employee Id" value="<c:out value='' />">
+                                            <spring:input path="addresses[0].employee.employeeId" class="form-control" type="hidden" value="${Employee.employeeId}" id="employeeId" placeHolder="Employee Id" />
+                                            <spring:input path="addresses[1].employee.employeeId" class="form-control" type="hidden" value="${Employee.employeeId}" id="employeeId" placeHolder="Employee Id" />
                                         </div>
                                     </div>
                                     
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Address</label>
                                         <div class="col-md-8">
-                                            <textarea class="form-control" id="address" placeHolder="Address"></textarea>
+                                            <spring:textarea path="addresses[0].street" class="form-control" id="address" placeHolder="Address"></spring:textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
                                         <div class="col-md-8">
-                                            <select name="country" class="countries form-control" id="countryId">
+                                            <spring:select path="addresses[0].country" class="countries form-control" id="countryId">
                                                 <option value="">Select Country</option>
-                                            </select>
+                                            </spring:select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">State</label>
                                         <div class="col-md-8">
-                                            <select name="state" class="states form-control" id="stateId">
+                                           <spring:select path="addresses[0].state" class="states form-control" id="stateId">
 												<option value="">Select State</option>
-                                            </select>
+                                           </spring:select>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">City</label>
                                         <div class="col-md-8">
-                                           <select name="city" class="cities form-control" id="cityId">
+                                           <spring:select path="addresses[0].city" class="cities form-control" id="cityId">
 												<option value="">Select City</option>
-											</select>
+											</spring:select>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Pincode</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="pincode" placeHolder="Pincode">
+                                            <spring:input  path="addresses[0].pincode" class="form-control"  id="pincode" placeHolder="Pincode" />
                                         </div>
                                     </div>
 
@@ -132,7 +358,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="mobile" placeHolder="Mobile Number">
+                                           <spring:input  path="addresses[0].phoneNumber" class="form-control"  id="mobile" placeHolder="Mobile Number" />
                                         </div>
                                     </div>
 
@@ -140,9 +366,16 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Email Address</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="email" id="email" placeHolder="Email Address">
+                                            <spring:input  path="addresses[0].eMail" class="form-control"  id="email" placeHolder="Email Address" />
                                         </div>
-                                    </div>
+                                    </div> 
+                                    
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-md-4 col-form-label">Type</label>
+                                        <div class="col-md-8">
+                                            <spring:input  path="addresses[0].addressType" class="form-control" value="Current" readonly="readOnly"  />
+                                        </div>
+                                    </div> 
 
                                 </div>
 
@@ -157,7 +390,7 @@ function loadDoc() {
                                         <div class="col-md-8">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input"  type="checkbox" name="same" id="myCheck" onchange="loadDoc();" value="Male"> Same as Residential
+                                                    <input class="form-check-input"  type="checkbox" name="same" id="myCheck" onchange="loadDoc();" value="Male"> Import Residential Address
                                                 </label>
                                             </div>
                                         </div>
@@ -166,32 +399,33 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Address</label>
                                         <div class="col-md-8">
-                                            <textarea class="form-control" id="example-text-input" placeHolder="Address"></textarea>
+                                        <spring:textarea path="addresses[1].street" class="form-control" id="address" placeHolder="Address"></spring:textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
                                         <div class="col-md-8">
-                                            <select name="country1" class="countries1 form-control" id="countryId1">
+                                            <spring:select path="addresses[1].country" class="countries1 form-control" id="countryId1">
                                                 <option value="">Select Country</option>
-                                            </select>
+                                            </spring:select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">State</label>
                                         <div class="col-md-8">
-                                            <select name="state1" class="states1 form-control" id="stateId1">
+                                             <spring:select path="addresses[1].state" class="states1 form-control" id="stateId1">
 												<option value="">Select State</option>
-                                            </select>
+                                           </spring:select>
+                                        
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">City</label>
                                         <div class="col-md-8">
-                                           <select name="city" class="cities1 form-control" id="cityId1">
+                                          <spring:select path="addresses[1].city" class="cities1 form-control" id="cityId1">
 												<option value="">Select City</option>
-											</select>
+											</spring:select>
                                         </div>
                                     </div>
 
@@ -199,7 +433,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Pincode</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="example-text-input" placeHolder="Pincode">
+                                              <spring:input  path="addresses[1].pincode" class="form-control"  id="pincode" placeHolder="Pincode" />
                                         </div>
                                     </div>
 
@@ -207,7 +441,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="example-text-input" placeHolder="Mobile Number">
+                                            <spring:input  path="addresses[1].phoneNumber" class="form-control"  id="mobile" placeHolder="Mobile Number" />
                                         </div>
                                     </div><script src="js/location.js"></script>
 
@@ -215,9 +449,17 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Email Address</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="email" id="example-text-input" placeHolder="Email Address">
+                                              <spring:input  path="addresses[1].eMail" class="form-control"  id="email" placeHolder="Email Address" />
                                         </div>
                                     </div>
+                                    
+                                    
+                                      <div class="form-group row">
+                                        <label for="example-text-input" class="col-md-4 col-form-label">Type</label>
+                                        <div class="col-md-8">
+                                            <spring:input  path="addresses[1].addressType" class="form-control" value="Perment" readonly="readOnly"  />
+                                        </div>
+                                    </div> 
                                   </div>
 
                                 </div>
@@ -231,7 +473,7 @@ function loadDoc() {
                                 </div>
                             </div>
                             
-                            </form>
+                         </spring:form>
 
                         </div>
                                                           

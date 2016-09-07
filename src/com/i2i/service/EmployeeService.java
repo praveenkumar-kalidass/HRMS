@@ -56,6 +56,11 @@ public class EmployeeService {
     	
     }
     
+    public boolean updateProfile(Employee employee, String fileName) throws DataException {    	
+    	return employeeDao.addProfile(employee, fileName);
+    	
+    }
+    
     /**
      * <p>
      * This method checks the presence of employee ID in the database.

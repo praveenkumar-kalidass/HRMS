@@ -1,8 +1,11 @@
 package com.i2i.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,7 +26,7 @@ public class Certification {
 
 	 @Id
 	    @Column(name="id", unique=true)
-		private int id;
+		private int certificationId;
 	    
 	    @Column(name="from_date")
 	    private String fromDate;
@@ -36,14 +39,11 @@ public class Certification {
 	    
 	    @Column(name="institution")
 	    private String institution;
-
-		public int getId() {
-			return id;
-		}
-
-		public void setId(int id) {
-			this.id = id;
-		}
+	   
+	    @ManyToOne(cascade = CascadeType.PERSIST)
+	    @JoinColumn(name = "employee_id")
+		private Employee employee;
+	    
 
 		public String getFromDate() {
 			return fromDate;
@@ -77,4 +77,21 @@ public class Certification {
 		public void setInstitution(String institution) {
 			this.institution = institution;
 		}
+
+		public int getCertificationId() {
+			return certificationId;
+		}
+
+		public void setCertificationId(int certificationId) {
+			this.certificationId = certificationId;
+		}
+
+		public Employee getEmployee() {
+			return employee;
+		}
+
+		public void setEmployee(Employee employee) {
+			this.employee = employee;
+		}
+		
 }
