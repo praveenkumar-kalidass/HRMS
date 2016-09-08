@@ -6,11 +6,12 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Attendance Details</title>
+    <title>LeaveRequest Details</title>
     <link href="images/logo1.png" rel="icon" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sidebar-menu.css"> </head>
+    <link rel="stylesheet" href="css/sidebar-menu.css"> 
+    </head>
 
 <body>
     <div id="dialog-confirm" title="Alert" style="display:none;">
@@ -33,25 +34,26 @@
                 <div class="col-md-12">
                     <!-- Main Start -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#Employee-Table" aria-controls="Employee-Table" role="tab" data-toggle="tab">Attendances</a>
+                        <li role="presentation" class="active"><a href="#Employee-Table" aria-controls="Employee-Table" role="tab" data-toggle="tab">LeaveRequests</a>
                         </li>
-                        <li role="presentation"><a href="#Employee-Form" aria-controls="Employee-Form" role="tab" data-toggle="tab">Check-In</a>
+                        <li role="presentation"><a href="#Employee-Form" aria-controls="Employee-Form" role="tab" data-toggle="tab">Add New</a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <div id="Employee-Table" role="tabpanel" class="tab-pane active">
                             <div class="form">
                                 <div class="main-head">
-                                    <h1 class="title"> Attendance Details </h1> </div>
+                                    <h1 class="title"> LeaveRequest Details </h1> </div>
 
-                                <c:if test="${AttendanceList!=null}">
+                                <c:if test="${LeaveRequestList!=null}">
                                     <table>
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Date</th>
-                                                <th>Time-In</th>
-                                                <th>Time-Out</th>
+                                                <th>Reason</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Status</th>
                                         </thead>
                                         <tfoot>
 
@@ -79,22 +81,26 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
-                                            <c:forEach var="attendance" items="${AttendanceList}">
+                                            <c:forEach var="leaveRequest" items="${LeaveRequestList}">
                                                 <tr>
                                                     <td>
-                                                        <c:out value="${attendance.attendanceId}"></c:out>
+                                                        <c:out value="${leaveRequest.leaveId}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <c:out value="${attendance.date}"></c:out>
+                                                        <c:out value="${leaveRequest.leaveReason}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <c:out value="${attendance.timeIn}"></c:out>
+                                                        <c:out value="${leaveRequest.leaveFromDate}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <c:out value="${attendance.timeOut}"></c:out>
+                                                        <c:out value="${leaveRequest.leaveToDate}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <a href="attendance_edit.html?id=<c:out value='${attendance.attendanceId} ' />" class="edit"> <i class="fa fa-pencil"></i> Checkout </a> &nbsp;&nbsp;
+                                                        <c:out value="${leaveRequest.leaveStatus}"></c:out>
+                                                    </td>
+                                                    <td>
+                                                        <a href="leaveRequest_delete.html?id=<c:out value='${leaveRequest.leaveId} ' />" class="delete"> <i class="fa fa-trash"></i> Cancel </a>
+
                                                     </td>
 
                                                 </tr>
@@ -112,34 +118,59 @@
                         <div id="Employee-Form" role="tabpanel" class="tab-pane">
                             <div class="form">
                                 <div class="main-head">
-                                    <h1 class="title"> Check-In </h1> </div>
+                                    <h1 class="title"> Add New LeaveRequest </h1> </div>
                                 <div class="single-rowform">
-                                    <c:if test="${Attendance!=null}">
-                                        <spring:form action="attendance_insert" method="post" class="form-group" modelAttribute="Attendance">
+                                    <c:if test="${LeaveRequest!=null}">
+                                        <spring:form action="leaveRequest_insert" method="post" class="form-group" modelAttribute="LeaveRequest">
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
-                                                    
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Reason</label>
+                                                            <div class="col-md-8">
+                                                                <spring:textarea path="leaveReason" class="form-control" placeHolder="Reason"></spring:textarea>
+                                                            </div>
+                                                    </div>
 
                                                     <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Employee Check-In</label>
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">From:</label>
+                                                        <div class="col-md-8">
+                                           
+                                                        <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
+             								            <input class="form-control" size="16" type="text" value="" readonly>            										      
+														<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+               											</div>
+												        <spring:input path="leaveFromDate" id="dtp_input3" type="hidden" class="form-control"    />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">To:</label>
+                                                        <div class="col-md-8">
+                                           
+                                                        <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
+             								            <input class="form-control" size="16" type="text" value="" readonly>            										      
+														<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+               											</div>
+												        <spring:input path="leaveToDate" id="dtp_input4" type="hidden" class="form-control"    />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Employee</label>
                                                         <div class="col-md-8">
 
-                                                            <spring:hidden path="employee.employeeId" value="${Employee.employeeId}"></spring:hidden>
-                                                            
-                                                            
-                                                            <spring:hidden path="date" value="${Date.getYear()+1900}-${Date.getMonth()+1}-${Date.getDate()}"></spring:hidden>
-                                                            
-                                                            
-                                                            <spring:hidden path="timeIn" value="${Date.getHours()}:${Date.getMinutes()}:${Date.getSeconds()}"></spring:hidden>
-                                                            
-                                                            
+                                                            <spring:input type="hidden" path="employee.employeeId" class="form-control" value="${Employee.employeeId}" />
+                                                        </div>
+                                                        
+                                                        <div class="form-group row">
+                                                            <div class="col-md-8">
+                                                                <spring:input path="leaveStatus" type="hidden" class="form-control" value="Pending"></spring:input>
+                                                            </div>
                                                         </div>
 
                                                         <div class="col-md-12">
                                                             <br/> </div>
                                                         <div class="form-group row" align="center">
                                                             <div class="col-md-12">
-                                                                <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Check-In"> </div>
+                                                                <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Send to Admin"> </div>
                                                         </div>
 
 
@@ -163,53 +194,7 @@
             </div>
         </div>
     </div>
-    <div id="myModal" class="modal fade" role="dialog" aria-hidden="false" data-backdrop="static">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Employee Check-Out</h4>
-                </div>
-                <div class="modal-body">
-                    <c:if test="${AttendanceEdit!=null}">
-                        <spring:form action="attendance_update" method="post" class="form-group" modelAttribute="AttendanceEdit">
-                            <div class="col-md-12">
-                                <h4 class="modal-title">Click here to Check-out</h4>
-                                <spring:input path="attendanceId" type="hidden" class="form-control" id="example-text-input" readonly="readOnly" /> </div>
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    
-                                    <spring:hidden path="timeOut" value="${Date.getHours()}:${Date.getMinutes()}:${Date.getSeconds()}"></spring:hidden>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    <spring:input type="hidden" path="timeIn" value="${AttendanceEdit.timeIn}" readonly="readOnly"></spring:input>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    <spring:hidden path="date" value="${AttendanceEdit.date}" readonly="readOnly"></spring:hidden>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    <spring:hidden path="employee.employeeId" value="${Employee.employeeId}" readonly="readOnly"></spring:hidden>
-                                </div>
-                            </div>
-                            <div class="form-group row" align="center">
-                                <div class="col-md-12">
-                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Check-out"> </div>
-                            </div>
-                </div>
-                </spring:form>
-                </c:if>
-            </div>
-            <div class="modal-footer"> </div>
-        </div>
-
-    </div>
+   
     </div>
 
 
@@ -230,59 +215,7 @@
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
 
-    <script id="js">
-        $(function() {
-            $.tablesorter.themes.bootstrap = {
-                table: 'table table-bordered table-striped',
-                caption: 'caption',
-                header: 'bootstrap-header',
-                sortNone: '',
-                sortAsc: '',
-                sortDesc: '',
-                active: '',
-                hover: '',
-                icons: '',
-                iconSortNone: 'fa fa-sort',
-                iconSortAsc: 'fa fa-sort-asc',
-                iconSortDesc: 'fa fa-sort-desc ',
-                filterRow: '',
-                footerRow: '',
-                footerCells: '',
-                even: '',
-                odd: ''
-            };
-
-
-            $("table").tablesorter({
-                    theme: "bootstrap",
-
-                    widthFixed: true,
-
-                    headerTemplate: '{content} {icon}',
-
-                    widgets: ["uitheme", "filter", "zebra"],
-
-                    widgetOptions: {
-                        zebra: ["even", "odd"],
-
-                        filter_reset: ".reset",
-
-                        filter_cssFilter: "form-control",
-
-
-                    }
-                })
-                .tablesorterPager({
-
-                    container: $(".ts-pager"),
-                    cssGoto: ".pagenum",
-                    removeRows: false,
-                    output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
-
-                });
-
-        });
-    </script>
+    
 
     <script>
         $.sidebarMenu($('.sidebar-menu'));
@@ -294,7 +227,7 @@
     </script>
 
     <c:if test="${message==null}">
-        <c:if test="${AttendanceEdit!=null}">
+        <c:if test="${LeaveRequestEdit!=null}">
             <script>
                 $("#myModal").modal();
             </script>
@@ -313,12 +246,31 @@
                     buttons: {
                         Ok: function() {
                             $(this).dialog("close");
-                            window.location = "attendance.html";
+                            window.location = "leaverequest.html";
                         }
                     }
                 });
             });
         </script>
     </c:if>
+    
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <script type="text/javascript">
+   
+	$('.form_date').datetimepicker({
+        language:  'en',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	
+    </script>
+</body>
 
 </html>           

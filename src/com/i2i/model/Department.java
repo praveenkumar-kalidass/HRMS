@@ -2,21 +2,18 @@ package com.i2i.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * <p>
  * Model class which stores the details associated with the
- * Department of the company.
+ * Departments of the company.
  * </p>
  * 
  * @author Praveenkumar
  * 
  * @created 2016-09-01
- *
  */
 
 @Entity
@@ -53,5 +50,4 @@ public class Department {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	
 }
