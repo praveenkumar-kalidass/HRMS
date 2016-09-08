@@ -14,18 +14,14 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import com.i2i.model.Department;
 
-
 /**
- * Model class for Designation
- * Setter and Getter methods for the class variables
- * Many to One mapping is established for department model class
+ * Model class which stores the details associated with the Designations within each department in the company.
+ * Many to One mapping is established for department model class.
  * 
  * @author Praveen RaJ
  * 
  * @created 2016-09-01
  */
-
-
 @Entity
 @Table(name="designation")
 public class Designation {

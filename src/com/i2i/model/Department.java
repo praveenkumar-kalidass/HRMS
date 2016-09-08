@@ -15,7 +15,6 @@ import javax.persistence.Table;
  * 
  * @created 2016-09-01
  */
-
 @Entity
 @Table(name = "department")
 public class Department {

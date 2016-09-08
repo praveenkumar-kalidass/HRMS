@@ -16,15 +16,14 @@ import com.i2i.model.Department;
  *
  * @author Praveenkumar
  *
- * @created 2016-08-15
+ * @created 2016-09-01
  */
 public class DepartmentService {
     DepartmentDao departmentDao = new DepartmentDao();
     
     /**
      * <p>
-     * This method checks the presence of department ID in the database.
-     * Passes the value to its dao class to insert if not present. 
+     * This method Passes the values to its dao class to insert into the database. 
      * </p>
      * 
      * @param department
@@ -36,14 +35,11 @@ public class DepartmentService {
      */
     public boolean addDepartment(Department department) throws DataException {    	
     	return departmentDao.insertDepartment(department);
-    	
     }
-    
     
     /**
      * <p>
-     * This method checks the presence of department ID in the database.
-     * Passes the value to its dao class to update if present. 
+     * This method Passes the values to its dao class to update the existing department in the database.
      * </p>
      * 
      * @param department
@@ -55,7 +51,6 @@ public class DepartmentService {
      */
     public boolean updateDepartment(Department department) throws DataException {    	
     	return departmentDao.modifyDepartment(department);
-    	
     }
     
     /**
@@ -86,7 +81,6 @@ public class DepartmentService {
      *
      * @param departmentId
      *       contains the ID of the department.
-     *       
      * @return object
      *       gives the appropriate department object for the corresponding department ID.
      * @throws DataException

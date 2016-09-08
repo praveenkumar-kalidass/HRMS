@@ -22,7 +22,6 @@ import com.i2i.model.Role;
  *
  * @created 2016-09-02
  */
-
 public class RoleDao {
     private HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory factory = hibernateConnection.establishConnection();
@@ -56,15 +55,15 @@ public class RoleDao {
     
     /**
      * <p>
-     * This method opens a new session and Inserts the model object of the role into the database.
+     * This method opens a new session and updates the modified model object of the role into the database.
      * </p>
      * 
      * @param role
      *       model object that stores the role data associated with model class.
      * @return true
-     *       Gives the success status of the insertion process.
+     *       Gives the success status of the modification process.
      * @throws DataException
-     *       throws error message if problem arises with inserting the data in the database.
+     *       throws error message if problem arises with modification of data in the database.
      */
     public boolean modifyRole(Role role) throws DataException{
         Session session = factory.openSession();
@@ -72,11 +71,10 @@ public class RoleDao {
             Transaction transaction = session.beginTransaction();
             session.update(role);
             transaction.commit();
-            System.out.println("Dao out");
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in insertRole() : " + exception.getMessage());
-            throw new DataException("Error while adding Role ID : " + role.getRoleId());
+            FileUtil.ErrorLogger("Exception in modifyRole() : " + exception.getMessage());
+            throw new DataException("Error while modifying Role ID : " + role.getRoleId());
         } finally {
             session.close();
         }
@@ -87,8 +85,8 @@ public class RoleDao {
      * This method opens a new session and Deletes the role from the records.
      * </p>
      * 
-     * @param roleId
-     *       contains the ID of the role.
+     * @param role
+     *       model object that stores the role data associated with model class.
      * @return true
      *       Gives the success status of the deletion process.
      * @throws DataException
@@ -115,7 +113,7 @@ public class RoleDao {
      * returns the data as a model object to display.
      * </p>
      * 
-     * @param departementId
+     * @param roleId
      *       contains the ID of the role.
      * @return object
      *       gives the appropriate role detail for the corresponding role ID.
@@ -136,7 +134,7 @@ public class RoleDao {
     
     /**
     * <p>
-    * This method retrieves the role data from the records and returns the list of data.
+    * This method retrieves the roles from the records and returns the list of data.
     * </p>
     * 
     * @return list

@@ -16,15 +16,14 @@ import com.i2i.model.Role;
  *
  * @author Praveenkumar
  *
- * @created 2016-08-15
+ * @created 2016-09-02
  */
 public class RoleService {
     RoleDao roleDao = new RoleDao();
     
     /**
      * <p>
-     * This method checks the presence of role ID in the database.
-     * Passes the value to its dao class to insert if not present. 
+     * This method Passes the values to its dao class to insert into the database.
      * </p>
      * 
      * @param role
@@ -36,14 +35,12 @@ public class RoleService {
      */
     public boolean addRole(Role role) throws DataException {    	
     	return roleDao.insertRole(role);
-    	
     }
     
     
     /**
      * <p>
-     * This method checks the presence of role ID in the database.
-     * Passes the value to its dao class to insert if not present. 
+     * This method Passes the values to its dao class to update the existing role in the database.
      * </p>
      * 
      * @param role
@@ -55,12 +52,11 @@ public class RoleService {
      */
     public boolean updateRole(Role role) throws DataException {    	
     	return roleDao.modifyRole(role);
-    	
     }
     
     /**
      * <p>
-     * This method checks the presence of role ID in the database.
+     * This method checks the presence of role in the database.
      * Passes the value to its dao class to delete if present.
      * </p>
      * 
@@ -86,7 +82,6 @@ public class RoleService {
      *
      * @param roleId
      *       contains the ID of the role.
-     *       
      * @return object
      *       gives the appropriate role object for the corresponding role ID.
      * @throws DataException
@@ -98,7 +93,7 @@ public class RoleService {
     
     /**
      * <p>
-     * This method retrieves the Role data from the records and returns the list of data to display.
+     * This method retrieves the Roles from the records and returns the list of data to display.
      * </p>
      * 
      * @return list
