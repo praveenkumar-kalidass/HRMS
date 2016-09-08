@@ -1,6 +1,5 @@
 package com.i2i.dao;
 
-
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -16,19 +15,18 @@ import com.i2i.model.Department;
 /**
  * <p>
  * Dao(Data Access Object) class which establishes session with the database and 
- * performs operation on manipulation of records associated with Department.
+ * performs operation on manipulation of records associated with Departments.
  * </p>
  *
  * @author Praveenkumar
  *
  * @created 2016-09-01
  */
-
 public class DepartmentDao {
     private HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory factory = hibernateConnection.establishConnection();
     
-/**
+    /**
      * <p>
      * This method opens a new session and Inserts the model object of the department into the database.
      * </p>
@@ -55,11 +53,9 @@ public class DepartmentDao {
         }
     }
     
-    
-    
     /**
      * <p>
-     * This method opens a new session and modify the model object of the department from the database.
+     * This method opens a new session and modifies the model object of the department in the database.
      * </p>
      * 
      * @param department
@@ -75,23 +71,22 @@ public class DepartmentDao {
             Transaction transaction = session.beginTransaction();
             session.update(department);
             transaction.commit();
-            System.out.println("Dao out");
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in insertDepartment() : " + exception.getMessage());
-            throw new DataException("Error while adding Department ID : " + department.getDepartmentId());
+            FileUtil.ErrorLogger("Exception in modifyDepartment() : " + exception.getMessage());
+            throw new DataException("Error while updating Department ID : " + department.getDepartmentId());
         } finally {
             session.close();
         }
     }
     
-/**
+    /**
      * <p>
      * This method opens a new session and Deletes the department from the records.
      * </p>
      * 
-     * @param departmentId
-     *       contains the ID of the department.
+     * @param department
+     *       model object that stores the department data associated with model class.
      * @return true
      *       Gives the success status of the deletion process.
      * @throws DataException
@@ -112,9 +107,9 @@ public class DepartmentDao {
         }
     }
 
-/**
+    /**
      * <p>
-     * this method searches the department from the records using department ID and 
+     * This method searches the department from the records using department ID and 
      * returns the data as a model object to display.
      * </p>
      * 
@@ -128,7 +123,6 @@ public class DepartmentDao {
     public Department findDepartment(int departmentId) throws DataException {
     	Session session = factory.openSession();
     	try {    	    
-    	    Transaction transaction = session.beginTransaction();
             return (Department)session.get(Department.class, departmentId);
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in findDepartment() : " + exception.getMessage());
@@ -138,7 +132,7 @@ public class DepartmentDao {
         }
     }
     
-     /**
+    /**
      * <p>
      * This method retrieves the department data from the records and returns the list of data.
      * </p>
@@ -151,7 +145,6 @@ public class DepartmentDao {
     public List<Department> retrieveDepartments() throws DataException {
     	Session session = factory.openSession();
     	try {        	
-        	Transaction transaction = session.beginTransaction();
             return session.createCriteria(Department.class).list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveDepartments() : " + exception.getMessage());

@@ -2,19 +2,18 @@ package com.i2i.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * <p>
  * Model class which stores the details associated with the
- * Department of the company.
+ * Role of the Employees.
  * </p>
  * 
  * @author Praveenkumar
  * 
- * @created 2016-09-01
+ * @created 2016-09-02
  *
  */
 @Entity
