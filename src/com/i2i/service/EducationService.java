@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.i2i.dao.EducationDao;
 import com.i2i.exception.DataException;
+import com.i2i.model.Designation;
 import com.i2i.model.Education;
 
 /**
@@ -102,7 +103,7 @@ EducationDao educationtDao = new EducationDao();
      * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      */
-    public List<Education> getEducationByEmployee(int employeeId) throws DataException {
-        return educationtDao.retrieveEducationsByEmployee(employeeId);
+     public List<Education> getEducationByEmployee(int employeeId) throws DataException {
+        return educationtDao.retrieveEducationByEmployee(employeeId);
     }
 }

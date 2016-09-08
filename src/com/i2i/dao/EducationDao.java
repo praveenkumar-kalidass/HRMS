@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
+import com.i2i.model.Designation;
 import com.i2i.model.Education;
 
 /**
@@ -148,15 +149,16 @@ public class EducationDao {
      * @return Education.List
      *       return the list of education which is stored under the given employee
      */
-    public List<Education> retrieveEducationsByEmployee(int employeeId) throws DataException {
+    public List<Education> retrieveEducationByEmployee(int employeeId) throws DataException {
     	Session session=sessionFactory.openSession();
     	try {           
-            return session.createQuery("From Education WHERE employee_id = : employeeId").list();
+            return session.createQuery("From Education WHERE employee_id="+employeeId).list();
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in retrieveEducations() : " + exception.getMessage());
+        	System.out.println(exception);
+            FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
             throw new DataException("Error while displaying all Education");
         } finally {
             session.close();
         }
-    }       
+    }    
 }

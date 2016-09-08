@@ -56,7 +56,7 @@
                                    <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Select Picture</label>
                                         <div class="col-md-8">
-                                            <input type="file" name="profile"  class="form-control"  onchange="readURL(this);" />
+                                            <input type="file" name="employeePicture"  class="form-control"  onchange="readURL(this);" />
                                         </div>
                                     </div> 
                                     

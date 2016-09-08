@@ -8,6 +8,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.i2i.model.Employee;
 
 
@@ -56,6 +59,7 @@ public class Address {
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "employee_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Employee employee;
 	
 	public Address() {

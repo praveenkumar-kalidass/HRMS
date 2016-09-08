@@ -56,10 +56,6 @@ public class EmployeeService {
     	
     }
     
-    public boolean updateProfile(Employee employee, String fileName) throws DataException {    	
-    	return employeeDao.addProfile(employee, fileName);
-    	
-    }
     
     /**
      * <p>
@@ -74,8 +70,11 @@ public class EmployeeService {
      * @throws DataException
      *       throws error message if problem arises with deleting the data in the database.
      */
-    public boolean deleteEmployee(Employee employee) throws DataException {
-        return employeeDao.removeEmployee(employee);
+    public boolean deleteEmployee(int employeeId) throws DataException {
+    	if (searchEmployee(employeeId) != null) {
+            return employeeDao.removeEmployee(searchEmployee(employeeId));
+        }
+        return false;        
     }
     
     /**

@@ -11,6 +11,7 @@ import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
 import com.i2i.model.Address;
+import com.i2i.model.Certification;
 
 /**
  * <p>
@@ -157,4 +158,17 @@ public class AddressDao {
            session.close();
        }
    }
+   
+   
+   public List<Address> retrieveAddressByEmployee(int employeeId) throws DataException {
+   	Session session=factory.openSession();
+   	try {           
+           return session.createQuery("From Address WHERE employee_id ="+employeeId).list();
+       } catch (HibernateException exception) {
+           FileUtil.ErrorLogger("Exception in retrieveCertifications() : " + exception.getMessage());
+           throw new DataException("Error while displaying all Certification");
+       } finally {
+           session.close();
+       }
+   }   
 }

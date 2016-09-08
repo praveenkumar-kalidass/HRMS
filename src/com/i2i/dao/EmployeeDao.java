@@ -2,6 +2,8 @@ package com.i2i.dao;
 
 import java.util.List;
 
+
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +12,6 @@ import org.hibernate.Transaction;
 import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
-import com.i2i.model.Employee;
 import com.i2i.model.Employee;
 
 /**
@@ -45,24 +46,6 @@ public class EmployeeDao {
     	try {
             Transaction transaction = session.beginTransaction();
             session.save(employee);
-            transaction.commit();
-            return true;
-        } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in insertEmployee() : " + exception.getMessage());
-            throw new DataException("Error while adding Employee ID : " + employee.getEmployeeId());
-        } finally {
-            session.close();
-        }
-    }
-    
-    
-    
-    public boolean addProfile(Employee employee, String fileName) throws DataException {
-    	Session session = factory.openSession();
-    	try {
-            Transaction transaction = session.beginTransaction();            
-            employee.setEmployeePicture(fileName);
-            session.update(employee);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
