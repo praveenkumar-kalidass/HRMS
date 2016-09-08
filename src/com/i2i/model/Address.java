@@ -13,10 +13,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import com.i2i.model.Employee;
 
-
 /**
- * Model class for Address
- * Setter and Getter methods for the class variables
+ * Model class for Address Setter and Getter methods for the class variables
  * Many to One mapping is established for Employee model class
  * 
  * @author Praveenkumar
@@ -24,44 +22,43 @@ import com.i2i.model.Employee;
  * @created 2016-09-06
  */
 
-
 @Entity
-@Table(name="address")
+@Table(name = "address")
 public class Address {
-    
+
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	private int addressId;
-	
-	@Column(name="street")
+
+	@Column(name = "street")
 	private String street;
-	
-	@Column(name="city")
+
+	@Column(name = "city")
 	private String city;
 
-	@Column(name="state")
+	@Column(name = "state")
 	private String state;
 
-	@Column(name="country")
+	@Column(name = "country")
 	private String country;
 
-	@Column(name="pincode")
+	@Column(name = "pincode")
 	private int pincode;
 
-	@Column(name="phonenumber")
+	@Column(name = "phonenumber")
 	private int phoneNumber;
 
-	@Column(name="e_mail")
+	@Column(name = "e_mail")
 	private String eMail;
 
-	@Column(name="type")
+	@Column(name = "type")
 	private String addressType;
-	
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "employee_id")
+	@JoinColumn(name = "employee_id")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Employee employee;
-	
+
 	public Address() {
 	}
 

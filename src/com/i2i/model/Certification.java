@@ -10,88 +10,86 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * Model class which stores the details associated with the
- * Certification details(s) of the employee.
+ * Model class which stores the details associated with the Certification
+ * details(s) of the employee.
  * </p>
  * 
- * @author Praveen RaJ 
+ * @author Praveen RaJ
  * 
  * @created 2016-09-06
  *
  */
 
 @Entity
-@Table(name="certification")
+@Table(name = "certification")
 public class Certification {
 
-	    @Id
-	    @Column(name="id", unique=true)
-		private int certificationId;
-	    
-	    @Column(name="from_date")
-	    private String fromDate;
-	    
-	    @Column(name="to_date")
-	    private String toDate;
-	    
-	    @Column(name="course_name")
-	    private String courseName;
-	    
-	    @Column(name="institution")
-	    private String institution;
-	   
-	    @ManyToOne(cascade = CascadeType.PERSIST)
-	    @JoinColumn(name = "employee_id")
-		private Employee employee;
-	    
+	@Id
+	@Column(name = "id", unique = true)
+	private int certificationId;
 
-		public String getFromDate() {
-			return fromDate;
-		}
+	@Column(name = "from_date")
+	private String fromDate;
 
-		public void setFromDate(String fromDate) {
-			this.fromDate = fromDate;
-		}
+	@Column(name = "to_date")
+	private String toDate;
 
-		public String getToDate() {
-			return toDate;
-		}
+	@Column(name = "course_name")
+	private String courseName;
 
-		public void setToDate(String toDate) {
-			this.toDate = toDate;
-		}
-		
+	@Column(name = "institution")
+	private String institution;
 
-		public String getCourseName() {
-			return courseName;
-		}
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "employee_id")
+	private Employee employee;
 
-		public void setCourseName(String courseName) {
-			this.courseName = courseName;
-		}
+	public String getFromDate() {
+		return fromDate;
+	}
 
-		public String getInstitution() {
-			return institution;
-		}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
 
-		public void setInstitution(String institution) {
-			this.institution = institution;
-		}
+	public String getToDate() {
+		return toDate;
+	}
 
-		public int getCertificationId() {
-			return certificationId;
-		}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
 
-		public void setCertificationId(int certificationId) {
-			this.certificationId = certificationId;
-		}
+	public String getCourseName() {
+		return courseName;
+	}
 
-		public Employee getEmployee() {
-			return employee;
-		}
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
 
-		public void setEmployee(Employee employee) {
-			this.employee = employee;
-		}
-		
+	public String getInstitution() {
+		return institution;
+	}
+
+	public void setInstitution(String institution) {
+		this.institution = institution;
+	}
+
+	public int getCertificationId() {
+		return certificationId;
+	}
+
+	public void setCertificationId(int certificationId) {
+		this.certificationId = certificationId;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 }

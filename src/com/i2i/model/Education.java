@@ -8,47 +8,46 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 /**
  * <p>
- * Model class which stores the details associated with the
- * education detail(s) of the employee.
+ * Model class which stores the details associated with the education detail(s)
+ * of the employee.
  * </p>
  * 
- * @author Praveen RaJ 
+ * @author Praveen RaJ
  * 
  * @created 2016-09-06
  *
  */
 
 @Entity
-@Table(name="education")
+@Table(name = "education")
 public class Education {
-    @Id
-    @Column(name="id", unique=true)
+	@Id
+	@Column(name = "id", unique = true)
 	private int educationId;
-    
-    @Column(name="from_date")
-    private String fromDate;
-    
-    @Column(name="to_date")
-    private String toDate;
-    
-    @Column(name="qualification")
-    private String qualification;
-    
-    @Column(name="institution")
-    private String institution;
-    
-    @Column(name="percentage")
-    private String percentage;
 
-	@Column(name="board")
-    private String board;
-	
-	@Column(name="type")
-    private String type;
-    
+	@Column(name = "from_date")
+	private String fromDate;
+
+	@Column(name = "to_date")
+	private String toDate;
+
+	@Column(name = "qualification")
+	private String qualification;
+
+	@Column(name = "institution")
+	private String institution;
+
+	@Column(name = "percentage")
+	private String percentage;
+
+	@Column(name = "board")
+	private String board;
+
+	@Column(name = "type")
+	private String type;
+
 	public String getType() {
 		return type;
 	}
@@ -58,10 +57,10 @@ public class Education {
 	}
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "employee_id")
+	@JoinColumn(name = "employee_id")
 	private Employee employee;
-	
-    public int getEducationId() {
+
+	public int getEducationId() {
 		return educationId;
 	}
 
@@ -124,5 +123,5 @@ public class Education {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
+
 }
