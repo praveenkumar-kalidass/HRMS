@@ -70,13 +70,16 @@ public class Employee {
     private String employeeBasicPay;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "designation_id")	
+    @JoinColumn(name = "designation_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
     private Designation employeeDesignation;
 	
 	@ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "role_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
     private Role employeeRole;
 	
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "addressId")
     private List<Address> addresses = new ArrayList<Address>();
 	

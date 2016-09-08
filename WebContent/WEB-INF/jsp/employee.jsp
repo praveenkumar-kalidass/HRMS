@@ -29,29 +29,26 @@
             <div class="content-main">
                 <div class="col-md-12">
                     <!-- Main Start -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#Personal-Details" aria-controls="Personal-Details" role="tab" data-toggle="tab">Personal Details</a>
-                        </li>
-                        <li role="presentation"><a href="#Address-Details" aria-controls="Address-Details" role="tab" data-toggle="tab">Address Details</a>
-                        </li>
-                        <li role="presentation"><a href="#Education-Details" aria-controls="Education-Details" role="tab" data-toggle="tab">Education Details</a>
-                        </li>
-                        <li role="presentation"><a href="#Certification-Details" aria-controls="Certification-Details" role="tab" data-toggle="tab">Certification Details</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
+                  
                         <div id="Employee-Table" role="tabpanel" class="tab-pane active" >
                              <div class="main-head">
-                                    <h1 class="title"> Employee Details </h1> </div>
-                            
+                                    <h1 class="title"> Employee Details </h1> 
+                                    
+                             </div>
+                             
                             <div class="form">
-                               
-                                <c:if test="${Employee!=null}">
+                               <div style="padding-top:10px; padding-bottom: 10px;">
+                               <a href="personal.html"> <button class="btn btn-info"> <i class="fa fa-plus-circle"></i> Add New </button> </a>
+                               </div>
+                                <c:if test="${EmployeeList!=null}">
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th>Employee Id</th>
-                                                <th>Employee Name</th>
+                                                <th> Employee Id </th>
+                                                <th> First Name</th>
+                                                <th> Last Name</th>
+                                                <th> Department </th>
+                                                <th> Designation</th>
                                         </thead>
                                         <tfoot>
 
@@ -88,7 +85,18 @@
                                                         <c:out value="${employee.employeeFirstName}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <a href="employee_edit.html?id=<c:out value='${employee.employeeId} ' />" class="edit"> <i class="fa fa-pencil"></i> Edit </a> &nbsp;&nbsp;
+                                                        <c:out value="${employee.employeeLastName}"></c:out>
+                                                    </td>
+                                                    <td>
+                                                        <c:set value="${employee.employeeDesignation}" var="designation" />
+                                                        <c:set value="${designation.department}" var="department" />
+                                                        <c:out value="${department.departmentName}"></c:out>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${designation.designationName}"></c:out>
+                                                    </td>
+                                                    <td>
+                                                        <a href="employee_view.html?id=<c:out value='${employee.employeeId} ' />" class="edit"> <i class="fa fa-wpforms"></i> View  & Edit</a> &nbsp;&nbsp; 
                                                         <a href="employee_delete.html?id=<c:out value='${employee.employeeId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
                                                     </td>
 
@@ -101,31 +109,7 @@
 
                             </div>
                         </div>
-                        <div id="Employee-Form" role="tabpanel" class="tab-pane" >
-                         <div class="main-head">
-                                    <h1 class="title"> Add New Employee  </h1> 
-                          </div>
-                                <div class="single-rowform col-md-12">
-                                    <c:if test="${Employee!=null}">
-                                        <spring:form action="employee_insert" method="post" class="form-group" modelAttribute="Employee">
-                                            <div class="col-md-12 single-rowform">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Employee Name</label>
-                                                        <div class="col-md-8">
-                                                            <spring:input path="employeeFirstName" class="form-control" id="example-text-input" placeHolder="Employee Name" /> </div>
-                                                    </div>
-                                                    <div class="form-group row" align="center">
-                                                        <div class="col-md-12">
-                                                            <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </spring:form>
-                                    </c:if>
-                                    </div>
-                        </div>
+                      
 
                     </div>
 

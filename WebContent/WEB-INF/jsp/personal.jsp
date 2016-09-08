@@ -302,7 +302,7 @@ function loadDoc() {
                     buttons: {
                         Ok: function() {
                             $(this).dialog("close");
-                            window.location = "department.html";
+                            window.location = "employee.html";
                         }
                     }
                 });

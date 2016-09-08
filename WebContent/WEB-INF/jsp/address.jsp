@@ -370,10 +370,9 @@ function loadDoc() {
                                         </div>
                                     </div> 
                                     
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Type</label>
+                                    <div class="form-group row">                                        
                                         <div class="col-md-8">
-                                            <spring:input  path="addresses[0].addressType" class="form-control" value="Current" readonly="readOnly"  />
+                                            <spring:input   type="hidden"  path="addresses[0].addressType" class="form-control" value="Current" readonly="readOnly"  />
                                         </div>
                                     </div> 
 
@@ -390,7 +389,7 @@ function loadDoc() {
                                         <div class="col-md-8">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input"  type="checkbox" name="same" id="myCheck" onchange="loadDoc();" value="Male"> Import Residential Address
+                                                    <input class="form-check-input"  type="checkbox" name="same" id="myCheck" onchange="loadDoc();" value="Male"> Same as Residential Address
                                                 </label>
                                             </div>
                                         </div>
@@ -455,9 +454,9 @@ function loadDoc() {
                                     
                                     
                                       <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Type</label>
+                                        
                                         <div class="col-md-8">
-                                            <spring:input  path="addresses[1].addressType" class="form-control" value="Perment" readonly="readOnly"  />
+                                            <spring:input type="hidden" path="addresses[1].addressType" class="form-control" value="Perment" readonly="readOnly"  />
                                         </div>
                                     </div> 
                                   </div>
@@ -469,7 +468,7 @@ function loadDoc() {
 
                             <div class="form-group row">
                                 <div class="col-md-12" align="center">
-                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Submit">
+                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save & Next">
                                 </div>
                             </div>
                             

@@ -39,7 +39,6 @@ public String createAttendance(ModelMap model) {
 	model.addAttribute("Date", new Date());
 	model.addAttribute("AttendanceList", attendanceService.displayAttendances());
 	model.addAttribute("Employee", employeeService.searchEmployee(1));
-	
 	} catch (DataException e) {
 		model.addAttribute("message", e.getMessage());
 	}

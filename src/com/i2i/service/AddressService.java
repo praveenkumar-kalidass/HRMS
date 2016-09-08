@@ -6,6 +6,7 @@ import java.util.List;
 import com.i2i.dao.AddressDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Address;
+import com.i2i.model.Certification;
 
 /**
  * <p>
@@ -108,5 +109,11 @@ public class AddressService {
      */
     public List<Address> displayAddresss() throws DataException {
         return addressDao.retrieveAddresss();
+    }
+    
+    
+    
+    public List<Address> getAddressByEmployee(int employeeId) throws DataException {
+        return addressDao.retrieveAddressByEmployee(employeeId);
     }
 }

@@ -149,7 +149,7 @@ public class CertificationDao {
     public List<Certification> retrieveCertificationsByEmployee(int employeeId) throws DataException {
     	Session session=sessionFactory.openSession();
     	try {           
-            return session.createQuery("From Certification WHERE employee_id = : employeeId").list();
+            return session.createQuery("From Certification WHERE employee_id ="+employeeId).list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveCertifications() : " + exception.getMessage());
             throw new DataException("Error while displaying all Certification");

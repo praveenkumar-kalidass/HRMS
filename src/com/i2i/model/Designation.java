@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.i2i.model.Department;
 
 
@@ -36,6 +39,7 @@ public class Designation {
 	
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
     @JoinColumn(name = "department_id" , nullable=false)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Department department;
 
 	public Designation(){	
