@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.i2i.exception.DataException;
 import com.i2i.model.Client;
-import com.i2i.model.Client;
 import com.i2i.model.Project;
+import com.i2i.model.ProjectRelease;
 import com.i2i.service.ClientService;
+import com.i2i.service.ProjectReleaseService;
 import com.i2i.service.ProjectService;
 
 /**
@@ -30,6 +31,7 @@ import com.i2i.service.ProjectService;
 public class ProjectController {
 	ClientService clientService = new ClientService();
 	ProjectService projectService = new ProjectService();
+	ProjectReleaseService projectReleaseService = new ProjectReleaseService();
 	
 	/**
 	 * <p>
@@ -325,5 +327,145 @@ public class ProjectController {
 			model.addAttribute("message", exception.getMessage());
 		} 
 		return "project";
+	}
+	
+	/**
+	 * <p>
+	 * Mapping the request which required by user for projectRelease.html it will
+	 * sent the page and projectRelease list stored in database and model object to
+	 * add new project
+	 * </p>
+	 * 
+	 * @param model
+	 *            ModelMap object used for setting ProjectRelease model object,
+	 *            projectRelease list and Project List
+	 * @return contains url of projectRelease add page
+	 * 
+	 */
+	@RequestMapping("/projectrelease")
+	public String createProjectRelease(ModelMap model) {
+		try {
+			model.addAttribute("ProjectRelease", new ProjectRelease());
+			model.addAttribute("ProjectReleaseList", projectReleaseService.displayProjectReleases());
+			model.addAttribute("ProjectList", projectService.getProjects());
+		} catch (DataException e) {
+			model.addAttribute("message", e.getMessage());
+		}
+		return "projectrelease";
+	}
+
+	/**
+	 * <p>
+	 * This method passes the projectRelease detail as the model object into its
+	 * Service class.
+	 * </p>
+	 * 
+	 * @param projectId
+	 *            contains identity of the Project it is used to many to one
+	 *            map with projectRelease
+	 * @param projectRelease
+	 *            model object that stores the projectRelease data associated with
+	 *            model.
+	 * @return String returns the redirecting page url based on the appropriate
+	 *         operation.
+	 */
+	@RequestMapping(value = "/projectRelease_insert", method = RequestMethod.POST)
+	public String insertProjectRelease(@ModelAttribute("ProjectRelease") ProjectRelease projectRelease, BindingResult result,
+			ModelMap model) {
+		try {
+			if (projectReleaseService.addProjectRelease(projectRelease)) {
+				model.addAttribute("message", "ProjectRelease details are successfully inserted");
+			} else {
+				model.addAttribute("message", "ProjectRelease details are not inserted");
+			}
+		} catch (DataException exception) {
+			model.addAttribute("message", exception.getMessage());
+		} 
+		return "projectrelease";
+	}
+
+	/**
+	 * <p>
+	 * Mapping the request which required by user for projectRelease_edit.html it
+	 * will sent the page and required projectRelease object stored in database for
+	 * edit.
+	 * </p>
+	 * 
+	 * @param model
+	 *            ModelMap object used for setting ProjectRelease model object and
+	 *            Project List
+	 * @return contains url of projectRelease edit page
+	 * 
+	 */
+	@RequestMapping(value = "/projectRelease_edit", method = RequestMethod.GET)
+	public String editProjectRelease(@RequestParam("id") int projectReleaseId, ModelMap model) {
+		try {
+			model.addAttribute("ProjectReleaseEdit", projectReleaseService.searchProjectRelease(projectReleaseId));
+			model.addAttribute("ProjectList", projectService.getProjects());
+		} catch (DataException e) {
+			model.addAttribute("message", e.getMessage());
+		}
+		return "projectrelease";
+	}
+
+	/**
+	 * <p>
+	 * This method passes the projectRelease detail as the model object into its
+	 * Service class.
+	 * </p>
+	 * 
+	 * @param projectRelease
+	 *            model object that update the records in stored in database.
+	 * @param projectId
+	 *            contains identity of the Project it is used to many to one
+	 *            map with projectRelease
+	 * @param model
+	 *            ModelMap object used for send message to the user.
+	 * @return String returns the redirecting page url based on the appropriate
+	 *         operation.
+	 */
+	@RequestMapping(value = "/projectRelease_update", method = RequestMethod.POST)
+	public String updateProject(@ModelAttribute("ProjectReleaseEdit") ProjectRelease projectRelease, BindingResult result,
+			@RequestParam("project") int projectId, ModelMap model) {
+		try {
+			projectRelease.setProject(projectService.searchProject(projectId));
+			if (projectReleaseService.updateProjectRelease(projectRelease)) {
+				model.addAttribute("message", "ProjectRelease details are successfully Updated");
+			} else {
+				model.addAttribute("message", "ProjectRelease details are not updated");
+			}
+		} catch (DataException exception) {
+			model.addAttribute("message", exception.getMessage());
+		} 
+		return "projectrelease";
+	}
+
+	/**
+	 * <p>
+	 * This method passes the projectRelease id as the parameter object into its
+	 * Service class for delete the record.
+	 * </p>
+	 * 
+	 * @param projectReleaseid
+	 *            contains Identity of projectRelease used for delete the record
+	 * @param model
+	 *            ModelMap object used for send message to the user the message
+	 *            will be success or failure.
+	 * @return String returns the redirecting page url based on the appropriate
+	 *         operation.
+	 */
+	@RequestMapping(value = "/projectRelease_delete", method = RequestMethod.GET)
+	public String deleteProjectRelease(@RequestParam("id") int projectReleaseId, ModelMap model) {
+		try {
+			if (projectReleaseService.deleteProjectRelease(projectReleaseId)) {
+				model.addAttribute("message", "ProjectRelease details are successfully Deleted");
+			} else {
+				model.addAttribute("message", "ProjectRelease details are not deleted");
+			}
+		} catch (DataException exception) {
+			model.addAttribute("message", exception.getMessage());
+		} 
+		return "projectrelease";
+		
 	}
 }

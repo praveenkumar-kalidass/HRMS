@@ -49,6 +49,7 @@ public class ProjectReleaseDao {
 			transaction.commit();
 			return true;
 		} catch (HibernateException exception) {
+			exception.printStackTrace();
 			FileUtil.ErrorLogger("Exception in insertProjectRelease() : " + exception.getMessage());
 			throw new DataException("Error while adding ProjectRelease ID : " + projectRelease.getReleaseId());
 		} finally {

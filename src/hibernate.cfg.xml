@@ -19,7 +19,8 @@
        <mapping class="com.i2i.model.Attendance" />   
        <mapping class="com.i2i.model.LeaveRequest" />
        <mapping class="com.i2i.model.Client" />
-       <mapping class="com.i2i.model.Project" />       
+       <mapping class="com.i2i.model.Project" />   
+       <mapping class="com.i2i.model.ProjectRelease" />       
 
     </session-factory>
 </hibernate-configuration>

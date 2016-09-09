@@ -45,12 +45,14 @@
                                     <h1 class="title"> ProjectRelease Details </h1> </div>
 
                                 <c:if test="${ProjectReleaseList!=null}">
-                                    <table>
+                                    <table id="ReleaseTable">
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>ProjectRelease Name</th>
                                                 <th>Project Name</th>
+                                                <th>Release Date</th>
+                                                <th>Version</th>
+                                                <th>Description</th>
                                         </thead>
                                         <tfoot>
 
@@ -81,18 +83,24 @@
                                             <c:forEach var="projectRelease" items="${ProjectReleaseList}">
                                                 <tr>
                                                     <td>
-                                                        <c:out value="${projectRelease.projectReleaseId}"></c:out>
-                                                    </td>
-                                                    <td>
-                                                        <c:out value="${projectRelease.projectReleaseName}"></c:out>
+                                                        <c:out value="${projectRelease.releaseId}"></c:out>
                                                     </td>
                                                     <td>
                                                         <c:set value="${projectRelease.project}" var="project" />
                                                         <c:out value="${project.projectName}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <a href="projectRelease_edit.html?id=<c:out value='${projectRelease.projectReleaseId} ' />" class="edit"> <i class="fa fa-pencil"></i> Edit </a> &nbsp;&nbsp;
-                                                        <a href="projectRelease_delete.html?id=<c:out value='${projectRelease.projectReleaseId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
+                                                        <c:out value="${projectRelease.releaseDate}"></c:out>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${projectRelease.projectVersion}"></c:out>
+                                                    </td>
+                                                    <td>
+                                                        <c:out value="${projectRelease.description}"></c:out>
+                                                    </td>
+                                                    <td>
+                                                        <a href="projectRelease_edit.html?id=<c:out value='${projectRelease.releaseId} ' />" class="edit"> <i class="fa fa-pencil"></i> Edit </a> &nbsp;&nbsp;
+                                                        <a href="projectRelease_delete.html?id=<c:out value='${projectRelease.releaseId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
 
                                                     </td>
 
@@ -117,11 +125,6 @@
                                         <spring:form action="projectRelease_insert" method="post" class="form-group" modelAttribute="ProjectRelease">
                                             <div class="col-md-12">
                                                 <div class="col-md-6">
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">ProjectRelease Name</label>
-                                                        <div class="col-md-8">
-                                                            <spring:input path="projectVersion" class="form-control" id="example-text-input" placeHolder="Project Version" /> </div>
-                                                    </div>
 
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Project</label>
@@ -134,6 +137,32 @@
                                                                 </c:forEach>
                                                             </spring:select>
                                                         </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">To:</label>
+                                                        <div class="col-md-8">
+                                           
+                                                        <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
+             								            <input class="form-control" size="16" type="text" value="" readonly>            										      
+														<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+               											</div>
+												        <spring:input path="releaseDate" id="dtp_input4" type="hidden" class="form-control"    />
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Project Version</label>
+                                                        <div class="col-md-8">
+                                                            <spring:input path="projectVersion" class="form-control" id="example-text-input" placeHolder="Project Version" /> </div>
+                                                        </div>
+                                                        
+                                                        <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
+                                                        <div class="col-md-8">
+                                                            <spring:textarea path="description" class="form-control" id="example-text-input" placeHolder="Description" ></spring:textarea> </div>
+                                                        </div>
+                                                        
 
                                                         <div class="col-md-12">
                                                             <br/> </div>
@@ -141,10 +170,6 @@
                                                             <div class="col-md-12">
                                                                 <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
                                                         </div>
-
-
-
-                                                    </div>
 
 
 
@@ -176,17 +201,9 @@
                         <spring:form action="projectRelease_update" method="post" class="form-group" modelAttribute="ProjectReleaseEdit">
                             <div class="col-md-12">
 
-                                <spring:input path="projectReleaseId" type="hidden" class="form-control" id="example-text-input" placeHolder="ProjectRelease Id" readonly="readOnly" /> </div>
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-md-4 col-form-label">ProjectRelease Name</label>
-                                <div class="col-md-8">
-                                    <spring:input path="projectReleaseName" class="form-control" id="example-text-input" placeHolder="ProjectRelease Name" /> </div>
-                            </div>
-
-
-
-
-                            <div class="form-group row">
+                                <spring:input path="releaseId" type="hidden" class="form-control" id="example-text-input" placeHolder="ProjectRelease Id" readonly="readOnly" /> </div>
+                                
+                                <div class="form-group row">
                                 <label for="example-text-input" class="col-md-4 col-form-label">Project</label>
                                 <div class="col-md-8">
                                     <spring:select path="project" class="form-control">
@@ -199,6 +216,31 @@
                                     </spring:select>
                                 </div>
                             </div>
+                            
+                            <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">To:</label>
+                                                        <div class="col-md-8">
+                                           
+                                                        <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
+             								            <input class="form-control" size="16" type="text" value="<c:out value='${ProjectReleaseEdit.releaseDate}' />" readonly>            										      
+														<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+               											</div>
+												        <spring:input path="releaseDate" id="dtp_input4" type="hidden" class="form-control"    />
+                                                        </div>
+                                                    </div>
+                            
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-md-4 col-form-label">Project Version</label>
+                                <div class="col-md-8">
+                                    <spring:input path="projectVersion" class="form-control" id="example-text-input" placeHolder="Project Version" /> </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
+                                <div class="col-md-8">
+                                    <spring:textarea path="description" class="form-control" id="example-text-input" placeHolder="Description" ></spring:textarea> </div>
+                            </div>
+                            
                             <div class="form-group row" align="center">
                                 <div class="col-md-12">
                                     <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
@@ -254,7 +296,7 @@
             };
 
 
-            $("table").tablesorter({
+            $("#ReleaseTable").tablesorter({
                     theme: "bootstrap",
 
                     widthFixed: true,
@@ -321,6 +363,24 @@
             });
         </script>
     </c:if>
+    
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <script type="text/javascript">
+   
+	$('.form_date').datetimepicker({
+        language:  'en',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	
+    </script>
 </body>
 
 </html>
