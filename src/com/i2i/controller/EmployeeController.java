@@ -277,6 +277,32 @@ public class EmployeeController {
 		return "designationView";
 
 	}
+	
+	
+	/**
+	 * <p>
+	 * This method passes is used for AJAX to get the employee list for the
+	 * given designation
+	 * </p>
+	 * 
+	 * @param designationId
+	 *            contains identity of the designation it is used to many to one
+	 *            map with employee
+	 * @param designationList
+	 *            model object that stores the employee List data associated
+	 *            with model.
+	 * @return String returns the redirecting page url based on the appropriate
+	 *         operation.
+	 */
+	@RequestMapping(value = "/employeesView", method = RequestMethod.GET)
+	public String employeeView(@RequestParam("designationId") int designationId, ModelMap map) {
+		try {
+			map.addAttribute("EmployeeList", employeeService.getEmployeeByDesignation(designationId));
+		} catch (DataException exception)  {
+			map.addAttribute("message", exception.getMessage());
+		}
+		return "employeesView";
+	}
 
 	/**
 	 * <p>

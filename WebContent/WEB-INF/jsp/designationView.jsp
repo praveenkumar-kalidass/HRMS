@@ -2,6 +2,6 @@
      <c:if test="${DesignationList!=null}" >
      <option value="0"> -- Select -- </option>	
      <c:forEach items="${DesignationList}" var="designation">
-          <option value="${designation.designationId}">${designation.designationName}</option>
+          <option value="<c:out value='${designation.designationId}' />" ><c:out value='${designation.designationName}' /></option>
     </c:forEach>							
     </c:if>   

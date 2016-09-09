@@ -1,9 +1,6 @@
 package com.i2i.controller;
 
-import java.util.List;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -12,15 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.i2i.Util.FileUtil;
 import com.i2i.exception.DataException;
 import com.i2i.model.Client;
 import com.i2i.model.ProjectRelease;
+import com.i2i.model.Team;
 import com.i2i.model.Project;
-import com.i2i.model.ProjectRelease;
 import com.i2i.service.ClientService;
+import com.i2i.service.DepartmentService;
 import com.i2i.service.ProjectReleaseService;
 import com.i2i.service.ProjectService;
+import com.i2i.service.TeamService;
 
 /**
  * <p>
@@ -38,6 +36,8 @@ public class ProjectController {
 	ClientService clientService = new ClientService();
 	ProjectService projectService = new ProjectService();
 	ProjectReleaseService projectReleaseService = new ProjectReleaseService();
+	TeamService teamService = new TeamService();
+	DepartmentService departmentService = new DepartmentService();
 	
 	/**
 	 * <p>
@@ -245,6 +245,7 @@ public class ProjectController {
 		try {
 			model.addAttribute("Project", projectService.searchProject(projectId));
 			model.addAttribute("ReleaseList", projectReleaseService.getProjectReleaseByProject(projectId));
+			model.addAttribute("TeamList", teamService.getTeamByProject(projectId));
 		} catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
 		}
@@ -478,4 +479,88 @@ public class ProjectController {
 		return "projectView";
 	}
 	
+	/**
+	 * <p>
+	 * Mapping the request which required by user for projectView.html it will
+	 * sent the page and team list stored in database and model object to
+	 * add new project
+	 * </p>
+	 * 
+	 * @param model
+	 *            ModelMap object used for setting Team model object,
+	 *            projectRelease list and Project List
+	 * @return contains url of team Member add page
+	 * 
+	 */
+	@RequestMapping(value = "/team", method = RequestMethod.GET)
+	public String createTeamMember(@RequestParam("id") int projectId, ModelMap model) {
+		try {
+			model.addAttribute("TeamAdd", new Team());	
+			model.addAttribute("ProjectId", projectId);
+			model.addAttribute("DepartmentList", departmentService.displayDepartments());
+		} catch (Exception e) {
+			model.addAttribute("message", e.getMessage());
+		}
+		return "projectView";
+	}
+	
+	/**
+	 * <p>
+	 * This method passes the team detail as the model object into its
+	 * Service class.
+	 * </p>
+	 * 
+	 * @param projectId
+	 *            contains identity of the Project it is used to many to one
+	 *            map with projectRelease
+	 * @param projectRelease
+	 *            model object that stores the projectRelease data associated with
+	 *            model.
+	 * @return String returns the redirecting page url based on the appropriate
+	 *         operation.
+	 */
+	@RequestMapping(value = "/team_insert", method = RequestMethod.POST)
+	public String insertTeam(@ModelAttribute("TeamAdd") Team team, BindingResult result,
+			ModelMap model) {
+		try {
+			if (teamService.addTeam(team)) {
+				model.addAttribute("message", "Employee are successfully allocated");
+				model.addAttribute("ProjectId", (team.getProject()).getProjectId());
+			} else {
+				model.addAttribute("message", "Employee details are not allocated");
+			}
+		} catch (DataException exception) {
+			model.addAttribute("message", exception.getMessage());
+		} 
+		return "projectView";
+	}
+	
+	/**
+	 * <p>
+	 * This method passes the team id as the parameter object into its
+	 * Service class for delete the record.
+	 * </p>
+	 * 
+	 * @param team
+	 *            contains Identity of team used for delete the record
+	 * @param model
+	 *            ModelMap object used for send message to the user the message
+	 *            will be success or failure.
+	 * @return String returns the redirecting page url based on the appropriate
+	 *         operation.
+	 */
+	@RequestMapping(value = "/team_delete", method = RequestMethod.GET)
+	public String deleteTeam(@RequestParam("id") int teamId, ModelMap model) {
+		try {
+			Team team = teamService.searchTeam(teamId);
+			if (teamService.deleteTeam(teamId)) {
+				model.addAttribute("message", "Team Member deallocated Successfully");
+				model.addAttribute("ProjectId", (team.getProject()).getProjectId());
+			} else {
+				model.addAttribute("message", "Team Membe are not deallocated");
+			}
+		} catch (DataException exception) {
+		} 
+		return "projectView";
+	}
 }

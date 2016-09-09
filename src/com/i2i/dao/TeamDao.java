@@ -11,6 +11,7 @@ import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
 import com.i2i.model.Team;
+import com.i2i.model.Team;
 
 /**
  * <p>
@@ -48,6 +49,7 @@ public class TeamDao {
 			transaction.commit();
 			return true;
 		} catch (HibernateException exception) {
+			System.out.println(exception);
 			FileUtil.ErrorLogger("Exception in insertTeam() : " + exception.getMessage());
 			throw new DataException("Error while adding Team ID : " + team.getTeamId());
 		} finally {
@@ -156,6 +158,33 @@ public class TeamDao {
 		} catch (HibernateException exception) {
 			FileUtil.ErrorLogger("Exception in retrieveTeams() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Teams");
+		} finally {
+			session.close();
+		}
+	}
+	
+	
+	/**
+	 * <p>
+	 * This method retrieves the team data from the records and returns
+	 * the list of data.
+	 * </p>
+	 * 
+	 * @param teamId
+	 *            contains identity of the team
+	 * @throws DataException
+	 *             throws error message if problem arises with retrieving list
+	 *             of data from the database.
+	 * @return Team.List return the list of team which is stored
+	 *         under the given project
+	 */
+	public List<Team> retrieveTeamByProject(int projectId) throws DataException {
+		Session session = factory.openSession();
+		try {
+			return session.createQuery("From Team WHERE project_id=" + projectId).list();
+		} catch (HibernateException exception) {
+			FileUtil.ErrorLogger("Exception in retrieveTeamByProject() : " + exception.getMessage());
+			throw new DataException("Error while displaying all Team");
 		} finally {
 			session.close();
 		}

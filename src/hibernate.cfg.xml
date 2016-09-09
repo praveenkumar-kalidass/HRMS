@@ -20,6 +20,7 @@
        <mapping class="com.i2i.model.LeaveRequest" />
        <mapping class="com.i2i.model.Client" />
        <mapping class="com.i2i.model.Project" />   
-       <mapping class="com.i2i.model.ProjectRelease" />       
+       <mapping class="com.i2i.model.ProjectRelease" />  
+       <mapping class="com.i2i.model.Team" />       
     </session-factory>
 </hibernate-configuration>

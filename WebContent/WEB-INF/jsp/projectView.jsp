@@ -261,8 +261,71 @@
 
 						<div id="Team-Details" role="tabpanel" class="tab-pane">
 							<div class="main-head">
-								<h1 class="title">Certification Details</h1>
+								<h1 class="title" style="float: left; width: 80%;">
+									Team Details</h1>
+								<a
+									href="team.html?id=<c:out value='${project.projectId}' />"
+									style="float: right; width: 20%; padding-top: 26px;"
+									class="edit"> <i class="fa fa-plus-circle"></i> Allocate New Employee
+								</a>
 							</div>
+							<c:forEach items="${TeamList}" var="team">
+
+								<div class="col-md-12" style="padding-top:10px;">
+									<div class="col-md-12" style="margin: 0px; padding: 0px;">
+										<h5 class="title" style="float: left; width: 60%;">
+											&nbsp;&nbsp;
+										</h5>
+										<a
+											href="team_delete.html?id=<c:out value='${team.teamId}' />"
+											style="float: right; width: 10%; padding-top: 5px;"
+											class="delete"> <i class="fa fa-user-times "></i> Deallocate 
+										</a>
+										
+										
+										
+										<div class="col-md-12" style="margin: 0px; padding: 0px;">
+											<hr style="margin-top: 5px;">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="example-text-input"
+											class="col-md-6 col-form-label"> Name of the Employee </label> <label
+											for="example-text-input" class="col-md-6"> 
+											<c:set value="${team.employee}" var="employee" />
+											<c:out value='${employee.employeeFirstName}' /> &nbsp; <c:out value='${employee.employeeLastName}' />
+										</label>
+									</div>
+
+									<div class="form-group row">
+										<label for="example-text-input"
+											class="col-md-6 col-form-label"> Department </label> <label
+											for="example-text-input" class="col-md-6">
+											<c:set value="${employee.employeeDesignation}" var="designation" />
+											<c:set value="${designation.department}" var="department" />
+											<c:out value="${department.departmentName}" />
+										</label>
+									</div>
+
+									<div class="form-group row">
+										<label for="example-text-input"
+											class="col-md-6 col-form-label"> Designation </label> <label
+											for="example-text-input" class="col-md-6"> 
+											<c:out	value='${designation.designationName}' />
+										</label>
+									</div>
+									
+									<div class="form-group row">
+										<label for="example-text-input"
+											class="col-md-6 col-form-label"> Team Role </label> <label
+											for="example-text-input" class="col-md-6"> 
+											<c:out	value='${team.teamRole}' />
+										</label>
+									</div>
+
+								</div>
+							</c:forEach>
+							
 						</div>
 					</div>
 					<!-- Main End -->
@@ -457,13 +520,9 @@
                                         <spring:form action="projectRelease_insert" method="post" class="form-group" modelAttribute="ProjectRelease">
                                             <div class="col-md-12">
 
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Project</label>
-                                                        <div class="col-md-8">
-                                                           <spring:input path="project.projectId" class="form-control" placeHolder="Project Id" value="${ProjectId}" /> 
-                                                           </div>
-                                                        </div>
-                                                 
+                                                    
+                                                           <spring:input type="hidden" path="project.projectId" class="form-control" placeHolder="Project Id" value="${ProjectId}" /> 
+                                                    
                                                     
                                                     <div class="form-group row">
                                                     <label for="example-text-input" class="col-md-4 col-form-label">To:</label>
@@ -496,6 +555,137 @@
                                                             <div class="col-md-12">
                                                                 <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
                                                         </div>
+                                            </div>
+                                        </spring:form>
+                                    </c:if>
+				</div>
+				<div class="modal-footer"></div>
+			</div>
+
+		</div>
+	</div>
+	
+	
+	<div id="teamAdd_model" class="modal fade" role="dialog" aria-hidden="false" data-backdrop="static">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Add New Member</h4>
+				</div>
+				<div class="modal-body">
+					    <c:if test="${TeamAdd!=null}">
+                                        <spring:form action="team_insert" method="post" class="form-group" modelAttribute="TeamAdd">
+                                            <div class="col-md-12">
+
+                                                    
+                                                           <spring:input path="project.projectId" type="hidden" class="form-control" placeHolder="Project Id" value="${ProjectId}" /> 
+                                                    
+                                                   
+                                                    <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
+                                                        <div class="col-md-8">
+                                                        <select class="form-control" name="department" id="department" 	onchange="loadDoc();">
+									            		<option value="0">- Select -</option>
+									            		<c:forEach items="${DepartmentList}" var="department">
+										              		<option value="${department.departmentId}">${department.departmentName}</option>
+										            	</c:forEach>
+									                 	</select>
+                                                        </div>
+                                                    </div>
+                                    <script>
+									function loadDoc() {
+										var xhttp;
+										var department = parseInt(document
+												.getElementById('department').value);
+
+										if (window.XMLHttpRequest) {
+											// code for modern browsers
+											xhttp = new XMLHttpRequest();
+										} else {
+											// code for IE6, IE5
+											xhttp = new ActiveXObject(
+													"Microsoft.XMLHTTP");
+										}
+										xhttp.onreadystatechange = function() {
+											if (this.readyState == 4
+													&& this.status == 200) {
+												document
+														.getElementById("designationView").innerHTML = this.responseText;
+											}
+										};
+										xhttp.open("GET",
+												"designationView.html?departmentId="
+														+ department, true);
+										xhttp.send();
+									}
+								</script>
+                                    <div class="form-group row">
+									<label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
+									<div class="col-md-8">
+
+										<select name="desigantion" class="form-control" id="designationView" onchange="loadEmployee();">
+											<option value="0">- Select Department -</option>
+										</select>
+									</div>
+								   </div>
+								   <script>
+									function loadEmployee() {
+										var xhttp;
+										var designation = parseInt(document.getElementById('designationView').value);
+
+										if (window.XMLHttpRequest) {
+											// code for modern browsers
+											xhttp = new XMLHttpRequest();
+										} else {
+											// code for IE6, IE5
+											xhttp = new ActiveXObject(
+													"Microsoft.XMLHTTP");
+										}
+										xhttp.onreadystatechange = function() {
+											if (this.readyState == 4
+													&& this.status == 200) {
+												document
+														.getElementById("employeeView").innerHTML = this.responseText;
+											}
+										};
+										xhttp.open("GET","employeesView.html?designationId="+ designation, true);
+										xhttp.send();
+									}
+								</script>
+								   
+								   
+								    <div class="form-group row">
+									<label for="example-text-input" class="col-md-4 col-form-label">Employee</label>
+									<div class="col-md-8">
+
+										<spring:select path="employee.employeeId" class="form-control" id="employeeView">
+											<option value="0">- Select Designation -</option>
+                                     </spring:select>
+									</div>
+								   </div>
+								   
+								   <div class="form-group row">
+									<label for="example-text-input" class="col-md-4 col-form-label">Role </label>
+									<div class="col-md-8">
+                                       <label class="form-check-label"> 
+                                           <spring:radiobutton	class="form-check-input" path="teamRole" value="Leader" /> Leader
+									   </label>
+									   <label class="form-check-label"> 
+											<spring:radiobutton	class="form-check-input" path="teamRole" value="Member" /> Member
+										</label>
+									</div>
+								   </div>
+                                                    
+                                             <div class="form-group row" align="center">
+									<div class="col-md-12">
+										<input class="btn btn-primary btn-lg" type="submit"
+											id="example-text-input" value="Save">
+									</div>
+								</div>      
+                                                        
+
                                             </div>
                                         </spring:form>
                                     </c:if>
@@ -576,6 +766,15 @@
 			</script>
 		</c:if>
 	</c:if>
+	
+	
+	<c:if test="${message==null}">
+		<c:if test="${TeamAdd!=null}">
+			<script>
+				$("#teamAdd_model").modal();
+			</script>
+		</c:if>
+	</c:if>
 
 	
 
@@ -585,6 +784,7 @@
 			$("#project_model").modal("hide");
 			$("#release_model").modal("hide");
 			$("#releaseAdd_model").modal("hide");
+			$("#teamAdd_model").modal("hide");
 			$(function() {
 				$("#dialog-confirm")
 						.dialog(

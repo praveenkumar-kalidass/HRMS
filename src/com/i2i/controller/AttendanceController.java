@@ -70,9 +70,7 @@ public String insertAttendance(@ModelAttribute("Attendance")Attendance attendanc
         }
     } catch (DataException exception) {
         model.addAttribute("message", exception.getMessage());
-    } finally {
-       
-    }
+    } 
     return "attendance";
 }
 

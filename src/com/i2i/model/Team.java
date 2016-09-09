@@ -27,14 +27,18 @@ public class Team {
 	@Id
 	@Column(name = "id", unique = true)
 	private int teamId;
+	
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "project_id", nullable = false)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Project project;
+	
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinColumn(name = "employee_id", nullable = false)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Employee employee;
+	
+	
 	@Column(name = "role")
 	private String teamRole;
 

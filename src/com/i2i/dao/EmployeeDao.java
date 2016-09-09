@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
+import com.i2i.model.Designation;
 import com.i2i.model.Employee;
 
 /**
@@ -158,6 +159,34 @@ public class EmployeeDao {
 		} catch (HibernateException exception) {
 			FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Employees");
+		} finally {
+			session.close();
+		}
+	}
+	
+	
+	/**
+	 * <p>
+	 * This method retrieves the employee data from the records and returns
+	 * the list of data.
+	 * </p>
+	 * 
+	 * @param designationId
+	 *            contains identity of the designation
+	 * @throws DataException
+	 *             throws error message if problem arises with retrieving list
+	 *             of data from the database.
+	 * @return Designation.List return the list of designation which is stored
+	 *         under the given department
+	 */
+	public List<Employee> retrieveEmloyeeByDesignation(int designationId) throws DataException {
+		Session session = factory.openSession();
+		try {
+			return session.createQuery("From Employee WHERE designation_id="+designationId).list();
+		} catch (Exception exception) {
+			System.out.println(exception);
+			FileUtil.ErrorLogger("Exception in retrieveEmployeeByDesignation() : " + exception.getMessage());
+			throw new DataException("Error while displaying all Employee");
 		} finally {
 			session.close();
 		}

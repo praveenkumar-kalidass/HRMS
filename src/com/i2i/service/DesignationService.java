@@ -129,5 +129,4 @@ public class DesignationService {
 	public List<Designation> getDesgignationByDepartment(int departmentId) throws DataException {
 		return designationtDao.retrieveDesignationByDepartment(departmentId);
 	}
-
 }

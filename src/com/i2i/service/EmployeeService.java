@@ -1,11 +1,14 @@
 package com.i2i.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.i2i.dao.EmployeeDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Department;
+import com.i2i.model.Designation;
 import com.i2i.model.Employee;
+import com.i2i.model.Team;
 
 /**
  * <p>
@@ -20,6 +23,7 @@ import com.i2i.model.Employee;
  */
 public class EmployeeService {
 	EmployeeDao employeeDao = new EmployeeDao();
+	TeamService teamservice = new TeamService();
 
 	/**
 	 * <p>
@@ -112,5 +116,39 @@ public class EmployeeService {
 	 */
 	public List<Employee> retrieveEmployees() throws DataException {
 		return employeeDao.getEmployees();
+	}
+	
+	/**
+	 * <p>
+	 * This method retrieves the Employee data for given designation from the
+	 * records and returns the list of data to display.
+	 * </p>
+	 * 
+	 * @param desigantionId
+	 *            contains the ID of the designation.
+	 * @return list Gives the list of designation details for given department
+	 *         retrieved from the database.
+	 * @throws DataException
+	 *             throws error message if problem arises with retrieving list
+	 *             of data from the database.
+	 */
+	public List<Employee> getEmployeeByDesignation(int designationId) throws DataException {
+		/*List<Employee> employeeList = new ArrayList<Employee>();
+		for(Employee employee : employeeDao.retrieveEmloyeeByDesignation(designationId)) {
+			System.out.println("Employee Came");
+			System.out.println("Team : " + teamservice.displayTeams());
+			if(teamservice.displayTeams()!=null){
+		   	    for(Team team : teamservice.displayTeams()) {
+				    if((team.getEmployee().getEmployeeId())!=employee.getEmployeeId()) {
+					    employeeList.add(employee);
+				    }
+			    }
+			} else {
+				System.out.println("Employee Came 21");
+				employeeList.add(employee);
+			}
+		}
+		*/
+		return employeeDao.retrieveEmloyeeByDesignation(designationId);
 	}
 }
