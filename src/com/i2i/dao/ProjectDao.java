@@ -7,36 +7,36 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.i2i.model.Designation;
 import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
+import com.i2i.model.Project;
 
 /**
  * <p>
- * DataAccessObject(Dao) for Designation model is used to insert, update and
- * delete designation from department. Creates session and transaction objects
+ * DataAccessObject(Dao) for Project model is used to insert, update and
+ * delete project from client. Creates session and transaction objects
  * for each operation
  * </p>
  * 
  * @author Praveen RaJ
  * 
- * @created 2016-09-01
+ * @created 2016-09-09
  */
-public class DesignationDao {
-	Designation designation = new Designation();
+public class ProjectDao {
+	Project project = new Project();
 	HibernateConnection hibernateConnection = HibernateConnection.createObject();
 	SessionFactory sessionFactory = hibernateConnection.establishConnection();
 
 	/**
 	 * *
 	 * <p>
-	 * Method is used to insert new designation create a new session and Inserts
-	 * the model object of the designation into the database.
+	 * Method is used to insert new project create a new session and Inserts
+	 * the model object of the project into the database.
 	 * </p>
 	 * 
-	 * @param designation
-	 *            model object that stores the designation data associated with
+	 * @param project
+	 *            model object that stores the project data associated with
 	 *            model class.
 	 * @throws DataException
 	 *             if any database connection error occurred error message will
@@ -44,16 +44,16 @@ public class DesignationDao {
 	 * @return if inserted successfully true will be return to the Calling
 	 *         method
 	 */
-	public boolean insertDesignation(Designation designation) throws DataException {
+	public boolean insertProject(Project project) throws DataException {
 		Session session = sessionFactory.openSession();
 		try {
 			Transaction transaction = session.beginTransaction();
-			session.save(designation);
+			session.save(project);
 			transaction.commit();
 			return true;
 		} catch (HibernateException ex) {
-			FileUtil.ErrorLogger("Error on DesignationDao insertDesignation() : " + ex.toString());
-			throw new DataException("Error Occured while Inserting this" + designation.getDesignationName()
+			FileUtil.ErrorLogger("Error on ProjectDao insertProject() : " + ex.toString());
+			throw new DataException("Error Occured while Inserting this" + project.getProjectName()
 					+ " : please verify your details... Any try again..!");
 		} finally {
 			session.close();
@@ -63,28 +63,28 @@ public class DesignationDao {
 	/**
 	 * *
 	 * <p>
-	 * Method is used to update existing designation create a new session and
-	 * update the model object of the designation from the database.
+	 * Method is used to update existing project create a new session and
+	 * update the model object of the project from the database.
 	 * </p>
 	 * 
-	 * @param designation
-	 *            model object that stores the designation data associated with
+	 * @param project
+	 *            model object that stores the project data associated with
 	 *            model class.
 	 * @throws DataException
 	 *             if any database connection error occurred error message will
 	 *             be logged and send context info to user
 	 * @return if updated successfully true will be return to the Calling method
 	 */
-	public boolean modifyDesignation(Designation designation) throws DataException {
+	public boolean modifyProject(Project project) throws DataException {
 		Session session = sessionFactory.openSession();
 		try {
 			Transaction transaction = session.beginTransaction();
-			session.update(designation);
+			session.update(project);
 			transaction.commit();
 			return true;
 		} catch (HibernateException ex) {
-			FileUtil.ErrorLogger("Error on DesignationDao modifyDesignation() : " + ex.toString());
-			throw new DataException("Error Occured while Updating this" + designation.getDesignationName()
+			FileUtil.ErrorLogger("Error on ProjectDao modifyProject() : " + ex.toString());
+			throw new DataException("Error Occured while Updating this" + project.getProjectName()
 					+ " : please verify your details... Any try again..!");
 		} finally {
 			session.close();
@@ -94,12 +94,12 @@ public class DesignationDao {
 	/**
 	 * *
 	 * <p>
-	 * Method is used to delete existing designation create a new session and
-	 * Inserts the model object of the designation into the database.
+	 * Method is used to delete existing project create a new session and
+	 * Inserts the model object of the project into the database.
 	 * </p>
 	 * 
-	 * @param designation
-	 *            model object that stores the designation data associated with
+	 * @param project
+	 *            model object that stores the project data associated with
 	 *            model class.
 	 * @throws DataException
 	 *             if any database connection error occurred error message will
@@ -107,16 +107,16 @@ public class DesignationDao {
 	 * @return if inserted successfully true will be return to the Calling
 	 *         method
 	 */
-	public boolean removeDesignation(Designation designation) throws DataException {
+	public boolean removeProject(Project project) throws DataException {
 		Session session = sessionFactory.openSession();
 		try {
 			Transaction transaction = session.beginTransaction();
-			session.delete(designation);
+			session.delete(project);
 			transaction.commit();
 			return true;
 		} catch (HibernateException ex) {
-			FileUtil.ErrorLogger("Error on DesignationDao insertDesignation() : " + ex.toString());
-			throw new DataException("Error Occured while Adding this" + designation.getDesignationName()
+			FileUtil.ErrorLogger("Error on ProjectDao insertProject() : " + ex.toString());
+			throw new DataException("Error Occured while Adding this" + project.getProjectName()
 					+ " : please verify your details... Any try again..!");
 		} finally {
 			session.close();
@@ -126,26 +126,26 @@ public class DesignationDao {
 
 	/**
 	 * <p>
-	 * this method searches the designation from the records using designation
+	 * this method searches the project from the records using project
 	 * ID and returns the data as a model object to display.
 	 * </p>
 	 * 
-	 * @param designationId
-	 *            contains the ID of the designation.
+	 * @param projectId
+	 *            contains the ID of the project.
 	 * @throws DataException
 	 *             throws error message if problem arises with searching the
 	 *             data in the database, error will stored in log file and
 	 *             context message to user.
-	 * @return Designation return the required designation object model contains
-	 *         designation info.
+	 * @return Project return the required project object model contains
+	 *         project info.
 	 */
-	public Designation findDesignationById(int designationId) throws DataException {
+	public Project findProjectById(int projectId) throws DataException {
 		Session session = sessionFactory.openSession();
 		try {
-			return (Designation) session.get(Designation.class, designationId);
+			return (Project) session.get(Project.class, projectId);
 		} catch (HibernateException exception) {
 			FileUtil.ErrorLogger("Exception in findEmployee() : " + exception.getMessage());
-			throw new DataException("Error while searching Department ID : " + designationId);
+			throw new DataException("Error while searching Client ID : " + projectId);
 		} finally {
 			session.close();
 		}
@@ -153,25 +153,25 @@ public class DesignationDao {
 
 	/**
 	 * <p>
-	 * This method retrieves the designation data from the records and returns
+	 * This method retrieves the project data from the records and returns
 	 * the list of data.
 	 * </p>
 	 * 
-	 * @param designationId
-	 *            contains identity of the designation
+	 * @param projectId
+	 *            contains identity of the project
 	 * @throws com.i2i.exception.DataException
 	 *             throws error message if problem arises with retrieving list
 	 *             of data from the database.
-	 * @return Designation.List return the full list of designation stored in
+	 * @return Project.List return the full list of project stored in
 	 *         database
 	 */
-	public List<Designation> retrieveDesignations() throws DataException {
+	public List<Project> retrieveProjects() throws DataException {
 		Session session = sessionFactory.openSession();
 		try {
-			return session.createCriteria(Designation.class).list();
+			return session.createCriteria(Project.class).list();
 		} catch (HibernateException exception) {
 			FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
-			throw new DataException("Error while displaying all Departments");
+			throw new DataException("Error while displaying all Clients");
 		} finally {
 			session.close();
 		}
@@ -179,22 +179,22 @@ public class DesignationDao {
 
 	/**
 	 * <p>
-	 * This method retrieves the designation data from the records and returns
+	 * This method retrieves the project data from the records and returns
 	 * the list of data.
 	 * </p>
 	 * 
-	 * @param designationId
-	 *            contains identity of the designation
+	 * @param projectId
+	 *            contains identity of the project
 	 * @throws DataException
 	 *             throws error message if problem arises with retrieving list
 	 *             of data from the database.
-	 * @return Designation.List return the list of designation which is stored
-	 *         under the given department
+	 * @return Project.List return the list of project which is stored
+	 *         under the given client
 	 */
-	public List<Designation> retrieveDesignationByDepartment(int departmentId) throws DataException {
+	public List<Project> retrieveProjectByClient(int clientId) throws DataException {
 		Session session = sessionFactory.openSession();
 		try {
-			return session.createQuery("From Designation WHERE department_id=" + departmentId).list();
+			return session.createQuery("From Project WHERE client_id=" + clientId).list();
 		} catch (HibernateException exception) {
 			FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Education");
@@ -202,4 +202,5 @@ public class DesignationDao {
 			session.close();
 		}
 	}
+
 }
