@@ -13,7 +13,7 @@
         </li>
         <li><a href="#"><i class="fa fa-dashboard"></i> <span>Dash Board</span></a>
         </li>
-        <li><a href="index.html"><i class="fa fa-users"></i> <span>Employees </span></a>
+        <li><a href="employee.html"><i class="fa fa-users"></i> <span>Employees </span></a>
         </li>
         <li class="treeview">
             <a href="#">
@@ -21,8 +21,12 @@
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Clients</a>
+                <li><a href="project.html"><i class="fa fa-circle-o"></i> Projects</a>
                 </li>
+                <li><a href="client.html"><i class="fa fa-circle-o"></i> Clients</a>
+                </li>
+                
+                
             </ul>
         </li>
 

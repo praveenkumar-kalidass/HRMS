@@ -17,7 +17,9 @@
        <mapping class="com.i2i.model.Certification" /> 
        <mapping class="com.i2i.model.Education" />   
        <mapping class="com.i2i.model.Attendance" />   
-       <mapping class="com.i2i.model.LeaveRequest" />       
+       <mapping class="com.i2i.model.LeaveRequest" />
+       <mapping class="com.i2i.model.Client" />
+       <mapping class="com.i2i.model.Project" />       
 
     </session-factory>
 </hibernate-configuration>
