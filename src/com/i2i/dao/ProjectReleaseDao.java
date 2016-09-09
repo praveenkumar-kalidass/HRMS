@@ -164,4 +164,30 @@ public class ProjectReleaseDao {
 			session.close();
 		}
 	}
+	
+	/**
+	 * <p>
+	 * This method retrieves the designation data from the records and returns
+	 * the list of data.
+	 * </p>
+	 * 
+	 * @param designationId
+	 *            contains identity of the designation
+	 * @throws DataException
+	 *             throws error message if problem arises with retrieving list
+	 *             of data from the database.
+	 * @return ProjectRelease.List return the list of designation which is stored
+	 *         under the given project
+	 */
+	public List<ProjectRelease> retrieveProjectReleaseByProject(int projectId) throws DataException {
+		Session session = factory.openSession();
+		try {
+			return session.createQuery("From ProjectRelease WHERE project_id=" + projectId).list();
+		} catch (HibernateException exception) {
+			FileUtil.ErrorLogger("Exception in retrieveProjectReleaseByProject() : " + exception.getMessage());
+			throw new DataException("Error while displaying all Relases");
+		} finally {
+			session.close();
+		}
+	}
 }

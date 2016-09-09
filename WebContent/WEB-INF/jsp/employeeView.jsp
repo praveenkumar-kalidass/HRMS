@@ -179,7 +179,8 @@
 										<div class="form-group row">
 											<label for="example-text-input"
 												class="col-md-6 col-form-label"> Role </label> <label
-												for="example-text-input" class="col-md-6"> <c:set
+												for="example-text-input" class="col-md-6"> 
+												<c:set
 													value='${employee.employeeRole}' var="role" /> <c:out
 													value='${role.roleName}' />
 											</label>

@@ -21,6 +21,5 @@
        <mapping class="com.i2i.model.Client" />
        <mapping class="com.i2i.model.Project" />   
        <mapping class="com.i2i.model.ProjectRelease" />       
-
     </session-factory>
 </hibernate-configuration>

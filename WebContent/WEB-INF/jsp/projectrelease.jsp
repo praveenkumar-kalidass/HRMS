@@ -121,62 +121,7 @@
                                 <div class="main-head">
                                     <h1 class="title"> Add New ProjectRelease </h1> </div>
                                 <div class="single-rowform">
-                                    <c:if test="${ProjectRelease!=null}">
-                                        <spring:form action="projectRelease_insert" method="post" class="form-group" modelAttribute="ProjectRelease">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Project</label>
-                                                        <div class="col-md-8">
-
-                                                            <spring:select path="project.projectId" class="form-control" >
-                                                                <spring:option value="0"> --Select --</spring:option>
-                                                                <c:forEach items="${ProjectList}" var="project">
-                                                                    <spring:option value="${project.projectId}">${project.projectName}</spring:option>
-                                                                </c:forEach>
-                                                            </spring:select>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group row">
-                                                    <label for="example-text-input" class="col-md-4 col-form-label">To:</label>
-                                                        <div class="col-md-8">
-                                           
-                                                        <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-             								            <input class="form-control" size="16" type="text" value="" readonly>            										      
-														<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-               											</div>
-												        <spring:input path="releaseDate" id="dtp_input4" type="hidden" class="form-control"    />
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Project Version</label>
-                                                        <div class="col-md-8">
-                                                            <spring:input path="projectVersion" class="form-control" id="example-text-input" placeHolder="Project Version" /> </div>
-                                                        </div>
-                                                        
-                                                        <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
-                                                        <div class="col-md-8">
-                                                            <spring:textarea path="description" class="form-control" id="example-text-input" placeHolder="Description" ></spring:textarea> </div>
-                                                        </div>
-                                                        
-
-                                                        <div class="col-md-12">
-                                                            <br/> </div>
-                                                        <div class="form-group row" align="center">
-                                                            <div class="col-md-12">
-                                                                <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
-                                                        </div>
-
-
-
-                                                </div>
-                                            </div>
-                                        </spring:form>
-                                    </c:if>
+                                
                                 </div>
                             </div>
                         </div>
@@ -196,58 +141,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Edit ProjectRelease</h4>
                 </div>
-                <div class="modal-body">
-                    <c:if test="${ProjectReleaseEdit!=null}">
-                        <spring:form action="projectRelease_update" method="post" class="form-group" modelAttribute="ProjectReleaseEdit">
-                            <div class="col-md-12">
-
-                                <spring:input path="releaseId" type="hidden" class="form-control" id="example-text-input" placeHolder="ProjectRelease Id" readonly="readOnly" /> </div>
-                                
-                                <div class="form-group row">
-                                <label for="example-text-input" class="col-md-4 col-form-label">Project</label>
-                                <div class="col-md-8">
-                                    <spring:select path="project" class="form-control">
-                                        <c:set value="${ProjectReleaseEdit.project}" var="dep" />
-                                        <spring:option value="${dep.projectId}">${dep.projectName}</spring:option>
-                                        <spring:option value="0"> -------</spring:option>
-                                        <c:forEach items="${ProjectList}" var="project">
-                                            <spring:option value="${project.projectId}">${project.projectName}</spring:option>
-                                        </c:forEach>
-                                    </spring:select>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group row">
-                                                    <label for="example-text-input" class="col-md-4 col-form-label">To:</label>
-                                                        <div class="col-md-8">
-                                           
-                                                        <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-             								            <input class="form-control" size="16" type="text" value="<c:out value='${ProjectReleaseEdit.releaseDate}' />" readonly>            										      
-														<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-               											</div>
-												        <spring:input path="releaseDate" id="dtp_input4" type="hidden" class="form-control"    />
-                                                        </div>
-                                                    </div>
-                            
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-md-4 col-form-label">Project Version</label>
-                                <div class="col-md-8">
-                                    <spring:input path="projectVersion" class="form-control" id="example-text-input" placeHolder="Project Version" /> </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
-                                <div class="col-md-8">
-                                    <spring:textarea path="description" class="form-control" id="example-text-input" placeHolder="Description" ></spring:textarea> </div>
-                            </div>
-                            
-                            <div class="form-group row" align="center">
-                                <div class="col-md-12">
-                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
-                            </div>
-                </spring:form>
-                </c:if>
-                </div>
+          
             </div>
             <div class="modal-footer"> </div>
         </div>

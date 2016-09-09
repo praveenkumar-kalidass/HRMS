@@ -104,7 +104,7 @@
                                                         <c:out value="${project.status}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <a href="project_edit.html?id=<c:out value='${project.projectId} ' />" class="edit"> <i class="fa fa-pencil"></i> Edit </a> &nbsp;&nbsp;
+                                                        <a href="project_view.html?id=<c:out value='${project.projectId} ' />" class="edit"> <i class="fa fa-wpforms"></i> View & Edit </a> &nbsp;&nbsp;
                                                         <a href="project_delete.html?id=<c:out value='${project.projectId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
 
                                                     </td>
@@ -185,10 +185,6 @@
                                                             <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
                                                     </div>
 
-
-
-
-
                                                 </div>
                                             </div>
                                         </spring:form>
@@ -204,123 +200,7 @@
             </div>
         </div>
     </div>
-    <div id="myModal" class="modal fade" role="dialog" aria-hidden="false" data-backdrop="static">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Project</h4>
-                </div>
-                <div class="modal-body">
-                    <c:if test="${ProjectEdit!=null}">
-                        <spring:form action="project_update" method="post" class="form-group" modelAttribute="ProjectEdit">
-                            <div class="col-md-12">
-                                <spring:input path="projectId" type="hidden" class="form-control" id="example-text-input" placeHolder="Project Id" readonly="readOnly" /> 
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-md-4 col-form-label">Project Name
-                                </label>
-                                <div class="col-md-8">
-                                    <spring:input path="projectName" class="form-control" id="example-text-input" placeHolder="Project Name" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-md-4 col-form-label">Date of Started</label>
-                                <div class="col-md-8">
-                                    <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                        <input class="form-control" size="16" type="text" value="<c:out value=" ${ProjectEdit.fromDate} "></c:out>" readonly placeHolder="Date of Started">
-                                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                    </div>
-                                    <spring:input path="fromDate" id="dtp_input2" type="hidden" class="form-control" placeHolder="Date of Started" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="example-text-input" class="col-md-4 col-form-label">Client</label>
-                                <div class="col-md-8">
-                                    <spring:select path="client" class="form-control">
-                                        <c:set value="${ProjectEdit.client}" var="dep" />
-                                        <spring:option value="${dep.clientId}">${dep.clientName}</spring:option>
-                                        <spring:option value="0"> -------</spring:option>
-                                        <c:forEach items="${ClientList}" var="client">
-                                            <spring:option value="${client.clientId}">${client.clientName}</spring:option>
-                                        </c:forEach>
-                                    </spring:select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                  <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
-                                      <div class="col-md-8">
-                                            <spring:textarea path="description" class="form-control" id="Description" placeHolder="Description"></spring:textarea>
-                                      </div>
-                            </div>
-                            <c:if test="${ProjectEdit.status=='Active'}">
-                            <div class="form-group row">
-                                  <label for="example-text-input" class="col-md-4 col-form-label">Status</label>
-                                      <div class="col-md-8">
-                                           <div class="form-check">
-                                                <label class="form-check-label">
-                                                     <spring:radiobutton class="form-check-input" path="status" value="Active" checked="checked" /> Active
-                                                </label>
-                                                <label class="form-check-label">
-                                                      <spring:radiobutton class="form-check-input" path="status" value="Completed" /> Completed
-                                                 </label>
-                                                 <label class="form-check-label">
-                                                      <spring:radiobutton class="form-check-input" path="status" value="Dropped" /> Dropped
-                                                 </label>
-                                            </div>
-                                       </div>
-                             </div>
-                             </c:if>
-                             <c:if test="${ProjectEdit.status=='Completed'}">
-                             <div class="form-group row">
-                                  <label for="example-text-input" class="col-md-4 col-form-label">Status</label>
-                                      <div class="col-md-8">
-                                           <div class="form-check">
-                                                <label class="form-check-label">
-                                                     <spring:radiobutton class="form-check-input" path="status" value="Active"  /> Active
-                                                </label>
-                                                <label class="form-check-label">
-                                                      <spring:radiobutton class="form-check-input" path="status" value="Completed" checked="checked" /> Completed
-                                                 </label>
-                                                 <label class="form-check-label">
-                                                      <spring:radiobutton class="form-check-input" path="status" value="Dropped" /> Dropped
-                                                 </label>
-                                            </div>
-                                       </div>
-                             </div>
-                             </c:if>
-                             <c:if test="${ProjectEdit.status=='Dropped'}">
-                             <div class="form-group row">
-                                  <label for="example-text-input" class="col-md-4 col-form-label">Status</label>
-                                      <div class="col-md-8">
-                                           <div class="form-check">
-                                                <label class="form-check-label">
-                                                     <spring:radiobutton class="form-check-input" path="status" value="Active"  /> Active
-                                                </label>
-                                                <label class="form-check-label">
-                                                      <spring:radiobutton class="form-check-input" path="status" value="Completed" /> Completed
-                                                 </label>
-                                                 <label class="form-check-label">
-                                                      <spring:radiobutton class="form-check-input" path="status" value="Dropped" checked="checked" /> Dropped
-                                                 </label>
-                                            </div>
-                                       </div>
-                             </div>
-                             </c:if>
-                            <div class="form-group row" align="center">
-                                <div class="col-md-12">
-                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
-                            </div>
-                          
-                          </div>
-                </spring:form>
-                </c:if>
-            </div>
-            <div class="modal-footer"> </div>
-        </div>
-
-    </div>
-    </div>
+   
 
 
 

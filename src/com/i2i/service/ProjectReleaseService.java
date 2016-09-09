@@ -5,6 +5,7 @@ import java.util.List;
 import com.i2i.dao.ProjectReleaseDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.ProjectRelease;
+import com.i2i.model.ProjectRelease;
 
 /**
  * <p>
@@ -109,5 +110,23 @@ public class ProjectReleaseService {
 	 */
 	public List<ProjectRelease> displayProjectReleases() throws DataException {
 		return projectReleaseDao.retrieveProjectReleases();
+	}
+	
+	/**
+	 * <p>
+	 * This method retrieves the ProjectRelease data for given project from the
+	 * records and returns the list of data to display.
+	 * </p>
+	 * 
+	 * @param projectId
+	 *            contains the ID of the project.
+	 * @return list Gives the list of projectRelease details for given projectId
+	 *         retrieved from the database.
+	 * @throws DataException
+	 *             throws error message if problem arises with retrieving list
+	 *             of data from the database.
+	 */
+	public List<ProjectRelease> getProjectReleaseByProject(int projectId) throws DataException {
+		return projectReleaseDao.retrieveProjectReleaseByProject(projectId);
 	}
 }

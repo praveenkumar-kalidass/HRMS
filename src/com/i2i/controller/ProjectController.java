@@ -1,5 +1,9 @@
 package com.i2i.controller;
 
+import java.util.List;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -8,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.i2i.Util.FileUtil;
 import com.i2i.exception.DataException;
 import com.i2i.model.Client;
+import com.i2i.model.ProjectRelease;
 import com.i2i.model.Project;
 import com.i2i.model.ProjectRelease;
 import com.i2i.service.ClientService;
@@ -219,32 +225,33 @@ public class ProjectController {
 		return "project";
 	}
 
+	
+
 	/**
 	 * <p>
-	 * This method passes is used for AJAX to get the project list for the
-	 * given client
+	 * Mapping the request which required by user for project_view.html it
+	 * will sent the page and required project object stored in database for
+	 * edit.
 	 * </p>
 	 * 
-	 * @param clientId
-	 *            contains identity of the Client it is used to many to one
-	 *            map with project
-	 * @param projectList
-	 *            model object that stores the project List data associated
-	 *            with model.
-	 * @return String returns the redirecting page url based on the appropriate
-	 *         operation.
+	 * @param model
+	 *            ModelMap object used for setting Project model object and
+	 *            Client List
+	 * @return contains url of project edit page
+	 * 
 	 */
-	@RequestMapping(value = "/projectView", method = RequestMethod.GET)
-	public String projectView(@RequestParam("clientId") int clientId, ModelMap map) {
+	@RequestMapping(value = "/project_view", method = RequestMethod.GET)
+	public String viewProject(@RequestParam("id") int projectId, ModelMap model) {
 		try {
-			map.addAttribute("ProjectList", projectService.getDesgignationByClient(clientId));
-		} catch (DataException exception)  {
-			map.addAttribute("message", exception.getMessage());
+			model.addAttribute("Project", projectService.searchProject(projectId));
+			model.addAttribute("ReleaseList", projectReleaseService.getProjectReleaseByProject(projectId));
+		} catch (DataException e) {
+			model.addAttribute("message", e.getMessage());
 		}
 		return "projectView";
-
 	}
 
+	
 	/**
 	 * <p>
 	 * Mapping the request which required by user for project_edit.html it
@@ -263,10 +270,11 @@ public class ProjectController {
 		try {
 			model.addAttribute("ProjectEdit", projectService.searchProject(projectId));
 			model.addAttribute("ClientList", clientService.displayClients());
+			model.addAttribute("ProjectId", projectId);
 		} catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
 		}
-		return "project";
+		return "projectView";
 	}
 
 	/**
@@ -290,15 +298,17 @@ public class ProjectController {
 			@RequestParam("client") int clientId, ModelMap model) {
 		try {
 			project.setClient(clientService.searchClient(clientId));
+			
 			if (projectService.updateProject(project)) {
 				model.addAttribute("message", "Project details are successfully Updated");
+				model.addAttribute("ProjectId", project.getProjectId());				
 			} else {
 				model.addAttribute("message", "Project details are not updated");
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
 		} 
-		return "project";
+		return "projectView";
 	}
 
 	/**
@@ -342,16 +352,15 @@ public class ProjectController {
 	 * @return contains url of projectRelease add page
 	 * 
 	 */
-	@RequestMapping("/projectrelease")
-	public String createProjectRelease(ModelMap model) {
+	@RequestMapping(value = "/projectrelease", method = RequestMethod.GET)
+	public String createProjectRelease(@RequestParam("id") int projectId, ModelMap model) {
 		try {
-			model.addAttribute("ProjectRelease", new ProjectRelease());
-			model.addAttribute("ProjectReleaseList", projectReleaseService.displayProjectReleases());
-			model.addAttribute("ProjectList", projectService.getProjects());
-		} catch (DataException e) {
+			model.addAttribute("ProjectRelease", new ProjectRelease());	
+			model.addAttribute("ProjectId", projectId);
+		} catch (Exception e) {
 			model.addAttribute("message", e.getMessage());
 		}
-		return "projectrelease";
+		return "projectView";
 	}
 
 	/**
@@ -375,13 +384,14 @@ public class ProjectController {
 		try {
 			if (projectReleaseService.addProjectRelease(projectRelease)) {
 				model.addAttribute("message", "ProjectRelease details are successfully inserted");
+				model.addAttribute("ProjectId", (projectRelease.getProject()).getProjectId());
 			} else {
 				model.addAttribute("message", "ProjectRelease details are not inserted");
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
 		} 
-		return "projectrelease";
+		return "projectView";
 	}
 
 	/**
@@ -405,7 +415,7 @@ public class ProjectController {
 		} catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
 		}
-		return "projectrelease";
+		return "projectView";
 	}
 
 	/**
@@ -425,19 +435,18 @@ public class ProjectController {
 	 *         operation.
 	 */
 	@RequestMapping(value = "/projectRelease_update", method = RequestMethod.POST)
-	public String updateProject(@ModelAttribute("ProjectReleaseEdit") ProjectRelease projectRelease, BindingResult result,
-			@RequestParam("project") int projectId, ModelMap model) {
-		try {
-			projectRelease.setProject(projectService.searchProject(projectId));
+	public String updateProject(@ModelAttribute("ProjectReleaseEdit") ProjectRelease projectRelease, BindingResult result, ModelMap model) {
+		try {			
 			if (projectReleaseService.updateProjectRelease(projectRelease)) {
 				model.addAttribute("message", "ProjectRelease details are successfully Updated");
+				model.addAttribute("ProjectId", (projectRelease.getProject()).getProjectId());
 			} else {
 				model.addAttribute("message", "ProjectRelease details are not updated");
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
 		} 
-		return "projectrelease";
+		return "projectView";
 	}
 
 	/**
@@ -457,15 +466,16 @@ public class ProjectController {
 	@RequestMapping(value = "/projectRelease_delete", method = RequestMethod.GET)
 	public String deleteProjectRelease(@RequestParam("id") int projectReleaseId, ModelMap model) {
 		try {
+			ProjectRelease projectRelease = projectReleaseService.searchProjectRelease(projectReleaseId);
 			if (projectReleaseService.deleteProjectRelease(projectReleaseId)) {
 				model.addAttribute("message", "ProjectRelease details are successfully Deleted");
+				model.addAttribute("ProjectId", (projectRelease.getProject()).getProjectId());
 			} else {
 				model.addAttribute("message", "ProjectRelease details are not deleted");
 			}
 		} catch (DataException exception) {
-			model.addAttribute("message", exception.getMessage());
 		} 
-		return "projectrelease";
-		
+		return "projectView";
 	}
+	
 }
