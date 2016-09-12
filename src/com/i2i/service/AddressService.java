@@ -5,7 +5,6 @@ import java.util.List;
 import com.i2i.dao.AddressDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Address;
-import com.i2i.model.Certification;
 
 /**
  * <p>

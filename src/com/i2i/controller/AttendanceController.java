@@ -2,6 +2,8 @@ package com.i2i.controller;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -36,12 +38,25 @@ public class AttendanceController {
  * 
  */
 @RequestMapping("/attendance")
-public String createAttendance(ModelMap model) {
+public String createAttendance(ModelMap model, HttpSession session) {
 	try {
-	model.addAttribute("Attendance", new Attendance());
-	model.addAttribute("Date", new Date());
-	model.addAttribute("AttendanceList", attendanceService.displayAttendances());
-	model.addAttribute("Employee", employeeService.searchEmployee(1));
+	int employeeId =  (int) session.getAttribute("HRMSEmployeeId");
+	model.addAttribute("AttendanceList", attendanceService.getCompleteAttendanceByEmployeeId(employeeId));
+	System.out.println("employeeId : " + employeeId);
+	if(attendanceService.getAttendancesByEmployeeId(employeeId).size()!=0){
+	for(Attendance attendance : attendanceService.getAttendancesByEmployeeId(employeeId)) {
+		System.out.println("employeeId : " + employeeId);
+		if(attendance.getTimeOut()==null){
+			model.addAttribute("CheckOut", "True");
+		} else {
+			model.addAttribute("CheckIn", "True");
+		}
+	}
+	} else {
+		System.out.println("Emnployee Id  In :" +employeeId);
+		model.addAttribute("CheckIn", "True");
+	}
+	
 	} catch (DataException e) {
 		model.addAttribute("message", e.getMessage());
 	}
@@ -60,9 +75,15 @@ public String createAttendance(ModelMap model) {
  * @return String
  *       returns the redirecting page url based on the appropriate operation.
  */
-@RequestMapping(value ="/attendance_insert", method = RequestMethod.POST)
-public String insertAttendance(@ModelAttribute("Attendance")Attendance attendance, BindingResult result, ModelMap model) {
-    try {        	
+@RequestMapping(value ="/check_in", method = RequestMethod.GET)
+public String insertAttendance(@RequestParam("id") int employeeId, ModelMap model) {
+    try { 
+    	Date date = new Date();
+    	Attendance attendance = new Attendance();
+    	attendance.setDate(date.getYear()+1900 + "-" + date.getMonth() + "-" + date.getDate());
+    	attendance.setTimeIn(date.getHours() +":" + date.getMinutes() + ":"+ date.getSeconds());
+    	attendance.setEmployee(employeeService.searchEmployee(employeeId));
+    	model.addAttribute("AttendanceList", attendanceService.getCompleteAttendanceByEmployeeId(employeeId));
         if (attendanceService.addAttendance(attendance)) {
         	model.addAttribute("message", "Checked in Successfully");
         } else {
@@ -86,13 +107,21 @@ public String insertAttendance(@ModelAttribute("Attendance")Attendance attendanc
  *     contains url of employee edit page
  * 
  */
-@RequestMapping(value ="/attendance_edit", method = RequestMethod.GET)
-public String editAttendance(@RequestParam("id")int attendanceId, ModelMap model) {
+@RequestMapping(value ="/check_out", method = RequestMethod.GET)
+public String editAttendance(@RequestParam("id")int employeeId, ModelMap model) {
 	try {	
-	 model.addAttribute("AttendanceEdit", attendanceService.searchAttendance(attendanceId));
-	 model.addAttribute("Employee", employeeService.searchEmployee(1));
-	 model.addAttribute("Date", new Date());
-	 model.addAttribute("AttendanceList", attendanceService.displayAttendances());
+		Date date = new Date();
+		Attendance attendance = null;
+		for(Attendance attendance1 : attendanceService.getAttendancesByEmployeeId(employeeId)) {
+		    attendance = attendance1;
+		}
+		attendance.setTimeOut(date.getHours() +":" + date.getMinutes() + ":"+ date.getSeconds());
+		model.addAttribute("AttendanceList", attendanceService.getCompleteAttendanceByEmployeeId(employeeId));
+		if (attendanceService.updateAttendance(attendance)) {
+            model.addAttribute("message", "Checked out Successfully");
+        } else {
+        	model.addAttribute("message", "Not Checked out");
+        }
 	} catch (DataException e) {
 		model.addAttribute("message", e.getMessage());
 	}
@@ -116,6 +145,7 @@ public String editAttendance(@RequestParam("id")int attendanceId, ModelMap model
  @RequestMapping(value ="/attendance_update", method = RequestMethod.POST)
     public String updateEmployee(@ModelAttribute("AttendanceEdit")Attendance attendance, BindingResult result, ModelMap model) {
         try {
+        	
             if (attendanceService.updateAttendance(attendance)) {
                 model.addAttribute("message", "Checked out Successfully");
             } else {
@@ -123,9 +153,8 @@ public String editAttendance(@RequestParam("id")int attendanceId, ModelMap model
             }
         } catch (DataException exception) {
             model.addAttribute("message", exception.getMessage());
-        } finally {
-            return "attendance";
-        }
+        } 
+        return "attendance";
     }
     
      /**
@@ -150,9 +179,8 @@ public String editAttendance(@RequestParam("id")int attendanceId, ModelMap model
             }
         } catch (DataException exception) {
             model.addAttribute("message", exception.getMessage());
-        } finally {
-            return "attendance";
-        }
+        } 
+        return "attendance";
     }
     
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
@@ -169,13 +197,13 @@ public String editAttendance(@RequestParam("id")int attendanceId, ModelMap model
 	 * 
 	 */
     @RequestMapping("/leaverequest")
-	public String createLeaveRequest(ModelMap model) {
+	public String createLeaveRequest(ModelMap model, HttpSession session) {
 		try {
+			int employeeId = (int) session.getAttribute("HRMSEmployeeId");
 		    model.addAttribute("LeaveRequest", new LeaveRequest());
 	    	model.addAttribute("LeaveRequestList", leaveRequestService.displayLeaveRequests());
-	    	model.addAttribute("EmployeeList", employeeService.retrieveEmployees());
-	    	model.addAttribute("Employee", employeeService.searchEmployee(1));
-		} catch (DataException e) {
+	    	model.addAttribute("OwnLeaveRequestList", leaveRequestService.displayLeaveRequestsByEmployee(employeeId));
+	    } catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
 		}
 		return "leaverequest";
@@ -203,10 +231,8 @@ public String editAttendance(@RequestParam("id")int attendanceId, ModelMap model
             }
         } catch (DataException exception) {
             model.addAttribute("message", exception.getMessage());
-        } finally {
-        	return "leaverequest";
-        }
-        
+        } 
+        return "leaverequest";
     }
 	    
 	     /**
@@ -221,19 +247,28 @@ public String editAttendance(@RequestParam("id")int attendanceId, ModelMap model
 	     * @return String
 	     *       returns the redirecting page url based on the appropriate operation.
 	     */
-	    @RequestMapping(value ="/leaveRequest_delete", method = RequestMethod.GET)
-	    public String deleteLeaveRequest(@RequestParam("id")int leaveRequestId, ModelMap model) {
+	    @RequestMapping(value ="/leaveRequest_status", method = RequestMethod.GET)
+	    public String deleteLeaveRequest(@RequestParam("id")int leaveRequestId,@RequestParam("status")int status, ModelMap model, HttpSession session) {
 	    	try {
-	            if (leaveRequestService.deleteLeaveRequest(leaveRequestId)) {
-	                model.addAttribute("message", "LeaveRequest details are successfully Deleted");
+	    		int employeeId = (int) session.getAttribute("HRMSEmployeeId");
+	    		LeaveRequest leaveRequest = leaveRequestService.searchLeaveRequest(leaveRequestId);
+	    		if(status==1){
+	    			leaveRequest.setLeaveStatus("Approved");
+	    		} else if(status==2) {
+	    			leaveRequest.setLeaveStatus("Rejected");
+	    		}	    	
+	    		model.addAttribute("LeaveRequestList", leaveRequestService.displayLeaveRequests());
+		    	model.addAttribute("OwnLeaveRequestList", leaveRequestService.displayLeaveRequestsByEmployee(employeeId));
+	            if (leaveRequestService.updateLeaveRequest(leaveRequest)) {
+	            	
+	                model.addAttribute("message", "LeaveRequest status updated successfully ");
 	            } else {
-	            	model.addAttribute("message", "LeaveRequest details are not deleted");
+	            	model.addAttribute("message", "LeaveRequest status not updated");
 	            }
 	        } catch (DataException exception) {
 	            model.addAttribute("message", exception.getMessage());
-	        } finally {
-	            return "leaverequest";
-	        }
+	        } 
+	        return "leaverequest";
 	    }
 	    
 /*---------------------------------------------------------------------------------------------------------------------------------------*/

@@ -5,6 +5,9 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<c:if test="${sessionScope['HRMSEmployeeId']==null}" >
+   <c:redirect url="index.html" /> 
+</c:if>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -953,7 +956,7 @@
 									</div>
 								</div>
 
-
+<c:if test="${sessionScope['HRMSRole']=='Admin'}">
 								<div class="form-group row">
 									<label for="example-text-input" class="col-md-4 col-form-label">Date
 										of Joining</label>
@@ -972,8 +975,14 @@
 											placeHolder="Date of Joining" />
 									</div>
 								</div>
+</c:if>
+<c:if test="${sessionScope['HRMSRole']=='Employee'}">
+										<spring:input path="employeeDateOfJoining" id="dtp_input3"
+											type="hidden" class="form-control"
+											placeHolder="Date of Joining" />
+</c:if>
 
-
+<c:if test="${sessionScope['HRMSRole']=='Admin'}">
 								<div class="form-group row">
 									<label for="example-text-input" class="col-md-4 col-form-label">Department</label>
 									<div class="col-md-8">
@@ -1033,7 +1042,12 @@
 										</spring:select>
 									</div>
 								</div>
-
+								</c:if>
+								<c:if test="${sessionScope['HRMSRole']=='Employee'}">
+								    <spring:input path="employeeDesignation.designationId" type="hidden" />
+								
+								</c:if>
+<c:if test="${sessionScope['HRMSRole']=='Admin'}">
 								<div class="form-group row">
 									<label for="example-text-input" class="col-md-4 col-form-label">Bank
 										Account Number</label>
@@ -1042,7 +1056,15 @@
 											class="form-control" placeHolder="Account Number" />
 									</div>
 								</div>
-
+</c:if>
+<c:if test="${sessionScope['HRMSRole']=='Employee'}">
+  <spring:input path="employeeBankAccountNumber" type="hidden" />
+  </c:if>
+  
+  <c:if test="${sessionScope['HRMSRole']=='Employee'}">
+  <spring:input path="employeeBasicPay" type="hidden" />
+  </c:if>
+  <c:if test="${sessionScope['HRMSRole']=='Admin'}">
 								<div class="form-group row">
 									<label for="example-text-input" class="col-md-4 col-form-label">Basic
 										Pay</label>
@@ -1051,7 +1073,7 @@
 											placeHolder="Basic Pay" />
 									</div>
 								</div>
-
+</c:if>
 
 								<div class="form-group row">
 									<label for="example-text-input" class="col-md-4 col-form-label">User
@@ -1061,7 +1083,7 @@
 											placeHolder="Username" />
 									</div>
 								</div>
-
+  <c:if test="${sessionScope['HRMSRole']=='Admin'}">
 								<div class="form-group row">
 									<label for="example-text-input" class="col-md-4 col-form-label">Role
 										of the Employee</label>
@@ -1076,7 +1098,19 @@
 										</spring:select>
 									</div>
 								</div>
-
+								</c:if>
+  <c:if test="${sessionScope['HRMSRole']=='Employee'}">
+  <spring:input path="employeeRole.roleId" type="hidden" />
+  </c:if>
+  <div class="form-group row">
+									<label for="example-text-input" class="col-md-4 col-form-label"> Password
+									</label>
+									<div class="col-md-8">
+										<spring:input path="employeeLastName" type="password" class="form-control"
+											placeHolder="First Name" />
+									</div>
+								</div>
+  
 
 								<div class="form-group row" align="center">
 									<div class="col-md-12">

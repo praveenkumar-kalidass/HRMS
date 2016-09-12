@@ -3,7 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
+<c:if test="${sessionScope['HRMSEmployeeId']==null}" >
+   <c:redirect url="index.html" /> 
+</c:if>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Attendance Details</title>
@@ -32,23 +34,32 @@
             <div class="content-main">
                 <div class="col-md-12">
                     <!-- Main Start -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#Employee-Table" aria-controls="Employee-Table" role="tab" data-toggle="tab">Attendances</a>
-                        </li>
-                        <li role="presentation"><a href="#Employee-Form" aria-controls="Employee-Form" role="tab" data-toggle="tab">Check-In</a>
-                        </li>
-                    </ul>
+                  
                     <div class="tab-content">
                         <div id="Employee-Table" role="tabpanel" class="tab-pane active">
                             <div class="form">
                                 <div class="main-head">
-                                    <h1 class="title"> Attendance Details </h1> </div>
-
+                                	<div class="main-head" >
+								<h1 class="title" style="float: left; width: 90%;">
+									Attendance Details</h1>
+									
+								  <c:if test="${CheckIn=='True'}" >
+                 <a href="check_in.html?id=<c:out value="${sessionScope['HRMSEmployeeId']}" />" style="float: right; width: 10%; padding-top: 20px;" >   <button class="btn btn-success"> Check In </button> </a>
+                </c:if>
+                
+                 <c:if test="${CheckOut=='True'}" >
+                 <a href="check_out.html?id=<c:out value="${sessionScope['HRMSEmployeeId']}" />" style="float: right; width: 10%; padding-top: 20px;" >   <button class="btn btn-danger"> Check Out </button> </a>
+                </c:if>
+								
+							</div>
+                                
+                               <div style="padding-top: 30px; margin-top: 30px;">
+             
+                
                                 <c:if test="${AttendanceList!=null}">
-                                    <table>
+                                    <table >
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
                                                 <th>Date</th>
                                                 <th>Time-In</th>
                                                 <th>Time-Out</th>
@@ -82,9 +93,6 @@
                                             <c:forEach var="attendance" items="${AttendanceList}">
                                                 <tr>
                                                     <td>
-                                                        <c:out value="${attendance.attendanceId}"></c:out>
-                                                    </td>
-                                                    <td>
                                                         <c:out value="${attendance.date}"></c:out>
                                                     </td>
                                                     <td>
@@ -92,9 +100,6 @@
                                                     </td>
                                                     <td>
                                                         <c:out value="${attendance.timeOut}"></c:out>
-                                                    </td>
-                                                    <td>
-                                                        <a href="attendance_edit.html?id=<c:out value='${attendance.attendanceId} ' />" class="edit"> <i class="fa fa-pencil"></i> Checkout </a> &nbsp;&nbsp;
                                                     </td>
 
                                                 </tr>
@@ -105,56 +110,11 @@
                                 </c:if>
 
 
-
+</div>
 
                             </div>
                         </div>
-                        <div id="Employee-Form" role="tabpanel" class="tab-pane">
-                            <div class="form">
-                                <div class="main-head">
-                                    <h1 class="title"> Check-In </h1> </div>
-                                <div class="single-rowform">
-                                    <c:if test="${Attendance!=null}">
-                                        <spring:form action="attendance_insert" method="post" class="form-group" modelAttribute="Attendance">
-                                            <div class="col-md-12">
-                                                <div class="col-md-6">
-                                                    
-
-                                                    <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">Employee Check-In</label>
-                                                        <div class="col-md-8">
-
-                                                            <spring:hidden path="employee.employeeId" value="${Employee.employeeId}"></spring:hidden>
-                                                            
-                                                            
-                                                            <spring:hidden path="date" value="${Date.getYear()+1900}-${Date.getMonth()+1}-${Date.getDate()}"></spring:hidden>
-                                                            
-                                                            
-                                                            <spring:hidden path="timeIn" value="${Date.getHours()}:${Date.getMinutes()}:${Date.getSeconds()}"></spring:hidden>
-                                                            
-                                                            
-                                                        </div>
-
-                                                        <div class="col-md-12">
-                                                            <br/> </div>
-                                                        <div class="form-group row" align="center">
-                                                            <div class="col-md-12">
-                                                                <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Check-In"> </div>
-                                                        </div>
-
-
-
-                                                    </div>
-
-
-
-                                                </div>
-                                            </div>
-                                        </spring:form>
-                                    </c:if>
-                                </div>
-                            </div>
-                        </div>
+             
 
                     </div>
 
@@ -162,54 +122,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div id="myModal" class="modal fade" role="dialog" aria-hidden="false" data-backdrop="static">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Employee Check-Out</h4>
-                </div>
-                <div class="modal-body">
-                    <c:if test="${AttendanceEdit!=null}">
-                        <spring:form action="attendance_update" method="post" class="form-group" modelAttribute="AttendanceEdit">
-                            <div class="col-md-12">
-                                <h4 class="modal-title">Click here to Check-out</h4>
-                                <spring:input path="attendanceId" type="hidden" class="form-control" id="example-text-input" readonly="readOnly" /> </div>
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    
-                                    <spring:hidden path="timeOut" value="${Date.getHours()}:${Date.getMinutes()}:${Date.getSeconds()}"></spring:hidden>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    <spring:input type="hidden" path="timeIn" value="${AttendanceEdit.timeIn}" readonly="readOnly"></spring:input>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    <spring:hidden path="date" value="${AttendanceEdit.date}" readonly="readOnly"></spring:hidden>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    <spring:hidden path="employee.employeeId" value="${Employee.employeeId}" readonly="readOnly"></spring:hidden>
-                                </div>
-                            </div>
-                            <div class="form-group row" align="center">
-                                <div class="col-md-12">
-                                    <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Check-out"> </div>
-                            </div>
-                </div>
-                </spring:form>
-                </c:if>
-            </div>
-            <div class="modal-footer"> </div>
-        </div>
-
-    </div>
     </div>
 
 
@@ -287,23 +199,9 @@
     <script>
         $.sidebarMenu($('.sidebar-menu'));
     </script>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $('#tabs').tab();
-        });
-    </script>
-
-    <c:if test="${message==null}">
-        <c:if test="${AttendanceEdit!=null}">
-            <script>
-                $("#myModal").modal();
-            </script>
-        </c:if>
-    </c:if>
-
+    
     <c:if test="${message!=null}">
         <script>
-            $("#myModal").modal("hide");
             $(function() {
                 $("#dialog-confirm").dialog({
                     modal: true,

@@ -1,14 +1,10 @@
 package com.i2i.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.i2i.dao.EmployeeDao;
 import com.i2i.exception.DataException;
-import com.i2i.model.Department;
-import com.i2i.model.Designation;
 import com.i2i.model.Employee;
-import com.i2i.model.Team;
 
 /**
  * <p>
@@ -100,6 +96,27 @@ public class EmployeeService {
 	 */
 	public Employee searchEmployee(int employeeId) throws DataException {
 		return employeeDao.findEmployee(employeeId);
+	}
+	
+	
+	/**
+	 * <p>
+	 * This method passes the employeeUserName to its dao class to search in the
+	 * database. Returns the model object of the employee to its controller to
+	 * display.
+	 * </p>
+	 *
+	 * @param employeeUserName
+	 *            contains the Username of the employee.
+	 * 
+	 * @return object gives the appropriate employee object for the
+	 *         corresponding employeeUserName.
+	 * @throws DataException
+	 *             throws error message if problem arises with searching the
+	 *             data in the database.
+	 */
+	public Employee searchEmployeeByUserName(String employeeUserName) throws DataException {
+		return employeeDao.findEmployeeByUserName(employeeUserName);
 	}
 
 	/**

@@ -52,17 +52,7 @@ public class EmployeeController {
 	CertificationService certficationService = new CertificationService();
 	EducationService educationService = new EducationService();
 
-	/**
-	 * <p>
-	 * This method redirect to. index url
-	 * </p>
-	 * 
-	 * @return there is no data mapped in the url it just resolve the index view
-	 */
-	@RequestMapping("/index")
-	public String indexPage() {
-		return "index";
-	}
+	
 
 	/**
 	 * <p>
@@ -111,9 +101,8 @@ public class EmployeeController {
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
-		} finally {
-			return "department";
-		}
+		} 
+		return "department";
 	}
 
 	/**
@@ -162,9 +151,8 @@ public class EmployeeController {
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
-		} finally {
-			return "department";
-		}
+		} 
+		return "department";
 	}
 
 	/**
@@ -192,9 +180,8 @@ public class EmployeeController {
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
-		} finally {
-			return "department";
-		}
+		} 
+		return "department";
 	}
 
 	/**

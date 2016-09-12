@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
-import com.i2i.model.Designation;
 import com.i2i.model.Education;
 
 /**

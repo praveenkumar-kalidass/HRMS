@@ -3,6 +3,7 @@ package com.i2i.dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,7 +11,6 @@ import org.hibernate.Transaction;
 import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
-import com.i2i.model.Designation;
 import com.i2i.model.Employee;
 
 /**
@@ -139,6 +139,41 @@ public class EmployeeDao {
 		} finally {
 			session.close();
 		}
+	}
+	
+	/**
+	 * <p>
+	 * This method searches the employee from the records using employee UserName and
+	 * returns the data as a model object to display.
+	 * </p>
+	 * 
+	 * @param employeeUserName
+	 *            contains the User name of the employee.
+	 * @return object gives the appropriate employee detail for the
+	 *         corresponding employee username.
+	 * @throws DataException
+	 *             throws error message if problem arises with searching the
+	 *             data in the database.
+	 */
+	public Employee findEmployeeByUserName(String employeeUserName) throws DataException {
+		Session session = factory.openSession();
+		System.out.println("DAO Enter");
+		try {
+			for(Employee employee : getEmployees()){
+				System.out.println("For Each Enter");
+				if(employee.getEmployeeUserName().equals(employeeUserName)){
+					System.out.println(employee.getEmployeeFirstName());
+					return employee;
+				}
+			}			
+		} catch (HibernateException exception) {
+			System.out.println(exception);
+			FileUtil.ErrorLogger("Exception in findEmployee() : " + exception.getMessage());
+			throw new DataException("Error while searching Employee UserName : " + employeeUserName);
+		} finally {
+			session.close();
+		}
+		return null;
 	}
 
 	/**

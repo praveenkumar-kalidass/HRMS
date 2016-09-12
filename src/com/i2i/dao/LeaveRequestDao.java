@@ -3,6 +3,7 @@ package com.i2i.dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -153,6 +154,31 @@ public class LeaveRequestDao {
     	try {        	
         	Transaction transaction = session.beginTransaction();
             return session.createCriteria(LeaveRequest.class).list();
+        } catch (HibernateException exception) {
+            FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
+            throw new DataException("Error while displaying all LeaveRequests");
+        } finally {
+            session.close();
+        }
+    }
+    
+    
+    /**
+     * <p>
+     * This method retrieves the leaveRequest data for given employee from the records and returns the list of data.
+     * </p>
+	 * @param employeeId
+	 *            identity of the employee
+     * @return list
+     *       Gives the list of leaveRequest details for given employee stored in the database.
+     * @throws DataException
+     *       throws error message if problem arises with retrieving list of data from the database.
+     */
+    public List<LeaveRequest> retrieveLeaveRequestsByEmployee(int employeeId) throws DataException {
+    	Session session = factory.openSession();
+    	try {        	
+        	Transaction transaction = session.beginTransaction();
+        	return session.createQuery("From LeaveRequest WHERE employee_id=" + employeeId +" order by id desc").list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
             throw new DataException("Error while displaying all LeaveRequests");

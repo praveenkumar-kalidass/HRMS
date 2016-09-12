@@ -170,8 +170,9 @@ public class ProjectDao {
 		try {
 			return session.createCriteria(Project.class).list();
 		} catch (HibernateException exception) {
+			System.out.println(exception);
 			FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
-			throw new DataException("Error while displaying all Clients");
+			throw new DataException("Error while displaying all Projects");
 		} finally {
 			session.close();
 		}

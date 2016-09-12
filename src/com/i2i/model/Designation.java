@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -27,13 +28,14 @@ import com.i2i.model.Department;
 public class Designation {
     
 	@Id
+	@GeneratedValue
 	@Column(name="id")
 	private int designationId;
 	
 	@Column(name="name")
 	private String designationName;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "department_id" , nullable=false)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Department department;

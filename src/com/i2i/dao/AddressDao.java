@@ -11,7 +11,6 @@ import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
 import com.i2i.model.Address;
-import com.i2i.model.Certification;
 
 /**
  * <p>

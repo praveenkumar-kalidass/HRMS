@@ -55,8 +55,7 @@ public class ProjectController {
 	@RequestMapping("/client")
 	public String createClient(ModelMap model) {
 		try {
-			Client client = new Client();
-			model.addAttribute("Client", client);
+			model.addAttribute("Client", new Client());
 			model.addAttribute("ClientList", clientService.displayClients());
 		} catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
@@ -85,9 +84,8 @@ public class ProjectController {
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
-		} finally {
-			return "client";
-		}
+		} 
+		return "client";
 	}
 	
 	/**
@@ -136,9 +134,8 @@ public class ProjectController {
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
-		} finally {
-			return "client";
-		}
+		} 
+		return "client";
 	}
 	
 	/**
@@ -166,9 +163,8 @@ public class ProjectController {
 			}
 		} catch (DataException exception) {
 			model.addAttribute("message", exception.getMessage());
-		} finally {
-			return "client";
-		}
+		} 
+		return "client";
 	}
 	
 	/**

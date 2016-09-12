@@ -11,7 +11,6 @@ import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
 import com.i2i.model.Team;
-import com.i2i.model.Team;
 
 /**
  * <p>
@@ -167,11 +166,11 @@ public class TeamDao {
 	/**
 	 * <p>
 	 * This method retrieves the team data from the records and returns
-	 * the list of data.
+	 * the list of data for given project.
 	 * </p>
 	 * 
-	 * @param teamId
-	 *            contains identity of the team
+	 * @param projectId
+	 *            contains identity of the project
 	 * @throws DataException
 	 *             throws error message if problem arises with retrieving list
 	 *             of data from the database.

@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,15 +26,16 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "team")
 public class Team {
 	@Id
+	@GeneratedValue
 	@Column(name = "id", unique = true)
 	private int teamId;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "project_id", nullable = false)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Project project;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "employee_id", nullable = false)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Employee employee;

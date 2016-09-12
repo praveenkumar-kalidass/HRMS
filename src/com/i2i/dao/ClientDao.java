@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import com.i2i.Util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
+import com.i2i.model.Certification;
 import com.i2i.model.Client;
 
 /**
@@ -145,7 +146,7 @@ public class ClientDao {
     public List<Client> retrieveClients() throws DataException {
     	Session session = factory.openSession();
     	try {        	
-            return session.createCriteria(Client.class).list();
+    		return session.createCriteria(Client.class).list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveClients() : " + exception.getMessage());
             throw new DataException("Error while displaying all Clients");

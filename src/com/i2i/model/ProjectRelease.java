@@ -4,6 +4,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,6 +27,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name = "projectrelease")
 public class ProjectRelease {
 	@Id
+	@GeneratedValue
 	@Column(name = "id")
 	private int releaseId;
 	@Column(name = "date")
@@ -34,7 +36,8 @@ public class ProjectRelease {
 	private String description;
 	@Column(name = "project_version")
 	private String projectVersion;
-	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "project_id", nullable = false)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Project project;

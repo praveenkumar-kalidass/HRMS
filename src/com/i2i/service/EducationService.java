@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.i2i.dao.EducationDao;
 import com.i2i.exception.DataException;
-import com.i2i.model.Designation;
 import com.i2i.model.Education;
 
 /**
