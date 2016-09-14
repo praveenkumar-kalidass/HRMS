@@ -437,7 +437,6 @@ public class EmployeeController {
 	@RequestMapping(value = "/role_edit", method = RequestMethod.GET)
 	public String editRole(@RequestParam("id") int roleId, ModelMap model) {
 		try {
-			System.out.println("Edit");
 			model.addAttribute("RoleEdit", roleService.searchRole(roleId));
 		} catch (DataException e) {
 			model.addAttribute("message", e.getMessage());
@@ -545,7 +544,6 @@ public class EmployeeController {
 				map.addAttribute("CertificationList", certficationService.getCertificationByEmployee(employeeId));
 			}
 		} catch (DataException exception) {
-			System.out.println(exception);
 			map.addAttribute("message", exception.getMessage());
 		}
 		return "employeeView";
@@ -923,9 +921,8 @@ public class EmployeeController {
 				employee.addEducation(new Education());
 			}
 			map.addAttribute("Employee", employee);
-			System.out.println("First Name :" + employee.getEmployeeFirstName());
 		} catch (Exception e) {
-			System.out.println(e);
+			map.addAttribute("message", e.getMessage());
 		}
 		return "education_form";
 	}
@@ -951,10 +948,8 @@ public class EmployeeController {
 				employee1 = education.getEmployee();
 			}
 			map.addAttribute("EmployeeId", employee1.getEmployeeId());
-			System.out.println("EmployeeId :" + employee1.getEmployeeId());
-
 		} catch (Exception e) {
-			System.out.println(e);
+			map.addAttribute("message", e.getMessage());
 		}
 		return "certification";
 	}

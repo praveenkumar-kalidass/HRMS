@@ -166,7 +166,6 @@ public class EducationDao {
 		try {
 			return session.createQuery("From Education WHERE employee_id=" + employeeId).list();
 		} catch (HibernateException exception) {
-			System.out.println(exception);
 			FileUtil.ErrorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Education");
 		} finally {

@@ -77,7 +77,6 @@ public class EmployeeDao {
 			Transaction transaction = session.beginTransaction();
 			session.update(employee);
 			transaction.commit();
-			System.out.println("Dao out");
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.ErrorLogger("Exception in insertEmployee() : " + exception.getMessage());
@@ -157,17 +156,13 @@ public class EmployeeDao {
 	 */
 	public Employee findEmployeeByUserName(String employeeUserName) throws DataException {
 		Session session = factory.openSession();
-		System.out.println("DAO Enter");
 		try {
 			for(Employee employee : getEmployees()){
-				System.out.println("For Each Enter");
 				if(employee.getEmployeeUserName().equals(employeeUserName)){
-					System.out.println(employee.getEmployeeFirstName());
 					return employee;
 				}
 			}			
 		} catch (HibernateException exception) {
-			System.out.println(exception);
 			FileUtil.ErrorLogger("Exception in findEmployee() : " + exception.getMessage());
 			throw new DataException("Error while searching Employee UserName : " + employeeUserName);
 		} finally {
@@ -219,7 +214,6 @@ public class EmployeeDao {
 		try {
 			return session.createQuery("From Employee WHERE designation_id="+designationId).list();
 		} catch (Exception exception) {
-			System.out.println(exception);
 			FileUtil.ErrorLogger("Exception in retrieveEmployeeByDesignation() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Employee");
 		} finally {

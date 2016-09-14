@@ -150,22 +150,6 @@ public class EmployeeService {
 	 *             of data from the database.
 	 */
 	public List<Employee> getEmployeeByDesignation(int designationId) throws DataException {
-		/*List<Employee> employeeList = new ArrayList<Employee>();
-		for(Employee employee : employeeDao.retrieveEmloyeeByDesignation(designationId)) {
-			System.out.println("Employee Came");
-			System.out.println("Team : " + teamservice.displayTeams());
-			if(teamservice.displayTeams()!=null){
-		   	    for(Team team : teamservice.displayTeams()) {
-				    if((team.getEmployee().getEmployeeId())!=employee.getEmployeeId()) {
-					    employeeList.add(employee);
-				    }
-			    }
-			} else {
-				System.out.println("Employee Came 21");
-				employeeList.add(employee);
-			}
-		}
-		*/
 		return employeeDao.retrieveEmloyeeByDesignation(designationId);
 	}
 }

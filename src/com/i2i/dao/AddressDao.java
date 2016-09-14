@@ -50,7 +50,6 @@ public class AddressDao {
 			transaction.commit();
 			return true;
 		} catch (HibernateException exception) {
-			System.out.println(exception);
 			exception.printStackTrace();
 			FileUtil.ErrorLogger("Exception in insertAddress() : " + exception.getMessage());
 			throw new DataException("Error while adding Address ID : " + address.getAddressId());
@@ -79,7 +78,6 @@ public class AddressDao {
 			Transaction transaction = session.beginTransaction();
 			session.update(address);
 			transaction.commit();
-			System.out.println("Dao out");
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.ErrorLogger("Exception in insertAddress() : " + exception.getMessage());

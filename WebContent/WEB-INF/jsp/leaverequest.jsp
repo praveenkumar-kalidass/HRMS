@@ -128,6 +128,10 @@
                                                         <c:if test="${leaveRequest.leaveStatus=='Approved'}" >
                                                         <a href="leaveRequest_status.html?id=<c:out value='${leaveRequest.leaveId} ' />&status=2" > <button class="btn btn-danger"> <i class="fa fa-times-circle "></i>  Reject </button></a>
                                                         </c:if>
+                                                        <c:if test="${leaveRequest.leaveStatus=='Pending'}" >
+                                                        <a href="leaveRequest_status.html?id=<c:out value='${leaveRequest.leaveId} ' />&status=1" >   <button class="btn btn-success"> <i class="fa fa-check"></i> Approve </button> </a>
+                                                        <a href="leaveRequest_status.html?id=<c:out value='${leaveRequest.leaveId} ' />&status=2" > <button class="btn btn-danger"> <i class="fa fa-times-circle "></i>  Reject </button></a>
+                                                        </c:if>
                                                     </td>
                                                 </tr>
                                             </c:forEach>

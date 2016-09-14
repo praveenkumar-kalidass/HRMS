@@ -57,10 +57,8 @@ public class AttendanceController {
 		try {
 			int employeeId = (int) session.getAttribute("HRMSEmployeeId");
 			model.addAttribute("AttendanceList", attendanceService.getCompleteAttendanceByEmployeeId(employeeId));
-			System.out.println("employeeId : " + employeeId);
 			if (attendanceService.getAttendancesByEmployeeId(employeeId).size() != 0) {
 				for (Attendance attendance : attendanceService.getAttendancesByEmployeeId(employeeId)) {
-					System.out.println("employeeId : " + employeeId);
 					if (attendance.getTimeOut() == null) {
 						model.addAttribute("CheckOut", "True");
 					} else {
@@ -68,7 +66,6 @@ public class AttendanceController {
 					}
 				}
 			} else {
-				System.out.println("Emnployee Id  In :" + employeeId);
 				model.addAttribute("CheckIn", "True");
 			}
 

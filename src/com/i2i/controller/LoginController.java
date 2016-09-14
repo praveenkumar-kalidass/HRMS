@@ -65,7 +65,7 @@ public class LoginController {
 	    	    return "index";
 	         }
 		} catch (Exception e) {
-              System.out.println(e);
+			map.addAttribute("message", e.getMessage());
 		}
 		return "redirect:employee.html";
 	}

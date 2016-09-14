@@ -48,7 +48,6 @@ public class TeamDao {
 			transaction.commit();
 			return true;
 		} catch (HibernateException exception) {
-			System.out.println(exception);
 			FileUtil.ErrorLogger("Exception in insertTeam() : " + exception.getMessage());
 			throw new DataException("Error while adding Team ID : " + team.getTeamId());
 		} finally {
