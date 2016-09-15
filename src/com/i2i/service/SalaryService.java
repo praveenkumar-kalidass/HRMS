@@ -11,7 +11,7 @@ import com.i2i.model.Salary;
 
 /**
  * <p>
- * Service class which does genetare the salary for each employee. 
+ * Service class which does generate the salary for each employee. 
  * Passes values to the Dao class to carry out manipulations. Throws
  * error messages in case of occurrence of any exceptions.
  * </p>
@@ -25,11 +25,22 @@ public class SalaryService {
 	AllowanceVariantService allowanceVariantService = new AllowanceVariantService();
 	LeaveRequestService leaveRequestService = new LeaveRequestService(); 
 	
-/**
- * @throws DataException 
- * @throws NumberFormatException 
- * 
- */
+    /**
+     * Method is used genetare the salary for each employee and return the salary list. 
+     * 
+     * @param fromDate
+     *      from which Date to generate the salary
+     * @param toDate
+     *      to which Date to generate the salary
+     * @param noDays
+     *      noDays between two dates
+     * @return
+     *      Salary list to the employee 
+     * @throws NumberFormatException
+     *      if there is any number format exception occurred
+     * @throws DataException
+     *       if there is any data exception occurred
+     */
 	public List<Salary> generateSalary(String fromDate, String toDate, int noDays) throws NumberFormatException, DataException{
 		float basicPay;
 		float perDaySalary;

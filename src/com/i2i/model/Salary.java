@@ -76,7 +76,7 @@ public class Salary {
 		return noDays;
 	}
 
-	public void setNoDays(float noDays) {
+	public void setNoDays(int noDays) {
 		this.noDays = noDays;
 	}
 

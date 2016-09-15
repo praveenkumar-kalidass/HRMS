@@ -7,7 +7,12 @@
    <c:redirect url="index.html" /> 
 </c:if>
 <c:if test="${sessionScope['HRMSRole']=='Employee'}">
-   <c:redirect url="project_view.html?id=${HRMSProjectId}" />
+    <c:if test="${sessionScope['HRMSProjectId']==null}">
+       <c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
+   </c:if>
+    <c:if test="${sessionScope['HRMSProjectId']!=null}">
+       <c:redirect url="project_view.html?id=${HRMSProjectId}" />
+   </c:if>
 </c:if>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

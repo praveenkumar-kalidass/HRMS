@@ -208,7 +208,7 @@ public class LeaveRequestDao {
     	Session session = factory.openSession();
     	try {        	
         	Transaction transaction = session.beginTransaction();
-        	return session.createQuery("From LeaveRequest WHERE employee_id=" + employeeId +" and from_date<='"+ fromDate +"' and to_date <='"+ toDate+"' and status='Approved'").list();
+        	return session.createQuery("From LeaveRequest WHERE employee_id=" + employeeId +" and from_date>='"+ fromDate +"' and to_date <='"+ toDate+"' and status='Approved'").list();
         } catch (HibernateException exception) {
             FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
             throw new DataException("Error while displaying all LeaveRequests");

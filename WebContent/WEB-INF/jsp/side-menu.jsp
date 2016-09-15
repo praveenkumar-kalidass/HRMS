@@ -57,21 +57,21 @@
                 
             </ul>
         </li>
-      <!-- 
+      <c:if test="${sessionScope['HRMSRole']=='Admin'}"> 
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-money"></i> <span>Salary</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Hike Records</a>
+                <li><a href="salary.html"><i class="fa fa-circle-o"></i> Generate Salary</a>
                 </li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Allowance Variants</a>
+                <li><a href="allowance.html"><i class="fa fa-circle-o"></i> Allowance Variants</a>
                 </li>
             </ul>
         </li>
-         -->
-          <c:if test="${sessionScope['HRMSRole']=='Admin'}"> 
+        </c:if>
+                <c:if test="${sessionScope['HRMSRole']=='Admin'}"> 
         <li><a href="department.html"><i class="fa fa-university"></i> <span>Departments</span></a>
         </li>
         

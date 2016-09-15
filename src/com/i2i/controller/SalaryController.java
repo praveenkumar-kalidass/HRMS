@@ -21,7 +21,17 @@ import com.i2i.service.DepartmentService;
 import com.i2i.service.EmployeeService;
 import com.i2i.service.LeaveRequestService;
 import com.i2i.service.SalaryService;
-
+/**
+ * <p>
+ * Controller which gets parameters from the user inputs and displays message to
+ * the user, based on the status of the manipulation of salary records.
+ * Displays error message when exception occurs during the manipulation process.
+ * </p>
+ *
+ * @author  Praveen RaJ
+ *
+ * @created 2016-08-15
+ */
 
 @Controller
 public class SalaryController {
@@ -181,7 +191,18 @@ public class SalaryController {
 	}
 	
 	
-	
+	/**
+     * Method is used genetare the salary for each employee and return the salary list. 
+     * 
+     * @param fromDate
+     *      from which Date to generate the salary
+     * @param toDate
+     *      to which Date to generate the salary
+     * @param noDays
+     *      noDays between two dates
+     * @return
+     *      Salary list to the employee 
+     */
 	@RequestMapping(value = "/salary_generate", method = RequestMethod.GET)
 	public String salaryGenerate(@RequestParam("fromDate") String fromDate,@RequestParam("toDate") String toDate, @RequestParam("noDays") int noDays, ModelMap model) {
 		try {
