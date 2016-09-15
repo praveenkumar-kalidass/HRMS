@@ -87,10 +87,13 @@ public class DashboardController {
 			int employeeId = (int) session.getAttribute("HRMSEmployeeId");
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = format.parse(employeeService.searchEmployee(employeeId).getEmployeeDateOfBirth());
-			model.addAttribute("Birthday",
-					new Date().getYear() + 1901 + "/" + (date.getMonth() + 1) + "/" + date.getDate());
+			
 			if ((new Date().getMonth() + 1) == (date.getMonth() + 1) && (new Date().getDate()) == (date.getDate())) {
 				model.addAttribute("BirthdayWish", "Happy Birthday");
+			} else if ((new Date().getMonth() + 1) <= (date.getMonth() + 1)) {
+				model.addAttribute("Birthday", new Date().getYear() + 1900 + "/" + (date.getMonth() + 1) + "/" + date.getDate());
+			} else {
+				model.addAttribute("Birthday", new Date().getYear() + 1901 + "/" + (date.getMonth() + 1) + "/" + date.getDate());
 			}
 		} catch (DataException e) {
 			model.addAttribute("message", "Problem with Dashboard View");
