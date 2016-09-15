@@ -1682,3 +1682,78 @@ div#portfolioModal3 img {
 }
 }
 /*--//responsive-design---*/
+
+.analog-clock {
+	color: #000;
+	border: 2px solid #3184D5;
+	margin-bottom:10px;
+	margin-right:50px;
+	width: 45%;
+	float: right;
+	padding: 45px;
+	border-radius: 3px;
+	background: #fff;
+	display: inline-block;
+	text-align: center;
+}
+.birthday {
+	color: #000;
+	border: 2px solid #3184D5;
+	margin-bottom:10px;
+	margin-left:20px;
+	width: 45%;
+	height: auto;
+	float: left;
+	padding: 20px;
+	border-radius: 3px;
+	background: #fff;
+	display: inline-block;
+	text-align: center;
+}
+.birthday-days-block {
+	color: #000;
+	margin-top:10px;
+	padding: 10px;
+	width: 20%;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	background: #FFFFFF;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-top: solid 5px #0b8bd9;
+    box-shadow: 0 0px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);
+}
+.birthday-days {
+	color: #000;
+	font-size: 20px;
+	border: 2px solid #3184D5;
+	width: auto;
+	padding: 10px;
+	border-radius: 3px;
+	background: #eeeeec;
+	display: inline-block;
+	text-align: center;
+}
+.birthday-image {
+	color: #000;
+	border: 2px solid #3184D5;
+	border-radius: 3px;
+	margin-top: 10px;
+	background: #eeeeec;
+	display: inline-block;
+}
+@media {
+.bdayimage {
+	border: 2px transparent #fff;
+	border-radius: 3px;
+	margin-bottom: 0px;
+	width:auto;
+	height:auto;
+	background: #eeeeec;
+	display: inline-block;
+}
+}
