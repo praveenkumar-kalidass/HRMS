@@ -20,7 +20,7 @@
                 </div>
             </div>
         </li>
-        <li><a href="#"><i class="fa fa-dashboard"></i> <span>Dash Board</span></a>
+        <li><a href="dashboard.html"><i class="fa fa-dashboard"></i> <span>Dash Board</span></a>
         </li>
         <li><a href="employee.html"><i class="fa fa-users"></i> <span> <c:if test="${sessionScope['HRMSRole']=='Employee'}"> Profile Details </c:if> <c:if test="${sessionScope['HRMSRole']=='Admin'}"> Employees </c:if> </span></a>
         </li>

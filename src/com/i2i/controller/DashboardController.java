@@ -2,7 +2,6 @@ package com.i2i.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -12,30 +11,16 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.i2i.exception.DataException;
-import com.i2i.model.Designation;
 import com.i2i.model.Employee;
-import com.i2i.service.DesignationService;
 import com.i2i.service.EmployeeService;
-
-import antlr.collections.List;
 
 @Controller
 public class DashboardController {
 	EmployeeService employeeService = new EmployeeService();
-	DesignationService designationService = new DesignationService();
 	
 	@RequestMapping("/dashboard")
 	public String dashboardView(ModelMap model, HttpSession session) throws ParseException {
 		try {
-			
-			ArrayList<Integer> noofEmployee = new ArrayList<Integer>();
-			for(Designation designation : designationService.getDesignations()){
-				noofEmployee.add(employeeService.getEmployeeByDesignation(designation.getDesignationId()).size()); 
-			}
-			
-			model.addAttribute("noofEmployee" , noofEmployee);
-			model.addAttribute("DesignationList", designationService.getDesignations());
-			
 			float adminCount = 0;
 			float employeeCount = 0;
 			int developerCount = 0;
