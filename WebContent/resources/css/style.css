@@ -1687,7 +1687,7 @@ div#portfolioModal3 img {
 	color: #000;
 	border: 2px solid #3184D5;
 	margin-bottom:10px;
-	margin-right:50px;
+	margin-right:20px;
 	width: 45%;
 	float: right;
 	padding: 45px;
@@ -1714,7 +1714,7 @@ div#portfolioModal3 img {
 	color: #000;
 	margin-top:10px;
 	padding: 10px;
-	width: 20%;
+	width: auto;
 	display: inline-block;
 	font-weight: 100;
 	text-align: center;
@@ -1742,7 +1742,6 @@ div#portfolioModal3 img {
 	color: #000;
 	border: 2px solid #3184D5;
 	border-radius: 3px;
-	margin-top: 10px;
 	background: #eeeeec;
 	display: inline-block;
 }
