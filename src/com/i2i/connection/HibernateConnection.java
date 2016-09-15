@@ -16,7 +16,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 
 public class HibernateConnection {
    
-	private static HibernateConnection hibernateConnection = null;
+    private static HibernateConnection hibernateConnection = null;
     private AnnotationConfiguration configuration=null;
     private SessionFactory sessionFactory=null;
     

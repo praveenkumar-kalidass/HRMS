@@ -155,6 +155,7 @@ public class LeaveRequestDao {
         	Transaction transaction = session.beginTransaction();
             return session.createCriteria(LeaveRequest.class).list();
         } catch (HibernateException exception) {
+        	System.out.println(exception);
             FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
             throw new DataException("Error while displaying all LeaveRequests");
         } finally {
@@ -186,4 +187,35 @@ public class LeaveRequestDao {
             session.close();
         }
     }
+    
+    
+    /**
+     * <p>
+     * This method retrieves the leaveRequest data for given employee for given period from the records and returns the list of data.
+     * </p>
+	 * @param employeeId
+	 *            identity of the employee
+	 * @param fromDate
+	 *            from the Period of Date
+	 * @param toDate
+	 *            to the Period of Date
+     * @return list
+     *       Gives the list of leaveRequest details for given employee stored in the database.
+     * @throws DataException
+     *       throws error message if problem arises with retrieving list of data from the database.
+     */
+    public List<LeaveRequest> calculateLeaveDaysForEmployee(int employeeId, String fromDate, String toDate) throws DataException {
+    	Session session = factory.openSession();
+    	try {        	
+        	Transaction transaction = session.beginTransaction();
+        	return session.createQuery("From LeaveRequest WHERE employee_id=" + employeeId +" and from_date<='"+ fromDate +"' and to_date <='"+ toDate+"' and status='Approved'").list();
+        } catch (HibernateException exception) {
+            FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
+            throw new DataException("Error while displaying all LeaveRequests");
+        } finally {
+            session.close();
+        }
+    }
+    
+    
 }

@@ -872,7 +872,7 @@
 										Name</label>
 									<div class="col-md-8">
 										<spring:input path="employeeLastName" class="form-control"
-											placeHolder="First Name" />
+											placeHolder="Last Name" />
 									</div>
 								</div>
 
@@ -1106,7 +1106,7 @@
 									<label for="example-text-input" class="col-md-4 col-form-label"> Password
 									</label>
 									<div class="col-md-8">
-										<spring:input path="employeeLastName" type="password" class="form-control"
+										<spring:input path="employeePassword" type="password" class="form-control"
 											placeHolder="First Name" />
 									</div>
 								</div>

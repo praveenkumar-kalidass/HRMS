@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
@@ -40,6 +41,7 @@ public class Designation {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Department department;
 
+
 	public Designation(){	
 	}
 	
@@ -65,5 +67,5 @@ public class Designation {
 
 	public void setDepartment(Department department) {
 		this.department = department;
-	}	
+	}
 }

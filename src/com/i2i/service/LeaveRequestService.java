@@ -130,4 +130,31 @@ public class LeaveRequestService {
 	public List<LeaveRequest> displayLeaveRequestsByEmployee(int employeeId) throws DataException {
 		return leaveRequestDao.retrieveLeaveRequestsByEmployee(employeeId);
 	}
+	
+	
+	/**
+	 * <p>
+	 * This method retrieves the LeaveRequest data for given employee from the
+	 * records and returns the list of data to display.
+	 * </p>
+	 * @param employeeId
+	 *            identity of the employee
+	 * @param fromDate
+	 *            from the Period of Date
+	 * @param toDate
+	 *            to the Period of Date
+	 * @return numberOfDays 
+	 *         no of days leave got by employee
+	 *         database.
+	 * @throws DataException
+	 *             throws error message if problem arises with retrieving list
+	 *             of data from the database.
+	 */
+	public int retriveNoofDaysLeaveByEmployee(int employeeId, String fromDate, String toDate) throws DataException {
+		int numberOfDays = 0;
+		for(LeaveRequest leaveRequest : leaveRequestDao.calculateLeaveDaysForEmployee(employeeId, fromDate, toDate)){
+			numberOfDays = numberOfDays + leaveRequest.getNoDays();
+		}
+		return numberOfDays;
+	}
 }
