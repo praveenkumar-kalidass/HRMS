@@ -237,7 +237,7 @@
 		<script type="text/javascript">
         $("#days").countdown("${Birthday}",function(event) {
         $(this).text(
-            event.strftime('%D')
+        	event.strftime('%D')
         );
         });
         $("#Bhours").countdown("${Birthday}",function(event) {
