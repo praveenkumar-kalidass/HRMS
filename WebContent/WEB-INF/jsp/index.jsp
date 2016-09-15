@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <c:if test="${sessionScope['HRMSEmployeeId']!=null}" >
-   <c:redirect url="employee.html" /> 
+   <c:redirect url="dashboard.html" /> 
 </c:if>
 <head>
 <title>Human Resource Management System @Ideas2IT</title>

@@ -8,9 +8,6 @@
 <c:if test="${sessionScope['HRMSEmployeeId']==null}">
 	<c:redirect url="index.html" />
 </c:if>
-<c:if test="${sessionScope['HRMSRole']=='Employee'}">
-	<c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
-</c:if>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>DashBoard</title>
@@ -62,7 +59,8 @@
 			<div class="content-main">
 
                 <div class="wow fadeInUp animated" data-wow-delay="1s">
-				<div class="birthday">
+                <div class="birthday">
+                <c:if test="${BirthdayWish==null}">
 					<center>
 						<h3>Birthday Countdown</h3>
 					</center>
@@ -93,6 +91,21 @@
 					<div class="birthday-image">
 						<img class="bdayimage" src="images/birthday.jpg" />
 					</div>
+					
+					</c:if>
+				
+				<c:if test="${BirthdayWish!=null}">
+				    <div class="birthday-days-block">
+						<div class="birthday-days" >
+						<center>
+							<h3>${BirthdayWish}</h3>
+						</center>
+						</div>
+					</div>
+			    	<div class="birthday-image">
+						<img class="bdayimage" src="images/birthday.jpg" />
+					</div>
+				</c:if>
 				</div>
 				</div>
 
@@ -124,12 +137,12 @@
 
 				<div class="wow fadeInUp animated" data-wow-delay="1s"
 					id="columnchartContainer"
-					style="height: 300px; width: 45%; float: right; margin-top: 10px; margin-right: 50px; border: 2px solid #3184D5; border-radius: 5px;">
+					style="height: 300px; width: 45%; float: left; margin-top: 10px; margin-left: 20px; margin-right: 20px; border: 2px solid #3184D5; border-radius: 5px;">
 				</div>
 
 				<div class="wow fadeInUp animated" data-wow-delay="1s"
 					id="chartContainer"
-					style="height: 300px; width: 45%; float: left; margin-top: 10px; margin-left: 20px; border: 2px solid #3184D5; border-radius: 5px;">
+					style="height: 300px; width: 45%; float: right; margin-top: 10px; margin-left: 20px; margin-right: 20px; border: 2px solid #3184D5; border-radius: 5px;">
 				</div>
 
 			</div>
