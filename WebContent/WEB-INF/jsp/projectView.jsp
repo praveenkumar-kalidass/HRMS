@@ -207,7 +207,7 @@
 							<div class="main-head">
 								<h1 class="title" style="float: left; width: 80%;">
 									Release Details</h1>
-								<c:if test="${sessionScope['HRMSTeamRole']=='Leader'}" >
+								<c:if test="${sessionScope['HRMSRole']=='Admin'}" >
 								<a
 									href="projectrelease.html?id=<c:out value='${project.projectId}' />"
 									style="float: right; width: 20%; padding-top: 26px;"
@@ -223,7 +223,7 @@
 										<h5 class="title" style="float: left; width: 60%;">
 											Version : <c:out value='${release.projectVersion}' />
 										</h5>
-										<c:if test="${sessionScope['HRMSTeamRole']=='Leader'}" >
+										<c:if test="${sessionScope['HRMSRole']=='Admin'}" >
 										<a
 											href="projectRelease_delete.html?id=<c:out value='${release.releaseId}' />"
 											style="float: right; width: 10%; padding-top: 5px;"
@@ -272,7 +272,7 @@
 							<div class="main-head">
 								<h1 class="title" style="float: left; width: 80%;">
 									Team Details</h1>
-									<c:if test="${sessionScope['HRMSTeamRole']=='Leader'}" >
+									<c:if test="${sessionScope['HRMSRole']=='Admin'}" >
 								<a
 									href="team.html?id=<c:out value='${project.projectId}' />"
 									style="float: right; width: 20%; padding-top: 26px;"
@@ -287,7 +287,7 @@
 										<h5 class="title" style="float: left; width: 60%;">
 											&nbsp;&nbsp;
 										</h5>
-										<c:if test="${sessionScope['HRMSTeamRole']=='Leader'}" >
+										<c:if test="${sessionScope['HRMSRole']=='Admin'}" >
 										<a
 											href="team_delete.html?id=<c:out value='${team.teamId}' />"
 											style="float: right; width: 10%; padding-top: 5px;"
