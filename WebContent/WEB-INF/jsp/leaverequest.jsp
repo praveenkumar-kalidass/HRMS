@@ -64,6 +64,7 @@
                                                 <th>Reason</th>
                                                 <th>From</th>
                                                 <th>To</th>
+                                                <th>No of Days</th>
                                                 <th>Status</th>
                                         </thead>
                                         <tfoot>
@@ -119,6 +120,9 @@
                                                         <c:out value="${leaveRequest.leaveToDate}"></c:out>
                                                     </td>
                                                     <td>
+                                                        <c:out value="${leaveRequest.noDays}"></c:out>
+                                                    </td>
+                                                    <td>
                                                         <c:out value="${leaveRequest.leaveStatus}"></c:out>
                                                     </td>
                                                     <td>
@@ -158,6 +162,7 @@
                                                 <th>Reason</th>
                                                 <th>From</th>
                                                 <th>To</th>
+                                                <th>No of Days</th>
                                                 <th>Status</th>
                                         </thead>
                                         <tfoot>
@@ -201,8 +206,12 @@
                                                         <c:out value="${leaveRequest.leaveToDate}"></c:out>
                                                     </td>
                                                     <td>
+                                                        <c:out value="${leaveRequest.noDays}"></c:out>
+                                                    </td>
+                                                    <td>
                                                         <c:out value="${leaveRequest.leaveStatus}"></c:out>
                                                     </td>
+                                                     
                                                 </tr>
                                             </c:forEach>
 
@@ -247,17 +256,50 @@
                                                         <div class="col-md-8">
                                            
                                                         <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-             								            <input class="form-control" size="16" type="text" value="" readonly>            										      
+             								            <input class="form-control" size="16" type="text" value="" onchange="cldate();" readonly>            										      
 														<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                											</div>
-												        <spring:input path="leaveToDate" id="dtp_input4" type="hidden" class="form-control"    />
+												        <spring:input path="leaveToDate" id="dtp_input4" type="hidden" class="form-control"     />
                                                         </div>
                                                     </div>
+                                                    
+                                                    <script>
+                                                    
+                                                    function cldate() {
+                                                    	var date1 = document.getElementById('dtp_input3').value;
+                                                    	var date2 = document.getElementById('dtp_input4').value;
+                                                    	var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+                                                    	var firstDate = new Date(date1);
+                                                    	var secondDate = new Date(date2);
+                                                    	var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+                                                        var dayValue = diffDays + 1;
+                                                        document.getElementById('noofDays').value = dayValue;
+                                                        if(dayValue<=0){
+                                                        	alert("Please Select Valid Date..!");
+                                                        	document.getElementById('noofDays').value = 0;
+                                                        } 
+                                                        else {
+                                                        	document.getElementById('noofDays').value = dayValue;
+                                                        }
+                                                    }
+                                                    
+                                                    </script>
+                                                    
+                                                       <div class="form-group row">
+                                                          <label for="example-text-input" class="col-md-4 col-form-label">No of Days </label>
+                                                            <div class="col-md-8">
+                                                                <spring:input path="noDays" id="noofDays" class="form-control" ></spring:input>
+                                                            </div>
+                                                        </div>
+                                                    
                                                     <div class="form-group row">
                                                          <div class="col-md-8">
 
                                                             <spring:input type="hidden" path="employee.employeeId" class="form-control" value="${sessionScope['HRMSEmployeeId']}" />
                                                         </div>
+                                                        
+                                                     
+                                                        
                                                         
                                                         <div class="form-group row">
                                                             <div class="col-md-8">
