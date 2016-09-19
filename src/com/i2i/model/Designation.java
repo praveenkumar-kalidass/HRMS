@@ -28,44 +28,43 @@ import com.i2i.model.Department;
 @Table(name="designation")
 public class Designation {
     
-	@Id
-	@GeneratedValue
-	@Column(name="id")
-	private int designationId;
-	
-	@Column(name="name")
-	private String designationName;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private int designationId;
+    
+    @Column(name="name")
+    private String designationName;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "department_id" , nullable=false)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Department department;
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Department department;
 
+    public Designation(){    
+    }
+    
+    public int getDesignationId() {
+        return designationId;
+    }
 
-	public Designation(){	
-	}
-	
-	public int getDesignationId() {
-		return designationId;
-	}
+    public void setDesignationId(int designationId) {
+        this.designationId = designationId;
+    }
 
-	public void setDesignationId(int designationId) {
-		this.designationId = designationId;
-	}
+    public String getDesignationName() {
+        return designationName;
+    }
 
-	public String getDesignationName() {
-		return designationName;
-	}
+    public void setDesignationName(String designationName) {
+        this.designationName = designationName;
+    }
 
-	public void setDesignationName(String designationName) {
-		this.designationName = designationName;
-	}
+    public Department getDepartment() {
+        return department;
+    }
 
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }

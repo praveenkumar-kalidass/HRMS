@@ -25,54 +25,54 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Table(name = "team")
 public class Team {
-	@Id
-	@GeneratedValue
-	@Column(name = "id", unique = true)
-	private int teamId;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "project_id", nullable = false)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Project project;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "employee_id", nullable = false)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Employee employee;
-	
-	
-	@Column(name = "role")
-	private String teamRole;
 
-	public int getTeamId() {
-		return teamId;
-	}
+    @Id
+    @GeneratedValue
+    @Column(name = "id", unique = true)
+    private int teamId;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "project_id", nullable = false)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Project project;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "employee_id", nullable = false)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Employee employee;
 
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
-	}
+    @Column(name = "role")
+    private String teamRole;
 
-	public Project getProject() {
-		return project;
-	}
+    public int getTeamId() {
+        return teamId;
+    }
 
-	public void setProject(Project project) {
-		this.project = project;
-	}
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
 
-	public Employee getEmployee() {
-		return employee;
-	}
+    public Project getProject() {
+        return project;
+    }
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
-	public String getTeamRole() {
-		return teamRole;
-	}
+    public Employee getEmployee() {
+        return employee;
+    }
 
-	public void setTeamRole(String teamRole) {
-		this.teamRole = teamRole;
-	}
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public String getTeamRole() {
+        return teamRole;
+    }
+
+    public void setTeamRole(String teamRole) {
+        this.teamRole = teamRole;
+    }
 }

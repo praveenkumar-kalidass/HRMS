@@ -26,59 +26,63 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Table(name = "projectrelease")
 public class ProjectRelease {
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private int releaseId;
-	@Column(name = "date")
-	private String releaseDate;
-	@Column(name = "description")
-	private String description;
-	@Column(name = "project_version")
-	private String projectVersion;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "project_id", nullable = false)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Project project;
 
-	public int getReleaseId() {
-		return releaseId;
-	}
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int releaseId;
 
-	public void setReleaseId(int releaseId) {
-		this.releaseId = releaseId;
-	}
+    @Column(name = "date")
+    private String releaseDate;
 
-	public String getReleaseDate() {
-		return releaseDate;
-	}
+    @Column(name = "description")
+    private String description;
 
-	public void setReleaseDate(String releaseDate) {
-		this.releaseDate = releaseDate;
-	}
+    @Column(name = "project_version")
+    private String projectVersion;
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "project_id", nullable = false)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Project project;
 
-	public String getDescription() {
-		return description;
-	}
+    public int getReleaseId() {
+        return releaseId;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setReleaseId(int releaseId) {
+        this.releaseId = releaseId;
+    }
 
-	public String getProjectVersion() {
-		return projectVersion;
-	}
+    public String getReleaseDate() {
+        return releaseDate;
+    }
 
-	public void setProjectVersion(String projectVersion) {
-		this.projectVersion = projectVersion;
-	}
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 
-	public Project getProject() {
-		return project;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setProject(Project project) {
-		this.project = project;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getProjectVersion() {
+        return projectVersion;
+    }
+
+    public void setProjectVersion(String projectVersion) {
+        this.projectVersion = projectVersion;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }
