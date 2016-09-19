@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.i2i.exception.DataException;
 import com.i2i.model.Address;
+import com.i2i.model.AllowanceVariant;
 import com.i2i.model.Certification;
 import com.i2i.model.Department;
 import com.i2i.model.Designation;
@@ -23,6 +24,7 @@ import com.i2i.model.Education;
 import com.i2i.model.Employee;
 import com.i2i.model.Role;
 import com.i2i.service.AddressService;
+import com.i2i.service.AllowanceVariantService;
 import com.i2i.service.CertificationService;
 import com.i2i.service.DepartmentService;
 import com.i2i.service.DesignationService;
@@ -51,6 +53,7 @@ public class EmployeeController {
 	EmployeeService employeeService = new EmployeeService();
 	CertificationService certficationService = new CertificationService();
 	EducationService educationService = new EducationService();
+	AllowanceVariantService allowanceVariantService = new AllowanceVariantService();
 
 	
 
@@ -229,6 +232,9 @@ public class EmployeeController {
 			ModelMap model) {
 		try {
 			if (designationService.addDesignation(designation)) {
+				AllowanceVariant allowanceVariant = new AllowanceVariant();
+				allowanceVariant.setDesignation(designation);
+				allowanceVariantService.addAllowanceVariant(allowanceVariant);
 				model.addAttribute("message", "Designation details are successfully inserted");
 			} else {
 				model.addAttribute("message", "Designation details are not inserted");
@@ -1106,7 +1112,6 @@ public class EmployeeController {
 
 		try {
 			Employee employee = employeeService.searchEmployee(employeeId);
-
 			String fileName = profile.getOriginalFilename();
 			employee.setEmployeePicture(fileName);
 			inputStream = profile.getInputStream();

@@ -116,7 +116,7 @@
                                                 <div class="form-group row">
                                                     <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
                                                     <div class="col-md-8">
-                                                        <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" /> </div>
+                                                        <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Data Minimum 5 Characters" /> </div>
                                                 </div>
                                                 <div class="form-group row" align="center">
                                                     <div class="col-md-12">
@@ -149,12 +149,12 @@
                             <div class="col-md-12">
 
 
-                                <spring:input path="departmentId" type="hidden" class="form-control" id="example-text-input" placeHolder="Department Id" readonly="readOnly" /> </div>
+                                <spring:input path="departmentId" type="hidden" class="form-control" id="example-text-input" placeHolder="Department Id" readonly="readOnly" /> 
 
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-4 col-form-label">Department Name</label>
                                 <div class="col-md-8">
-                                    <spring:input path="departmentName" class="form-control" id="example-text-input" placeHolder="Department Name" /> </div>
+                                    <spring:input path="departmentName" class="form-control" placeHolder="Department Name" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Data Minimum 5 Characters"   /> </div>
                             </div>
                             <div class="form-group row" align="center">
                                 <div class="col-md-12">
@@ -168,10 +168,18 @@
         </div>
 
     </div>
-    </div>
 
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <script src="js/jquery-3.0.0.min.js"></script>
+    
+    <script src="js/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
     <script src="js/sidebar-menu.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -187,6 +195,8 @@
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
 
+
+ 
     <script id="js">
         $(function() {
             $.tablesorter.themes.bootstrap = {

@@ -89,11 +89,7 @@
                                                     
                                                     </script>
                                                     
-                                                       <div class="form-group row">
-                                                          <label for="example-text-input" class="col-md-4 col-form-label">No of Days </label>
-                                                            <div class="col-md-8">
-                                                                <input name="noDays" id="noofDays" class="form-control" />
-                                                            </div>
+                                                                <input name="noDays" type="hidden" id="noofDays" class="form-control" />
                                                         </div>
                                                         
                                                          <div class="form-group row" align="center">

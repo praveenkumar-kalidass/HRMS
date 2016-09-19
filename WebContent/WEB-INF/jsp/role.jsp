@@ -120,7 +120,7 @@
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Role Name</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="roleName" class="form-control" id="example-text-input" placeHolder="Role Name" /> </div>
+                                                            <spring:input path="roleName" class="form-control" id="example-text-input" placeHolder="Role Name" required="required" data-validation="length" data-validation-length="min3" data-validation-error-msg="Please Enter the Valid Data Minimum 3 Characters" /> </div>
                                                     </div>
                                                     <div class="form-group row" align="center">
                                                         <div class="col-md-12">
@@ -154,11 +154,11 @@
                         <spring:form action="role_update" method="post" class="form-group" modelAttribute="RoleEdit">
                             <div class="col-md-12">
 
-                                <spring:input path="roleId" type="hidden" class="form-control" id="example-text-input" placeHolder="Role Id" readonly="readOnly" /> </div>
+                                <spring:input path="roleId" type="hidden" class="form-control" id="example-text-input" placeHolder="Role Id" readonly="readOnly" /> 
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-4 col-form-label">Role Name</label>
                                 <div class="col-md-8">
-                                    <spring:input path="roleName" class="form-control" id="example-text-input" placeHolder="Role Name" /> </div>
+                                    <spring:input path="roleName" class="form-control" id="example-text-input" placeHolder="Role Name" required="required" data-validation="length" data-validation-length="min3" data-validation-error-msg="Please Enter the Valid Data Minimum 3 Characters" /> </div>
                             </div>
                             <div class="form-group row" align="center">
                                 <div class="col-md-12">
@@ -189,7 +189,14 @@
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
+<script src="js/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
     <script id="js">
         $(function() {
             $.tablesorter.themes.bootstrap = {

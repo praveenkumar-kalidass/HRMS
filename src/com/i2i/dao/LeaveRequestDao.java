@@ -155,7 +155,6 @@ public class LeaveRequestDao {
         	Transaction transaction = session.beginTransaction();
             return session.createCriteria(LeaveRequest.class).list();
         } catch (HibernateException exception) {
-        	System.out.println(exception);
             FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
             throw new DataException("Error while displaying all LeaveRequests");
         } finally {

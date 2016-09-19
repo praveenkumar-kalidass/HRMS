@@ -113,8 +113,7 @@
                                                         <c:out value="${allowance.medicalAllowance}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <a href="allowance_edit.html?id=<c:out value='${allowance.id} ' />" class="edit"> <i class="fa fa-pencil"></i> Edit </a> &nbsp;&nbsp;
-                                                        <a href="allowance_delete.html?id=<c:out value='${allowance.id} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
+                                                        <a href="allowance_edit.html?id=<c:out value='${allowance.id} ' />" class="edit"> <i class="fa fa-pencil"></i> Edit </a> &nbsp;&nbsp;                                                        
 
                                                     </td>
 
@@ -183,27 +182,27 @@
                                     				 <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">House Rent Allowance</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="houseRentAllowance" class="form-control" id="example-text-input" placeHolder="House Rent Allowance" /> </div>
+                                                            <spring:input path="houseRentAllowance" class="form-control" id="example-text-input" placeHolder="House Rent Allowance" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Allowance" /> </div>
                                                     </div>
                                                     
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Dearness Allowance</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="dearnessAllowance" class="form-control" id="example-text-input" placeHolder="Dearness Allowance" /> </div>
+                                                            <spring:input path="dearnessAllowance" class="form-control" id="example-text-input" placeHolder="Dearness Allowance" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Allowance" /> </div>
                                                     </div>
                                                     
                                                     
                                                      <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Provident Fund</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="providentFund" class="form-control" id="example-text-input" placeHolder="Provident Fund" /> </div>
+                                                            <spring:input path="providentFund" class="form-control" id="example-text-input" placeHolder="Provident Fund" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Allowance" /> </div>
                                                     </div>
                                                     
                                                     
                                                      <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Medical Allowance</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="medicalAllowance" class="form-control" id="example-text-input" placeHolder="Medical Allowance" /> </div>
+                                                            <spring:input path="medicalAllowance" class="form-control" id="example-text-input" placeHolder="Medical Allowance" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Allowance"  /> </div>
                                                     </div>
                                                    
                                                      <div class="col-md-12">
@@ -290,27 +289,27 @@
                                     				 <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">House Rent Allowance</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="houseRentAllowance" class="form-control" id="example-text-input" placeHolder="House Rent Allowance" /> </div>
+                                                            <spring:input path="houseRentAllowance" class="form-control" id="example-text-input" placeHolder="House Rent Allowance" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Allowance" /> </div>
                                                     </div>
                                                     
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Dearness Allowance</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="dearnessAllowance" class="form-control" id="example-text-input" placeHolder="Dearness Allowance" /> </div>
+                                                            <spring:input path="dearnessAllowance" class="form-control" id="example-text-input" placeHolder="Dearness Allowance" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Allowance" /> </div>
                                                     </div>
                                                     
                                                     
                                                      <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Provident Fund</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="providentFund" class="form-control" id="example-text-input" placeHolder="Provident Fund" /> </div>
+                                                            <spring:input path="providentFund" class="form-control" id="example-text-input" placeHolder="Provident Fund" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Allowance" /> </div>
                                                     </div>
                                                     
                                                     
                                                      <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Medical Allowance</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="medicalAllowance" class="form-control" id="example-text-input" placeHolder="Medical Allowance" /> </div>
+                                                            <spring:input path="medicalAllowance" class="form-control" id="example-text-input" placeHolder="Medical Allowance" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Allowance" /> </div>
                                                     </div> 
                                                     <div class="form-group row" align="center">
                                                             <div class="col-md-12">
@@ -343,7 +342,14 @@
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
+<script src="js/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
     <script id="js">
         $(function() {
             $.tablesorter.themes.bootstrap = {

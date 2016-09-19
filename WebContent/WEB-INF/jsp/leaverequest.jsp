@@ -236,7 +236,7 @@
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Reason</label>
                                                             <div class="col-md-8">
-                                                                <spring:textarea path="leaveReason" class="form-control" placeHolder="Reason"></spring:textarea>
+                                                                <spring:textarea path="leaveReason" class="form-control" placeHolder="Reason" required="required" data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters"></spring:textarea>
                                                             </div>
                                                     </div>
 
@@ -285,12 +285,7 @@
                                                     
                                                     </script>
                                                     
-                                                       <div class="form-group row">
-                                                          <label for="example-text-input" class="col-md-4 col-form-label">No of Days </label>
-                                                            <div class="col-md-8">
-                                                                <spring:input path="noDays" id="noofDays" class="form-control" ></spring:input>
-                                                            </div>
-                                                        </div>
+                                                                <spring:input path="noDays" type="hidden" id="noofDays" class="form-control" ></spring:input>
                                                     
                                                     <div class="form-group row">
                                                          <div class="col-md-8">
@@ -355,7 +350,14 @@
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
+ <script src="js/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
     
 
     <script>

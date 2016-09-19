@@ -75,6 +75,11 @@ function loadDoc() {
   		minView: 2,
   		forceParse: 0
       });
+      
+      $.validate({
+  	    lang: 'en',
+  	    borderColorOnError : '#F00',
+   });
   	
     }
   };
@@ -129,7 +134,14 @@ function loadDoc() {
     
     <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-    
+     <script src="js/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
    <script type="text/javascript">
    
 	$('.form_date').datetimepicker({

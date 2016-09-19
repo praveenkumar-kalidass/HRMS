@@ -62,13 +62,13 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">First Name</label>
                                         <div class="col-md-8">
-                                            <spring:input path="employeeFirstName" class="form-control"  placeHolder="First Name" />
+                                            <spring:input path="employeeFirstName" class="form-control"  placeHolder="First Name"  required="required" data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters"  />
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Last Name</label>
                                         <div class="col-md-8">
-                                            <spring:input path="employeeLastName" class="form-control"  placeHolder="Last Name" />
+                                            <spring:input path="employeeLastName" class="form-control"  placeHolder="Last Name" required="required" data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters"  />
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -76,10 +76,10 @@
                                         <div class="col-md-8">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeGender"  value="Male" /> Male
+                                                    <spring:radiobutton class="form-check-input" path="employeeGender"  value="Male" required="required" /> Male
                                                 </label>
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeGender" value="Female" /> Female
+                                                    <spring:radiobutton class="form-check-input" path="employeeGender" value="Female" required="required" /> Female
                                                 </label>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
                                         <div class="col-md-8">
                                            
                                            <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-             								       <input class="form-control" size="16" type="text" value="" readonly>            										      
+             								       <input class="form-control" size="16" type="text" readonly="readonly" required="required" />            										      
 															<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                											 </div>
 												   <spring:input path="employeeDateOfBirth" id="dtp_input2" type="hidden" class="form-control"  placeHolder="Date of Birth" />
@@ -102,10 +102,10 @@
                                         <div class="col-md-8">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" value="Married" /> Married
+                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" value="Married" required="required" /> Married
                                                 </label>
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" value="Unmarried" /> Unmarried
+                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" value="Unmarried" required="required" /> Unmarried
                                                 </label>
                                             </div>
                                         </div>
@@ -116,7 +116,7 @@
                                          <div class="col-md-8">
                                            
                                            <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-             								       <input class="form-control" size="16" type="text" value="" readonly>            										      
+             								       <input class="form-control" size="16" type="text" value="" readonly required="required">            										      
 															<span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                											 </div>
 												   <spring:input path="employeeDateOfJoining" id="dtp_input3" type="hidden" class="form-control"   placeHolder="Date of Birth" />
@@ -126,8 +126,8 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                         <div class="col-md-8">
-                                            <select class="form-control" name="department" id="department" onchange="loadDoc();" >
-                                                <option value="0"> -- Select -- </option>
+                                            <select class="form-control" name="department" id="department" onchange="loadDoc();" required="required" >
+                                                <option value=""> -- Select -- </option>
 												<c:forEach items="${DepartmentList}" var="department">
                                                        <option value="${department.departmentId}">${department.departmentName}</option>
                                                 </c:forEach>
@@ -162,8 +162,8 @@ function loadDoc() {
                                         <label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
                                         <div class="col-md-8">
                                         
-                                            <spring:select path="employeeDesignation.designationId" class="form-control" id="designationView" >                                           
-                                                <option value="0"> Select Department -- </option>	                                           											
+                                            <spring:select path="employeeDesignation.designationId" class="form-control" id="designationView" required="required" >                                           
+                                                <option value=""> Select Department -- </option>	                                           											
                                             </spring:select>                                        
                                         </div>
                                     </div>
@@ -175,7 +175,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Bank Account Number</label>
                                         <div class="col-md-8">
-                                            <spring:input path="employeeBankAccountNumber" class="form-control"   placeHolder="Account Number" />
+                                            <spring:input path="employeeBankAccountNumber" class="form-control" data-validation="number" data-validation-error-msg="Enter valid Account number"   placeHolder="Account Number" required="required" />
                                         </div>
                                     </div>
                                     
@@ -183,34 +183,34 @@ function loadDoc() {
                                      <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Basic Pay</label>
                                         <div class="col-md-8">
-                                            <spring:input path="employeeBasicPay" class="form-control"   placeHolder="Basic Pay" />
+                                            <spring:input path="employeeBasicPay" class="form-control"   placeHolder="Basic Pay" required="required" data-validation="number" data-validation-allowing="float"  data-validation-error-msg="Enter valid Basic Pay"  />
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Username</label>
                                         <div class="col-md-8">
-                                              <spring:input path="employeeUserName" class="form-control"  placeHolder="Username" />
+                                              <spring:input path="employeeUserName" class="form-control"  placeHolder="Username" required="required" />
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Password</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="password" placeHolder="Password">
+                                            <input class="form-control" type="password" placeHolder="Password" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Confirm Password</label>
                                         <div class="col-md-8">
-                                            <spring:input path="employeePassword" class="form-control" type="password"  placeHolder="Confirm Password" />
+                                            <spring:input path="employeePassword" class="form-control" type="password"  placeHolder="Confirm Password" required="required" />
                                         </div>
                                     </div>                                  
  								    <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Role of the Employee</label>
                                         <div class="col-md-8">
-                                            <spring:select path="employeeRole.roleId" class="form-control" >
-                                                <option value="0"> -- Select -- </option>
+                                            <spring:select path="employeeRole.roleId" class="form-control" required="required" >
+                                                <option value=""> -- Select -- </option>
 												<c:forEach items="${RoleList}" var="role">
                                                        <spring:option value="${role.roleId}">${role.roleName}</spring:option>
                                                 </c:forEach>
@@ -261,6 +261,15 @@ function loadDoc() {
     
     <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    
+      <script src="js/jquery.form-validator.min.js"></script>
+   <script>
+
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
     
     <script type="text/javascript">
    
@@ -314,6 +323,7 @@ function loadDoc() {
             });
         </script>
     </c:if>
+   
 </body>
 
 </html>

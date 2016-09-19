@@ -139,7 +139,7 @@
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Project Name</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="projectName" class="form-control" id="example-text-input" placeHolder="Project Name" /> </div>
+                                                            <spring:input path="projectName" class="form-control" id="example-text-input" placeHolder="Project Name" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Data Minimum 5 Characters" /> </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Date of Started</label>
@@ -157,7 +157,7 @@
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Client</label>
                                                         <div class="col-md-8">
 
-                                                            <spring:select path="client.clientId" class="form-control">
+                                                            <spring:select path="client.clientId" class="form-control" >
                                                                 <spring:option value="0"> --Select --</spring:option>
                                                                 <c:forEach items="${ClientList}" var="client">
                                                                     <spring:option value="${client.clientId}">${client.clientName}</spring:option>
@@ -177,13 +177,13 @@
                                                             <div class="col-md-8">
                                                                 <div class="form-check">
                                                                     <label class="form-check-label">
-                                                                        <spring:radiobutton class="form-check-input" path="status" value="Active" checked="checked" /> Active
+                                                                        <spring:radiobutton class="form-check-input" path="status" value="Active" checked="checked" required="required" /> Active
                                                                     </label>
                                                                     <label class="form-check-label">
-                                                                        <spring:radiobutton class="form-check-input" path="status" value="Completed" /> Completed
+                                                                        <spring:radiobutton class="form-check-input" path="status" value="Completed" required="required" /> Completed
                                                                     </label>
                                                                     <label class="form-check-label">
-                                                                        <spring:radiobutton class="form-check-input" path="status" value="Dropped" /> Dropped
+                                                                        <spring:radiobutton class="form-check-input" path="status" value="Dropped" required="required" /> Dropped
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -233,7 +233,14 @@
     
      <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-    
+     <script src="js/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
     <script type="text/javascript">
    
 	$('.form_date').datetimepicker({

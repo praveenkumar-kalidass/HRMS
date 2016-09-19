@@ -230,15 +230,15 @@ public class Employee {
 		this.certification.add(certification);
 	}
 
-	public void addEducation(Education education) {
-		this.education.add(education);
-	}
-
 	public List<Education> getEducation() {
 		return education;
 	}
 
 	public void setEducation(List<Education> education) {
 		this.education = education;
+	}
+	
+	public void addEducation(Education education) {
+		this.education.add(education);
 	}
 }

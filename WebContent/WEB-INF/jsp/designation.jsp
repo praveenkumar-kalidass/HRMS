@@ -125,7 +125,7 @@
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Designation Name</label>
                                                         <div class="col-md-8">
-                                                            <spring:input path="designationName" class="form-control" id="example-text-input" placeHolder="Designation Name" /> </div>
+                                                            <spring:input path="designationName" class="form-control" id="example-text-input" placeHolder="Designation Name" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Data Minimum 5 Characters" /> </div>
                                                     </div>
 
                                                     <div class="form-group row">
@@ -185,7 +185,7 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-4 col-form-label">Designation Name</label>
                                 <div class="col-md-8">
-                                    <spring:input path="designationName" class="form-control" id="example-text-input" placeHolder="Designation Name" /> </div>
+                                    <spring:input path="designationName" class="form-control" id="example-text-input" placeHolder="Designation Name" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Data Minimum 5 Characters" /> </div>
                             </div>
 
 
@@ -235,7 +235,14 @@
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
+ <script src="js/jquery.form-validator.min.js"></script>
+<script>
 
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
     <script id="js">
         $(function() {
             $.tablesorter.themes.bootstrap = {

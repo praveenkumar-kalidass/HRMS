@@ -323,13 +323,13 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Address</label>
                                         <div class="col-md-8">
-                                            <spring:textarea path="addresses[0].street" class="form-control" id="address" placeHolder="Address"></spring:textarea>
+                                            <spring:textarea path="addresses[0].street" class="form-control" id="address" placeHolder="Address" required="required"  data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters"></spring:textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
                                         <div class="col-md-8">
-                                            <spring:select path="addresses[0].country" class="countries form-control" id="countryId">
+                                            <spring:select path="addresses[0].country" class="countries form-control" id="countryId" required="required">
                                                 <option value="">Select Country</option>
                                             </spring:select>
                                         </div>
@@ -337,7 +337,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">State</label>
                                         <div class="col-md-8">
-                                           <spring:select path="addresses[0].state" class="states form-control" id="stateId">
+                                           <spring:select path="addresses[0].state" class="states form-control" id="stateId" required="required">
 												<option value="">Select State</option>
                                            </spring:select>
                                         </div>
@@ -346,7 +346,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">City</label>
                                         <div class="col-md-8">
-                                           <spring:select path="addresses[0].city" class="cities form-control" id="cityId">
+                                           <spring:select path="addresses[0].city" class="cities form-control" id="cityId" required="required">
 												<option value="">Select City</option>
 											</spring:select>
                                         </div>
@@ -355,7 +355,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Pincode</label>
                                         <div class="col-md-8">
-                                            <spring:input  path="addresses[0].pincode" class="form-control"  id="pincode" placeHolder="Pincode" />
+                                            <spring:input  path="addresses[0].pincode" class="form-control"  id="pincode" placeHolder="Pincode" required="required"  data-validation="number" data-validation-error-msg="Pin Code Not Valid"/>
                                         </div>
                                     </div>
 
@@ -363,7 +363,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number</label>
                                         <div class="col-md-8">
-                                           <spring:input  path="addresses[0].phoneNumber" class="form-control"  id="mobile" placeHolder="Mobile Number" />
+                                           <spring:input  path="addresses[0].phoneNumber" class="form-control"  id="mobile" placeHolder="Mobile Number" data-validation="number" data-validation-error-msg="Mobile Number Not Valid" />
                                         </div>
                                     </div>
 
@@ -371,7 +371,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Email Address</label>
                                         <div class="col-md-8">
-                                            <spring:input  path="addresses[0].eMail" class="form-control"  id="email" placeHolder="Email Address" />
+                                            <spring:input  path="addresses[0].eMail" class="form-control"  id="email" placeHolder="Email Address" required="required" data-validation="email" data-validation-error-msg="Email Address Not Valid" />
                                         </div>
                                     </div> 
                                     
@@ -403,13 +403,13 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Address</label>
                                         <div class="col-md-8">
-                                        <spring:textarea path="addresses[1].street" class="form-control" id="address" placeHolder="Address"></spring:textarea>
+                                        <spring:textarea path="addresses[1].street" class="form-control" id="address" placeHolder="Address"  required="required" data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters"></spring:textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
                                         <div class="col-md-8">
-                                            <spring:select path="addresses[1].country" class="countries1 form-control" id="countryId1">
+                                            <spring:select path="addresses[1].country" class="countries1 form-control" id="countryId1" required="required">
                                                 <option value="">Select Country</option>
                                             </spring:select>
                                         </div>
@@ -417,7 +417,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">State</label>
                                         <div class="col-md-8">
-                                             <spring:select path="addresses[1].state" class="states1 form-control" id="stateId1">
+                                             <spring:select path="addresses[1].state" class="states1 form-control" id="stateId1" required="required">
 												<option value="">Select State</option>
                                            </spring:select>
                                         
@@ -437,7 +437,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Pincode</label>
                                         <div class="col-md-8">
-                                              <spring:input  path="addresses[1].pincode" class="form-control"  id="pincode" placeHolder="Pincode" />
+                                              <spring:input  path="addresses[1].pincode" class="form-control"  id="pincode" placeHolder="Pincode" data-validation="number" data-validation-error-msg="Pincode  Not Valid" />
                                         </div>
                                     </div>
 
@@ -445,7 +445,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number</label>
                                         <div class="col-md-8">
-                                            <spring:input  path="addresses[1].phoneNumber" class="form-control"  id="mobile" placeHolder="Mobile Number" />
+                                            <spring:input  path="addresses[1].phoneNumber" class="form-control"  id="mobile" placeHolder="Mobile Number" required="required" data-validation="number" data-validation-error-msg="Mobile Number Not Valid" />
                                         </div>
                                     </div><script src="js/location.js"></script>
 
@@ -453,7 +453,7 @@ function loadDoc() {
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Email Address</label>
                                         <div class="col-md-8">
-                                              <spring:input  path="addresses[1].eMail" class="form-control"  id="email" placeHolder="Email Address" />
+                                              <spring:input  path="addresses[1].eMail" class="form-control"  id="email" placeHolder="Email Address" required="required" data-validation="email" data-validation-error-msg="Email Not Valid" />
                                         </div>
                                     </div>
                                     
@@ -514,6 +514,14 @@ function loadDoc() {
     <!--  Location -->
     <script src="js/location.js"></script>
     
+     <script src="js/jquery.form-validator.min.js"></script>
+<script>
+
+  $.validate({
+    lang: 'en',
+    borderColorOnError : '#F00',
+  });
+</script> 
 
     <script id="js">
         $(function() {
@@ -604,7 +612,10 @@ function loadDoc() {
                 });
             });
         </script>
+       
     </c:if>
+    
+    
 </body>
 
 </html>

@@ -30,7 +30,7 @@
                                <spring:input path="certification[${status.index}].employee.employeeId" type="hidden"  class="form-control" value="${Employee.employeeId}"  />
                                </td>
                                <td>
-                               <spring:input path="certification[${status.index}].courseName" class="form-control"   />
+                               <spring:input path="certification[${status.index}].courseName" class="form-control"  required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Data Minimum 5 Characters"   />
                                  
                                </td>
                                <td>
@@ -49,7 +49,7 @@
                                
                                </td>
                                <td>
-                               <spring:input path="certification[${status.index}].institution"  class="form-control"   />
+                               <spring:input path="certification[${status.index}].institution"  class="form-control"  required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Data Minimum 5 Characters"  />
                                </td>                               
                                </tr>
                                </c:forEach>
