@@ -97,7 +97,7 @@
                                                         <c:out value="${project.projectId}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <c:out value="${project.projectName}"></c:out>
+                                                      <a href="project_view.html?id=<c:out value='${project.projectId} ' />" class="edit">   <c:out value="${project.projectName}"></c:out> </a>
                                                     </td>
                                                     <td>
                                                         <c:out value="${project.fromDate}"></c:out>
@@ -113,11 +113,8 @@
                                                         <c:out value="${project.status}"></c:out>
                                                     </td>
                                                     <td>
-                                                        <a href="project_view.html?id=<c:out value='${project.projectId} ' />" class="edit"> <i class="fa fa-wpforms"></i> View & Edit </a> &nbsp;&nbsp;
                                                         <a href="project_delete.html?id=<c:out value='${project.projectId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
-
                                                     </td>
-
                                                 </tr>
                                             </c:forEach>
 

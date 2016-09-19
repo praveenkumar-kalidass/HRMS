@@ -99,7 +99,7 @@ ClientDao clientDao = new ClientDao();
      * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      */
-    public List<Client> displayClients() throws DataException {
+    public List<Client> getClients() throws DataException {
         return clientDao.retrieveClients();
     }
 }

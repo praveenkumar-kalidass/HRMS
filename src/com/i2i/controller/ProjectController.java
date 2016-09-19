@@ -56,7 +56,7 @@ public class ProjectController {
     public String createClient(ModelMap model) {
         try {
             model.addAttribute("Client", new Client());
-            model.addAttribute("ClientList", clientService.displayClients());
+            model.addAttribute("ClientList", clientService.getClients());
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
         }
@@ -185,7 +185,7 @@ public class ProjectController {
         try {
             model.addAttribute("Project", new Project());
             model.addAttribute("ProjectList", projectService.getProjects());
-            model.addAttribute("ClientList", clientService.displayClients());
+            model.addAttribute("ClientList", clientService.getClients());
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
         }
@@ -266,7 +266,7 @@ public class ProjectController {
     public String editProject(@RequestParam("id") int projectId, ModelMap model) {
         try {
             model.addAttribute("ProjectEdit", projectService.searchProject(projectId));
-            model.addAttribute("ClientList", clientService.displayClients());
+            model.addAttribute("ClientList", clientService.getClients());
             model.addAttribute("ProjectId", projectId);
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
@@ -493,7 +493,7 @@ public class ProjectController {
         try {
             model.addAttribute("TeamAdd", new Team());    
             model.addAttribute("ProjectId", projectId);
-            model.addAttribute("DepartmentList", departmentService.displayDepartments());
+            model.addAttribute("DepartmentList", departmentService.getDepartments());
         } catch (Exception e) {
             model.addAttribute("message", e.getMessage());
         }

@@ -55,8 +55,7 @@
                                     <thead>
                                         <tr>
                                             <th> Employee Id </th>
-                                            <th> First Name</th>
-                                            <th> Last Name</th>
+                                            <th> Name</th>
                                             <th> Department </th>
                                             <th> Designation</th>
                                     </thead>
@@ -92,10 +91,7 @@
                                                     <c:out value="${employee.employeeId}"></c:out>
                                                 </td>
                                                 <td>
-                                                    <c:out value="${employee.employeeFirstName}"></c:out>
-                                                </td>
-                                                <td>
-                                                    <c:out value="${employee.employeeLastName}"></c:out>
+                                                    <a href="employee_view.html?id=<c:out value='${employee.employeeId} ' />" class="edit"> <c:out value="${employee.employeeFirstName}"></c:out> &nbsp;<c:out value="${employee.employeeLastName}"></c:out> </a>
                                                 </td>
                                                 <td>
                                                     <c:set value="${employee.employeeDesignation}" var="designation" />
@@ -106,7 +102,6 @@
                                                     <c:out value="${designation.designationName}"></c:out>
                                                 </td>
                                                 <td>
-                                                    <a href="employee_view.html?id=<c:out value='${employee.employeeId} ' />" class="edit"> <i class="fa fa-wpforms"></i> View & Edit</a> &nbsp;&nbsp;
                                                     <a href="employee_delete.html?id=<c:out value='${employee.employeeId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
                                                 </td>
 

@@ -1,7 +1,5 @@
 package com.i2i.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,10 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.i2i.exception.DataException;
 import com.i2i.model.AllowanceVariant;
-import com.i2i.model.Department;
-import com.i2i.model.Designation;
-import com.i2i.model.Employee;
-import com.i2i.model.Salary;
 import com.i2i.service.AllowanceVariantService;
 import com.i2i.service.DepartmentService;
 import com.i2i.service.EmployeeService;
@@ -41,7 +35,6 @@ public class SalaryController {
     AllowanceVariantService allowanceVariantService = new AllowanceVariantService();
     LeaveRequestService leaveRequestService = new LeaveRequestService(); 
     SalaryService salaryService = new SalaryService(); 
-    private int allowanceVariantId;
     /**
      * <p>
      * Mapping the request which required by user for allowance.html it will
@@ -60,7 +53,7 @@ public class SalaryController {
         try {
             model.addAttribute("Allowance", new AllowanceVariant());
             model.addAttribute("AllowanceList", allowanceVariantService.getAllowanceVariants());
-            model.addAttribute("DepartmentList", departmentService.displayDepartments());
+            model.addAttribute("DepartmentList", departmentService.getDepartments());
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
         }
@@ -109,7 +102,7 @@ public class SalaryController {
     public String editAllowanceVariant(@RequestParam("id") int allowanceId, ModelMap model) {
         try {
             model.addAttribute("AllowanceEdit", allowanceVariantService.searchAllowanceVariant(allowanceId));
-            model.addAttribute("DepartmentList", departmentService.displayDepartments());
+            model.addAttribute("DepartmentList", departmentService.getDepartments());
 
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());

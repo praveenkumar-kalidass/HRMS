@@ -100,7 +100,7 @@ public class DepartmentService {
      * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      */
-    public List<Department> displayDepartments() throws DataException {
+    public List<Department> getDepartments() throws DataException {
         return departmentDao.retrieveDepartments();
     }
 }

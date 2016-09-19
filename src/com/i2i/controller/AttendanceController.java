@@ -92,7 +92,7 @@ public class AttendanceController {
      *         operation.
      */
     @RequestMapping(value = "/check_in", method = RequestMethod.GET)
-    public String insertAttendance(@RequestParam("id") int employeeId, ModelMap model) {
+    public String checkInAttendance(@RequestParam("id") int employeeId, ModelMap model) {
         try {
             Date date = new Date();
             Attendance attendance = new Attendance();
@@ -126,7 +126,7 @@ public class AttendanceController {
      * @return contains url of employee edit page
      */
     @RequestMapping(value = "/check_out", method = RequestMethod.GET)
-    public String editAttendance(@RequestParam("id") int employeeId, ModelMap model) {
+    public String checkOutAttendance(@RequestParam("id") int employeeId, ModelMap model) {
         try {
             Date date = new Date();
             Attendance attendance = null;
@@ -169,7 +169,7 @@ public class AttendanceController {
             if(null != session.getAttribute("HRMSEmployeeId")) {
                 employeeId = (int) session.getAttribute("HRMSEmployeeId");
                 model.addAttribute("LeaveRequest", new LeaveRequest());
-                model.addAttribute("LeaveRequestList", leaveRequestService.displayLeaveRequests());
+                model.addAttribute("LeaveRequestList", leaveRequestService.getLeaveRequests());
                 model.addAttribute("OwnLeaveRequestList", leaveRequestService.displayLeaveRequestsByEmployee(employeeId));
             }
         } catch (DataException e) {
@@ -235,7 +235,7 @@ public class AttendanceController {
                 } else if (status == 2) {
                     leaveRequest.setLeaveStatus("Rejected");
                 }
-                model.addAttribute("LeaveRequestList", leaveRequestService.displayLeaveRequests());
+                model.addAttribute("LeaveRequestList", leaveRequestService.getLeaveRequests());
                 model.addAttribute("OwnLeaveRequestList", leaveRequestService.displayLeaveRequestsByEmployee(employeeId));
                 if (leaveRequestService.updateLeaveRequest(leaveRequest)) {
                    model.addAttribute("message", "LeaveRequest status updated successfully ");

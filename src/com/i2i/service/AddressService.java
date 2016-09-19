@@ -70,7 +70,7 @@ public class AddressService {
      *             in the database.
      */
     public boolean deleteAddress(int addressId) throws DataException {
-        if (addressDao.findAddress(addressId) != null) {
+        if (null != addressDao.findAddress(addressId)) {
             return addressDao.removeAddress(searchAddress(addressId));
         }
         return false;
@@ -108,7 +108,7 @@ public class AddressService {
      *             throws error message if problem arises with retrieving list
      *             of data from the database.
      */
-    public List<Address> displayAddresss() throws DataException {
+    public List<Address> getAddresss() throws DataException {
         return addressDao.retrieveAddresss();
     }
 

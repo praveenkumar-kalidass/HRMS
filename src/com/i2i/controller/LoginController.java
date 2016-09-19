@@ -47,7 +47,7 @@ public class LoginController {
             Employee employee = employeeService.searchEmployeeByUserName(userName);
             if(employee!=null) {
                 if((employee.getEmployeePassword()).equals(password)) {
-                    for(Team team : teamService.displayTeams()){
+                    for(Team team : teamService.getTeams()){
                         if(team.getEmployee().getEmployeeId()==employee.getEmployeeId()){
                             session.setAttribute("HRMSProjectId", team.getProject().getProjectId());
                             session.setAttribute("HRMSTeamRole", team.getTeamRole());

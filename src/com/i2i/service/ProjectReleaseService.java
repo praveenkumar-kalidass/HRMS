@@ -107,7 +107,7 @@ public class ProjectReleaseService {
      *             throws error message if problem arises with retrieving list
      *             of data from the database.
      */
-    public List<ProjectRelease> displayProjectReleases() throws DataException {
+    public List<ProjectRelease> getProjectReleases() throws DataException {
         return projectReleaseDao.retrieveProjectReleases();
     }
     

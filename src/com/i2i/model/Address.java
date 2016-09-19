@@ -47,7 +47,7 @@ public class Address {
     private int pincode;
 
     @Column(name = "phonenumber")
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "e_mail")
     private String eMail;
@@ -111,11 +111,11 @@ public class Address {
         this.pincode = pincode;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

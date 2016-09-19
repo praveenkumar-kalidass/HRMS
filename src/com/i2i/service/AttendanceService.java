@@ -108,7 +108,7 @@ public class AttendanceService {
      *             throws error message if problem arises with retrieving list
      *             of data from the database.
      */
-    public List<Attendance> displayAttendances() throws DataException {
+    public List<Attendance> getAttendances() throws DataException {
         return attendanceDao.retrieveAttendances();
     }
 

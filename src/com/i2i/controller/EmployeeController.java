@@ -75,7 +75,7 @@ public class EmployeeController {
         try {
             Department department = new Department();
             model.addAttribute("Department", department);
-            model.addAttribute("DepartmentList", departmentService.displayDepartments());
+            model.addAttribute("DepartmentList", departmentService.getDepartments());
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
         }
@@ -205,7 +205,7 @@ public class EmployeeController {
         try {
             model.addAttribute("Designation", new Designation());
             model.addAttribute("DesignationList", designationService.getDesignations());
-            model.addAttribute("DepartmentList", departmentService.displayDepartments());
+            model.addAttribute("DepartmentList", departmentService.getDepartments());
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
         }
@@ -261,7 +261,7 @@ public class EmployeeController {
      *         operation.
      */
     @RequestMapping(value = "/designationView", method = RequestMethod.GET)
-    public String designationView(@RequestParam("departmentId") int departmentId, ModelMap map) {
+    public String retriveDesignation(@RequestParam("departmentId") int departmentId, ModelMap map) {
         try {
             map.addAttribute("DesignationList", designationService.getDesgignationByDepartment(departmentId));
         } catch (DataException exception)  {
@@ -288,7 +288,7 @@ public class EmployeeController {
      *         operation.
      */
     @RequestMapping(value = "/employeesView", method = RequestMethod.GET)
-    public String employeeView(@RequestParam("designationId") int designationId, ModelMap map) {
+    public String retriveEmployeeByDesignation(@RequestParam("designationId") int designationId, ModelMap map) {
         try {
             map.addAttribute("EmployeeList", employeeService.getEmployeeByDesignation(designationId));
         } catch (DataException exception)  {
@@ -314,7 +314,7 @@ public class EmployeeController {
     public String editDesignation(@RequestParam("id") int designationId, ModelMap model) {
         try {
             model.addAttribute("DesignationEdit", designationService.searchDesignation(designationId));
-            model.addAttribute("DepartmentList", departmentService.displayDepartments());
+            model.addAttribute("DepartmentList", departmentService.getDepartments());
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
         }
@@ -397,7 +397,7 @@ public class EmployeeController {
     public String createRole(ModelMap model) {
         try {
             model.addAttribute("Role", new Role());
-            model.addAttribute("RoleList", roleService.displayRoles());
+            model.addAttribute("RoleList", roleService.getRoles());
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
         }
@@ -516,7 +516,7 @@ public class EmployeeController {
      * 
      */
     @RequestMapping(value = "/employee", method = RequestMethod.GET)
-    public String employee(ModelMap map) {
+    public String retiveAllEmployee(ModelMap map) {
         try {
             map.addAttribute("EmployeeList", employeeService.retrieveEmployees());
         } catch (DataException exception) {
@@ -539,7 +539,7 @@ public class EmployeeController {
      * 
      */
     @RequestMapping(value = "/employee_view", method = RequestMethod.GET)
-    public String employeeView(ModelMap map, @RequestParam("id") int employeeId) {
+    public String retriveEmployeeById(ModelMap map, @RequestParam("id") int employeeId) {
         try {
             map.addAttribute("Employee", employeeService.searchEmployee(employeeId));
             map.addAttribute("AddressList", addressService.getAddressByEmployee(employeeId));
@@ -596,11 +596,11 @@ public class EmployeeController {
      * 
      */
     @RequestMapping(value = "/personal", method = RequestMethod.GET)
-    public String personal(ModelMap map) {
+    public String createPersonalDetails(ModelMap map) {
         try {
             map.addAttribute("Employee", new Employee());
-            map.addAttribute("DepartmentList", departmentService.displayDepartments());
-            map.addAttribute("RoleList", roleService.displayRoles());
+            map.addAttribute("DepartmentList", departmentService.getDepartments());
+            map.addAttribute("RoleList", roleService.getRoles());
         } catch (DataException exception)  {
             map.addAttribute("message", exception.getMessage());
         }
@@ -622,7 +622,7 @@ public class EmployeeController {
      *         operation.
      */
     @RequestMapping(value = "/employee_add", method = RequestMethod.POST)
-    public String addEmployee(@ModelAttribute("Employee") Employee employee, BindingResult result, ModelMap model) {
+    public String addPersonalDetails(@ModelAttribute("Employee") Employee employee, BindingResult result, ModelMap model) {
         try {
             if (employeeService.addEmployee(employee)) {
                 employee.add(new Address());
@@ -649,11 +649,11 @@ public class EmployeeController {
      * 
      */
     @RequestMapping(value = "/personal_edit", method = RequestMethod.GET)
-    public String editPersonal(@RequestParam("id") int employeeId, ModelMap model) {
+    public String editPersonalDetails(@RequestParam("id") int employeeId, ModelMap model) {
         try {
             model.addAttribute("PersonalEdit", employeeService.searchEmployee(employeeId));
-            model.addAttribute("DepartmentList", departmentService.displayDepartments());
-            model.addAttribute("RoleList", roleService.displayRoles());
+            model.addAttribute("DepartmentList", departmentService.getDepartments());
+            model.addAttribute("RoleList", roleService.getRoles());
         } catch (DataException e) {
             model.addAttribute("message", e.getMessage());
         }
@@ -673,7 +673,7 @@ public class EmployeeController {
      *         operation.
      */
     @RequestMapping(value = "/personal_update", method = RequestMethod.POST)
-    public String updatePersonal(@ModelAttribute("PersonalEdit") Employee employee, BindingResult result,
+    public String updatePersonalDetails(@ModelAttribute("PersonalEdit") Employee employee, BindingResult result,
             ModelMap model) {
         try {
             employeeService.updateEmployee(employee);
@@ -711,7 +711,7 @@ public class EmployeeController {
      *         operation.
      */
     @RequestMapping(value = "/address_form", method = RequestMethod.GET)
-    public String address_form(@RequestParam("same") String same, @RequestParam("address") String address,
+    public String checkSameAsResidentialAddress(@RequestParam("same") String same, @RequestParam("address") String address,
             @RequestParam("countries") String countries, @RequestParam("states") String states,
             @RequestParam("cities") String cities, @RequestParam("pincode") String pincode,
             @RequestParam("email") String email, @RequestParam("mobile") String mobile, ModelMap map) {
@@ -765,7 +765,7 @@ public class EmployeeController {
      * 
      */
     @RequestMapping(value = "/address_edit", method = RequestMethod.GET)
-    public String editaddress(@RequestParam("id") int addressId, ModelMap model) {
+    public String editAddress(@RequestParam("id") int addressId, ModelMap model) {
         try {
             model.addAttribute("AddressEdit", addressService.searchAddress(addressId));
         } catch (DataException e) {
@@ -787,7 +787,7 @@ public class EmployeeController {
      *         operation.
      */
     @RequestMapping(value = "/address_update", method = RequestMethod.POST)
-    public String updateaddress(@ModelAttribute("AddressEdit") Address address, BindingResult result, ModelMap model) {
+    public String updateAddress(@ModelAttribute("AddressEdit") Address address, BindingResult result, ModelMap model) {
         try {
             addressService.updateAddress(address);
             Employee employee = address.getEmployee();
@@ -919,7 +919,7 @@ public class EmployeeController {
      *         operation.
      */
     @RequestMapping(value = "/education_form", method = RequestMethod.GET)
-    public String education_form(@RequestParam("noof") int noof, @RequestParam("eid") int employeeId, ModelMap map) {
+    public String createEducation(@RequestParam("noof") int noof, @RequestParam("eid") int employeeId, ModelMap map) {
         try {
             Employee employee = employeeService.searchEmployee(employeeId);
             for (int i = 1; i <= noof; i++) {
@@ -1018,7 +1018,7 @@ public class EmployeeController {
      * 
      */
     @RequestMapping(value = "/picture", method = RequestMethod.GET)
-    public String picture(@RequestParam("eid") int employeeId, ModelMap map) {
+    public String createPicture(@RequestParam("eid") int employeeId, ModelMap map) {
         map.addAttribute("EmployeeId", employeeId);
         return "picture";
 

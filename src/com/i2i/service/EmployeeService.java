@@ -1,10 +1,12 @@
 package com.i2i.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.i2i.dao.EmployeeDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Employee;
+import com.i2i.model.Team;
 
 /**
  * <p>
@@ -19,6 +21,7 @@ import com.i2i.model.Employee;
  */
 public class EmployeeService {
     EmployeeDao employeeDao = new EmployeeDao();
+    TeamService teamService = new  TeamService();
 
     /**
      * <p>
@@ -149,6 +152,20 @@ public class EmployeeService {
      *             of data from the database.
      */
     public List<Employee> getEmployeeByDesignation(int designationId) throws DataException {
-        return employeeDao.retrieveEmloyeeByDesignation(designationId);
+        List<Employee> employeeList = new ArrayList<Employee>();
+        for(Employee employee : employeeDao.retrieveEmloyeeByDesignation(designationId)){
+    		if(0 != teamService.getTeams().size()){
+    		    for(Team team :  teamService.getTeams()){
+    		    	if(employee.getEmployeeId() != (team.getEmployee()).getEmployeeId()){
+    		 	    	employeeList.add(employee);
+    		 	    } else {
+    		 	    	employeeList.remove(employee);
+    		 	    }
+    		    }
+    		} else {
+    			employeeList.add(employee);
+    		}
+    	}
+    	return employeeList;
     }
 }

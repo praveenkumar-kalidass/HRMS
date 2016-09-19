@@ -257,8 +257,8 @@
                                         <label for="example-text-input" class="col-md-6 col-form-label"> Name of the Employee </label>
                                         <label for="example-text-input" class="col-md-6">
                                             <c:set value="${team.employee}" var="employee" />
-                                            <c:out value='${employee.employeeFirstName}' /> &nbsp;
-                                            <c:out value='${employee.employeeLastName}' />
+                                            <a href="employee_view.html?id=<c:out value='${employee.employeeId} ' />">   <c:out value='${employee.employeeFirstName}' /> &nbsp;
+                                            <c:out value='${employee.employeeLastName}' /> </a>
                                         </label>
                                     </div>
 
@@ -737,7 +737,7 @@
                         buttons: {
                             Ok: function() {
                                 $(this).dialog("close");
-                                window.location = "project_view.html?id=" + < c: out value = '${ProjectId}' / > ;
+                                window.location = "project_view.html?id=" + <c:out value = '${ProjectId}' />;
                             }
                         }
                     });

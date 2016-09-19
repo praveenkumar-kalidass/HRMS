@@ -109,7 +109,7 @@ public class LeaveRequestService {
      *             throws error message if problem arises with retrieving list
      *             of data from the database.
      */
-    public List<LeaveRequest> displayLeaveRequests() throws DataException {
+    public List<LeaveRequest> getLeaveRequests() throws DataException {
         return leaveRequestDao.retrieveLeaveRequests();
     }
 

@@ -99,7 +99,7 @@ public class RoleService {
      * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      */
-    public List<Role> displayRoles() throws DataException {
+    public List<Role> getRoles() throws DataException {
         return roleDao.retrieveRoles();
     }
 }
