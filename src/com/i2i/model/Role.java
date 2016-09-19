@@ -15,40 +15,35 @@ import javax.persistence.Table;
  * @author Praveenkumar
  * 
  * @created 2016-09-02
- *
  */
 @Entity
 @Table(name = "role")
 public class Role {
-	@Id
-	@GeneratedValue
+
+    @Id
+    @GeneratedValue
     @Column(name = "id", unique = true)
     private int roleId;
-	
+    
     @Column(name = "name")
     private String roleName;
-    
-    public Role(int roleId, String roleName) {
-    	this.roleId = roleId;
-    	this.roleName = roleName;
-    }
     
     public Role() {
     }
 
-	public int getRoleId() {
-		return roleId;
-	}
+    public int getRoleId() {
+        return roleId;
+    }
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
 
-	public String getRoleName() {
-		return roleName;
-	}
+    public String getRoleName() {
+        return roleName;
+    }
 
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }
