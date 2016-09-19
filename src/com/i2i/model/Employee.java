@@ -25,220 +25,219 @@ import org.hibernate.annotations.LazyCollectionOption;
  * @author Praveenkumar
  * 
  * @created 2016-09-02
- *
  */
 @Entity
 @Table(name = "employee")
 public class Employee {
-	
-	@Id
-	@GeneratedValue
-	@Column(name = "id", unique = true)
-	private int employeeId;
-
-	@Column(name = "firstname")
-	private String employeeFirstName;
-
-	@Column(name = "lastname")
-	private String employeeLastName;
-
-	@Column(name = "dob")
-	private String employeeDateOfBirth;
-
-	@Column(name = "gender")
-	private String employeeGender;
-
-	@Column(name = "maritalstatus")
-	private String employeeMaritalStatus;
-
-	@Column(name = "doj")
-	private String employeeDateOfJoining;
-
-	@Column(name = "picture")
-	private String employeePicture;
     
-	@Column(name = "username", unique = true)
-	private String employeeUserName;
+    @Id
+    @GeneratedValue
+    @Column(name = "id", unique = true)
+    private int employeeId;
 
-	@Column(name = "password")
-	private String employeePassword;
+    @Column(name = "firstname")
+    private String employeeFirstName;
 
-	@Column(name = "accountnumber")
-	private String employeeBankAccountNumber;
+    @Column(name = "lastname")
+    private String employeeLastName;
 
-	@Column(name = "basicpay")
-	private String employeeBasicPay;
+    @Column(name = "dob")
+    private String employeeDateOfBirth;
 
-	@ManyToOne(cascade = { CascadeType.PERSIST })
-	@JoinColumn(name = "designation_id")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Designation employeeDesignation;
+    @Column(name = "gender")
+    private String employeeGender;
 
-	@ManyToOne(cascade = { CascadeType.PERSIST })
-	@JoinColumn(name = "role_id")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Role employeeRole;
+    @Column(name = "maritalstatus")
+    private String employeeMaritalStatus;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "addressId")
-	private List<Address> addresses = new ArrayList<Address>();
+    @Column(name = "doj")
+    private String employeeDateOfJoining;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "certificationId")
-	private List<Certification> certification = new ArrayList<Certification>();
+    @Column(name = "picture")
+    private String employeePicture;
+    
+    @Column(name = "username", unique = true)
+    private String employeeUserName;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "educationId")
-	private List<Education> education = new ArrayList<Education>();
+    @Column(name = "password")
+    private String employeePassword;
 
-	public Employee() {
-	}
+    @Column(name = "accountnumber")
+    private String employeeBankAccountNumber;
 
-	public List<Certification> getCertification() {
-		return certification;
-	}
+    @Column(name = "basicpay")
+    private String employeeBasicPay;
 
-	public void setCertification(List<Certification> certification) {
-		this.certification = certification;
-	}
+    @ManyToOne(cascade = { CascadeType.PERSIST })
+    @JoinColumn(name = "designation_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Designation employeeDesignation;
 
-	public int getEmployeeId() {
-		return employeeId;
-	}
+    @ManyToOne(cascade = { CascadeType.PERSIST })
+    @JoinColumn(name = "role_id")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Role employeeRole;
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "addressId")
+    private List<Address> addresses = new ArrayList<Address>();
 
-	public String getEmployeeFirstName() {
-		return employeeFirstName;
-	}
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "certificationId")
+    private List<Certification> certification = new ArrayList<Certification>();
 
-	public void setEmployeeFirstName(String employeeFirstName) {
-		this.employeeFirstName = employeeFirstName;
-	}
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "educationId")
+    private List<Education> education = new ArrayList<Education>();
 
-	public String getEmployeeLastName() {
-		return employeeLastName;
-	}
+    public Employee() {
+    }
 
-	public void setEmployeeLastName(String employeeLastName) {
-		this.employeeLastName = employeeLastName;
-	}
+    public List<Certification> getCertification() {
+        return certification;
+    }
 
-	public String getEmployeeDateOfBirth() {
-		return employeeDateOfBirth;
-	}
+    public void setCertification(List<Certification> certification) {
+        this.certification = certification;
+    }
 
-	public void setEmployeeDateOfBirth(String employeeDateOfBirth) {
-		this.employeeDateOfBirth = employeeDateOfBirth;
-	}
+    public int getEmployeeId() {
+        return employeeId;
+    }
 
-	public String getEmployeeGender() {
-		return employeeGender;
-	}
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
 
-	public void setEmployeeGender(String employeeGender) {
-		this.employeeGender = employeeGender;
-	}
+    public String getEmployeeFirstName() {
+        return employeeFirstName;
+    }
 
-	public String getEmployeeMaritalStatus() {
-		return employeeMaritalStatus;
-	}
+    public void setEmployeeFirstName(String employeeFirstName) {
+        this.employeeFirstName = employeeFirstName;
+    }
 
-	public void setEmployeeMaritalStatus(String employeeMaritalStatus) {
-		this.employeeMaritalStatus = employeeMaritalStatus;
-	}
+    public String getEmployeeLastName() {
+        return employeeLastName;
+    }
 
-	public String getEmployeeDateOfJoining() {
-		return employeeDateOfJoining;
-	}
+    public void setEmployeeLastName(String employeeLastName) {
+        this.employeeLastName = employeeLastName;
+    }
 
-	public void setEmployeeDateOfJoining(String employeeDateOfJoining) {
-		this.employeeDateOfJoining = employeeDateOfJoining;
-	}
+    public String getEmployeeDateOfBirth() {
+        return employeeDateOfBirth;
+    }
 
-	public String getEmployeePicture() {
-		return employeePicture;
-	}
+    public void setEmployeeDateOfBirth(String employeeDateOfBirth) {
+        this.employeeDateOfBirth = employeeDateOfBirth;
+    }
 
-	public String getEmployeeBankAccountNumber() {
-		return employeeBankAccountNumber;
-	}
+    public String getEmployeeGender() {
+        return employeeGender;
+    }
 
-	public void setEmployeeBankAccountNumber(String employeeBankAccountNumber) {
-		this.employeeBankAccountNumber = employeeBankAccountNumber;
-	}
+    public void setEmployeeGender(String employeeGender) {
+        this.employeeGender = employeeGender;
+    }
 
-	public String getEmployeeBasicPay() {
-		return employeeBasicPay;
-	}
+    public String getEmployeeMaritalStatus() {
+        return employeeMaritalStatus;
+    }
 
-	public void setEmployeeBasicPay(String employeeBasicPay) {
-		this.employeeBasicPay = employeeBasicPay;
-	}
+    public void setEmployeeMaritalStatus(String employeeMaritalStatus) {
+        this.employeeMaritalStatus = employeeMaritalStatus;
+    }
 
-	public void setEmployeePicture(String employeePicture) {
-		this.employeePicture = employeePicture;
-	}
+    public String getEmployeeDateOfJoining() {
+        return employeeDateOfJoining;
+    }
 
-	public String getEmployeeUserName() {
-		return employeeUserName;
-	}
+    public void setEmployeeDateOfJoining(String employeeDateOfJoining) {
+        this.employeeDateOfJoining = employeeDateOfJoining;
+    }
 
-	public void setEmployeeUserName(String employeeUserName) {
-		this.employeeUserName = employeeUserName;
-	}
+    public String getEmployeePicture() {
+        return employeePicture;
+    }
 
-	public String getEmployeePassword() {
-		return employeePassword;
-	}
+    public String getEmployeeBankAccountNumber() {
+        return employeeBankAccountNumber;
+    }
 
-	public void setEmployeePassword(String employeePassword) {
-		this.employeePassword = employeePassword;
-	}
+    public void setEmployeeBankAccountNumber(String employeeBankAccountNumber) {
+        this.employeeBankAccountNumber = employeeBankAccountNumber;
+    }
 
-	public Designation getEmployeeDesignation() {
-		return employeeDesignation;
-	}
+    public String getEmployeeBasicPay() {
+        return employeeBasicPay;
+    }
 
-	public void setEmployeeDesignation(Designation employeeDesignation) {
-		this.employeeDesignation = employeeDesignation;
-	}
+    public void setEmployeeBasicPay(String employeeBasicPay) {
+        this.employeeBasicPay = employeeBasicPay;
+    }
 
-	public Role getEmployeeRole() {
-		return employeeRole;
-	}
+    public void setEmployeePicture(String employeePicture) {
+        this.employeePicture = employeePicture;
+    }
 
-	public void setEmployeeRole(Role employeeRole) {
-		this.employeeRole = employeeRole;
-	}
+    public String getEmployeeUserName() {
+        return employeeUserName;
+    }
 
-	public List<Address> getAddresses() {
-		return addresses;
-	}
+    public void setEmployeeUserName(String employeeUserName) {
+        this.employeeUserName = employeeUserName;
+    }
 
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
+    public String getEmployeePassword() {
+        return employeePassword;
+    }
 
-	public void add(Address address) {
-		this.addresses.add(address);
-	}
+    public void setEmployeePassword(String employeePassword) {
+        this.employeePassword = employeePassword;
+    }
 
-	public void addCertification(Certification certification) {
-		this.certification.add(certification);
-	}
+    public Designation getEmployeeDesignation() {
+        return employeeDesignation;
+    }
 
-	public void addEducation(Education education) {
-		this.education.add(education);
-	}
+    public void setEmployeeDesignation(Designation employeeDesignation) {
+        this.employeeDesignation = employeeDesignation;
+    }
 
-	public List<Education> getEducation() {
-		return education;
-	}
+    public Role getEmployeeRole() {
+        return employeeRole;
+    }
 
-	public void setEducation(List<Education> education) {
-		this.education = education;
-	}
+    public void setEmployeeRole(Role employeeRole) {
+        this.employeeRole = employeeRole;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public void add(Address address) {
+        this.addresses.add(address);
+    }
+
+    public void addCertification(Certification certification) {
+        this.certification.add(certification);
+    }
+
+    public void addEducation(Education education) {
+        this.education.add(education);
+    }
+
+    public List<Education> getEducation() {
+        return education;
+    }
+
+    public void setEducation(List<Education> education) {
+        this.education = education;
+    }
 }

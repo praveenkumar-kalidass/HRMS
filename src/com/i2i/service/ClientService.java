@@ -17,7 +17,6 @@ import com.i2i.model.Client;
  *
  * @created 2016-09-01
  */
-
 public class ClientService {
 ClientDao clientDao = new ClientDao();
     

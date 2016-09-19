@@ -2,7 +2,6 @@ package com.i2i.service;
 
 import java.util.List;
 
-
 import com.i2i.dao.RoleDao;
 import com.i2i.exception.DataException;
 import com.i2i.model.Role;
@@ -36,7 +35,6 @@ public class RoleService {
     public boolean addRole(Role role) throws DataException {    	
     	return roleDao.insertRole(role);
     }
-    
     
     /**
      * <p>
