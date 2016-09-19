@@ -1,17 +1,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="spring" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<c:if test="${sessionScope['HRMSEmployeeId']==null}" >
-   <c:redirect url="index.html" /> 
+<c:if test="${sessionScope['HRMSEmployeeId']==null}">
+    <c:redirect url="index.html" />
 </c:if>
 <c:if test="${sessionScope['HRMSRole']=='Employee'}">
-   <c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
+    <c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
 </c:if>
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Employee</title>
@@ -38,94 +37,95 @@
             <div class="content-main">
                 <div class="col-md-12">
                     <!-- Main Start -->
-                  
-                        <div id="Employee-Table" role="tabpanel" class="tab-pane active" >
-                             <div class="main-head">
-                                    <h1 class="title"> Employee Details </h1> 
-                                    
-                             </div>
-                             
-                            <div class="form">
-                               <div style="padding-top:10px; padding-bottom: 10px;">
-                               <a href="personal.html"> <button class="btn btn-info"> <i class="fa fa-plus-circle"></i> Add New </button> </a>
-                               </div>
-                                <c:if test="${EmployeeList!=null}">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th> Employee Id </th>
-                                                <th> First Name</th>
-                                                <th> Last Name</th>
-                                                <th> Department </th>
-                                                <th> Designation</th>
-                                        </thead>
-                                        <tfoot>
 
-                                            <tr>
-                                                <th colspan="7" class="ts-pager form-horizontal">
-                                                    <button type="button" class="btn first"><i class="fa fa-fast-backward "></i> 
-                                                    </button>
-                                                    <button type="button" class="btn prev"><i class="fa fa-step-backward "></i> 
-                                                    </button>
-                                                    <span class="pagedisplay"></span>
-                                                    <!-- this can be any element, including an input -->
-                                                    <button type="button" class="btn next"><i class="fa fa-step-forward"></i> 
-                                                    </button>
-                                                    <button type="button" class="btn last"><i class="fa fa-fast-forward"></i> 
-                                                    </button>
-                                                    <select class="pagesize input-mini" title="Select page size">
-                                                        <option selected="selected" value="10">10</option>
-                                                        <option value="20">20</option>
-                                                        <option value="30">30</option>
-                                                        <option value="40">40</option>
-                                                        <option value="50">50</option>
-                                                    </select>
-                                                    <select class="pagenum input-mini" title="Select page number"></select>
-                                                </th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <c:forEach var="employee" items="${EmployeeList}">
-                                                <tr>
-                                                    <td>
-                                                        <c:out value="${employee.employeeId}"></c:out>
-                                                    </td>
-                                                    <td>
-                                                        <c:out value="${employee.employeeFirstName}"></c:out>
-                                                    </td>
-                                                    <td>
-                                                        <c:out value="${employee.employeeLastName}"></c:out>
-                                                    </td>
-                                                    <td>
-                                                        <c:set value="${employee.employeeDesignation}" var="designation" />
-                                                        <c:set value="${designation.department}" var="department" />
-                                                        <c:out value="${department.departmentName}"></c:out>
-                                                    </td>
-                                                    <td>
-                                                        <c:out value="${designation.designationName}"></c:out>
-                                                    </td>
-                                                    <td>
-                                                        <a href="employee_view.html?id=<c:out value='${employee.employeeId} ' />" class="edit"> <i class="fa fa-wpforms"></i> View  & Edit</a> &nbsp;&nbsp; 
-                                                        <a href="employee_delete.html?id=<c:out value='${employee.employeeId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
-                                                    </td>
+                    <div id="Employee-Table" role="tabpanel" class="tab-pane active">
+                        <div class="main-head">
+                            <h1 class="title"> Employee Details </h1>
 
-                                                </tr>
-                                            </c:forEach>
-
-                                        </tbody>
-                                    </table>
-                                </c:if>
-
-                            </div>
                         </div>
-                      
 
+                        <div class="form">
+                            <div style="padding-top:10px; padding-bottom: 10px;">
+                                <a href="personal.html">
+                                    <button class="btn btn-info"> <i class="fa fa-plus-circle"></i> Add New </button>
+                                </a>
+                            </div>
+                            <c:if test="${EmployeeList!=null}">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th> Employee Id </th>
+                                            <th> First Name</th>
+                                            <th> Last Name</th>
+                                            <th> Department </th>
+                                            <th> Designation</th>
+                                    </thead>
+                                    <tfoot>
+
+                                        <tr>
+                                            <th colspan="7" class="ts-pager form-horizontal">
+                                                <button type="button" class="btn first"><i class="fa fa-fast-backward "></i>
+                                                </button>
+                                                <button type="button" class="btn prev"><i class="fa fa-step-backward "></i>
+                                                </button>
+                                                <span class="pagedisplay"></span>
+                                                <!-- this can be any element, including an input -->
+                                                <button type="button" class="btn next"><i class="fa fa-step-forward"></i>
+                                                </button>
+                                                <button type="button" class="btn last"><i class="fa fa-fast-forward"></i>
+                                                </button>
+                                                <select class="pagesize input-mini" title="Select page size">
+                                                    <option selected="selected" value="10">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="30">30</option>
+                                                    <option value="40">40</option>
+                                                    <option value="50">50</option>
+                                                </select>
+                                                <select class="pagenum input-mini" title="Select page number"></select>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <c:forEach var="employee" items="${EmployeeList}">
+                                            <tr>
+                                                <td>
+                                                    <c:out value="${employee.employeeId}"></c:out>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${employee.employeeFirstName}"></c:out>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${employee.employeeLastName}"></c:out>
+                                                </td>
+                                                <td>
+                                                    <c:set value="${employee.employeeDesignation}" var="designation" />
+                                                    <c:set value="${designation.department}" var="department" />
+                                                    <c:out value="${department.departmentName}"></c:out>
+                                                </td>
+                                                <td>
+                                                    <c:out value="${designation.designationName}"></c:out>
+                                                </td>
+                                                <td>
+                                                    <a href="employee_view.html?id=<c:out value='${employee.employeeId} ' />" class="edit"> <i class="fa fa-wpforms"></i> View & Edit</a> &nbsp;&nbsp;
+                                                    <a href="employee_delete.html?id=<c:out value='${employee.employeeId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
+                                                </td>
+
+                                            </tr>
+                                        </c:forEach>
+
+                                    </tbody>
+                                </table>
+                            </c:if>
+
+                        </div>
                     </div>
 
-                    <!-- Main End -->
                 </div>
+
+                <!-- Main End -->
             </div>
         </div>
+    </div>
     </div>
     <div id="myModal" class="modal fade" role="dialog" aria-hidden="false" data-backdrop="static">
         <div class="modal-dialog">
@@ -170,7 +170,6 @@
     <script src="js/bootstrap.js"></script>
     <!-- jQuery -->
 
-
     <!-- Tablesorter: required for bootstrap -->
     <link rel="stylesheet" href="css/theme.bootstrap.css">
     <script src="js/jquery.tablesorter.js"></script>
@@ -202,7 +201,6 @@
                 odd: ''
             };
 
-
             $("table").tablesorter({
                     theme: "bootstrap",
 
@@ -218,7 +216,6 @@
                         filter_reset: ".reset",
 
                         filter_cssFilter: "form-control",
-
 
                     }
                 })
@@ -258,38 +255,6 @@
             evt.currentTarget.className += " active";
         }
     </script>
-    <script type="text/javascript">
-        var people, asc1 = 1,
-            asc2 = 1,
-            asc3 = 1,
-            asc4 = 1;
-        window.onload = function() {
-            people = document.getElementById("people");
-        }
-
-        function sort_table(tbody, col, asc) {
-            var rows = tbody.rows,
-                rlen = rows.length,
-                arr = new Array(),
-                i, j, cells, clen; // fill the array with values from the table 
-            for (i = 0; i < rlen; i++) {
-                cells = rows[i].cells;
-                clen = cells.length;
-                arr[i] = new Array();
-                for (j = 0; j < clen; j++) {
-                    arr[i][j] = cells[j].innerHTML;
-                }
-            }
-            // sort the array by the specified column number (col) and order (asc) 
-            arr.sort(function(a, b) {
-                return (a[col] == b[col]) ? 0 : ((a[col] > b[col]) ? asc : -1 * asc);
-            });
-            // replace existing rows with new rows created from the sorted array 
-            for (i = 0; i < rlen; i++) {
-                rows[i].innerHTML = "<td>" + arr[i].join("</td><td>") + "</td>";
-            }
-        }
-    </script>
     <c:if test="${message==null}">
         <c:if test="${EmployeeEdit!=null}">
             <script>
@@ -318,4 +283,5 @@
         </script>
     </c:if>
 </body>
+
 </html>

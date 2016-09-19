@@ -3,12 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<c:if test="${sessionScope['HRMSEmployeeId']==null}" >
-   <c:redirect url="index.html" /> 
+<c:if test="${sessionScope['HRMSEmployeeId']==null}">
+    <c:redirect url="index.html" />
 </c:if>
 <c:if test="${sessionScope['HRMSRole']=='Employee'}">
-   <c:redirect url="project_view.html?id=${HRMSProjectId}" />
+    <c:redirect url="project_view.html?id=${HRMSProjectId}" />
 </c:if>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Salary Details</title>
@@ -32,12 +33,10 @@
         <div class="content-bar">
             <c:import url="top-menu.jsp" />
 
-
-
             <div class="content-main">
                 <div class="col-md-12">
                     <!-- Main Start -->
-                     <div class="tab-content">
+                    <div class="tab-content">
                         <div id="Client-Table" role="tabpanel" class="tab-pane active">
                             <div class="form">
                                 <div class="main-head">
@@ -88,14 +87,15 @@
                                             <c:forEach var="salary" items="${SalaryList}">
                                                 <tr>
                                                     <td>
-                                                        <c:set value="${salary.employee}" var="employee"/>
-                                                        <c:out value="${employee.employeeFirstName}" />&nbsp;&nbsp;<c:out value="${employee.employeeLastName}" />
+                                                        <c:set value="${salary.employee}" var="employee" />
+                                                        <c:out value="${employee.employeeFirstName}" />&nbsp;&nbsp;
+                                                        <c:out value="${employee.employeeLastName}" />
                                                     </td>
                                                     <td>
-                                                       <c:set value="${employee.employeeDesignation}" var="designation"/>
-                                                       <c:set value="${designation.department}" var="department"/>
-                                                       <c:out value="${department.departmentName}"></c:out>
-                                                       
+                                                        <c:set value="${employee.employeeDesignation}" var="designation" />
+                                                        <c:set value="${designation.department}" var="department" />
+                                                        <c:out value="${department.departmentName}"></c:out>
+
                                                     </td>
                                                     <td>
                                                         <c:out value="${designation.designationName}"></c:out>
@@ -115,16 +115,16 @@
                                                     <td>
                                                         <c:out value="${salary.medicalAllowance}"></c:out>
                                                     </td>
-                                                     <td>
+                                                    <td>
                                                         <c:out value="${salary.noDays}"></c:out>
                                                     </td>
-                                                     <td>
+                                                    <td>
                                                         <c:out value="${salary.lossOfPay}"></c:out>
                                                     </td>
                                                     <td>
                                                         <c:out value="${salary.totalAmount}"></c:out>
                                                     </td>
-                                               </tr>
+                                                </tr>
                                             </c:forEach>
 
                                         </tbody>
@@ -139,16 +139,12 @@
             </div>
         </div>
     </div>
-   
-
-
 
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/sidebar-menu.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.js"></script>
-
 
     <!-- Tablesorter: required for bootstrap -->
     <link rel="stylesheet" href="css/theme.bootstrap.css">
@@ -158,11 +154,9 @@
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
-    
-    
-     <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-    
 
     <script id="js">
         $(function() {
@@ -186,7 +180,6 @@
                 odd: ''
             };
 
-
             $("#ProjectTable").tablesorter({
                     theme: "bootstrap",
 
@@ -202,7 +195,6 @@
                         filter_reset: ".reset",
 
                         filter_cssFilter: "form-control",
-
 
                     }
                 })

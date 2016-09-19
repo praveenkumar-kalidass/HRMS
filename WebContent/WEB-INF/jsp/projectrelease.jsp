@@ -3,8 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<c:if test="${sessionScope['HRMSEmployeeId']==null}" >
-   <c:redirect url="index.html" /> 
+<c:if test="${sessionScope['HRMSEmployeeId']==null}">
+    <c:redirect url="index.html" />
 </c:if>
 
 <head>
@@ -29,8 +29,6 @@
 
         <div class="content-bar">
             <c:import url="top-menu.jsp" />
-
-
 
             <div class="content-main">
                 <div class="col-md-12">
@@ -114,9 +112,6 @@
                                     </table>
                                 </c:if>
 
-
-
-
                             </div>
                         </div>
                         <div id="Project-Form" role="tabpanel" class="tab-pane">
@@ -124,7 +119,7 @@
                                 <div class="main-head">
                                     <h1 class="title"> Add New ProjectRelease </h1> </div>
                                 <div class="single-rowform">
-                                
+
                                 </div>
                             </div>
                         </div>
@@ -144,7 +139,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Edit ProjectRelease</h4>
                 </div>
-          
+
             </div>
             <div class="modal-footer"> </div>
         </div>
@@ -152,14 +147,11 @@
     </div>
     </div>
 
-
-
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/sidebar-menu.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.js"></script>
-
 
     <!-- Tablesorter: required for bootstrap -->
     <link rel="stylesheet" href="css/theme.bootstrap.css">
@@ -192,7 +184,6 @@
                 odd: ''
             };
 
-
             $("#ReleaseTable").tablesorter({
                     theme: "bootstrap",
 
@@ -208,7 +199,6 @@
                         filter_reset: ".reset",
 
                         filter_cssFilter: "form-control",
-
 
                     }
                 })
@@ -260,23 +250,21 @@
             });
         </script>
     </c:if>
-    
+
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-    
+
     <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script type="text/javascript">
-   
-	$('.form_date').datetimepicker({
-        language:  'en',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	
+        $('.form_date').datetimepicker({
+            language: 'en',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
     </script>
 </body>
 

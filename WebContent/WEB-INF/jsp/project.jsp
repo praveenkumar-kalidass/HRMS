@@ -3,17 +3,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<c:if test="${sessionScope['HRMSEmployeeId']==null}" >
-   <c:redirect url="index.html" /> 
+<c:if test="${sessionScope['HRMSEmployeeId']==null}">
+    <c:redirect url="index.html" />
 </c:if>
 <c:if test="${sessionScope['HRMSRole']=='Employee'}">
     <c:if test="${sessionScope['HRMSProjectId']==null}">
-       <c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
-   </c:if>
+        <c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
+    </c:if>
     <c:if test="${sessionScope['HRMSProjectId']!=null}">
-       <c:redirect url="project_view.html?id=${HRMSProjectId}" />
-   </c:if>
+        <c:redirect url="project_view.html?id=${HRMSProjectId}" />
+    </c:if>
 </c:if>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Project Details</title>
@@ -36,8 +37,6 @@
 
         <div class="content-bar">
             <c:import url="top-menu.jsp" />
-
-
 
             <div class="content-main">
                 <div class="col-md-12">
@@ -157,38 +156,37 @@
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Client</label>
                                                         <div class="col-md-8">
 
-                                                            <spring:select path="client.clientId" class="form-control" >
+                                                            <spring:select path="client.clientId" class="form-control">
                                                                 <spring:option value="0"> --Select --</spring:option>
                                                                 <c:forEach items="${ClientList}" var="client">
                                                                     <spring:option value="${client.clientId}">${client.clientName}</spring:option>
                                                                 </c:forEach>
                                                             </spring:select>
                                                         </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
+                                                        <div class="col-md-8">
+                                                            <spring:textarea path="description" class="form-control" id="Description" placeHolder="Description"></spring:textarea>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
-                                                            <div class="col-md-8">
-                                                                <spring:textarea path="description" class="form-control" id="Description" placeHolder="Description"></spring:textarea>
-                                                            </div>
-                                                        </div>
+                                                    </div>
 
-                                                        <div class="form-group row">
-                                                            <label for="example-text-input" class="col-md-4 col-form-label">Status</label>
-                                                            <div class="col-md-8">
-                                                                <div class="form-check">
-                                                                    <label class="form-check-label">
-                                                                        <spring:radiobutton class="form-check-input" path="status" value="Active" checked="checked" required="required" /> Active
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <spring:radiobutton class="form-check-input" path="status" value="Completed" required="required" /> Completed
-                                                                    </label>
-                                                                    <label class="form-check-label">
-                                                                        <spring:radiobutton class="form-check-input" path="status" value="Dropped" required="required" /> Dropped
-                                                                    </label>
-                                                                </div>
+                                                    <div class="form-group row">
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">Status</label>
+                                                        <div class="col-md-8">
+                                                            <div class="form-check">
+                                                                <label class="form-check-label">
+                                                                    <spring:radiobutton class="form-check-input" path="status" value="Active" checked="checked" required="required" /> Active
+                                                                </label>
+                                                                <label class="form-check-label">
+                                                                    <spring:radiobutton class="form-check-input" path="status" value="Completed" required="required" /> Completed
+                                                                </label>
+                                                                <label class="form-check-label">
+                                                                    <spring:radiobutton class="form-check-input" path="status" value="Dropped" required="required" /> Dropped
+                                                                </label>
                                                             </div>
                                                         </div>
-                                                    
+                                                    </div>
 
                                                     <div class="form-group row" align="center">
                                                         <div class="col-md-12">
@@ -210,8 +208,6 @@
             </div>
         </div>
     </div>
-   
-
 
 
     <link rel="stylesheet" href="css/jquery-ui.css" />
@@ -219,7 +215,6 @@
     <script src="js/sidebar-menu.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.js"></script>
-
 
     <!-- Tablesorter: required for bootstrap -->
     <link rel="stylesheet" href="css/theme.bootstrap.css">
@@ -229,32 +224,28 @@
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
-    
-    
-     <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-     <script src="js/jquery.form-validator.min.js"></script>
-<script>
 
-  $.validate({
-    lang: 'en',
-    borderColorOnError : '#F00',
-  });
-</script> 
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script src="js/jquery.form-validator.min.js"></script>
+    <script>
+        $.validate({
+            lang: 'en',
+            borderColorOnError: '#F00',
+        });
+    </script>
     <script type="text/javascript">
-   
-	$('.form_date').datetimepicker({
-        language:  'en',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	
-</script>
+        $('.form_date').datetimepicker({
+            language: 'en',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    </script>
 
     <script id="js">
         $(function() {
@@ -278,7 +269,6 @@
                 odd: ''
             };
 
-
             $("#ProjectTable").tablesorter({
                     theme: "bootstrap",
 
@@ -294,7 +284,6 @@
                         filter_reset: ".reset",
 
                         filter_cssFilter: "form-control",
-
 
                     }
                 })

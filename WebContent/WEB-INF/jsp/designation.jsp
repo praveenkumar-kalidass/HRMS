@@ -3,12 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<c:if test="${sessionScope['HRMSEmployeeId']==null}" >
-   <c:redirect url="index.html" /> 
+<c:if test="${sessionScope['HRMSEmployeeId']==null}">
+    <c:redirect url="index.html" />
 </c:if>
 <c:if test="${sessionScope['HRMSRole']=='Employee'}">
-   <c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
+    <c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
 </c:if>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Designation Details</title>
@@ -31,8 +32,6 @@
 
         <div class="content-bar">
             <c:import url="top-menu.jsp" />
-
-
 
             <div class="content-main">
                 <div class="col-md-12">
@@ -109,8 +108,6 @@
                                 </c:if>
 
 
-
-
                             </div>
                         </div>
                         <div id="Department-Form" role="tabpanel" class="tab-pane">
@@ -132,7 +129,7 @@
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                                         <div class="col-md-8">
 
-                                                            <spring:select path="department.departmentId" class="form-control" >
+                                                            <spring:select path="department.departmentId" class="form-control">
                                                                 <spring:option value="0"> --Select --</spring:option>
                                                                 <c:forEach items="${DepartmentList}" var="department">
                                                                     <spring:option value="${department.departmentId}">${department.departmentName}</spring:option>
@@ -147,11 +144,7 @@
                                                                 <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
                                                         </div>
 
-
-
                                                     </div>
-
-
 
                                                 </div>
                                             </div>
@@ -189,8 +182,6 @@
                             </div>
 
 
-
-
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                 <div class="col-md-8">
@@ -218,14 +209,11 @@
     </div>
     </div>
 
-
-
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/sidebar-menu.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.js"></script>
-
 
     <!-- Tablesorter: required for bootstrap -->
     <link rel="stylesheet" href="css/theme.bootstrap.css">
@@ -235,14 +223,13 @@
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
- <script src="js/jquery.form-validator.min.js"></script>
-<script>
-
-  $.validate({
-    lang: 'en',
-    borderColorOnError : '#F00',
-  });
-</script> 
+    <script src="js/jquery.form-validator.min.js"></script>
+    <script>
+        $.validate({
+            lang: 'en',
+            borderColorOnError: '#F00',
+        });
+    </script>
     <script id="js">
         $(function() {
             $.tablesorter.themes.bootstrap = {
@@ -265,7 +252,6 @@
                 odd: ''
             };
 
-
             $("table").tablesorter({
                     theme: "bootstrap",
 
@@ -281,7 +267,6 @@
                         filter_reset: ".reset",
 
                         filter_cssFilter: "form-control",
-
 
                     }
                 })

@@ -3,12 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<c:if test="${sessionScope['HRMSEmployeeId']==null}" >
-   <c:redirect url="index.html" /> 
+<c:if test="${sessionScope['HRMSEmployeeId']==null}">
+    <c:redirect url="index.html" />
 </c:if>
 <c:if test="${sessionScope['HRMSRole']=='Employee'}">
-   <c:redirect url="project_view.html?id=${HRMSProjectId}" />
+    <c:redirect url="project_view.html?id=${HRMSProjectId}" />
 </c:if>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Client</title>
@@ -138,63 +139,61 @@
                                                 <div class="form-group row">
                                                     <label for="example-text-input" class="col-md-4 col-form-label">Client Name</label>
                                                     <div class="col-md-8">
-                                                        <spring:input path="clientName" class="form-control" id="example-text-input" placeHolder="Client Name" required="required" data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" /> </div>
+                                                        <spring:input path="clientName" class="form-control" id="example-text-input" placeHolder="Client Name" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" /> </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="example-text-input" class="col-md-4 col-form-label">Address </label>
                                                     <div class="col-md-8">
-                                                        <spring:textarea path="street" class="form-control" id="address" required="required" placeHolder="Address" data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters"></spring:textarea>
+                                                        <spring:textarea path="street" class="form-control" id="address" required="required" placeHolder="Address" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters"></spring:textarea>
+                                                    </div>
                                                 </div>
-                                                </div>
-                                                
+
                                                 <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
-                                        <div class="col-md-8">
-                                            <spring:select path="country" class="countries form-control" id="countryId" required="required">
-                                                <option value="">Select Country</option>
-                                            </spring:select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">State</label>
-                                        <div class="col-md-8">
-                                           <spring:select path="state" class="states form-control" id="stateId" required="required">
-												<option value="">Select State</option>
-                                           </spring:select>
-                                        </div>
-                                    </div>
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
+                                                    <div class="col-md-8">
+                                                        <spring:select path="country" class="countries form-control" id="countryId" required="required">
+                                                            <option value="">Select Country</option>
+                                                        </spring:select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">State</label>
+                                                    <div class="col-md-8">
+                                                        <spring:select path="state" class="states form-control" id="stateId" required="required">
+                                                            <option value="">Select State</option>
+                                                        </spring:select>
+                                                    </div>
+                                                </div>
 
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">City</label>
-                                        <div class="col-md-8">
-                                           <spring:select path="city" class="cities form-control" id="cityId" required="required">
-												<option value="">Select City</option>
-											</spring:select>
-                                        </div>
-                                    </div>
+                                                <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">City</label>
+                                                    <div class="col-md-8">
+                                                        <spring:select path="city" class="cities form-control" id="cityId" required="required">
+                                                            <option value="">Select City</option>
+                                                        </spring:select>
+                                                    </div>
+                                                </div>
 
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number</label>
-                                        <div class="col-md-8">
-                                           <spring:input  path="phoneNumber" class="form-control"  id="mobile" placeHolder="Mobile Number" required="required"  data-validation="number" data-validation-error-msg="Mobile Number Not Valid"  />
-                                        </div>
-                                    </div>
+                                                <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number</label>
+                                                    <div class="col-md-8">
+                                                        <spring:input path="phoneNumber" class="form-control" id="mobile" placeHolder="Mobile Number" required="required" data-validation="number" data-validation-error-msg="Mobile Number Not Valid" />
+                                                    </div>
+                                                </div>
 
+                                                <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">Email Address</label>
+                                                    <div class="col-md-8">
+                                                        <spring:input path="eMail" class="form-control" id="email" placeHolder="Email Address" required="required" data-validation="email" data-validation-error-msg="Email Not Valid" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="example-text-input" class="col-md-4 col-form-label">WebSite</label>
+                                                    <div class="col-md-8">
+                                                        <spring:input path="website" class="form-control" id="WebSite" placeHolder="WebSite" />
+                                                    </div>
+                                                </div>
 
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Email Address</label>
-                                        <div class="col-md-8">
-                                            <spring:input  path="eMail" class="form-control"  id="email" placeHolder="Email Address" required="required" data-validation="email" data-validation-error-msg="Email Not Valid" />
-                                        </div>
-                                    </div> 
-                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">WebSite</label>
-                                        <div class="col-md-8">
-                                            <spring:input  path="website" class="form-control"  id="WebSite" placeHolder="WebSite" />
-                                        </div>
-                                    </div>
-                                                
-                                                
                                                 <div class="form-group row" align="center">
                                                     <div class="col-md-12">
                                                         <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
@@ -223,81 +222,79 @@
                 <div class="modal-body">
                     <c:if test="${ClientEdit!=null}">
                         <spring:form action="client_update" method="post" class="form-group" modelAttribute="ClientEdit">
-                                         
-                                         <spring:input path="clientId" type="hidden" class="form-control" id="example-text-input"  placeHolder="Client Id" /> 
-                                          <div class="col-md-12">
-                                                <div class="form-group row">
-                                                    <label for="example-text-input" class="col-md-4 col-form-label">Client Name</label>
-                                                    <div class="col-md-8">
-                                                        <spring:input path="clientName" class="form-control" id="example-text-input" required="required" placeHolder="Client Name" data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" /> </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label for="example-text-input" class="col-md-4 col-form-label">Address </label>
-                                                    <div class="col-md-8">
-                                                        <spring:textarea path="street" class="form-control" id="address" required="required" placeHolder="Address" data-validation="length"  data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters"></spring:textarea>
-                                                </div>
-                                                </div>
-                                                
-                                                <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
-                                        <div class="col-md-8">
-                                            <spring:select path="country" class="countries form-control" id="countryId" required="required">
-                                                <option value="">Select Country</option>
-                                            </spring:select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">State</label>
-                                        <div class="col-md-8">
-                                           <spring:select path="state" class="states form-control" id="stateId" required="required">
-												<option value="">Select State</option>
-                                           </spring:select>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">City</label>
-                                        <div class="col-md-8">
-                                           <spring:select path="city" class="cities form-control" id="cityId" required="required">
-												<option value="">Select City</option>
-											</spring:select>
-                                        </div>
+                            <spring:input path="clientId" type="hidden" class="form-control" id="example-text-input" placeHolder="Client Id" />
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-md-4 col-form-label">Client Name</label>
+                                    <div class="col-md-8">
+                                        <spring:input path="clientName" class="form-control" id="example-text-input" required="required" placeHolder="Client Name" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" /> </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-md-4 col-form-label">Address </label>
+                                    <div class="col-md-8">
+                                        <spring:textarea path="street" class="form-control" id="address" required="required" placeHolder="Address" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters"></spring:textarea>
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number</label>
-                                        <div class="col-md-8">
-                                           <spring:input  path="phoneNumber" class="form-control"  id="mobile" placeHolder="Mobile Number" required="required" data-validation="number" data-validation-error-msg="Mobile Number Not Valid" />
-                                        </div>
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
+                                    <div class="col-md-8">
+                                        <spring:select path="country" class="countries form-control" id="countryId" required="required">
+                                            <option value="">Select Country</option>
+                                        </spring:select>
                                     </div>
-
-
-                                    <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">Email Address</label>
-                                        <div class="col-md-8">
-                                            <spring:input  path="eMail" class="form-control"  id="email" placeHolder="Email Address" required="required" data-validation="email" data-validation-error-msg="Email Not Valid" />
-                                        </div>
-                                    </div> 
-                                     <div class="form-group row">
-                                        <label for="example-text-input" class="col-md-4 col-form-label">WebSite</label>
-                                        <div class="col-md-8">
-                                            <spring:input  path="website" class="form-control"  id="WebSite" placeHolder="WebSite" required="required" />
-                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-md-4 col-form-label">State</label>
+                                    <div class="col-md-8">
+                                        <spring:select path="state" class="states form-control" id="stateId" required="required">
+                                            <option value="">Select State</option>
+                                        </spring:select>
                                     </div>
-                                                
-                                                
-                                                <div class="form-group row" align="center">
-                                                    <div class="col-md-12">
-                                                        <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
-                                                </div>
-                                            </div>
-                </spring:form>
-                </c:if>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-md-4 col-form-label">City</label>
+                                    <div class="col-md-8">
+                                        <spring:select path="city" class="cities form-control" id="cityId" required="required">
+                                            <option value="">Select City</option>
+                                        </spring:select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number</label>
+                                    <div class="col-md-8">
+                                        <spring:input path="phoneNumber" class="form-control" id="mobile" placeHolder="Mobile Number" required="required" data-validation="number" data-validation-error-msg="Mobile Number Not Valid" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-md-4 col-form-label">Email Address</label>
+                                    <div class="col-md-8">
+                                        <spring:input path="eMail" class="form-control" id="email" placeHolder="Email Address" required="required" data-validation="email" data-validation-error-msg="Email Not Valid" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-md-4 col-form-label">WebSite</label>
+                                    <div class="col-md-8">
+                                        <spring:input path="website" class="form-control" id="WebSite" placeHolder="WebSite" required="required" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row" align="center">
+                                    <div class="col-md-12">
+                                        <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
+                                </div>
+                            </div>
+                        </spring:form>
+                    </c:if>
+                </div>
+                <div class="modal-footer"> </div>
             </div>
-            <div class="modal-footer"> </div>
-        </div>
 
-    </div>
+        </div>
     </div>
 
     <link rel="stylesheet" href="css/jquery-ui.css" />
@@ -306,7 +303,6 @@
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.js"></script>
     <!-- jQuery -->
-
 
     <!-- Tablesorter: required for bootstrap -->
     <link rel="stylesheet" href="css/theme.bootstrap.css">
@@ -317,14 +313,13 @@
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
     <script src="js/location.js"></script>
- <script src="js/jquery.form-validator.min.js"></script>
-<script>
-
-  $.validate({
-    lang: 'en',
-    borderColorOnError : '#F00',
-  });
-</script> 
+    <script src="js/jquery.form-validator.min.js"></script>
+    <script>
+        $.validate({
+            lang: 'en',
+            borderColorOnError: '#F00',
+        });
+    </script>
     <script id="js">
         $(function() {
             $.tablesorter.themes.bootstrap = {
@@ -347,7 +342,6 @@
                 odd: ''
             };
 
-
             $("table").tablesorter({
                     theme: "bootstrap",
 
@@ -363,7 +357,6 @@
                         filter_reset: ".reset",
 
                         filter_cssFilter: "form-control",
-
 
                     }
                 })
