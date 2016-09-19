@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import com.i2i.Util.FileUtil;
+import com.i2i.util.FileUtil;
 import com.i2i.connection.HibernateConnection;
 import com.i2i.exception.DataException;
 import com.i2i.model.Certification;

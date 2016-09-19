@@ -1,4 +1,4 @@
-package com.i2i.Util;
+package com.i2i.util;
 
 import java.lang.Exception; 
 import java.util.Date;
