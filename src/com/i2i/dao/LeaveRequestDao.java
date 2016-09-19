@@ -28,7 +28,7 @@ public class LeaveRequestDao {
     private HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory factory = hibernateConnection.establishConnection();
     
-/**
+    /**
      * <p>
      * This method opens a new session and Inserts the model object of the leaveRequest into the database.
      * </p>
@@ -42,21 +42,19 @@ public class LeaveRequestDao {
      */
     public boolean insertLeaveRequest(LeaveRequest leaveRequest) throws DataException{
         Session session = factory.openSession();
-    	try {
+        try {
             Transaction transaction = session.beginTransaction();
             session.save(leaveRequest);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-        	exception.printStackTrace();
-            FileUtil.ErrorLogger("Exception in insertLeaveRequest() : " + exception.getMessage());
+            exception.printStackTrace();
+            FileUtil.errorLogger("Exception in insertLeaveRequest() : " + exception.getMessage());
             throw new DataException("Error while adding LeaveRequest ID : " + leaveRequest.getLeaveId());
         } finally {
             session.close();
         }
     }
-    
-    
     
     /**
      * <p>
@@ -72,21 +70,21 @@ public class LeaveRequestDao {
      */
     public boolean modifyLeaveRequest(LeaveRequest leaveRequest) throws DataException{
         Session session = factory.openSession();
-    	try {
+        try {
             Transaction transaction = session.beginTransaction();
             session.update(leaveRequest);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-        	exception.printStackTrace();
-            FileUtil.ErrorLogger("Exception in modifyLeaveRequest() : " + exception.getMessage());
+            exception.printStackTrace();
+            FileUtil.errorLogger("Exception in modifyLeaveRequest() : " + exception.getMessage());
             throw new DataException("Error while adding LeaveRequest ID : " + leaveRequest.getLeaveId());
         } finally {
             session.close();
         }
     }
     
-/**
+    /**
      * <p>
      * This method opens a new session and Deletes the leaveRequest from the records.
      * </p>
@@ -100,20 +98,20 @@ public class LeaveRequestDao {
      */
     public boolean removeLeaveRequest(LeaveRequest leaveRequest) throws DataException {
         Session session = factory.openSession();
-    	try {
+        try {
             Transaction transaction = session.beginTransaction();
             session.delete(leaveRequest);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in removeEmployee() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in removeEmployee() : " + exception.getMessage());
             throw new DataException("Error while deleting LeaveRequest ID : " + leaveRequest.getLeaveId());
         } finally {
             session.close();
         }
     }
 
-/**
+     /**
      * <p>
      * this method searches the leaveRequest from the records using leaveRequest ID and 
      * returns the data as a model object to display.
@@ -127,12 +125,12 @@ public class LeaveRequestDao {
      *       throws error message if problem arises with searching the data in the database.
      */
     public LeaveRequest findLeaveRequest(int leaveId) throws DataException {
-    	Session session = factory.openSession();
-    	try {    	    
-    	    Transaction transaction = session.beginTransaction();
+        Session session = factory.openSession();
+        try {            
+            Transaction transaction = session.beginTransaction();
             return (LeaveRequest)session.get(LeaveRequest.class, leaveId);
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in findLeaveRequest() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in findLeaveRequest() : " + exception.getMessage());
             throw new DataException("Error while searching LeaveRequest ID : " + leaveId);
         } finally {
             session.close();
@@ -150,67 +148,65 @@ public class LeaveRequestDao {
      *       throws error message if problem arises with retrieving list of data from the database.
      */
     public List<LeaveRequest> retrieveLeaveRequests() throws DataException {
-    	Session session = factory.openSession();
-    	try {        	
-        	Transaction transaction = session.beginTransaction();
+        Session session = factory.openSession();
+        try {            
+            Transaction transaction = session.beginTransaction();
             return session.createCriteria(LeaveRequest.class).list();
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
             throw new DataException("Error while displaying all LeaveRequests");
         } finally {
             session.close();
         }
     }
     
-    
     /**
      * <p>
      * This method retrieves the leaveRequest data for given employee from the records and returns the list of data.
      * </p>
-	 * @param employeeId
-	 *            identity of the employee
+     * @param employeeId
+     *            identity of the employee
      * @return list
      *       Gives the list of leaveRequest details for given employee stored in the database.
      * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      */
     public List<LeaveRequest> retrieveLeaveRequestsByEmployee(int employeeId) throws DataException {
-    	Session session = factory.openSession();
-    	try {        	
-        	Transaction transaction = session.beginTransaction();
-        	return session.createQuery("From LeaveRequest WHERE employee_id=" + employeeId +" order by id desc").list();
+        Session session = factory.openSession();
+        try {            
+            Transaction transaction = session.beginTransaction();
+            return session.createQuery("From LeaveRequest WHERE employee_id=" + employeeId +" order by id desc").list();
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
-            throw new DataException("Error while displaying all LeaveRequests");
+            FileUtil.errorLogger("Exception in retrieveLeaveRequestsByEmployee() : " + exception.getMessage());
+            throw new DataException("Error while displaying all LeaveRequests for given Employee");
         } finally {
             session.close();
         }
     }
     
-    
     /**
      * <p>
      * This method retrieves the leaveRequest data for given employee for given period from the records and returns the list of data.
      * </p>
-	 * @param employeeId
-	 *            identity of the employee
-	 * @param fromDate
-	 *            from the Period of Date
-	 * @param toDate
-	 *            to the Period of Date
+     * @param employeeId
+     *            identity of the employee
+     * @param fromDate
+     *            from the Period of Date
+     * @param toDate
+     *            to the Period of Date
      * @return list
      *       Gives the list of leaveRequest details for given employee stored in the database.
      * @throws DataException
      *       throws error message if problem arises with retrieving list of data from the database.
      */
     public List<LeaveRequest> calculateLeaveDaysForEmployee(int employeeId, String fromDate, String toDate) throws DataException {
-    	Session session = factory.openSession();
-    	try {        	
-        	Transaction transaction = session.beginTransaction();
-        	return session.createQuery("From LeaveRequest WHERE employee_id=" + employeeId +" and from_date>='"+ fromDate +"' and to_date <='"+ toDate+"' and status='Approved'").list();
+        Session session = factory.openSession();
+        try {            
+            Transaction transaction = session.beginTransaction();
+            return session.createQuery("From LeaveRequest WHERE employee_id=" + employeeId +" and from_date>='"+ fromDate +"' and to_date <='"+ toDate+"' and status='Approved'").list();
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
-            throw new DataException("Error while displaying all LeaveRequests");
+            FileUtil.errorLogger("Exception in calculateLeaveDaysForEmployee() : " + exception.getMessage());
+            throw new DataException("Error while Calculating no of Days leave for given Employee");
         } finally {
             session.close();
         }

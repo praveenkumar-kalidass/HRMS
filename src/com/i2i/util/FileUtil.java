@@ -23,7 +23,7 @@ public class FileUtil {
   * @param error
   *      Contains error message
   */
- public static void ErrorLogger(String error) {
+ public static void errorLogger(String error) {
         try {
             Date date = new Date();
             System.out.println("Date : "+date + "- Error : " + error + "\n");              
@@ -31,5 +31,4 @@ public class FileUtil {
             System.out.println(e);         
         }    
   }
-
 }

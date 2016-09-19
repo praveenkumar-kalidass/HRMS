@@ -39,14 +39,14 @@ public class RoleDao {
      *       throws error message if problem arises with inserting the data in the database.
      */
     public boolean insertRole(Role role) throws DataException{
-    	Session session = factory.openSession();
+        Session session = factory.openSession();
         try {
             Transaction transaction = session.beginTransaction();
             session.save(role);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in insertRole() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in insertRole() : " + exception.getMessage());
             throw new DataException("Error while adding Role ID : " + role.getRoleId());
         } finally {
             session.close();
@@ -67,13 +67,13 @@ public class RoleDao {
      */
     public boolean modifyRole(Role role) throws DataException{
         Session session = factory.openSession();
-    	try {
+        try {
             Transaction transaction = session.beginTransaction();
             session.update(role);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in modifyRole() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in modifyRole() : " + exception.getMessage());
             throw new DataException("Error while modifying Role ID : " + role.getRoleId());
         } finally {
             session.close();
@@ -93,14 +93,14 @@ public class RoleDao {
      *       throws error message if problem arises with deleting the data in the database.
      */
     public boolean removeRole(Role role) throws DataException {
-    	Session session = factory.openSession();
+        Session session = factory.openSession();
         try {
-        	Transaction transaction = session.beginTransaction();
+            Transaction transaction = session.beginTransaction();
             session.delete(role);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in removeRole() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in removeRole() : " + exception.getMessage());
             throw new DataException("Error while deleting Role ID : " + role.getRoleId());
         } finally {
             session.close();
@@ -121,11 +121,11 @@ public class RoleDao {
      *       throws error message if problem arises with searching the data in the database.
      */
     public Role findRole(int roleId) throws DataException {
-    	Session session = factory.openSession();
+        Session session = factory.openSession();
         try {
             return (Role)session.get(Role.class, roleId);
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in findRole() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in findRole() : " + exception.getMessage());
             throw new DataException("Error while searching Role ID : " + roleId);
         } finally {
             session.close();
@@ -143,11 +143,11 @@ public class RoleDao {
     *       throws error message if problem arises with retrieving list of data from the database.
     */
    public List<Role> retrieveRoles() throws DataException {
-   	Session session = factory.openSession();
+       Session session = factory.openSession();
        try {
            return session.createCriteria(Role.class).list();
        } catch (HibernateException exception) {
-           FileUtil.ErrorLogger("Exception in retrieveRoles() : " + exception.getMessage());
+           FileUtil.errorLogger("Exception in retrieveRoles() : " + exception.getMessage());
            throw new DataException("Error while displaying all Roles");
        } finally {
            session.close();

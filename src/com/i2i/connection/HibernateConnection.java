@@ -50,11 +50,11 @@ public class HibernateConnection {
     public SessionFactory establishConnection() {
         if(configuration==null){
             configuration=new AnnotationConfiguration();
-   	        configuration.configure("hibernate.cfg.xml"); 
-   	    }
-   	    if(sessionFactory==null){	
-	        sessionFactory=configuration.configure().buildSessionFactory();
-	    }
+               configuration.configure("hibernate.cfg.xml"); 
+           }
+           if(sessionFactory==null){    
+            sessionFactory=configuration.configure().buildSessionFactory();
+        }
         return sessionFactory;
    }
  }

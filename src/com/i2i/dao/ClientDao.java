@@ -24,7 +24,7 @@ import com.i2i.model.Client;
  * @created 2016-09-09
  */
 public class ClientDao {
-	private HibernateConnection hibernateConnection = HibernateConnection.createObject();
+    private HibernateConnection hibernateConnection = HibernateConnection.createObject();
     SessionFactory factory = hibernateConnection.establishConnection();
     
     /**
@@ -41,13 +41,13 @@ public class ClientDao {
      */
     public boolean insertClient(Client client) throws DataException{
         Session session = factory.openSession();
-    	try {
+        try {
             Transaction transaction = session.beginTransaction();
             session.save(client);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in insertClient() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in insertClient() : " + exception.getMessage());
             throw new DataException("Error while adding Client ID : " + client.getClientId());
         } finally {
             session.close();
@@ -68,13 +68,13 @@ public class ClientDao {
      */
     public boolean modifyClient(Client client) throws DataException{
         Session session = factory.openSession();
-    	try {
+        try {
             Transaction transaction = session.beginTransaction();
             session.update(client);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in modifyClient() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in modifyClient() : " + exception.getMessage());
             throw new DataException("Error while updating Client ID : " + client.getClientId());
         } finally {
             session.close();
@@ -95,13 +95,13 @@ public class ClientDao {
      */
     public boolean removeClient(Client client) throws DataException {
         Session session = factory.openSession();
-    	try {
+        try {
             Transaction transaction = session.beginTransaction();
             session.delete(client);
             transaction.commit();
             return true;
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in removeEmployee() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in removeClient() : " + exception.getMessage());
             throw new DataException("Error while deleting Client ID : " + client.getClientId());
         } finally {
             session.close();
@@ -122,11 +122,11 @@ public class ClientDao {
      *       throws error message if problem arises with searching the data in the database.
      */
     public Client findClient(int clientId) throws DataException {
-    	Session session = factory.openSession();
-    	try {    	    
+        Session session = factory.openSession();
+        try {            
             return (Client)session.get(Client.class, clientId);
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in findClient() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in findClient() : " + exception.getMessage());
             throw new DataException("Error while searching Client ID : " + clientId);
         } finally {
             session.close();
@@ -144,11 +144,11 @@ public class ClientDao {
      *       throws error message if problem arises with retrieving list of data from the database.
      */
     public List<Client> retrieveClients() throws DataException {
-    	Session session = factory.openSession();
-    	try {        	
-    		return session.createCriteria(Client.class).list();
+        Session session = factory.openSession();
+        try {            
+            return session.createCriteria(Client.class).list();
         } catch (HibernateException exception) {
-            FileUtil.ErrorLogger("Exception in retrieveClients() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in retrieveClients() : " + exception.getMessage());
             throw new DataException("Error while displaying all Clients");
         } finally {
             session.close();
