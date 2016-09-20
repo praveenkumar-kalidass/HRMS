@@ -46,7 +46,7 @@
                                         <div class="col-md-8">
 
                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                                                <input class="form-control readonly" size="16" type="text" required="required" placeHolder="From Date"  >
+                                                <input class="form-control readonly"  size="16" type="text" required="required" placeHolder="From Date"  >
                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                             </div>
                                             <input name="fromDate" id="dtp_input3" type="hidden" class="form-control" />
@@ -57,7 +57,7 @@
                                         <div class="col-md-8">
 
                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-                                                <input class="form-control readonly" size="16" type="text"  onchange="cldate();" required="required" placeHolder="To Date"   >
+                                                <input class="form-control readonly"  size="16" type="text"  onchange="cldate();" required="required" placeHolder="To Date"   >
                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                             </div>
                                             <input name="toDate" id="dtp_input4" type="hidden" class="form-control" />
@@ -84,12 +84,16 @@
                                     </script>
 
                                     <input name="noDays" type="hidden" id="noofDays" class="form-control" />
+                            
                             </div>
+                            
+                          
 
                             <div class="form-group row" align="center">
                                 <div class="col-md-12">
                                     <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Generate"> </div>
                             </div>
+                            
 
                             </form>
 
@@ -128,6 +132,7 @@
         e.preventDefault();
     });
 </script>
+
 </body>
 
 </html>

@@ -55,7 +55,7 @@
 
                         <div class="form">
                             <c:if test="${Employee!=null}">
-                                <spring:form method="post" modelAttribute="Employee" action="employee_add" commandName="Employee">
+                                <spring:form method="post" class="personal-form" modelAttribute="Employee" action="employee_add" commandName="Employee">
 
                                     <div class="col-md-12">
 
@@ -187,8 +187,31 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Username</label>
                                                 <div class="col-md-8">
-                                                    <spring:input path="employeeUserName" class="form-control" placeHolder="Username" required="required" data-validation="length" data-validation-length="min6" data-validation-error-msg="Please Enter the Valid UserName Minimum 6 Characters" />
+                                                    <spring:input path="employeeUserName" id="userName" class="form-control" placeHolder="Username" onkeydown="userNameValid();"  onkeypress="userNameValid();" onchange="userNameValid();"  required="required" data-validation="length" data-validation-length="min6" data-validation-error-msg="Please Enter the Valid UserName Minimum 6 Characters" />
                                                 </div>
+                                                <script>
+                                                function userNameValid() {
+                                                    var xhttp;
+                                                    var userName = document.getElementById('userName').value;
+
+                                                    if (window.XMLHttpRequest) {
+                                                        // code for modern browsers
+                                                        xhttp = new XMLHttpRequest();
+                                                    } else {
+                                                        // code for IE6, IE5
+                                                        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                                    }
+                                                    xhttp.onreadystatechange = function() {
+                                                        if (this.readyState == 4 && this.status == 200) {
+                                                            document.getElementById("userNameValid").innerHTML = this.responseText;
+                                                        }
+                                                    };
+                                                    xhttp.open("GET", "userNameValid.html?userName=" + userName, true);
+                                                    xhttp.send();
+                                                }
+                                            </script>
+                                                <div id="userNameValid"><input type="hidden" id="userNameValidInput" value="inCorrect" > </div>
+                                                <div class="col-md-8 text-right" id="errorMessage" style="color:#F00;">  </div>
                                             </div>
 
                                             <div class="form-group row">
@@ -257,6 +280,17 @@
                 });
             </script>
         </c:if>
+<script>
+$( ".personal-form" ).submit(function( event ) {
+  if ( $("#userNameValidInput").val() === "correct" ) {
+	  
+    return;
+  }
+ 
+  $( "#errorMessage" ).text( "UserName Already Exists..!" ).show().fadeOut(3000);
+  event.preventDefault();
+});
+</script>
 </body>
 
 </html>

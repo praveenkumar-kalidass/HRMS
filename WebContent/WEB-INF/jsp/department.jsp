@@ -137,7 +137,7 @@
             </div>
         </div>
     </div>
-    <div id="myModal" class="modal fade" role="dialog" aria-hidden="false" data-backdrop="static">
+    <div id="myModal" class="modal fade" role="dialog" aria-hidden="false" data-backdrop="static" >
         <div class="modal-dialog">
 
             <!-- Modal content-->

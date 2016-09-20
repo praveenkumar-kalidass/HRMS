@@ -606,7 +606,37 @@ public class EmployeeController {
         }
         return "personal";
     }
-
+    
+    /**
+     * <p>
+     * Mapping the request which required by user for userNameValid.html it will sent
+     * the page used to check the userName is already exists or not.
+     * </p>
+     * 
+     * @param model
+     *            ModelMap object used for setting Employee obeject to insert
+     *            personal details, Department List and Role List
+     * @RequestParam userName 
+     *            Given Username           
+     * @return contains url of personal page
+     * 
+     */
+    @RequestMapping(value = "/userNameValid", method = RequestMethod.GET)
+    public String userNameValid(@RequestParam("userName") String userName, ModelMap map) {
+        try {
+            int valid = 1;
+            for(Employee employee : employeeService.retrieveEmployees()){
+            	if((employee.getEmployeeUserName()).equals(userName)) {
+            		valid = 0;
+            	} 
+            }
+            map.addAttribute("Valid", valid);
+        } catch (DataException exception)  {
+            map.addAttribute("message", exception.getMessage());
+        }
+        return "userNameValid";
+    }
+    
     /**
      * <p>
      * This method passes the employee personal details as the model object into
