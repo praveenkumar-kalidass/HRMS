@@ -215,7 +215,7 @@ public class EmployeeDao {
     public List<Employee> retrieveEmloyeeByDesignation(int designationId) throws DataException {
         Session session = factory.openSession();
         try {
-            return session.createQuery("From Employee WHERE designation_id="+designationId).list();
+            return session.createQuery("From Employee WHERE designation_id="+designationId+" AND id not in(select employee.employeeId from Team)").list();
         } catch (Exception exception) {
             FileUtil.errorLogger("Exception in retrieveEmployeeByDesignation() : " + exception.getMessage());
             throw new DataException("Error while displaying all Employee fro Given Designation");
