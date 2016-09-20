@@ -4,9 +4,7 @@
     <div class="form-group row">
         <label for="example-text-input" class="col-md-4 col-form-label">Address</label>
         <div class="col-md-8">
-            <textarea name="addresses[1].street" class="form-control" placeHolder="Address" readonly="readonly" data-validation="length" required="required" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters">
-                <c:out value="${address}" />
-            </textarea>
+            <textarea name="addresses[1].street" class="form-control" placeHolder="Address" readonly="readonly" data-validation="length" required="required" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters"><c:out value="${address}" /></textarea>
         </div>
     </div>
     <div class="form-group row">
