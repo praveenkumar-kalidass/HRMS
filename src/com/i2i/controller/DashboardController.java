@@ -90,7 +90,9 @@ public class DashboardController {
             
             if ((new Date().getMonth() + 1) == (date.getMonth() + 1) && (new Date().getDate()) == (date.getDate())) {
                 model.addAttribute("BirthdayWish", "Happy Birthday");
-            } else if ((new Date().getMonth() + 1) <= (date.getMonth() + 1)) {
+            } else if ((new Date().getMonth() + 1) < (date.getMonth() + 1)) {
+                model.addAttribute("Birthday", new Date().getYear() + 1900 + "/" + (date.getMonth() + 1) + "/" + date.getDate());
+            } else if ((new Date().getMonth() + 1) == (date.getMonth() + 1) && (new Date().getDate()) < (date.getDate())) {
                 model.addAttribute("Birthday", new Date().getYear() + 1900 + "/" + (date.getMonth() + 1) + "/" + date.getDate());
             } else {
                 model.addAttribute("Birthday", new Date().getYear() + 1901 + "/" + (date.getMonth() + 1) + "/" + date.getDate());

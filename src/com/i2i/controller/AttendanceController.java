@@ -77,6 +77,45 @@ public class AttendanceController {
 
     /**
      * <p>
+     * Mapping the request which required by user for attendance.html it will
+     * sent the page and attendance list stored in database and model object to
+     * add new employee
+     * </p>
+     * 
+     * @param model
+     *            ModelMap object used for setting Attendance model object,
+     *            attendance list and Employee List
+     * @param session
+     *            HttpSession object which stores the current session of the
+     *            authenticated user.
+     * @return String returns the redirecting page url based on the appropriate
+     *         operation.
+     */
+    @RequestMapping("/attendance_view")
+    public String viewAttendanceForEmployee(@RequestParam("id") int employeeId, ModelMap model, HttpSession session) {
+        try {
+            model.addAttribute("AttendanceList", attendanceService.getCompleteAttendanceByEmployeeId(employeeId));
+            model.addAttribute("Date", new Date());
+            if (attendanceService.getAttendancesByEmployeeId(employeeId).size() != 0) {
+                for (Attendance attendance : attendanceService.getAttendancesByEmployeeId(employeeId)) {
+                    if (attendance.getTimeOut() == null) {
+                        model.addAttribute("CheckOut", "True");
+                    } else {
+                        model.addAttribute("CheckIn", "True");
+                    }
+                }
+            } else {
+                model.addAttribute("CheckIn", "True");
+            }
+
+        } catch (DataException e) {
+            model.addAttribute("message", e.getMessage());
+        }
+        return "attendanceView";
+    }
+
+    /**
+     * <p>
      * This method passes the attendance detail as the model object into its
      * Service class to insert into the database. Processes check in for an
      * employee for the corresponding day.

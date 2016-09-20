@@ -102,6 +102,9 @@
                                                     <c:out value="${designation.designationName}"></c:out>
                                                 </td>
                                                 <td>
+                                                    <a href="attendance_view.html?id=<c:out value='${employee.employeeId} ' />" > <i class="fa fa-edit"></i> View Attendance </a>
+                                                </td>
+                                                <td>
                                                     <a href="employee_delete.html?id=<c:out value='${employee.employeeId} ' />" class="delete"> <i class="fa fa-trash"></i> Delete </a>
                                                 </td>
 
