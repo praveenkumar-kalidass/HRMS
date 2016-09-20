@@ -16,7 +16,8 @@
     <link href="images/logo1.png" rel="icon" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sidebar-menu.css"> </head>
+    <link rel="stylesheet" href="css/sidebar-menu.css">
+    <link rel="stylesheet" href="css/formvalid.css">  </head>
 
 <body>
     <div id="dialog-confirm" title="Alert" style="display:none;">

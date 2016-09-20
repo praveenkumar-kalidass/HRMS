@@ -21,7 +21,9 @@
     <link href="images/logo1.png" rel="icon" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sidebar-menu.css"> </head>
+    <link rel="stylesheet" href="css/sidebar-menu.css"> 
+    <link rel="stylesheet" href="css/formvalid.css"> 
+    </head>
 
 <body>
     <div id="dialog-confirm" title="Alert" style="display:none;">
@@ -143,7 +145,7 @@
                                                         <div class="col-md-8">
 
                                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly placeHolder="Date of Started">
+                                                                <input class="form-control readonly" required="required" size="16" type="text"   placeHolder="Date of Started" required="required">
                                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                             </div>
                                                             <spring:input path="fromDate" id="dtp_input2" type="hidden" class="form-control" placeHolder="Date of Started" />
@@ -153,8 +155,8 @@
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Client</label>
                                                         <div class="col-md-8">
 
-                                                            <spring:select path="client.clientId" class="form-control">
-                                                                <spring:option value="0"> --Select --</spring:option>
+                                                            <spring:select path="client.clientId" class="form-control" required="required">
+                                                                <option value=""> --Select --</option>
                                                                 <c:forEach items="${ClientList}" var="client">
                                                                     <spring:option value="${client.clientId}">${client.clientName}</spring:option>
                                                                 </c:forEach>
@@ -332,6 +334,11 @@
             });
         </script>
     </c:if>
+    <script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 </body>
 
 </html>

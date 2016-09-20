@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sidebar-menu.css">
+    <link rel="stylesheet" href="css/formvalid.css">
+    
 </head>
 
 <body>
@@ -248,7 +250,7 @@
                                                         <div class="col-md-8">
 
                                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
+                                                                <input class="form-control readonly" size="16" type="text" placeHolder="From" required="required"  >
                                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                             </div>
                                                             <spring:input path="leaveFromDate" id="dtp_input3" type="hidden" class="form-control" />
@@ -259,7 +261,7 @@
                                                         <div class="col-md-8">
 
                                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" onchange="cldate();" readonly>
+                                                                <input class="form-control readonly" size="16" type="text"  onchange="cldate();" required="required" placeHolder="To" >
                                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                             </div>
                                                             <spring:input path="leaveToDate" id="dtp_input4" type="hidden" class="form-control" />
@@ -453,6 +455,11 @@
 
         });
     </script>
+    <script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 </body>
 
 </html>           

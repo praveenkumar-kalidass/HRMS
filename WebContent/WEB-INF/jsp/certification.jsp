@@ -8,7 +8,7 @@
 </c:if>
 <c:if test="${sessionScope['HRMSRole']=='Employee'}">
     <c:redirect url="employee_view.html?id=${HRMSEmployeeId}" />
-</c:if>f>
+</c:if>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -83,7 +83,9 @@
                                             lang: 'en',
                                             borderColorOnError: '#F00',
                                         });
-
+                                        $(".readonly").keydown(function(e){
+                                            e.preventDefault();
+                                        });
                                     }
                                 };
                                 xhttp.open("GET", "certification_form.html?noof=" + noof + "&eid=" + employeeId, true);
@@ -190,6 +192,12 @@
             });
         </script>
     </c:if>
+    <script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
+    
 </body>
 
 </html>

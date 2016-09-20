@@ -16,7 +16,8 @@
     <link href="images/logo1.png" rel="icon" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sidebar-menu.css"> </head>
+    <link rel="stylesheet" href="css/sidebar-menu.css"> 
+    <link rel="stylesheet" href="css/formvalid.css"></head>
 
 <body>
     <div id="dialog-confirm" title="Alert" style="display:none;">
@@ -129,8 +130,8 @@
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                                         <div class="col-md-8">
 
-                                                            <spring:select path="department.departmentId" class="form-control">
-                                                                <spring:option value="0"> --Select --</spring:option>
+                                                            <spring:select path="department.departmentId" class="form-control" required="required" >
+                                                                <option value=""> --Select --</option>
                                                                 <c:forEach items="${DepartmentList}" var="department">
                                                                     <spring:option value="${department.departmentId}">${department.departmentName}</spring:option>
                                                                 </c:forEach>
@@ -185,7 +186,7 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                 <div class="col-md-8">
-                                    <spring:select path="department" class="form-control">
+                                    <spring:select path="department" class="form-control" required="required">
                                         <c:set value="${DesignationEdit.department}" var="dep" />
                                         <spring:option value="${dep.departmentId}">${dep.departmentName}</spring:option>
                                         <spring:option value="0"> -------</spring:option>

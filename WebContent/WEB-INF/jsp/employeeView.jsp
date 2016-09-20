@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sidebar-menu.css">
+    <link rel="stylesheet" href="css/formvalid.css">
 </head>
 
 <body>
@@ -396,7 +397,7 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Course Name </label>
                                     <div class="col-md-8">
-                                        <spring:input path="courseName" class="form-control" />
+                                        <spring:input path="courseName" class="form-control"  required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" />
                                     </div>
                                 </div>
 
@@ -428,7 +429,7 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Name of the Institution</label>
                                     <div class="col-md-8">
-                                        <spring:input path="institution" class="form-control" />
+                                        <spring:input path="institution" class="form-control" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" />
                                     </div>
                                 </div>
 
@@ -469,21 +470,21 @@
                                             <br> Ex : BE(CSE)
                                         </label>
                                         <div class="col-md-8">
-                                            <spring:input path="qualification" class="form-control" />
+                                            <spring:input path="qualification" class="form-control" required="required" />
                                         </div>
                                     </div>
                                 </c:if>
 
                                 <c:if test="${EducationEdit.type=='HSC'}">
                                     <div class="form-group row">
-                                        <spring:input path="qualification" type="hidden" class="form-control" />
+                                        <spring:input path="qualification" type="hidden" class="form-control" required="required" />
 
                                     </div>
                                 </c:if>
 
                                 <c:if test="${EducationEdit.type =='SSLC'}">
                                     <div class="form-group row">
-                                        <spring:input path="qualification" type="hidden" class="form-control" />
+                                        <spring:input path="qualification" type="hidden" class="form-control" required="required" />
                                     </div>
                                 </c:if>
 
@@ -517,7 +518,7 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Name of the Institution</label>
                                     <div class="col-md-8">
-                                        <spring:input path="institution" class="form-control" />
+                                        <spring:input path="institution" class="form-control" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" />
                                     </div>
                                 </div>
 
@@ -525,14 +526,14 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">Board/ University
                                     </label>
                                     <div class="col-md-8">
-                                        <spring:input path="board" class="form-control" />
+                                        <spring:input path="board" class="form-control" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Board Minimum 5 Characters" />
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Percentage</label>
                                     <div class="col-md-8">
-                                        <spring:input path="percentage" class="form-control" />
+                                        <spring:input path="percentage" class="form-control" required="required" data-validation="number" data-validation-allowing="float" data-validation-error-msg="Enter valid Percentage"  />
                                     </div>
                                 </div>
 
@@ -570,37 +571,37 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Address</label>
                                     <div class="col-md-8">
-                                        <spring:textarea path="street" class="form-control" id="address" placeHolder="Address"></spring:textarea>
+                                        <spring:textarea path="street" class="form-control" id="address" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Street Minimum 5 Characters" placeHolder="Address" required="required"></spring:textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Country</label>
                                     <div class="col-md-8">
-                                        <spring:select path="country" class="countries form-control" id="countryId">
-                                            <option value="0">-----------------</option>
+                                        <spring:select path="country" class="countries form-control" id="countryId" required="required">
+                                            <option value="">-----------------</option>
                                         </spring:select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">State</label>
                                     <div class="col-md-8">
-                                        <spring:select path="state" class="states form-control" id="stateId">
+                                        <spring:select path="state" class="states form-control" id="stateId" required="required">
                                             <option value="<c:out value='${AddressEdit.state}' />">
                                                 <c:out value="${AddressEdit.state}" />
                                             </option>
-                                            <option value="0">-----------------</option>
+                                            <option value="">-----------------</option>
                                         </spring:select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">City</label>
                                     <div class="col-md-8">
-                                        <spring:select path="city" class="cities form-control" id="cityId">
+                                        <spring:select path="city" class="cities form-control" id="cityId" required="required">
                                             <option value="<c:out value='${AddressEdit.city}' />">
                                                 <c:out value="${AddressEdit.city}" />
                                             </option>
-                                            <option value="0">-----------------</option>
+                                            <option value="">-----------------</option>
                                         </spring:select>
                                     </div>
                                 </div>
@@ -608,7 +609,7 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Pincode</label>
                                     <div class="col-md-8">
-                                        <spring:input path="pincode" class="form-control" id="pincode" placeHolder="Pincode" />
+                                        <spring:input path="pincode" class="form-control" id="pincode" required="required" placeHolder="Pincode" data-validation="number" data-validation-error-msg="Pin Code Not Valid" />
                                     </div>
                                 </div>
 
@@ -616,7 +617,7 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">Mobile Number
                                     </label>
                                     <div class="col-md-8">
-                                        <spring:input path="phoneNumber" class="form-control" id="mobile" placeHolder="Mobile Number" />
+                                        <spring:input path="phoneNumber" class="form-control" id="mobile" placeHolder="Mobile Number" required="required" data-validation="number" data-validation-error-msg="Mobile Number Not Valid" />
                                     </div>
                                 </div>
 
@@ -624,10 +625,10 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">Email Address
                                     </label>
                                     <div class="col-md-8">
-                                        <spring:input path="eMail" class="form-control" id="email" placeHolder="Email Address" />
+                                        <spring:input path="eMail" class="form-control" id="email" placeHolder="Email Address" required="required" data-validation="email" data-validation-error-msg="Email Address Not Valid"/>
                                     </div>
                                 </div>
-                                <spring:input path="addressType" type="hidden" class="form-control" id="email" placeHolder="Email Address" />
+                                <spring:input path="addressType" type="hidden" class="form-control" id="email"  />
                                 <div class="form-group row" align="center">
                                     <div class="col-md-12">
                                         <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save">
@@ -662,7 +663,7 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">New Picture
                                     </label>
                                     <div class="col-md-8">
-                                        <spring:input path="employeePicture" class="form-control" type="file" placeHolder="Select Image" />
+                                        <spring:input path="employeePicture" class="form-control" type="file" required="required"  placeHolder="Select Image" />
                                     </div>
                                 </div>
 
@@ -700,7 +701,7 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">First Name
                                     </label>
                                     <div class="col-md-8">
-                                        <spring:input path="employeeFirstName" class="form-control" placeHolder="First Name" />
+                                        <spring:input path="employeeFirstName" class="form-control" placeHolder="First Name" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" />
                                     </div>
                                 </div>
 
@@ -708,7 +709,7 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">Last Name
                                     </label>
                                     <div class="col-md-8">
-                                        <spring:input path="employeeLastName" class="form-control" placeHolder="Last Name" />
+                                        <spring:input path="employeeLastName" class="form-control" placeHolder="Last Name" required="required" />
                                     </div>
                                 </div>
 
@@ -718,19 +719,19 @@
                                         <div class="form-check">
                                             <c:if test="${PersonalEdit.employeeGender == 'Male'}">
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeGender" checked="checked" value="Male" /> Male
+                                                    <spring:radiobutton class="form-check-input" path="employeeGender" checked="checked" value="Male" required="required" /> Male
                                                 </label>
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeGender" value="Female" /> Female
+                                                    <spring:radiobutton class="form-check-input" path="employeeGender" value="Female" required="required" /> Female
                                                 </label>
                                             </c:if>
 
                                             <c:if test="${PersonalEdit.employeeGender == 'Female'}">
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeGender" value="Male" /> Male
+                                                    <spring:radiobutton class="form-check-input" path="employeeGender" value="Male" required="required" /> Male
                                                 </label>
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeGender" checked="checked" value="Female" /> Female
+                                                    <spring:radiobutton class="form-check-input" path="employeeGender" checked="checked" value="Female" required="required" /> Female
                                                 </label>
                                             </c:if>
                                         </div>
@@ -756,19 +757,19 @@
                                         <div class="form-check">
                                             <c:if test="${PersonalEdit.employeeMaritalStatus == 'Married'}">
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" checked="checked" value="Married" /> Married
+                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" checked="checked" value="Married" required="required" /> Married
                                                 </label>
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" value="Unmarried" /> Unmarried
+                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" value="Unmarried" required="required" /> Unmarried
                                                 </label>
                                             </c:if>
 
                                             <c:if test="${PersonalEdit.employeeMaritalStatus == 'Unmarried'}">
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" value="Married" /> Married
+                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" value="Married" required="required" /> Married
                                                 </label>
                                                 <label class="form-check-label">
-                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" checked="checked" value="Unmarried" /> Unmarried
+                                                    <spring:radiobutton class="form-check-input" path="employeeMaritalStatus" checked="checked" value="Unmarried" required="required" /> Unmarried
                                                 </label>
                                             </c:if>
                                         </div>
@@ -796,13 +797,13 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                         <div class="col-md-8">
-                                            <select class="form-control" name="department" id="department" onchange="loadDoc();">
+                                            <select class="form-control" name="department" id="department" onchange="loadDoc();" required="required">
                                                 <c:set value="${PersonalEdit.employeeDesignation}" var="Personaldesignation" />
                                                 <c:set value="${Personaldesignation.department}" var="Personaldepartment" />
                                                 <option value="<c:out value='${Personaldepartment.departmentId}' />">
                                                     <c:out value='${Personaldepartment.departmentName}' />
                                                 </option>
-                                                <option value="0">---------</option>
+                                                <option value="">---------</option>
                                                 <c:forEach items="${DepartmentList}" var="department">
                                                     <option value="${department.departmentId}">${department.departmentName}</option>
                                                 </c:forEach>
@@ -840,7 +841,7 @@
                                         <label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
                                         <div class="col-md-8">
 
-                                            <spring:select path="employeeDesignation.designationId" class="form-control" id="designationView">
+                                            <spring:select path="employeeDesignation.designationId" class="form-control" id="designationView" required="required">
                                                 <option value="${Personaldesignation.designationId}">${Personaldesignation.designationName}</option>
                                             </spring:select>
                                         </div>
@@ -854,7 +855,7 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Bank Account Number</label>
                                         <div class="col-md-8">
-                                            <spring:input path="employeeBankAccountNumber" class="form-control" placeHolder="Account Number" />
+                                            <spring:input path="employeeBankAccountNumber" class="form-control" placeHolder="Account Number" required="required" data-validation="number" data-validation-error-msg="Enter valid AccountNumber" />
                                         </div>
                                     </div>
                                 </c:if>
@@ -870,7 +871,7 @@
                                         <label for="example-text-input" class="col-md-4 col-form-label">Basic Pay
                                         </label>
                                         <div class="col-md-8">
-                                            <spring:input path="employeeBasicPay" class="form-control" placeHolder="Basic Pay" />
+                                            <spring:input path="employeeBasicPay" class="form-control" placeHolder="Basic Pay" required="required" data-validation="number" data-validation-allowing="float" data-validation-error-msg="Enter valid Basic Pay" />
                                         </div>
                                     </div>
                                 </c:if>
@@ -879,16 +880,17 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">User Name
                                     </label>
                                     <div class="col-md-8">
-                                        <spring:input path="employeeUserName" class="form-control" placeHolder="Username" />
+                                        <spring:input path="employeeUserName" class="form-control" placeHolder="Username" required="required" />
                                     </div>
                                 </div>
                                 <c:if test="${sessionScope['HRMSRole']=='Admin'}">
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Role of the Employee</label>
                                         <div class="col-md-8">
-                                            <spring:select path="employeeRole.roleId" class="form-control">
+                                            <spring:select path="employeeRole.roleId" class="form-control" required="required">
                                                 <c:set value="${PersonalEdit.employeeRole}" var="Personalrole" />
                                                 <spring:option value="${Personalrole.roleId}">${Personalrole.roleName}</spring:option>
+                                                <option value="">---------</option>
                                                 <c:forEach items="${RoleList}" var="role">
                                                     <spring:option value="${role.roleId}">${role.roleName}</spring:option>
                                                 </c:forEach>
@@ -902,8 +904,8 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label"> Password
                                     </label>
-                                    <div class="col-md-8">
-                                        <spring:input path="employeePassword" type="password" class="form-control" placeHolder="First Name" />
+                                    <div class="col-md-8"> 
+                                        <spring:input path="employeePassword" type="password" class="form-control" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Strong Password Minimum 5 Characters" placeHolder="Password" />
                                     </div>
                                 </div>
 
@@ -939,7 +941,13 @@
     <!-- Tablesorter: optional -->
     <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
     <script src="js/jquery.tablesorter.pager.js"></script>
-
+    <script src="js/jquery.form-validator.min.js"></script>
+        <script>
+            $.validate({
+                lang: 'en',
+                borderColorOnError: '#F00',
+            });
+        </script>
     <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
     <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sidebar-menu.css">
+    <link rel="stylesheet" href="css/formvalid.css"> 
 </head>
 
 <body>
@@ -444,13 +445,13 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Project Version</label>
                                     <div class="col-md-8">
-                                        <spring:input path="projectVersion" class="form-control" id="example-text-input" placeHolder="Project Version" /> </div>
+                                        <spring:input path="projectVersion" class="form-control" required="required" placeHolder="Project Version" /> </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
                                     <div class="col-md-8">
-                                        <spring:textarea path="description" class="form-control" id="example-text-input" placeHolder="Description"></spring:textarea>
+                                        <spring:textarea path="description" class="form-control" required="required" placeHolder="Description"></spring:textarea>
                                     </div>
                                 </div>
 
@@ -484,11 +485,11 @@
                                 <spring:input type="hidden" path="project.projectId" class="form-control" placeHolder="Project Id" value="${ProjectId}" />
 
                                 <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-4 col-form-label">To:</label>
+                                    <label for="example-text-input" class="col-md-4 col-form-label">Date of Release</label>
                                     <div class="col-md-8">
 
                                         <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-                                            <input class="form-control" size="16" type="text" value="" readonly>
+                                            <input class="form-control readonly" size="16" type="text" required="required" placeHolder="Date" >
                                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                         </div>
                                         <spring:input path="releaseDate" id="dtp_input4" type="hidden" class="form-control" />
@@ -498,13 +499,13 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Project Version</label>
                                     <div class="col-md-8">
-                                        <spring:input path="projectVersion" class="form-control" id="example-text-input" placeHolder="Project Version" /> </div>
+                                        <spring:input path="projectVersion" class="form-control" required="required" placeHolder="Project Version" /> </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Description</label>
                                     <div class="col-md-8">
-                                        <spring:textarea path="description" class="form-control" id="example-text-input" placeHolder="Description"></spring:textarea>
+                                        <spring:textarea path="description" class="form-control" required="required" placeHolder="Description"></spring:textarea>
                                     </div>
                                 </div>
 
@@ -542,8 +543,8 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                     <div class="col-md-8">
-                                        <select class="form-control" name="department" id="department" onchange="loadDoc();">
-                                            <option value="0">- Select -</option>
+                                        <select class="form-control" name="department" id="department" onchange="loadDoc();" required="required">
+                                            <option value="">- Select -</option>
                                             <c:forEach items="${DepartmentList}" var="department">
                                                 <option value="${department.departmentId}">${department.departmentName}</option>
                                             </c:forEach>
@@ -579,8 +580,8 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
                                     <div class="col-md-8">
 
-                                        <select name="desigantion" class="form-control" id="designationView" onchange="loadEmployee();">
-                                            <option value="0">- Select Department -</option>
+                                        <select name="desigantion" required="required" class="form-control" id="designationView" onchange="loadEmployee();">
+                                            <option value="">- Select Department -</option>
                                         </select>
                                     </div>
                                 </div>
@@ -612,8 +613,8 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">Employee</label>
                                     <div class="col-md-8">
 
-                                        <spring:select path="employee.employeeId" class="form-control" id="employeeView">
-                                            <option value="0">- Select Designation -</option>
+                                        <spring:select path="employee.employeeId" class="form-control" id="employeeView" required="required">
+                                            <option value="">- Select Designation -</option>
                                         </spring:select>
                                     </div>
                                 </div>
@@ -622,10 +623,10 @@
                                     <label for="example-text-input" class="col-md-4 col-form-label">Role </label>
                                     <div class="col-md-8">
                                         <label class="form-check-label">
-                                            <spring:radiobutton class="form-check-input" path="teamRole" value="Leader" /> Leader
+                                            <spring:radiobutton class="form-check-input" path="teamRole" value="Leader" required="required" /> Leader
                                         </label>
                                         <label class="form-check-label">
-                                            <spring:radiobutton class="form-check-input" path="teamRole" value="Member" /> Member
+                                            <spring:radiobutton class="form-check-input" path="teamRole" value="Member" required="required" /> Member
                                         </label>
                                     </div>
                                 </div>
@@ -744,6 +745,11 @@
             });
         </script>
     </c:if>
+    <script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 </body>
 
 </html>

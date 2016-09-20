@@ -16,7 +16,8 @@
     <link href="images/logo1.png" rel="icon" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sidebar-menu.css"> </head>
+    <link rel="stylesheet" href="css/sidebar-menu.css">
+    <link rel="stylesheet" href="css/formvalid.css"> </head>
 
 <body>
     <div id="dialog-confirm" title="Alert" style="display:none;">
@@ -70,7 +71,7 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Last Name</label>
                                                 <div class="col-md-8">
-                                                    <spring:input path="employeeLastName" class="form-control" placeHolder="Last Name" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Valid Name Minimum 5 Characters" />
+                                                    <spring:input path="employeeLastName" class="form-control" placeHolder="Last Name" required="required"   />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -92,10 +93,10 @@
                                                 <div class="col-md-8">
 
                                                     <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                        <input class="form-control" size="16" type="text" readonly="readonly" required="required" />
+                                                        <input class="form-control readonly" size="16" value="" type="text"  placeHolder="Date of Birth" required="required"  />
                                                         <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                     </div>
-                                                    <spring:input path="employeeDateOfBirth" id="dtp_input2" type="hidden" class="form-control" placeHolder="Date of Birth" />
+                                                    <spring:input path="employeeDateOfBirth" id="dtp_input2" type="hidden" class="form-control" placeHolder="Date of Birth" required="required" />
                                                 </div>
                                             </div>
 
@@ -116,12 +117,11 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Date of Joining</label>
                                                 <div class="col-md-8">
-
                                                     <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                                                        <input class="form-control" size="16" type="text" value="" readonly required="required">
+                                                        <input class="form-control readonly" size="16" type="text"   required="required"  placeHolder="Date of Joining">
                                                         <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                     </div>
-                                                    <spring:input path="employeeDateOfJoining" id="dtp_input3" type="hidden" class="form-control" placeHolder="Date of Birth" />
+                                                    <spring:input path="employeeDateOfJoining" id="dtp_input3" type="hidden" class="form-control" />
                                                 </div>
                                             </div>
 
@@ -189,20 +189,14 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Username</label>
                                                 <div class="col-md-8">
-                                                    <spring:input path="employeeUserName" class="form-control" placeHolder="Username" required="required" />
+                                                    <spring:input path="employeeUserName" class="form-control" placeHolder="Username" required="required" data-validation="length" data-validation-length="min6" data-validation-error-msg="Please Enter the Valid UserName Minimum 6 Characters" />
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-md-4 col-form-label">Password</label>
+                                                <label for="example-text-input" class="col-md-4 col-form-label"> Password</label>
                                                 <div class="col-md-8">
-                                                    <input class="form-control" type="password" placeHolder="Password" required="required">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="example-text-input" class="col-md-4 col-form-label">Confirm Password</label>
-                                                <div class="col-md-8">
-                                                    <spring:input path="employeePassword" class="form-control" type="password" placeHolder="Confirm Password" required="required" />
+                                                    <spring:input path="employeePassword" class="form-control" type="password" placeHolder="Password" required="required" data-validation="length" data-validation-length="min5" data-validation-error-msg="Please Enter the Strong Password Minimum 5 Characters" />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -313,6 +307,12 @@
                 });
             </script>
         </c:if>
+        
+<script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 
 </body>
 

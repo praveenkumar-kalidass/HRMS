@@ -84,7 +84,7 @@
                 <label for="example-text-input" class="col-md-4 col-form-label">From Date</label>
                 <div class="col-md-8">
                     <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input1<c:out value='${status.index}' />" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" size="16" type="text" readonly required="required">
+                        <input class="form-control readonly" size="16" type="text" required="required" placeholder="From Date">
                         <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                     </div>
                     <spring:input path="education[${status.index}].fromDate" id="dtp_input1${status.index}" type="hidden" class="form-control" />
@@ -96,7 +96,7 @@
                 <label for="example-text-input" class="col-md-4 col-form-label">To Date</label>
                 <div class="col-md-8">
                     <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2<c:out value='${status.index}' />" data-link-format="yyyy-mm-dd">
-                        <input class="form-control" size="16" type="text" required="required" readonly>
+                        <input class="form-control readonly" size="16" type="text" required="required" placeholder="To Date" >
                         <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                     </div>
                     <spring:input path="education[${status.index}].toDate" id="dtp_input2${status.index}" type="hidden" class="form-control" />

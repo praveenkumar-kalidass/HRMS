@@ -48,7 +48,7 @@
                                         <div class="col-md-8">
 
                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                                                <input class="form-control" size="16" type="text" value="" readonly>
+                                                <input class="form-control readonly" size="16" type="text" required="required" placeHolder="From Date"  >
                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                             </div>
                                             <input name="fromDate" id="dtp_input3" type="hidden" class="form-control" />
@@ -59,7 +59,7 @@
                                         <div class="col-md-8">
 
                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-                                                <input class="form-control" size="16" type="text" value="" onchange="cldate();" readonly>
+                                                <input class="form-control readonly" size="16" type="text"  onchange="cldate();" required="required" placeHolder="To Date"   >
                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                             </div>
                                             <input name="toDate" id="dtp_input4" type="hidden" class="form-control" />
@@ -209,6 +209,11 @@
             });
         </script>
     </c:if>
+    <script>
+    $(".readonly").keydown(function(e){
+        e.preventDefault();
+    });
+</script>
 </body>
 
 </html>

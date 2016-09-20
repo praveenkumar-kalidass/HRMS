@@ -34,14 +34,14 @@
                     </td>
                     <td>
                         <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input1<c:out value='${status.index}' />" data-link-format="yyyy-mm-dd">
-                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <input class="form-control readonly" size="16" type="text" required="required"  placeholder="From Date" >
                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                         </div>
                         <spring:input path="certification[${status.index}].fromDate" id="dtp_input1${status.index}" type="hidden" class="form-control" />
                     </td>
                     <td>
                         <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2<c:out value='${status.index}' />" data-link-format="yyyy-mm-dd">
-                            <input class="form-control" size="16" type="text" value="" readonly>
+                            <input class="form-control readonly" size="16" type="text" required="required" placeholder="To Date" >
                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                         </div>
                         <spring:input path="certification[${status.index}].toDate" id="dtp_input2${status.index}" type="hidden" class="form-control" placeHolder="Date of Birth" />
