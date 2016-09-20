@@ -57,7 +57,7 @@
                             function loadDoc() {
                                 var xhttp;
                                 var noof = parseInt(document.getElementById('noof').value);
-                                var employeeId = < c: out value = '${EmployeeId}' / > ;
+                                var employeeId = <c:out value ='${EmployeeId}' />;
                                 if (window.XMLHttpRequest) {
                                     // code for modern browsers
                                     xhttp = new XMLHttpRequest();
