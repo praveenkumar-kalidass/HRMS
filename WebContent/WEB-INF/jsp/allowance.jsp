@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sidebar-menu.css"> </head>
+    <link rel="stylesheet" href="css/formvalid.css">
 
 <body>
     <div id="dialog-confirm" title="Alert" style="display:none;">
@@ -35,13 +36,7 @@
 
             <div class="content-main">
                 <div class="col-md-12">
-                    <!-- Main Start -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#Department-Table" aria-controls="Department-Table" role="tab" data-toggle="tab">Designations</a>
-                        </li>
-                        <li role="presentation"><a href="#Department-Form" aria-controls="Department-Form" role="tab" data-toggle="tab">Add New</a>
-                        </li>
-                    </ul>
+                   
                     <div class="tab-content">
                         <div id="Department-Table" role="tabpanel" class="tab-pane active">
                             <div class="form">
@@ -125,6 +120,7 @@
 
                             </div>
                         </div>
+                        <!--  
                         <div id="Department-Form" role="tabpanel" class="tab-pane">
                             <div class="form">
                                 <div class="main-head">
@@ -138,8 +134,8 @@
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                                         <div class="col-md-8">
 
-                                                            <select name="department" class="form-control" id="department" onchange="loadDoc();">
-                                                                <option value="0"> --Select --</option>
+                                                            <select name="department" required="required" class="form-control" id="department" onchange="loadDoc();">
+                                                                <option value=""> --Select --</option>
                                                                 <c:forEach items="${DepartmentList}" var="department">
                                                                     <option value="${department.departmentId}">${department.departmentName}</option>
                                                                 </c:forEach>
@@ -169,8 +165,8 @@
                                                     <div class="form-group row">
                                                         <label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
                                                         <div class="col-md-8">
-                                                            <spring:select path="designation.designationId" class="form-control" id="designationView">
-                                                                <option value="0"> Select Department -- </option>
+                                                            <spring:select required="required" path="designation.designationId" class="form-control" id="designationView">
+                                                                <option value=""> Select Department -- </option>
                                                             </spring:select>
                                                         </div>
                                                     </div>
@@ -212,6 +208,7 @@
                                 </div>
                             </div>
                         </div>
+                       -->
 
                     </div>
 

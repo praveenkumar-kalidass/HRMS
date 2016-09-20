@@ -14,9 +14,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Profile Picture</title>
     <link href="images/logo1.png" rel="icon" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sidebar-menu.css"> </head>
+    <c:import url="headCss.jsp" /> </head>
 
 <body>
     <div id="dialog-confirm" title="Alert" style="display:none;">
@@ -116,45 +114,7 @@
         </div>
     </div>
 
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/sidebar-menu.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <!-- jQuery -->
-
-    <!-- Tablesorter: required for bootstrap -->
-    <link rel="stylesheet" href="css/theme.bootstrap.css">
-    <script src="js/jquery.tablesorter.js"></script>
-    <script src="js/jquery.tablesorter.widgets.js"></script>
-
-    <!-- Tablesorter: optional -->
-    <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
-    <script src="js/jquery.tablesorter.pager.js"></script>
-    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-
-    <script type="text/javascript">
-        $('.form_date').datetimepicker({
-            language: 'en',
-            weekStart: 1,
-            todayBtn: 1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 2,
-            minView: 2,
-            forceParse: 0
-        });
-    </script>
-
-    <script>
-        $.sidebarMenu($('.sidebar-menu'));
-    </script>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $('#tabs').tab();
-        });
-    </script>
+    <c:import url="headJs.jsp" />
 
     <c:if test="${message==null}">
         <c:if test="${DepartmentEdit!=null}">

@@ -15,9 +15,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Employee</title>
     <link href="images/logo1.png" rel="icon" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sidebar-menu.css"> </head>
+    <c:import url="headCss.jsp" /> </head>
 
 <body>
     <div id="dialog-confirm" title="Alert" style="display:none;">
@@ -51,7 +49,7 @@
                                 </a>
                             </div>
                             <c:if test="${EmployeeList!=null}">
-                                <table>
+                                <table class="TableSorting">
                                     <thead>
                                         <tr>
                                             <th> Employee Id </th>
@@ -161,98 +159,8 @@
         </div>
     </div>
 
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/sidebar-menu.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <!-- jQuery -->
-
-    <!-- Tablesorter: required for bootstrap -->
-    <link rel="stylesheet" href="css/theme.bootstrap.css">
-    <script src="js/jquery.tablesorter.js"></script>
-    <script src="js/jquery.tablesorter.widgets.js"></script>
-
-    <!-- Tablesorter: optional -->
-    <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
-    <script src="js/jquery.tablesorter.pager.js"></script>
-
-    <script id="js">
-        $(function() {
-            $.tablesorter.themes.bootstrap = {
-                table: 'table table-bordered table-striped',
-                caption: 'caption',
-                header: 'bootstrap-header',
-                sortNone: '',
-                sortAsc: '',
-                sortDesc: '',
-                active: '',
-                hover: '',
-                icons: '',
-                iconSortNone: 'fa fa-sort',
-                iconSortAsc: 'fa fa-sort-asc',
-                iconSortDesc: 'fa fa-sort-desc ',
-                filterRow: '',
-                footerRow: '',
-                footerCells: '',
-                even: '',
-                odd: ''
-            };
-
-            $("table").tablesorter({
-                    theme: "bootstrap",
-
-                    widthFixed: true,
-
-                    headerTemplate: '{content} {icon}',
-
-                    widgets: ["uitheme", "filter", "zebra"],
-
-                    widgetOptions: {
-                        zebra: ["even", "odd"],
-
-                        filter_reset: ".reset",
-
-                        filter_cssFilter: "form-control",
-
-                    }
-                })
-                .tablesorterPager({
-
-                    container: $(".ts-pager"),
-                    cssGoto: ".pagenum",
-                    removeRows: false,
-                    output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
-
-                });
-
-        });
-    </script>
-
-    <script>
-        $.sidebarMenu($('.sidebar-menu'));
-    </script>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $('#tabs').tab();
-        });
-    </script>
-
-    <script>
-        function openEvent(evt, cityName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-    </script>
+    <c:import url="headJs.jsp" />
+    
     <c:if test="${message==null}">
         <c:if test="${EmployeeEdit!=null}">
             <script>

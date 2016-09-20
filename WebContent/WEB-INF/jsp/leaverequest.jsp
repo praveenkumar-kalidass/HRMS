@@ -11,9 +11,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>LeaveRequest Details</title>
     <link href="images/logo1.png" rel="icon" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/sidebar-menu.css">
+     <c:import url="headCss.jsp" />
+    
 </head>
 
 <body>
@@ -248,7 +247,7 @@
                                                         <div class="col-md-8">
 
                                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" readonly>
+                                                                <input class="form-control readonly" size="16" type="text" placeHolder="From" required="required"  >
                                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                             </div>
                                                             <spring:input path="leaveFromDate" id="dtp_input3" type="hidden" class="form-control" />
@@ -259,7 +258,7 @@
                                                         <div class="col-md-8">
 
                                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control" size="16" type="text" value="" onchange="cldate();" readonly>
+                                                                <input class="form-control readonly" size="16" type="text"  onchange="cldate();" required="required" placeHolder="To" >
                                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                             </div>
                                                             <spring:input path="leaveToDate" id="dtp_input4" type="hidden" class="form-control" />
@@ -327,37 +326,8 @@
 
     </div>
 
-    <link rel="stylesheet" href="css/jquery-ui.css" />
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/sidebar-menu.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/bootstrap.js"></script>
-
-    <!-- Tablesorter: required for bootstrap -->
-    <link rel="stylesheet" href="css/theme.bootstrap.css">
-    <script src="js/jquery.tablesorter.js"></script>
-    <script src="js/jquery.tablesorter.widgets.js"></script>
-
-    <!-- Tablesorter: optional -->
-    <link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
-    <script src="js/jquery.tablesorter.pager.js"></script>
-    <script src="js/jquery.form-validator.min.js"></script>
-    <script>
-        $.validate({
-            lang: 'en',
-            borderColorOnError: '#F00',
-        });
-    </script>
-
-    <script>
-        $.sidebarMenu($('.sidebar-menu'));
-    </script>
-    <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $('#tabs').tab();
-        });
-    </script>
-
+   <c:import url="headJs.jsp" />
+    
     <c:if test="${message==null}">
         <c:if test="${LeaveRequestEdit!=null}">
             <script>
@@ -385,74 +355,5 @@
             });
         </script>
     </c:if>
-
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-
-    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
-    <script type="text/javascript">
-        $('.form_date').datetimepicker({
-            language: 'en',
-            weekStart: 1,
-            todayBtn: 1,
-            autoclose: 1,
-            todayHighlight: 1,
-            startView: 2,
-            minView: 2,
-            forceParse: 0
-        });
-    </script>
-
-    <script id="js">
-        $(function() {
-            $.tablesorter.themes.bootstrap = {
-                table: 'table table-bordered table-striped',
-                caption: 'caption',
-                header: 'bootstrap-header',
-                sortNone: '',
-                sortAsc: '',
-                sortDesc: '',
-                active: '',
-                hover: '',
-                icons: '',
-                iconSortNone: 'fa fa-sort',
-                iconSortAsc: 'fa fa-sort-asc',
-                iconSortDesc: 'fa fa-sort-desc ',
-                filterRow: '',
-                footerRow: '',
-                footerCells: '',
-                even: '',
-                odd: ''
-            };
-
-            $(".TableSorting").tablesorter({
-                    theme: "bootstrap",
-
-                    widthFixed: true,
-
-                    headerTemplate: '{content} {icon}',
-
-                    widgets: ["uitheme", "filter", "zebra"],
-
-                    widgetOptions: {
-                        zebra: ["even", "odd"],
-
-                        filter_reset: ".reset",
-
-                        filter_cssFilter: "form-control",
-
-                    }
-                })
-                .tablesorterPager({
-
-                    container: $(".ts-pager"),
-                    cssGoto: ".pagenum",
-                    removeRows: false,
-                    output: '{startRow} - {endRow} / {filteredRows} ({totalRows})'
-
-                });
-
-        });
-    </script>
 </body>
-
 </html>           
