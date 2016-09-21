@@ -201,7 +201,7 @@
             </div>
         </div>
         </div>
-
+         <c:import url="headJs.jsp" />
          <c:if test="${message!=null}">
             <script>
                 $("#myModal").modal("hide");

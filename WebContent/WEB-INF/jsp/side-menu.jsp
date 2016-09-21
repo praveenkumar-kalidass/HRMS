@@ -24,9 +24,11 @@
         </li>
         <li><a href="employee.html"><i class="fa fa-users"></i> <span> <c:if test="${sessionScope['HRMSRole']=='Employee'}"> Profile Details </c:if> <c:if test="${sessionScope['HRMSRole']=='Admin'}"> Employees </c:if> </span></a>
         </li>
+        <c:if test="${sessionScope['HRMSProjectId']!=null}">
         <c:if test="${sessionScope['HRMSRole']=='Employee'}">
             <li><a href="project.html"><i class="fa fa-code"></i> <span>  Project  </span></a>
             </li>
+        </c:if>
         </c:if>
         <c:if test="${sessionScope['HRMSRole']=='Admin'}">
             <li class="treeview">

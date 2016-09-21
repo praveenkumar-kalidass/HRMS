@@ -237,22 +237,22 @@
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">From:</label>
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">From Date</label>
                                                         <div class="col-md-8">
 
                                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input3" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control readonly" size="16" type="text" placeHolder="From" required="required"  >
+                                                                <input class="form-control readonly" size="16" type="text" placeHolder="From Date" required="required"  >
                                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                             </div>
                                                             <spring:input path="leaveFromDate" id="dtp_input3" type="hidden" class="form-control" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="example-text-input" class="col-md-4 col-form-label">To:</label>
+                                                        <label for="example-text-input" class="col-md-4 col-form-label">To Date</label>
                                                         <div class="col-md-8">
 
                                                             <div class="input-group date form_date col-md-12" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input4" data-link-format="yyyy-mm-dd">
-                                                                <input class="form-control readonly" size="16" type="text"  onchange="cldate();" required="required" placeHolder="To" >
+                                                                <input class="form-control readonly" size="16" type="text"  onchange="cldate();" required="required" placeHolder="To Date" >
                                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
                                                             </div>
                                                             <spring:input path="leaveToDate" id="dtp_input4" type="hidden" class="form-control" />
