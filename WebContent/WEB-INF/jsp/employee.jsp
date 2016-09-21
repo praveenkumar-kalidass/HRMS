@@ -18,12 +18,7 @@
     <c:import url="headCss.jsp" /> </head>
 
 <body>
-    <div id="dialog-confirm" title="Alert" style="display:none;">
-        <p>
-            <c:if test="${message!=null}">
-                <c:out value="${message}" /></c:if>
-        </p>
-    </div>
+   
     <div class="containe">
         <div class="side-menu">
             <!-- Side Menu -->
@@ -122,72 +117,16 @@
             </div>
         </div>
     </div>
-    </div>
-    <div id="myModal" class="modal fade" role="dialog" aria-hidden="false" data-backdrop="static">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Employee</h4> </div>
-                <div class="modal-body">
-                    <c:if test="${EmployeeEdit!=null}">
-                        <spring:form action="employee_update" method="post" class="form-group" modelAttribute="EmployeeEdit">
-                            <div class="col-md-12">
-
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-4 col-form-label">Employee Id</label>
-                                    <div class="col-md-8">
-                                        <spring:input path="employeeId" class="form-control" id="example-text-input" placeHolder="Employee Id" readonly="readOnly" /> </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="example-text-input" class="col-md-4 col-form-label">Employee First Name</label>
-                                    <div class="col-md-8">
-                                        <spring:input path="employeeFirstName" class="form-control" id="example-text-input" placeHolder="Employee First Name" /> </div>
-                                </div>
-                                <div class="form-group row" align="center">
-                                    <div class="col-md-12">
-                                        <input class="btn btn-primary btn-lg" type="submit" id="example-text-input" value="Save"> </div>
-                                </div>
-                            </div>
-                        </spring:form>
-                    </c:if>
-                </div>
-                <div class="modal-footer"> </div>
-            </div>
-
-        </div>
-    </div>
-
+  
     <c:import url="headJs.jsp" />
-    
-    <c:if test="${message==null}">
-        <c:if test="${EmployeeEdit!=null}">
+
+     <c:if test="${message!=null}">
             <script>
-                $("#myModal").modal();
+                $("#myModal").modal("hide");
+                dialogConfirmation("employee.html");
             </script>
         </c:if>
-    </c:if>
-
-    <c:if test="${message!=null}">
-        <script>
-            $("#myModal").modal("hide");
-            $(function() {
-                $("#dialog-confirm").dialog({
-                    modal: true,
-                    open: function(event, ui) {
-                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                    },
-                    buttons: {
-                        Ok: function() {
-                            $(this).dialog("close");
-                            window.location = "employee.html";
-                        }
-                    }
-                });
-            });
-        </script>
-    </c:if>
+        <c:import url="dialogConfirmation.jsp" />
 </body>
 
 </html>

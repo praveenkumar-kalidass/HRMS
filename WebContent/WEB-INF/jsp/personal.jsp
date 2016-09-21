@@ -18,13 +18,7 @@
 </head>
 
 <body>
-    <div id="dialog-confirm" title="Alert" style="display:none;">
-        <p>
-            <c:if test="${message!=null}">
-                <c:out value="${message}" /></c:if>
-        </p>
-    </div>
-    <div class="containe">
+      <div class="containe">
         <div class="side-menu">
             <!-- Side Menu -->
             <c:import url="side-menu.jsp" /> </div>
@@ -126,7 +120,7 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                                 <div class="col-md-8">
-                                                    <select class="form-control" name="department" id="department" onchange="loadDoc();" required="required">
+                                                    <select class="form-control" name="department" id="department" onchange="designationLoad();" required="required">
                                                         <option value=""> -- Select -- </option>
                                                         <c:forEach items="${DepartmentList}" var="department">
                                                             <option value="${department.departmentId}">${department.departmentName}</option>
@@ -134,29 +128,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-                                            <script>
-                                                function loadDoc() {
-                                                    var xhttp;
-                                                    var department = parseInt(document.getElementById('department').value);
-
-                                                    if (window.XMLHttpRequest) {
-                                                        // code for modern browsers
-                                                        xhttp = new XMLHttpRequest();
-                                                    } else {
-                                                        // code for IE6, IE5
-                                                        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                                                    }
-                                                    xhttp.onreadystatechange = function() {
-                                                        if (this.readyState == 4 && this.status == 200) {
-                                                            document.getElementById("designationView").innerHTML = this.responseText;
-                                                        }
-                                                    };
-                                                    xhttp.open("GET", "designationView.html?departmentId=" + department, true);
-                                                    xhttp.send();
-                                                }
-                                            </script>
-
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
                                                 <div class="col-md-8">
@@ -189,28 +160,7 @@
                                                 <div class="col-md-8">
                                                     <spring:input path="employeeUserName" id="userName" class="form-control" placeHolder="Username" onkeydown="userNameValid();"  onkeypress="userNameValid();" onchange="userNameValid();"  required="required" data-validation="length" data-validation-length="min6" data-validation-error-msg="Please Enter the Valid UserName Minimum 6 Characters" />
                                                 </div>
-                                                <script>
-                                                function userNameValid() {
-                                                    var xhttp;
-                                                    var userName = document.getElementById('userName').value;
-
-                                                    if (window.XMLHttpRequest) {
-                                                        // code for modern browsers
-                                                        xhttp = new XMLHttpRequest();
-                                                    } else {
-                                                        // code for IE6, IE5
-                                                        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                                                    }
-                                                    xhttp.onreadystatechange = function() {
-                                                        if (this.readyState == 4 && this.status == 200) {
-                                                            document.getElementById("userNameValid").innerHTML = this.responseText;
-                                                        }
-                                                    };
-                                                    xhttp.open("GET", "userNameValid.html?userName=" + userName, true);
-                                                    xhttp.send();
-                                                }
-                                            </script>
-                                                <div id="userNameValid"><input type="hidden" id="userNameValidInput" value="inCorrect" > </div>
+                                             <div id="userNameValid"><input type="hidden" id="userNameValidInput" value="inCorrect" > </div>
                                                 <div class="col-md-8 text-right" id="errorMessage" style="color:#F00;">  </div>
                                             </div>
 
@@ -250,46 +200,17 @@
                 </div>
             </div>
         </div>
+        </div>
 
-        
-       <c:import url="headJs.jsp" />
-        <c:if test="${message==null}">
-            <c:if test="${DepartmentEdit!=null}">
-                <script>
-                    $("#myModal").modal();
-                </script>
-            </c:if>
-        </c:if>
-
-        <c:if test="${message!=null}">
+         <c:if test="${message!=null}">
             <script>
                 $("#myModal").modal("hide");
-                $(function() {
-                    $("#dialog-confirm").dialog({
-                        modal: true,
-                        open: function(event, ui) {
-                            $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                        },
-                        buttons: {
-                            Ok: function() {
-                                $(this).dialog("close");
-                                window.location = "employee.html";
-                            }
-                        }
-                    });
-                });
+                dialogConfirmation("personal.html");
             </script>
         </c:if>
+        <c:import url="dialogConfirmation.jsp" />
 <script>
-$( ".personal-form" ).submit(function( event ) {
-  if ( $("#userNameValidInput").val() === "correct" ) {
-	  
-    return;
-  }
- 
-  $( "#errorMessage" ).text( "UserName Already Exists..!" ).show().fadeOut(3000);
-  event.preventDefault();
-});
+
 </script>
 </body>
 

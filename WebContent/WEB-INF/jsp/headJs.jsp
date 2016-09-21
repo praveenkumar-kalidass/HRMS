@@ -9,3 +9,4 @@
 <script src="js/jquery.form-validator.min.js"></script>
 <script src="js/location.js" ></script>
 <script src="js/ovewritedFile.js" ></script>
+<script src="js/canvasjs.min.js"></script>

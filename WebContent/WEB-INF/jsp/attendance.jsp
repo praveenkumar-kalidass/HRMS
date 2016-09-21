@@ -14,12 +14,7 @@
      <c:import url="headCss.jsp" /> </head>
 
 <body>
-    <div id="dialog-confirm" title="Alert" style="display:none;">
-        <p>
-            <c:if test="${message!=null}">
-                <c:out value="${message}" /></c:if>
-        </p>
-    </div>
+   
     <div class="containe">
         <div class="side-menu">
             <!-- Side Menu -->
@@ -121,26 +116,16 @@
                 </div>
             </div>
         </div>
+        </div>
 
         <c:import url="headJs.jsp" />
 
-        <c:if test="${message!=null}">
+         <c:if test="${message!=null}">
             <script>
-                $(function() {
-                    $("#dialog-confirm").dialog({
-                        modal: true,
-                        open: function(event, ui) {
-                            $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                        },
-                        buttons: {
-                            Ok: function() {
-                                $(this).dialog("close");
-                                window.location = "attendance.html";
-                            }
-                        }
-                    });
-                });
+                $("#myModal").modal("hide");
+                dialogConfirmation("attendance.html");
             </script>
         </c:if>
+        <c:import url="dialogConfirmation.jsp" />
 
 </html>           

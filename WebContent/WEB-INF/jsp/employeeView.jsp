@@ -15,13 +15,7 @@
 </head>
 
 <body>
-    <div id="dialog-confirm" title="Alert" style="display: none;">
-        <p>
-            <c:if test="${message!=null}">
-                <c:out value="${message}" />
-            </c:if>
-        </p>
-    </div>
+  
     <div class="containe">
         <div class="side-menu">
             <!-- Side Menu -->
@@ -794,7 +788,7 @@
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                         <div class="col-md-8">
-                                            <select class="form-control" name="department" id="department" onchange="loadDoc();" required="required">
+                                            <select class="form-control" name="department" id="department" onchange="designationLoad();" required="required">
                                                 <c:set value="${PersonalEdit.employeeDesignation}" var="Personaldesignation" />
                                                 <c:set value="${Personaldesignation.department}" var="Personaldepartment" />
                                                 <option value="<c:out value='${Personaldepartment.departmentId}' />">
@@ -808,32 +802,7 @@
                                         </div>
                                     </div>
 
-                                    <script>
-                                        function loadDoc() {
-                                            var xhttp;
-                                            var department = parseInt(document
-                                                .getElementById('department').value);
-
-                                            if (window.XMLHttpRequest) {
-                                                // code for modern browsers
-                                                xhttp = new XMLHttpRequest();
-                                            } else {
-                                                // code for IE6, IE5
-                                                xhttp = new ActiveXObject(
-                                                    "Microsoft.XMLHTTP");
-                                            }
-                                            xhttp.onreadystatechange = function() {
-                                                if (this.readyState == 4 && this.status == 200) {
-                                                    document
-                                                        .getElementById("designationView").innerHTML = this.responseText;
-                                                }
-                                            };
-                                            xhttp.open("GET",
-                                                "designationView.html?departmentId=" + department, true);
-                                            xhttp.send();
-                                        }
-                                    </script>
-
+                                   
                                     <div class="form-group row">
                                         <label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
                                         <div class="col-md-8">
@@ -963,32 +932,17 @@
             </script>
         </c:if>
     </c:if>
-
-    <c:if test="${message!=null}">
-        <script>
-            $("#picture_model").modal("hide");
-            $("#personal_model").modal("hide");
-            $("#address_model").modal("hide");
-            $("#education_model").modal("hide");
-            $("#certification_model").modal("hide");
-            $(function() {
-                $("#dialog-confirm")
-                    .dialog({
-                        modal: true,
-                        open: function(event, ui) {
-                            $(".ui-dialog-titlebar-close",
-                                ui.dialog | ui).hide();
-                        },
-                        buttons: {
-                            Ok: function() {
-                                $(this).dialog("close");
-                                window.location = "employee_view.html?id=" + <c:out value = '${EmployeeId}' /> ;
-                            }
-                        }
-                    });
-            });
-        </script>
-    </c:if>
+     <c:if test="${message!=null}">
+            <script>
+               $("#picture_model").modal("hide");
+               $("#personal_model").modal("hide");
+               $("#address_model").modal("hide");
+               $("#education_model").modal("hide");
+               $("#certification_model").modal("hide");
+               dialogConfirmation("employee_view.html?id=" + <c:out value = '${EmployeeId}' />);
+            </script>
+        </c:if>
+        <c:import url="dialogConfirmation.jsp" />
 </body>
 
 </html>

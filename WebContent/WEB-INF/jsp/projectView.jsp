@@ -17,13 +17,7 @@
 </head>
 
 <body>
-    <div id="dialog-confirm" title="Alert" style="display: none;">
-        <p>
-            <c:if test="${message!=null}">
-                <c:out value="${message}" />
-            </c:if>
-        </p>
-    </div>
+ 
     <div class="containe">
         <div class="side-menu">
             <!-- Side Menu -->
@@ -540,7 +534,7 @@
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                     <div class="col-md-8">
-                                        <select class="form-control" name="department" id="department" onchange="loadDoc();" required="required">
+                                        <select class="form-control" name="department" id="department" onchange="designationLoad();" required="required">
                                             <option value="">- Select -</option>
                                             <c:forEach items="${DepartmentList}" var="department">
                                                 <option value="${department.departmentId}">${department.departmentName}</option>
@@ -548,32 +542,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <script>
-                                    function loadDoc() {
-                                        var xhttp;
-                                        var department = parseInt(document
-                                            .getElementById('department').value);
-
-                                        if (window.XMLHttpRequest) {
-                                            // code for modern browsers
-                                            xhttp = new XMLHttpRequest();
-                                        } else {
-                                            // code for IE6, IE5
-                                            xhttp = new ActiveXObject(
-                                                "Microsoft.XMLHTTP");
-                                        }
-                                        xhttp.onreadystatechange = function() {
-                                            if (this.readyState == 4 && this.status == 200) {
-                                                document
-                                                    .getElementById("designationView").innerHTML = this.responseText;
-                                            }
-                                        };
-                                        xhttp.open("GET",
-                                            "designationView.html?departmentId=" + department, true);
-                                        xhttp.send();
-                                    }
-                                </script>
-                                <div class="form-group row">
+                                                                <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Designation</label>
                                     <div class="col-md-8">
 
@@ -582,30 +551,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <script>
-                                    function loadEmployee() {
-                                        var xhttp;
-                                        var designation = parseInt(document.getElementById('designationView').value);
-
-                                        if (window.XMLHttpRequest) {
-                                            // code for modern browsers
-                                            xhttp = new XMLHttpRequest();
-                                        } else {
-                                            // code for IE6, IE5
-                                            xhttp = new ActiveXObject(
-                                                "Microsoft.XMLHTTP");
-                                        }
-                                        xhttp.onreadystatechange = function() {
-                                            if (this.readyState == 4 && this.status == 200) {
-                                                document
-                                                    .getElementById("employeeView").innerHTML = this.responseText;
-                                            }
-                                        };
-                                        xhttp.open("GET", "employeesView.html?designationId=" + designation, true);
-                                        xhttp.send();
-                                    }
-                                </script>
-
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-md-4 col-form-label">Employee</label>
                                     <div class="col-md-8">
@@ -676,31 +621,16 @@
             </script>
         </c:if>
     </c:if>
-
-    <c:if test="${message!=null}">
-        <script>
-            $("#project_model").modal("hide");
-            $("#release_model").modal("hide");
-            $("#releaseAdd_model").modal("hide");
-            $("#teamAdd_model").modal("hide");
-            $(function() {
-                $("#dialog-confirm")
-                    .dialog({
-                        modal: true,
-                        open: function(event, ui) {
-                            $(".ui-dialog-titlebar-close",
-                                ui.dialog | ui).hide();
-                        },
-                        buttons: {
-                            Ok: function() {
-                                $(this).dialog("close");
-                                window.location = "project_view.html?id=" + <c:out value = '${ProjectId}' />;
-                            }
-                        }
-                    });
-            });
-        </script>
-    </c:if>
+       <c:if test="${message!=null}">
+            <script>
+               $("#project_model").modal("hide");
+               $("#release_model").modal("hide");
+               $("#releaseAdd_model").modal("hide");
+               $("#teamAdd_model").modal("hide");
+                dialogConfirmation("project_view.html?id=" + <c:out value = '${ProjectId}' />);
+            </script>
+        </c:if>
+        <c:import url="dialogConfirmation.jsp" />
 </body>
 
 </html>

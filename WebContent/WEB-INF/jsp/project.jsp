@@ -23,12 +23,7 @@
     </head>
 
 <body>
-    <div id="dialog-confirm" title="Alert" style="display:none;">
-        <p>
-            <c:if test="${message!=null}">
-                <c:out value="${message}" /></c:if>
-        </p>
-    </div>
+  
     <div class="containe">
         <div class="side-menu">
             <!-- Side Menu -->
@@ -208,35 +203,13 @@
 
     <c:import url="headJs.jsp" />
 
-
-    <c:if test="${message==null}">
-        <c:if test="${ProjectEdit!=null}">
+      <c:if test="${message!=null}">
             <script>
-                $("#myModal").modal();
+                $("#myModal").modal("hide");
+                dialogConfirmation("project.html");
             </script>
         </c:if>
-    </c:if>
-
-    <c:if test="${message!=null}">
-        <script>
-            $("#myModal").modal("hide");
-            $(function() {
-                $("#dialog-confirm").dialog({
-                    modal: true,
-                    open: function(event, ui) {
-                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                    },
-                    buttons: {
-                        Ok: function() {
-                            $(this).dialog("close");
-                            window.location = "project.html";
-                        }
-                    }
-                });
-            });
-        </script>
-    </c:if>
-
+        <c:import url="dialogConfirmation.jsp" />
 </body>
 
 </html>

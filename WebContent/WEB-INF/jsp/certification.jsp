@@ -18,12 +18,6 @@
 </head>
 
 <body>
-    <div id="dialog-confirm" title="Alert" style="display:none;">
-        <p>
-            <c:if test="${message!=null}">
-                <c:out value="${message}" /></c:if>
-        </p>
-    </div>
     <div class="containe">
         <div class="side-menu">
             <!-- Side Menu -->
@@ -51,51 +45,11 @@
 
                         <div class="main-head">
                             <h1 class="title"> Certification Details </h1> </div>
-
-                        <script>
-                            function loadDoc() {
-                                var xhttp;
-                                var noof = parseInt(document.getElementById('noof').value);
-                                var employeeId = <c:out value ='${EmployeeId}' />;
-                                if (window.XMLHttpRequest) {
-                                    // code for modern browsers
-                                    xhttp = new XMLHttpRequest();
-                                } else {
-                                    // code for IE6, IE5
-                                    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                                }
-                                xhttp.onreadystatechange = function() {
-                                    if (this.readyState == 4 && this.status == 200) {
-                                        document.getElementById("certifcation_form").innerHTML = this.responseText;
-                                        $('.form_date').datetimepicker({
-                                            language: 'en',
-                                            weekStart: 1,
-                                            todayBtn: 1,
-                                            autoclose: 1,
-                                            todayHighlight: 1,
-                                            startView: 2,
-                                            minView: 2,
-                                            forceParse: 0
-                                        });
-
-                                        $.validate({
-                                            lang: 'en',
-                                            borderColorOnError: '#F00',
-                                        });
-                                        $(".readonly").keydown(function(e){
-                                            e.preventDefault();
-                                        });
-                                    }
-                                };
-                                xhttp.open("GET", "certification_form.html?noof=" + noof + "&eid=" + employeeId, true);
-                                xhttp.send();
-                            }
-                        </script>
                         <div class="form">
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-4 col-form-label">No of Course Completed</label>
                                 <div class="col-md-6">
-                                    <input type="number" class="form-control" name="noof" id="noof" onchange="loadDoc()" value="0" maxlength="10" placeHolder="No of Courses" /> </div>
+                                    <input type="number" class="form-control" name="noof" id="noof" onchange="loadCertificationForm(<c:out value ='${EmployeeId}' />);" value="0" maxlength="10" placeHolder="No of Courses" /> </div>
                             </div>
 
                             <div class="col-md-12" style="padding-left: 100px;">
@@ -118,34 +72,13 @@
     </div>
 
      <c:import url="headJs.jsp" />
-
-    <c:if test="${message==null}">
-        <c:if test="${DepartmentEdit!=null}">
+     <c:if test="${message!=null}">
             <script>
-                $("#myModal").modal();
+                $("#myModal").modal("hide");
+                dialogConfirmation("employee.html");
             </script>
         </c:if>
-    </c:if>
-
-    <c:if test="${message!=null}">
-        <script>
-            $("#myModal").modal("hide");
-            $(function() {
-                $("#dialog-confirm").dialog({
-                    modal: true,
-                    open: function(event, ui) {
-                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                    },
-                    buttons: {
-                        Ok: function() {
-                            $(this).dialog("close");
-                            window.location = "employee.html";
-                        }
-                    }
-                });
-            });
-        </script>
-    </c:if>
+     <c:import url="dialogConfirmation.jsp" />
        
 </body>
 

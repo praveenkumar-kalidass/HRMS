@@ -17,12 +17,6 @@
      <c:import url="headCss.jsp" /> </head>
 
 <body>
-    <div id="dialog-confirm" title="Alert" style="display:none;">
-        <p>
-            <c:if test="${message!=null}">
-                <c:out value="${message}" /></c:if>
-        </p>
-    </div>
     <div class="containe">
         <div class="side-menu">
             <!-- Side Menu -->
@@ -64,26 +58,7 @@
                                         </div>
                                     </div>
 
-                                    <script>
-                                        function cldate() {
-                                            var date1 = document.getElementById('dtp_input3').value;
-                                            var date2 = document.getElementById('dtp_input4').value;
-                                            var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-                                            var firstDate = new Date(date1);
-                                            var secondDate = new Date(date2);
-                                            var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneDay)));
-                                            var dayValue = diffDays + 1;
-                                            document.getElementById('noofDays').value = dayValue;
-                                            if (dayValue <= 0) {
-                                                alert("Please Select Valid Date..!");
-                                                document.getElementById('noofDays').value = 0;
-                                            } else {
-                                                document.getElementById('noofDays').value = dayValue;
-                                            }
-                                        }
-                                    </script>
-
-                                    <input name="noDays" type="hidden" id="noofDays" class="form-control" />
+                                    <input name="noDays" type="hidden" id="noofDays" value="0" class="form-control" />
                             
                             </div>
                             
@@ -109,30 +84,13 @@
 
      <c:import url="headJs.jsp" />
 
-    <c:if test="${message!=null}">
-        <script>
-            $(function() {
-                $("#dialog-confirm").dialog({
-                    modal: true,
-                    open: function(event, ui) {
-                        $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
-                    },
-                    buttons: {
-                        Ok: function() {
-                            $(this).dialog("close");
-                            window.location = "salary.html";
-                        }
-                    }
-                });
-            });
-        </script>
-    </c:if>
-    <script>
-    $(".readonly").keydown(function(e){
-        e.preventDefault();
-    });
-</script>
-
+       <c:if test="${message!=null}">
+            <script>
+                $("#myModal").modal("hide");
+                dialogConfirmation("salary.html");
+            </script>
+        </c:if>
+        <c:import url="dialogConfirmation.jsp" />
 </body>
 
 </html>
