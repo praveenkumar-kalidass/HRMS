@@ -1,0 +1,25 @@
+<!-- The following doctype doesn't work when offline, so default to old one, which does work.
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">-->
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="show_sql">true</property>
+        <mapping class="com.ideas2it.model.User"/>
+        <mapping class="com.ideas2it.model.Role"/>
+        <mapping class="com.ideas2it.model.Designation"/>
+        <mapping class="com.ideas2it.model.Certification"/>
+        <mapping class="com.ideas2it.model.Education"/>
+        <mapping class="com.ideas2it.model.Department"/>
+        <mapping class="com.ideas2it.model.Address"/>
+        <mapping class="com.ideas2it.model.Attendance"/>
+        <mapping class="com.ideas2it.model.LeaveRequest"/>
+        <mapping class="com.ideas2it.model.Client"/>
+        <mapping class="com.ideas2it.model.Project"/>
+        <mapping class="com.ideas2it.model.ProjectRelease"/>
+        <mapping class="com.ideas2it.model.Team"/>
+        <mapping class="com.ideas2it.model.AllowanceVariant"/>
+    </session-factory>
+</hibernate-configuration>

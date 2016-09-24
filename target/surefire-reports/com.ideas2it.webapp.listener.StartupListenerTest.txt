@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ideas2it.webapp.listener.StartupListenerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 21.788 sec - in com.ideas2it.webapp.listener.StartupListenerTest
