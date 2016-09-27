@@ -6,8 +6,8 @@ package com.ideas2it.dao;
  */
 public class SearchException extends RuntimeException {
 
-	public SearchException(Throwable ex) {
-		super(ex);
-	}
+    public SearchException(Throwable ex) {
+        super(ex);
+    }
 
 }

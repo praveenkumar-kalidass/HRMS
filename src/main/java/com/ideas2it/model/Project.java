@@ -27,74 +27,74 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "project")
 public class Project {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private int projectId;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int projectId;
 
-	@Column(name = "name")
-	private String projectName;
+    @Column(name = "name")
+    private String projectName;
 
-	@Column(name = "from_date")
-	private String fromDate;
+    @Column(name = "from_date")
+    private String fromDate;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "client_id", nullable = true, updatable = true)
-	private Client client;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "client_id", nullable = true, updatable = true)
+    private Client client;
 
-	@Column(name = "status")
-	private String status;
+    @Column(name = "status")
+    private String status;
 
-	@Column(name = "description")
-	private String description;
+    @Column(name = "description")
+    private String description;
 
-	public int getProjectId() {
-		return projectId;
-	}
+    public int getProjectId() {
+        return projectId;
+    }
 
-	public void setProjectId(int projectId) {
-		this.projectId = projectId;
-	}
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
 
-	public String getProjectName() {
-		return projectName;
-	}
+    public String getProjectName() {
+        return projectName;
+    }
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
 
-	public String getFromDate() {
-		return fromDate;
-	}
+    public String getFromDate() {
+        return fromDate;
+    }
 
-	public void setFromDate(String fromDate) {
-		this.fromDate = fromDate;
-	}
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
+    }
 
-	public Client getClient() {
-		return client;
-	}
+    public Client getClient() {
+        return client;
+    }
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }

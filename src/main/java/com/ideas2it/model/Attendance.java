@@ -25,62 +25,62 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "attendance")
 public class Attendance {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private int attendanceId;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int attendanceId;
 
-	@Column(name = "date")
-	private String date;
+    @Column(name = "date")
+    private String date;
 
-	@Column(name = "time_in")
-	private String timeIn;
+    @Column(name = "time_in")
+    private String timeIn;
 
-	@Column(name = "time_out")
-	private String timeOut;
+    @Column(name = "time_out")
+    private String timeOut;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "user_id", updatable = true, nullable = true)
-	private User user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", updatable = true, nullable = true)
+    private User user;
 
-	public int getAttendanceId() {
-		return attendanceId;
-	}
+    public int getAttendanceId() {
+        return attendanceId;
+    }
 
-	public void setAttendanceId(int attendanceId) {
-		this.attendanceId = attendanceId;
-	}
+    public void setAttendanceId(int attendanceId) {
+        this.attendanceId = attendanceId;
+    }
 
-	public String getDate() {
-		return date;
-	}
+    public String getDate() {
+        return date;
+    }
 
-	public void setDate(String date) {
-		this.date = date;
-	}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-	public String getTimeIn() {
-		return timeIn;
-	}
+    public String getTimeIn() {
+        return timeIn;
+    }
 
-	public void setTimeIn(String timeIn) {
-		this.timeIn = timeIn;
-	}
+    public void setTimeIn(String timeIn) {
+        this.timeIn = timeIn;
+    }
 
-	public String getTimeOut() {
-		return timeOut;
-	}
+    public String getTimeOut() {
+        return timeOut;
+    }
 
-	public void setTimeOut(String timeOut) {
-		this.timeOut = timeOut;
-	}
+    public void setTimeOut(String timeOut) {
+        this.timeOut = timeOut;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

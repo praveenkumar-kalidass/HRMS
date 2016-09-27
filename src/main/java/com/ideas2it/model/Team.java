@@ -28,54 +28,54 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "team")
 public class Team {
-	@Id
-	@GeneratedValue
-	@Column(name = "id", unique = true)
-	private int teamId;
+    @Id
+    @GeneratedValue
+    @Column(name = "id", unique = true)
+    private int teamId;
 
-	@ManyToOne
-	@JoinColumn(name = "project_id", nullable = true, updatable = true)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Project project;
+    @ManyToOne
+    @JoinColumn(name = "project_id", nullable = true, updatable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Project project;
 
-	@OneToOne
-	@JoinColumn(name = "user_id", nullable = true, updatable = true)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private User user;
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = true, updatable = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private User user;
 
-	@Column(name = "role")
-	private String teamRole;
+    @Column(name = "role")
+    private String teamRole;
 
-	public int getTeamId() {
-		return teamId;
-	}
+    public int getTeamId() {
+        return teamId;
+    }
 
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
-	}
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
+    }
 
-	public Project getProject() {
-		return project;
-	}
+    public Project getProject() {
+        return project;
+    }
 
-	public void setProject(Project project) {
-		this.project = project;
-	}
+    public void setProject(Project project) {
+        this.project = project;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public String getTeamRole() {
-		return teamRole;
-	}
+    public String getTeamRole() {
+        return teamRole;
+    }
 
-	public void setTeamRole(String teamRole) {
-		this.teamRole = teamRole;
-	}
+    public void setTeamRole(String teamRole) {
+        this.teamRole = teamRole;
+    }
 }

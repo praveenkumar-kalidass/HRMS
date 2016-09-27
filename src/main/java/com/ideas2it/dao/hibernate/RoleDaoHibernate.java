@@ -22,41 +22,41 @@ import java.util.List;
 @Repository
 public class RoleDaoHibernate extends GenericDaoHibernate<Role, Long> implements RoleDao {
 
-	/**
-	 * Constructor to create a Generics-based version using Role as the entity
-	 */
-	public RoleDaoHibernate() {
-		super(Role.class);
-	}
+    /**
+     * Constructor to create a Generics-based version using Role as the entity
+     */
+    public RoleDaoHibernate() {
+        super(Role.class);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Role getRoleByName(String rolename) {
-		List roles = getSession().createCriteria(Role.class).add(Restrictions.eq("name", rolename)).list();
-		if (roles.isEmpty()) {
-			return null;
-		} else {
-			return (Role) roles.get(0);
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public Role getRoleByName(String rolename) {
+        List roles = getSession().createCriteria(Role.class).add(Restrictions.eq("name", rolename)).list();
+        if (roles.isEmpty()) {
+            return null;
+        } else {
+            return (Role) roles.get(0);
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void removeRole(String rolename) {
-		Object role = getRoleByName(rolename);
-		Session session = getSessionFactory().getCurrentSession();
-		session.delete(role);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public void removeRole(String rolename) {
+        Object role = getRoleByName(rolename);
+        Session session = getSessionFactory().getCurrentSession();
+        session.delete(role);
+    }
 
-	public List<Role> retrieveRoles() throws DataException {
-		Session session = getSession();
-		try {
-			return session.createCriteria(Role.class).list();
-		} catch (HibernateException exception) {
-			FileUtil.errorLogger("Exception in retrieveRoles() : " + exception.getMessage());
-			throw new DataException("Error while displaying all Roles");
-		}
-	}
+    public List<Role> retrieveRoles() throws DataException {
+        Session session = getSession();
+        try {
+            return session.createCriteria(Role.class).list();
+        } catch (HibernateException exception) {
+            FileUtil.errorLogger("Exception in retrieveRoles() : " + exception.getMessage());
+            throw new DataException("Error while displaying all Roles");
+        }
+    }
 }

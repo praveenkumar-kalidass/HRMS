@@ -11,10 +11,10 @@ import java.util.List;
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
 public interface LookupManager {
-	/**
-	 * Retrieves all possible roles from persistence layer
-	 * 
-	 * @return List of LabelValue objects
-	 */
-	List<LabelValue> getAllRoles();
+    /**
+     * Retrieves all possible roles from persistence layer
+     * 
+     * @return List of LabelValue objects
+     */
+    List<LabelValue> getAllRoles();
 }

@@ -14,13 +14,13 @@ import java.lang.Exception;
  */
 
 public class DataException extends Exception {
-	/**
-	 * Handling message from the exception
-	 * 
-	 * @param message
-	 *            contains error message
-	 */
-	public DataException(String message) {
-		super(message);
-	}
+    /**
+     * Handling message from the exception
+     * 
+     * @param message
+     *            contains error message
+     */
+    public DataException(String message) {
+        super(message);
+    }
 }

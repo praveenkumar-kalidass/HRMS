@@ -7,11 +7,11 @@ import com.ideas2it.model.Salary;
 
 public interface SalaryService {
 
-	/**
-	 * GenerateSalary for given Dates
-	 *
-	 * @return list
-	 */
-	public List<Salary> generateSalary(String fromDate, String toDate, int noDays)
-			throws NumberFormatException, DataException;
+    /**
+     * GenerateSalary for given Dates
+     *
+     * @return list
+     */
+    public List<Salary> generateSalary(String fromDate, String toDate, int noDays)
+            throws NumberFormatException, DataException;
 }

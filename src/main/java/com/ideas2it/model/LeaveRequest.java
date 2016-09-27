@@ -24,83 +24,83 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "leaverequest")
 public class LeaveRequest {
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private int leaveId;
-	@Column(name = "from_date")
-	private String leaveFromDate;
-	@Column(name = "to_date")
-	private String leaveToDate;
-	@Column(name = "reason")
-	private String leaveReason;
-	@Column(name = "status")
-	private String leaveStatus;
-	@Column(name = "no_days")
-	private int noDays;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "user_id", updatable = true, nullable = true)
-	private User user;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int leaveId;
+    @Column(name = "from_date")
+    private String leaveFromDate;
+    @Column(name = "to_date")
+    private String leaveToDate;
+    @Column(name = "reason")
+    private String leaveReason;
+    @Column(name = "status")
+    private String leaveStatus;
+    @Column(name = "no_days")
+    private int noDays;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", updatable = true, nullable = true)
+    private User user;
 
-	public LeaveRequest() {
+    public LeaveRequest() {
 
-	}
+    }
 
-	public int getLeaveId() {
-		return leaveId;
-	}
+    public int getLeaveId() {
+        return leaveId;
+    }
 
-	public void setLeaveId(int leaveId) {
-		this.leaveId = leaveId;
-	}
+    public void setLeaveId(int leaveId) {
+        this.leaveId = leaveId;
+    }
 
-	public String getLeaveFromDate() {
-		return leaveFromDate;
-	}
+    public String getLeaveFromDate() {
+        return leaveFromDate;
+    }
 
-	public void setLeaveFromDate(String leaveFromDate) {
-		this.leaveFromDate = leaveFromDate;
-	}
+    public void setLeaveFromDate(String leaveFromDate) {
+        this.leaveFromDate = leaveFromDate;
+    }
 
-	public String getLeaveToDate() {
-		return leaveToDate;
-	}
+    public String getLeaveToDate() {
+        return leaveToDate;
+    }
 
-	public void setLeaveToDate(String leaveToDate) {
-		this.leaveToDate = leaveToDate;
-	}
+    public void setLeaveToDate(String leaveToDate) {
+        this.leaveToDate = leaveToDate;
+    }
 
-	public String getLeaveReason() {
-		return leaveReason;
-	}
+    public String getLeaveReason() {
+        return leaveReason;
+    }
 
-	public void setLeaveReason(String leaveReason) {
-		this.leaveReason = leaveReason;
-	}
+    public void setLeaveReason(String leaveReason) {
+        this.leaveReason = leaveReason;
+    }
 
-	public String getLeaveStatus() {
-		return leaveStatus;
-	}
+    public String getLeaveStatus() {
+        return leaveStatus;
+    }
 
-	public void setLeaveStatus(String leaveStatus) {
-		this.leaveStatus = leaveStatus;
-	}
+    public void setLeaveStatus(String leaveStatus) {
+        this.leaveStatus = leaveStatus;
+    }
 
-	public int getNoDays() {
-		return noDays;
-	}
+    public int getNoDays() {
+        return noDays;
+    }
 
-	public void setNoDays(int noDays) {
-		this.noDays = noDays;
-	}
+    public void setNoDays(int noDays) {
+        this.noDays = noDays;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }

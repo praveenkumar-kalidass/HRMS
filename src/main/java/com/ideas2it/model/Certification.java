@@ -29,74 +29,74 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "certification")
 public class Certification {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id", unique = true)
-	private int certificationId;
+    @Id
+    @GeneratedValue
+    @Column(name = "id", unique = true)
+    private int certificationId;
 
-	@Column(name = "from_date")
-	private String fromDate;
+    @Column(name = "from_date")
+    private String fromDate;
 
-	@Column(name = "to_date")
-	private String toDate;
+    @Column(name = "to_date")
+    private String toDate;
 
-	@Column(name = "course_name")
-	private String courseName;
+    @Column(name = "course_name")
+    private String courseName;
 
-	@Column(name = "institution")
-	private String institution;
+    @Column(name = "institution")
+    private String institution;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "user_id", updatable = true, nullable = true)
-	private User user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", updatable = true, nullable = true)
+    private User user;
 
-	public String getFromDate() {
-		return fromDate;
-	}
+    public String getFromDate() {
+        return fromDate;
+    }
 
-	public void setFromDate(String fromDate) {
-		this.fromDate = fromDate;
-	}
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
+    }
 
-	public String getToDate() {
-		return toDate;
-	}
+    public String getToDate() {
+        return toDate;
+    }
 
-	public void setToDate(String toDate) {
-		this.toDate = toDate;
-	}
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
+    }
 
-	public String getCourseName() {
-		return courseName;
-	}
+    public String getCourseName() {
+        return courseName;
+    }
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
-	}
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 
-	public String getInstitution() {
-		return institution;
-	}
+    public String getInstitution() {
+        return institution;
+    }
 
-	public void setInstitution(String institution) {
-		this.institution = institution;
-	}
+    public void setInstitution(String institution) {
+        this.institution = institution;
+    }
 
-	public int getCertificationId() {
-		return certificationId;
-	}
+    public int getCertificationId() {
+        return certificationId;
+    }
 
-	public void setCertificationId(int certificationId) {
-		this.certificationId = certificationId;
-	}
+    public void setCertificationId(int certificationId) {
+        this.certificationId = certificationId;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }

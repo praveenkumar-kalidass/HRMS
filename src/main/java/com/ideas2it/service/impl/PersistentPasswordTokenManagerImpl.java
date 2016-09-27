@@ -38,76 +38,76 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class PersistentPasswordTokenManagerImpl implements PasswordTokenManager {
 
-	private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
-	private String deleteTokenSql = "delete from password_reset_token where username=?";
-	private String insertTokenSql = "insert into password_reset_token (username, token, expiration_time) values (?, ?, ?)";
-	private String selectTokenSql = "select count(token) from password_reset_token where username=? and token=? and expiration_time > NOW()";
+    private String deleteTokenSql = "delete from password_reset_token where username=?";
+    private String insertTokenSql = "insert into password_reset_token (username, token, expiration_time) values (?, ?, ?)";
+    private String selectTokenSql = "select count(token) from password_reset_token where username=? and token=? and expiration_time > NOW()";
 
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		jdbcTemplate = new JdbcTemplate(dataSource);
-	}
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
-	public void setDeleteTokenSql(String deleteTokenSql) {
-		this.deleteTokenSql = deleteTokenSql;
-	}
+    public void setDeleteTokenSql(String deleteTokenSql) {
+        this.deleteTokenSql = deleteTokenSql;
+    }
 
-	public void setInsertTokenSql(String insertTokenSql) {
-		this.insertTokenSql = insertTokenSql;
-	}
+    public void setInsertTokenSql(String insertTokenSql) {
+        this.insertTokenSql = insertTokenSql;
+    }
 
-	public void setSelectTokenSql(String selectTokenSql) {
-		this.selectTokenSql = selectTokenSql;
-	}
+    public void setSelectTokenSql(String selectTokenSql) {
+        this.selectTokenSql = selectTokenSql;
+    }
 
-	/**
-	 * @see com.ideas2it.service.impl.PasswordTokenManager#generateRecoveryToken(com.ideas2it.model.User)
-	 */
-	@Override
-	public String generateRecoveryToken(final User user) {
-		int length = RandomUtils.nextInt(16) + 16;
-		String token = RandomStringUtils.randomAlphanumeric(length);
-		persistToken(user, token);
-		return token;
-	}
+    /**
+     * @see com.ideas2it.service.impl.PasswordTokenManager#generateRecoveryToken(com.ideas2it.model.User)
+     */
+    @Override
+    public String generateRecoveryToken(final User user) {
+        int length = RandomUtils.nextInt(16) + 16;
+        String token = RandomStringUtils.randomAlphanumeric(length);
+        persistToken(user, token);
+        return token;
+    }
 
-	/**
-	 * @see com.ideas2it.service.impl.PasswordTokenManager#isRecoveryTokenValid(com.ideas2it.model.User,
-	 *      java.lang.String)
-	 */
-	@Override
-	public boolean isRecoveryTokenValid(final User user, final String token) {
-		return isRecoveryTokenPersisted(user, token);
-	}
+    /**
+     * @see com.ideas2it.service.impl.PasswordTokenManager#isRecoveryTokenValid(com.ideas2it.model.User,
+     *      java.lang.String)
+     */
+    @Override
+    public boolean isRecoveryTokenValid(final User user, final String token) {
+        return isRecoveryTokenPersisted(user, token);
+    }
 
-	/**
-	 * 
-	 * @see com.ideas2it.service.impl.PasswordTokenManager#invalidateRecoveryToken(User,
-	 *      String)
-	 */
-	@Override
-	public void invalidateRecoveryToken(User user, String token) {
-		jdbcTemplate.update(deleteTokenSql, user.getUsername());
-	}
+    /**
+     * 
+     * @see com.ideas2it.service.impl.PasswordTokenManager#invalidateRecoveryToken(User,
+     *      String)
+     */
+    @Override
+    public void invalidateRecoveryToken(User user, String token) {
+        jdbcTemplate.update(deleteTokenSql, user.getUsername());
+    }
 
-	protected void persistToken(User user, String token) {
-		jdbcTemplate.update(deleteTokenSql, user.getUsername());
-		jdbcTemplate.update(insertTokenSql, user.getUsername(), token, getExpirationTime());
-	}
+    protected void persistToken(User user, String token) {
+        jdbcTemplate.update(deleteTokenSql, user.getUsername());
+        jdbcTemplate.update(insertTokenSql, user.getUsername(), token, getExpirationTime());
+    }
 
-	protected boolean isRecoveryTokenPersisted(final User user, final String token) {
-		Number count = jdbcTemplate.queryForObject(selectTokenSql, new Object[] { user.getUsername(), token },
-				Integer.class);
-		return count != null && count.intValue() == 1;
-	}
+    protected boolean isRecoveryTokenPersisted(final User user, final String token) {
+        Number count = jdbcTemplate.queryForObject(selectTokenSql, new Object[] { user.getUsername(), token },
+                Integer.class);
+        return count != null && count.intValue() == 1;
+    }
 
-	/**
-	 * Return tokens expiration time, now + 1 day.
-	 * 
-	 * @return
-	 */
-	private Date getExpirationTime() {
-		return DateUtils.addDays(new Date(), 1);
-	}
+    /**
+     * Return tokens expiration time, now + 1 day.
+     * 
+     * @return
+     */
+    private Date getExpirationTime() {
+        return DateUtils.addDays(new Date(), 1);
+    }
 }

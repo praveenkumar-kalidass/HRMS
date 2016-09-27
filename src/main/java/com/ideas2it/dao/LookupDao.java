@@ -11,13 +11,13 @@ import java.util.List;
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
 public interface LookupDao {
-	// ~ Methods
-	// ================================================================
+    // ~ Methods
+    // ================================================================
 
-	/**
-	 * Returns all Roles ordered by name
-	 * 
-	 * @return populated list of roles
-	 */
-	List<Role> getRoles();
+    /**
+     * Returns all Roles ordered by name
+     * 
+     * @return populated list of roles
+     */
+    List<Role> getRoles();
 }

@@ -15,21 +15,21 @@ import java.util.Date;
 
 public class FileUtil {
 
-	/**
-	 * <p>
-	 * ErrorLogger to save the error hapen during execution
-	 * </p>
-	 * 
-	 * @param error
-	 *            Contains error message
-	 */
-	public static void errorLogger(String error) {
-		try {
-			Date date = new Date();
-			System.out.println("Date : " + date + "- Error : " + error + "\n");
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
+    /**
+     * <p>
+     * ErrorLogger to save the error hapen during execution
+     * </p>
+     * 
+     * @param error
+     *            Contains error message
+     */
+    public static void errorLogger(String error) {
+        try {
+            Date date = new Date();
+            System.out.println("Date : " + date + "- Error : " + error + "\n");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
 }

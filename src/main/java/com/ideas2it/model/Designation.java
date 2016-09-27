@@ -28,43 +28,43 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "designation")
 public class Designation {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private int designationId;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int designationId;
 
-	@Column(name = "name")
-	private String designationName;
+    @Column(name = "name")
+    private String designationName;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name = "department_id", nullable = true, updatable = true)
-	private Department department;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "department_id", nullable = true, updatable = true)
+    private Department department;
 
-	public Designation() {
-	}
+    public Designation() {
+    }
 
-	public int getDesignationId() {
-		return designationId;
-	}
+    public int getDesignationId() {
+        return designationId;
+    }
 
-	public void setDesignationId(int designationId) {
-		this.designationId = designationId;
-	}
+    public void setDesignationId(int designationId) {
+        this.designationId = designationId;
+    }
 
-	public String getDesignationName() {
-		return designationName;
-	}
+    public String getDesignationName() {
+        return designationName;
+    }
 
-	public void setDesignationName(String designationName) {
-		this.designationName = designationName;
-	}
+    public void setDesignationName(String designationName) {
+        this.designationName = designationName;
+    }
 
-	public Department getDepartment() {
-		return department;
-	}
+    public Department getDepartment() {
+        return department;
+    }
 
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 }
