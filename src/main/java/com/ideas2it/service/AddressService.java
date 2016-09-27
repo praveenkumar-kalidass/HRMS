@@ -10,21 +10,21 @@ public interface AddressService {
     /**
      * Add new address
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addAddress(Address address) throws DataException;
 
     /**
      * Update existing address
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateAddress(Address address) throws DataException;
 
     /**
      * Delete address
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteAddress(int addressId) throws DataException;
 
@@ -36,14 +36,14 @@ public interface AddressService {
     public Address searchAddress(int addressId) throws DataException;
 
     /**
-     * Retrive All address
+     * Retrieve All addresses
      *
      * @return list
      */
     public List<Address> retriveAddresss() throws DataException;
 
     /**
-     * Retrive address by given user
+     * Retrieve addresses by given user
      *
      * @return list
      */

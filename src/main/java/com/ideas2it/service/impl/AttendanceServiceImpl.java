@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ideas2it.dao.AttendanceDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Address;
 import com.ideas2it.model.Attendance;
-import com.ideas2it.service.AddressService;
 import com.ideas2it.service.AttendanceService;
 
 /**

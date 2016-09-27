@@ -10,21 +10,21 @@ public interface DepartmentService {
     /**
      * Add new Department
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addDepartment(Department department) throws DataException;
 
     /**
      * Update existing Department
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateDepartment(Department department) throws DataException;
 
     /**
      * Delete Department
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteDepartment(int departmentId) throws DataException;
 
@@ -36,7 +36,7 @@ public interface DepartmentService {
     public Department searchDepartment(int departmentId) throws DataException;
 
     /**
-     * Retrive All Department
+     * Retrieve All Departments
      *
      * @return list
      */

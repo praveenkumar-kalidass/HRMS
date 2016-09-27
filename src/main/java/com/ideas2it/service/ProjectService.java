@@ -10,21 +10,21 @@ public interface ProjectService {
     /**
      * Add new Project
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addProject(Project project) throws DataException;
 
     /**
      * Update existing Project
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateProject(Project project) throws DataException;
 
     /**
      * Delete Project
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteProject(int projectId) throws DataException;
 
@@ -36,14 +36,14 @@ public interface ProjectService {
     public Project searchProject(int projectId) throws DataException;
 
     /**
-     * Retrive All Project
+     * Retrieve All Project
      *
      * @return list
      */
     public List<Project> getProjects() throws DataException;
 
     /**
-     * Retrive All Project given Clien
+     * Retrieve All Project given Client
      *
      * @return list
      */

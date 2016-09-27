@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ideas2it.dao.TeamDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Salary;
 import com.ideas2it.model.Team;
-import com.ideas2it.service.SalaryService;
 import com.ideas2it.service.TeamService;
 
 /**

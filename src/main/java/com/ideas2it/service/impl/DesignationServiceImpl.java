@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ideas2it.dao.DesignationDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Department;
 import com.ideas2it.model.Designation;
-import com.ideas2it.service.DepartmentService;
 import com.ideas2it.service.DesignationService;
 
 /**
@@ -87,7 +85,7 @@ public class DesignationServiceImpl extends GenericManagerImpl<Designation, Long
 
     /**
      * <p>
-     * This method passes the department ID to its dao class to search in the
+     * This method passes the designation ID to its dao class to search in the
      * database. Returns the model object of the designation to its controller
      * to display.
      * </p>

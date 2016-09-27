@@ -10,21 +10,21 @@ public interface DesignationService {
     /**
      * Add new Designation
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addDesignation(Designation designation) throws DataException;
 
     /**
      * Update existing Designation
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateDesignation(Designation designation) throws DataException;
 
     /**
      * Delete Designation
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteDesignation(int designationId) throws DataException;
 
@@ -36,14 +36,14 @@ public interface DesignationService {
     public Designation searchDesignation(int designationId) throws DataException;
 
     /**
-     * Retrive All Designation
+     * Retrieve All Designations
      *
      * @return list
      */
     public List<Designation> getDesignations() throws DataException;
 
     /**
-     * Retrive All Designation by given Department
+     * Retrieve All Designations by given Department
      *
      * @return list
      */

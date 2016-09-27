@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ideas2it.dao.LeaveRequestDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Education;
 import com.ideas2it.model.LeaveRequest;
-import com.ideas2it.service.EducationService;
 import com.ideas2it.service.LeaveRequestService;
 
 /**
@@ -143,8 +141,8 @@ public class LeaveRequestServiceImpl extends GenericManagerImpl<LeaveRequest, Lo
 
     /**
      * <p>
-     * This method retrieves the LeaveRequest data for given user from the
-     * records and returns the list of data to display.
+     * This method calculates the number of leave days for given user from the
+     * records and returns the data to display.
      * </p>
      * 
      * @param userId
