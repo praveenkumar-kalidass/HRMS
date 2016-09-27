@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Client</title>
     <link href="images/logo1.png" rel="icon" />
-    <c:import url="headCss.jsp" />  </head>
+    <c:import url="headCss.jsp" /> </head>
 
 <body>
     <div class="containe">
@@ -298,11 +298,11 @@
     </c:if>
 
     <c:if test="${message!=null}">
-            <script>
-                $("#myModal").modal("hide");
-                dialogConfirmation("client.html");
-            </script>
-     </c:if>
+        <script>
+            $("#myModal").modal("hide");
+            dialogConfirmation("client.html");
+        </script>
+    </c:if>
     <c:import url="dialogConfirmation.jsp" />
 </body>
 

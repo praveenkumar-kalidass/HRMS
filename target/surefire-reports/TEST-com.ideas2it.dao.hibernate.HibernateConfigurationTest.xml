@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ideas2it.dao.hibernate.HibernateConfigurationTest" time="0.95" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="com.ideas2it.dao.hibernate.HibernateConfigurationTest" time="1.173" tests="1" errors="0" skipped="0" failures="0">
   <properties>
+    <property name="jboss.i18n.generate-proxies" value="true"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
     <property name="java.vm.version" value="25.91-b14"/>
@@ -34,8 +35,8 @@
     <property name="user.home" value="/home/user"/>
     <property name="user.timezone" value="Asia/Kolkata"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
-    <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
     <property name="user.name" value="user"/>
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
     <property name="org.slf4j.simpleLogger.defaultLogLevel" value="debug"/>
@@ -60,5 +61,5 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testColumnMapping" classname="com.ideas2it.dao.hibernate.HibernateConfigurationTest" time="0.95"/>
+  <testcase name="testColumnMapping" classname="com.ideas2it.dao.hibernate.HibernateConfigurationTest" time="1.173"/>
 </testsuite>

@@ -627,6 +627,7 @@ public class UserController {
                 }
             }
             user.setRoles(roleSet);
+            user.setEnabled(true);
             if (userManager.saveUser(user) != null) {
                 user.add(new Address());
                 user.add(new Address());

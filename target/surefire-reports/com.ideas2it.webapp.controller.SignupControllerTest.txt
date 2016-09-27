@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ideas2it.webapp.controller.SignupControllerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.135 sec - in com.ideas2it.webapp.controller.SignupControllerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.173 sec - in com.ideas2it.webapp.controller.SignupControllerTest

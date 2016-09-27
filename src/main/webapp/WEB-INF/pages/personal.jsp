@@ -180,11 +180,9 @@
                                                 </div>
                                             </div>
                                             
-
                                         </div>
-
                                     </div>
-
+                                    
                                     <div class="form-group row">
                                         <div class="col-md-12" align="center">
                                             <input class="btn btn-primary btn-lg" type="submit" value="Submit">

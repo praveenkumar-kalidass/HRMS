@@ -11,7 +11,9 @@
                 <c:if test="${sessionScope['currentUserPicture']!=null}" >
                 <img src="upload/<c:out value="${sessionScope['currentUserPicture']}" />" />
                 </c:if>
+                <c:if test="${sessionScope['currentUserPicture']==null}" >
                 <img src="images/user.png" />
+                </c:if>
                 </div>
                 <div id="per-name">
                     <h5> 
