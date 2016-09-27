@@ -6,14 +6,11 @@ import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.ideas2it.util.FileUtil;
 import com.ideas2it.dao.TeamDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Project;
 import com.ideas2it.model.Team;
 
 /**
@@ -29,7 +26,9 @@ import com.ideas2it.model.Team;
 @Repository("teamDao")
 @Transactional
 public class TeamDaoHibernate extends GenericDaoHibernate<Team, Long> implements TeamDao {
-
+	/**
+     * Constructor to create a Generics-based version using Team as the entity
+     */
     public TeamDaoHibernate() {
         super(Team.class);
     }
@@ -103,7 +102,7 @@ public class TeamDaoHibernate extends GenericDaoHibernate<Team, Long> implements
             session.delete(team);
             return true;
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in removeUser() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in removeTeam() : " + exception.getMessage());
             throw new DataException("Error while deleting Team ID : " + team.getTeamId());
         }
     }

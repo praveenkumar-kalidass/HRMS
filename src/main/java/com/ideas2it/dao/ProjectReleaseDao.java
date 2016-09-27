@@ -10,21 +10,21 @@ public interface ProjectReleaseDao extends GenericDao<ProjectRelease, Long> {
     /**
      * Add new ProjectRelease
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertProjectRelease(ProjectRelease projectRelease) throws DataException;
 
     /**
      * Update existing ProjectRelease
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyProjectRelease(ProjectRelease projectRelease) throws DataException;
 
     /**
      * Delete ProjectRelease
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeProjectRelease(ProjectRelease projectRelease) throws DataException;
 
@@ -36,14 +36,14 @@ public interface ProjectReleaseDao extends GenericDao<ProjectRelease, Long> {
     ProjectRelease findProjectRelease(int projectReleaseId) throws DataException;
 
     /**
-     * Retrive All ProjectReleases
+     * Retrieve All ProjectReleases
      *
      * @return list
      */
     List<ProjectRelease> retrieveProjectReleases() throws DataException;
 
     /**
-     * Retrive All ProjectReleases for Given project
+     * Retrieve All ProjectReleases for Given project
      *
      * @return list
      */

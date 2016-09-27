@@ -7,13 +7,11 @@ import javax.transaction.Transactional;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.ideas2it.util.FileUtil;
 import com.ideas2it.dao.AttendanceDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.AllowanceVariant;
 import com.ideas2it.model.Attendance;
 
 /**
@@ -26,11 +24,12 @@ import com.ideas2it.model.Attendance;
  *
  * @created 2016-09-01
  */
-
 @Repository("attendanceDao")
 @Transactional
 public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long> implements AttendanceDao {
-
+	/**
+     * Constructor to create a Generics-based version using Attendance as the entity
+     */
     public AttendanceDaoHibernate() {
         super(Attendance.class);
     }
@@ -62,8 +61,8 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
 
     /**
      * <p>
-     * This method opens a new session and modify the model object of the
-     * attendance from the database.
+     * This method opens a new session and modifies the model object of the
+     * attendance in the database.
      * </p>
      * 
      * @param attendance
@@ -80,8 +79,8 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
             session.update(attendance);
             return true;
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in insertAttendance() : " + exception.getMessage());
-            throw new DataException("Error while adding Attendance ID : " + attendance.getAttendanceId());
+            FileUtil.errorLogger("Exception in modifyAttendance() : " + exception.getMessage());
+            throw new DataException("Error while modifying Attendance ID : " + attendance.getAttendanceId());
         }
     }
 
@@ -104,7 +103,7 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
             session.delete(attendance);
             return true;
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in removeUser() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in removeAttendance() : " + exception.getMessage());
             throw new DataException("Error while deleting Attendance ID : " + attendance.getAttendanceId());
         }
     }
@@ -115,7 +114,7 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
      * and returns the data as a model object to display.
      * </p>
      * 
-     * @param departementId
+     * @param attendanceId
      *            contains the ID of the attendance.
      * @return object gives the appropriate attendance detail for the
      *         corresponding attendance ID.
@@ -156,7 +155,7 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
 
     /**
      * <p>
-     * This method retrieves the attendance data from the records and returns
+     * This method retrieves the recent attendance data for a particular user from the records and returns
      * the list of data.
      * </p>
      * 
@@ -173,14 +172,14 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
             q.setMaxResults(1);
             return q.list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveAttendances() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in retrieveAttendancesByUserId() : " + exception.getMessage());
             throw new DataException("Error while displaying all Attendances");
         }
     }
 
     /**
      * <p>
-     * This method retrieves the attendance data from the records and returns
+     * This method retrieves the complete attendance data for a particular user from the records and returns
      * the list of data for given User Id.
      * </p>
      * 
@@ -199,7 +198,7 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
             Query q = session.createQuery("From Attendance WHERE user_id=" + userId + " order by id desc");
             return q.list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveAttendances() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in retrieveCompleteAttendanceByUserId() : " + exception.getMessage());
             throw new DataException("Error while displaying all Attendances");
         }
     }

@@ -1,6 +1,5 @@
 package com.ideas2it.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +13,10 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 /**
- * Model class for Leave request Setter and Getter methods for the class
- * variables Many to One mapping is established for Employee model class
+ * <p>
+ * Model class for Leave request. Setter and Getter methods for the class variables.
+ * Many to One mapping is established for User model class
+ * </p>
  * 
  * @author Praveenkumar
  * 
@@ -28,16 +29,22 @@ public class LeaveRequest {
     @GeneratedValue
     @Column(name = "id")
     private int leaveId;
+
     @Column(name = "from_date")
     private String leaveFromDate;
+
     @Column(name = "to_date")
     private String leaveToDate;
+
     @Column(name = "reason")
     private String leaveReason;
+
     @Column(name = "status")
     private String leaveStatus;
+
     @Column(name = "no_days")
     private int noDays;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", updatable = true, nullable = true)
@@ -102,5 +109,4 @@ public class LeaveRequest {
     public void setUser(User user) {
         this.user = user;
     }
-
 }

@@ -30,15 +30,16 @@ import com.ideas2it.model.ProjectRelease;
 @Repository("projectDao")
 @Transactional
 public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> implements ProjectDao {
-
+	/**
+     * Constructor to create a Generics-based version using Project as the entity
+     */
     public ProjectDaoHibernate() {
         super(Project.class);
     }
 
     /**
-     * *
      * <p>
-     * Method is used to insert new project create a new session and Inserts the
+     * Method is used to insert new project. create a new session and Inserts the
      * model object of the project into the database.
      * </p>
      * 
@@ -94,7 +95,7 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> impl
      * *
      * <p>
      * Method is used to delete existing project create a new session and
-     * Inserts the model object of the project into the database.
+     * Removes the model object of the project from the database.
      * </p>
      * 
      * @param project
@@ -103,7 +104,7 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> impl
      * @throws DataException
      *             if any database connection error occurred error message will
      *             be logged and send context info to user
-     * @return if inserted successfully true will be return to the Calling
+     * @return if deleted successfully true will be return to the Calling
      *         method
      */
     public boolean removeProject(Project project) throws DataException {
@@ -112,15 +113,15 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> impl
             session.delete(project);
             return true;
         } catch (HibernateException ex) {
-            FileUtil.errorLogger("Error on ProjectDao insertProject() : " + ex.toString());
-            throw new DataException("Error Occured while Adding this" + project.getProjectName()
+            FileUtil.errorLogger("Error on ProjectDao removeProject() : " + ex.toString());
+            throw new DataException("Error Occured while Removing this" + project.getProjectName()
                     + " : please verify your details... Any try again..!");
         }
     }
 
     /**
      * <p>
-     * this method searches the project from the records using project ID and
+     * This method searches the project from the records using project ID and
      * returns the data as a model object to display.
      * </p>
      * 
@@ -138,8 +139,8 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> impl
             Session session = getSession();
             return (Project) session.get(Project.class, projectId);
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in findEmployee() : " + exception.getMessage());
-            throw new DataException("Error while searching Client ID : " + projectId);
+            FileUtil.errorLogger("Exception in findProjectById() : " + exception.getMessage());
+            throw new DataException("Error while searching Project ID : " + projectId);
         }
     }
 
@@ -161,14 +162,14 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> impl
             Session session = getSession();
             return session.createCriteria(Project.class).list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in retrieveProjects() : " + exception.getMessage());
             throw new DataException("Error while displaying all Projects");
         }
     }
 
     /**
      * <p>
-     * This method retrieves the project data from the records and returns the
+     * This method retrieves the project data from the records for a particular client and returns the
      * list of data.
      * </p>
      * 
@@ -185,8 +186,8 @@ public class ProjectDaoHibernate extends GenericDaoHibernate<Project, Long> impl
             Session session = getSession();
             return session.createQuery("From Project WHERE client_id=" + clientId).list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Education");
+            FileUtil.errorLogger("Exception in retrieveProjectByClient() : " + exception.getMessage());
+            throw new DataException("Error while displaying all Projects");
         }
     }
 

@@ -10,21 +10,21 @@ public interface DesignationDao extends GenericDao<Designation, Long> {
     /**
      * Add new Designation
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertDesignation(Designation designation) throws DataException;
 
     /**
      * Update existing Designation
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyDesignation(Designation designation) throws DataException;
 
     /**
      * Delete Designation
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeDesignation(Designation designation) throws DataException;
 
@@ -36,14 +36,14 @@ public interface DesignationDao extends GenericDao<Designation, Long> {
     Designation findDesignationById(int designationId) throws DataException;
 
     /**
-     * Retrive All Designation
+     * Retrieve All Designation
      *
      * @return list
      */
     List<Designation> retrieveDesignations() throws DataException;
 
     /**
-     * Retrive All Designation by given Department
+     * Retrieve All Designation by given Department
      *
      * @return list
      */

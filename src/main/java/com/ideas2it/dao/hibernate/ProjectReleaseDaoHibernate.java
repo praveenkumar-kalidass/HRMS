@@ -6,13 +6,11 @@ import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.ideas2it.util.FileUtil;
 import com.ideas2it.dao.ProjectReleaseDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Department;
 import com.ideas2it.model.ProjectRelease;
 
 /**
@@ -29,7 +27,9 @@ import com.ideas2it.model.ProjectRelease;
 @Repository("projectReleaseDao")
 @Transactional
 public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelease, Long> implements ProjectReleaseDao {
-
+	/**
+     * Constructor to create a Generics-based version using Project Release as the entity
+     */
     public ProjectReleaseDaoHibernate() {
         super(ProjectRelease.class);
     }
@@ -105,7 +105,7 @@ public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelea
             session.delete(projectRelease);
             return true;
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in removeEmployee() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in removeProjectRelease() : " + exception.getMessage());
             throw new DataException("Error while deleting ProjectRelease ID : " + projectRelease.getReleaseId());
         }
     }

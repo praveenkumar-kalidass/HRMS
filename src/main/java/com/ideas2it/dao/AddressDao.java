@@ -10,21 +10,21 @@ public interface AddressDao extends GenericDao<Address, Long> {
     /**
      * Add new address
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertAddress(Address address) throws DataException;
 
     /**
      * Update existing address
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyAddress(Address address) throws DataException;
 
     /**
      * Delete address
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeAddress(Address address) throws DataException;
 
@@ -36,14 +36,14 @@ public interface AddressDao extends GenericDao<Address, Long> {
     Address findAddress(int addressId) throws DataException;
 
     /**
-     * Retrive All address
+     * Retrieve All address
      *
      * @return list
      */
     List<Address> retrieveAddresss() throws DataException;
 
     /**
-     * Retrive address by given user
+     * Retrieve address by given user
      *
      * @return list
      */

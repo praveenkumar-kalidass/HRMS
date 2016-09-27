@@ -30,7 +30,9 @@ import com.ideas2it.model.Certification;
 @Repository("certificationDao")
 @Transactional
 public class CertificationDaoHibernate extends GenericDaoHibernate<Certification, Long> implements CertificationDao {
-
+	/**
+     * Constructor to create a Generics-based version using Certification as the entity
+     */
     public CertificationDaoHibernate() {
         super(Certification.class);
     }
@@ -57,7 +59,7 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
             session.save(certification);
             return true;
         } catch (HibernateException ex) {
-            FileUtil.errorLogger("Error on DesignationDao insertCertification() : " + ex.toString());
+            FileUtil.errorLogger("Error on CertificationDao insertCertification() : " + ex.toString());
             throw new DataException("Error Occured while Inserting this" + certification.getCourseName()
                     + " : please verify your details... Any try again..!");
         }
@@ -85,7 +87,7 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
             session.update(certification);
             return true;
         } catch (HibernateException ex) {
-            FileUtil.errorLogger("Error on DesignationDao modifyCertification() : " + ex.toString());
+            FileUtil.errorLogger("Error on CertificationDao modifyCertification() : " + ex.toString());
             throw new DataException("Error Occured while Updating this" + certification.getCourseName()
                     + " : please verify your details... Any try again..!");
         }
@@ -93,7 +95,7 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
 
     /**
      * <p>
-     * this method searches the certification from the records using
+     * This method searches the certification from the records using
      * certification ID and returns the data as a model object to display.
      * </p>
      * 
@@ -103,15 +105,15 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
      *             throws error message if problem arises with searching the
      *             data in the database, error will stored in log file and
      *             context message to user.
-     * @return Designation return the required designation object model contains
-     *         designation info.
+     * @return Certification return the required designation object model contains
+     *         certification info.
      */
     public Certification findCertificationById(int certificationId) throws DataException {
         try {
             Session session = getSession();
             return (Certification) session.get(Certification.class, certificationId);
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in findCertification() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in findCertificationById() : " + exception.getMessage());
             throw new DataException("Error while searching Certification ID : " + certificationId);
         }
     }
@@ -127,7 +129,7 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
      * @throws com.i2i.exception.DataException
      *             throws error message if problem arises with retrieving list
      *             of data from the database.
-     * @return Designation.List return the full list of certification stored in
+     * @return Certification.List return the full list of certification stored in
      *         database
      */
     public List<Certification> retrieveCertifications() throws DataException {
@@ -135,14 +137,14 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
             Session session = getSession();
             return session.createCriteria(Certification.class).list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retriveCertification() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Certification");
+            FileUtil.errorLogger("Exception in retriveCertifications() : " + exception.getMessage());
+            throw new DataException("Error while displaying all Certifications");
         }
     }
 
     /**
      * <p>
-     * This method retrieves the certification data from the records and returns
+     * This method retrieves the certification data from the records for the corresponding user and returns
      * the list of data.
      * </p>
      * 
@@ -159,8 +161,8 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
             Session session = getSession();
             return session.createQuery("From Certification WHERE user_id =" + userId).list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveCertifications() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Certification");
+            FileUtil.errorLogger("Exception in retrieveCertificationsByUser() : " + exception.getMessage());
+            throw new DataException("Error while displaying all Certifications");
         }
     }
 }

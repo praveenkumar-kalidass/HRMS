@@ -36,7 +36,7 @@ public interface AllowanceVariantDao extends GenericDao<AllowanceVariant, Long> 
     AllowanceVariant findAllowanceVariantById(int allowanceVariantId) throws DataException;
 
     /**
-     * Get AllowanceVariants
+     * Retrieve all AllowanceVariants
      *
      * @return List
      */

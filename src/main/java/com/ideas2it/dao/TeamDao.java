@@ -10,21 +10,21 @@ public interface TeamDao extends GenericDao<Team, Long> {
     /**
      * Add new team
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertTeam(Team team) throws DataException;
 
     /**
      * Update existing team
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyTeam(Team team) throws DataException;
 
     /**
      * Delete team
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeTeam(Team team) throws DataException;
 
@@ -36,14 +36,14 @@ public interface TeamDao extends GenericDao<Team, Long> {
     Team findTeam(int teamId) throws DataException;
 
     /**
-     * Retrive All team
+     * Retrieve All teams
      *
      * @return list
      */
     List<Team> retrieveTeams() throws DataException;
 
     /**
-     * Retrive All team for given Project
+     * Retrieve All team for given Project
      *
      * @return list
      */

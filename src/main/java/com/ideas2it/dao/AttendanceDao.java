@@ -10,21 +10,21 @@ public interface AttendanceDao extends GenericDao<Attendance, Long> {
     /**
      * Add new Attendance
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertAttendance(Attendance attendance) throws DataException;
 
     /**
      * Update existing Attendance
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyAttendance(Attendance attendance) throws DataException;
 
     /**
      * Delete Attendance
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeAttendance(Attendance attendance) throws DataException;
 
@@ -36,21 +36,21 @@ public interface AttendanceDao extends GenericDao<Attendance, Long> {
     Attendance findAttendance(int attendanceId) throws DataException;
 
     /**
-     * Retrive All Attendance
+     * Retrieve All Attendance
      *
      * @return list
      */
     List<Attendance> retrieveAttendances() throws DataException;
 
     /**
-     * Retrive All per day Attendance for given user
+     * Retrieve All per day Attendance for given user
      *
      * @return list
      */
     List<Attendance> retrieveCompleteAttendanceByUserId(long userId) throws DataException;
 
     /**
-     * Retrive All Attendance for give user
+     * Retrieve All Attendance for give user
      *
      * @return list
      */

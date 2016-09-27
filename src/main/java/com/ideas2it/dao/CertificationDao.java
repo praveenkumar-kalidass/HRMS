@@ -10,14 +10,14 @@ public interface CertificationDao extends GenericDao<Certification, Long> {
     /**
      * Add new Certification
      *
-     * @return True or Fales
+     * @return True or False
      */
     List<Certification> retrieveCertificationsByUser(long userId) throws DataException;
 
     /**
      * Update existing Certification
      *
-     * @return True or Fales
+     * @return True or False
      */
     List<Certification> retrieveCertifications() throws DataException;
 
@@ -29,14 +29,14 @@ public interface CertificationDao extends GenericDao<Certification, Long> {
     Certification findCertificationById(int certificationId) throws DataException;
 
     /**
-     * Retrive All Certification
+     * Retrieve All Certifications
      *
      * @return list
      */
     boolean modifyCertification(Certification certification) throws DataException;
 
     /**
-     * Retrive All Certification for given userId
+     * Retrieve All Certifications for given userId
      *
      * @return list
      */

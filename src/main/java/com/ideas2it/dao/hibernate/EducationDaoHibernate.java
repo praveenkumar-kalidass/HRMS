@@ -6,18 +6,16 @@ import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.ideas2it.util.FileUtil;
 import com.ideas2it.dao.EducationDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Designation;
 import com.ideas2it.model.Education;
 
 /**
  * <p>
- * DataAccessObject(Dao) for Designation model is used to insert, update and
+ * DataAccessObject(Dao) for Education model is used to insert, update and
  * delete education detail(s) for the user Creates session and transaction
  * objects for each operation
  * </p>
@@ -29,7 +27,9 @@ import com.ideas2it.model.Education;
 @Repository("educationDao")
 @Transactional
 public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> implements EducationDao {
-
+	/**
+     * Constructor to create a Generics-based version using Education as the entity
+     */
     public EducationDaoHibernate() {
         super(Education.class);
     }
@@ -56,7 +56,7 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> 
             session.save(education);
             return true;
         } catch (HibernateException ex) {
-            FileUtil.errorLogger("Error on DesignationDao insertEducation() : " + ex.toString());
+            FileUtil.errorLogger("Error on EducationDao insertEducation() : " + ex.toString());
             throw new DataException("Error Occured while Inserting this" + education.getQualification()
                     + " : please verify your details... Any try again..!");
         }
@@ -84,7 +84,7 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> 
             session.update(education);
             return true;
         } catch (HibernateException ex) {
-            FileUtil.errorLogger("Error on DesignationDao modifyEducation() : " + ex.toString());
+            FileUtil.errorLogger("Error on EducationDao modifyEducation() : " + ex.toString());
             throw new DataException("Error Occured while Updating this" + education.getQualification()
                     + " : please verify your details... Any try again..!");
         }
@@ -102,7 +102,7 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> 
      *             throws error message if problem arises with searching the
      *             data in the database, error will stored in log file and
      *             context message to user.
-     * @return Designation return the required designation object model contains
+     * @return Education return the required education object model contains
      *         designation info.
      */
     public Education findEducationById(int educationId) throws DataException {
@@ -110,7 +110,7 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> 
             Session session = getSession();
             return (Education) session.get(Education.class, educationId);
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in findEducation() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in findEducationById() : " + exception.getMessage());
             throw new DataException("Error while searching Education ID : " + educationId);
         }
     }
@@ -126,7 +126,7 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> 
      * @throws com.i2i.exception.DataException
      *             throws error message if problem arises with retrieving list
      *             of data from the database.
-     * @return Designation.List return the full list of education stored in
+     * @return Education.List return the full list of education stored in
      *         database
      */
     public List<Education> retrieveEducations() throws DataException {
@@ -134,8 +134,8 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> 
             Session session = getSession();
             return session.createCriteria(Education.class).list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retriveEducation() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Education");
+            FileUtil.errorLogger("Exception in retriveEducations() : " + exception.getMessage());
+            throw new DataException("Error while displaying all Educations");
         }
     }
 
@@ -158,8 +158,8 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> 
             Session session = getSession();
             return session.createQuery("From Education WHERE user_id=" + userId).list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveUsers() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Education");
+            FileUtil.errorLogger("Exception in retrieveEducationByUser() : " + exception.getMessage());
+            throw new DataException("Error while displaying all Educations");
         }
     }
 }

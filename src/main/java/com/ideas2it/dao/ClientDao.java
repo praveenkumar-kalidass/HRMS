@@ -10,21 +10,21 @@ public interface ClientDao extends GenericDao<Client, Long> {
     /**
      * Add new Client
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertClient(Client client) throws DataException;
 
     /**
      * Update existing Client
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyClient(Client client) throws DataException;
 
     /**
      * Delete Client
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeClient(Client client) throws DataException;
 
@@ -36,7 +36,7 @@ public interface ClientDao extends GenericDao<Client, Long> {
     Client findClient(int clientId) throws DataException;
 
     /**
-     * Retrive All Client
+     * Retrieve All Clients
      *
      * @return list
      */

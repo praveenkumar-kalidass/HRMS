@@ -1,6 +1,5 @@
 package com.ideas2it.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +13,10 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 /**
+ * <p>
  * Model class for Attendance Setter and Getter methods for the class variables
- * Many to One mapping is established for Employee model class
+ * Many to One mapping is established for User model class
+ * </p>
  * 
  * @author Praveenkumar
  * 

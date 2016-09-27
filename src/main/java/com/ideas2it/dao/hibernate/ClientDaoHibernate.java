@@ -18,7 +18,7 @@ import com.ideas2it.model.Client;
 /**
  * <p>
  * Dao(Data Access Object) class which establishes session with the database and
- * performs operation on manipulation of records associated with Client datas.
+ * performs operation on manipulation of records associated with Client data.
  * </p>
  *
  * @author Praveen RaJ
@@ -29,7 +29,9 @@ import com.ideas2it.model.Client;
 @Repository("clientDao")
 @Transactional
 public class ClientDaoHibernate extends GenericDaoHibernate<Client, Long> implements ClientDao {
-
+	/**
+     * Constructor to create a Generics-based version using Client as the entity
+     */
     public ClientDaoHibernate() {
         super(Client.class);
     }
@@ -98,9 +100,8 @@ public class ClientDaoHibernate extends GenericDaoHibernate<Client, Long> implem
      *             in the database.
      */
     public boolean removeClient(Client client) throws DataException {
-        Session session = null;
         try {
-            session = getSession();
+            Session session = getSession();
             session.delete(client);
             return true;
         } catch (HibernateException exception) {
