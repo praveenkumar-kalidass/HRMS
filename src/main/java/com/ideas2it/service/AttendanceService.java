@@ -10,21 +10,21 @@ public interface AttendanceService {
     /**
      * Add new Attendance
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addAttendance(Attendance attendance) throws DataException;
 
     /**
      * Update existing Attendance
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateAttendance(Attendance attendance) throws DataException;
 
     /**
      * Delete Attendance
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteAttendance(int attendanceId) throws DataException;
 
@@ -36,14 +36,14 @@ public interface AttendanceService {
     public Attendance searchAttendance(int attendanceId) throws DataException;
 
     /**
-     * Retrive All Attendance
+     * Retrieve All Attendances
      *
      * @return list
      */
     public List<Attendance> retriveAttendances() throws DataException;
 
     /**
-     * Retrive All per day Attendance for given user
+     * Retrieve All per day Attendance for given user
      *
      * @return list
      */

@@ -10,21 +10,21 @@ public interface ProjectReleaseService {
     /**
      * Add new ProjectRelease
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addProjectRelease(ProjectRelease projectRelease) throws DataException;
 
     /**
      * Update existing ProjectRelease
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateProjectRelease(ProjectRelease projectRelease) throws DataException;
 
     /**
      * Delete ProjectRelease
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteProjectRelease(int projectReleaseId) throws DataException;
 
@@ -36,14 +36,14 @@ public interface ProjectReleaseService {
     public ProjectRelease searchProjectRelease(int projectReleaseId) throws DataException;
 
     /**
-     * Retrive All ProjectReleases
+     * Retrieve All ProjectReleases
      *
      * @return list
      */
     public List<ProjectRelease> retriveProjectReleases() throws DataException;
 
     /**
-     * Retrive All ProjectReleases for Given project
+     * Retrieve All ProjectReleases for Given project
      *
      * @return list
      */

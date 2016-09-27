@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ideas2it.dao.DepartmentDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Client;
 import com.ideas2it.model.Department;
-import com.ideas2it.service.ClientService;
 import com.ideas2it.service.DepartmentService;
 
 /**

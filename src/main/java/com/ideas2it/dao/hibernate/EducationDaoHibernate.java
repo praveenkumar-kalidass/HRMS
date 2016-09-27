@@ -27,7 +27,7 @@ import com.ideas2it.model.Education;
 @Repository("educationDao")
 @Transactional
 public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> implements EducationDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Education as the entity
      */
     public EducationDaoHibernate() {

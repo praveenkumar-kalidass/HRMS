@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ideas2it.dao.ClientDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Certification;
 import com.ideas2it.model.Client;
-import com.ideas2it.service.CertificationService;
 import com.ideas2it.service.ClientService;
 
 /**

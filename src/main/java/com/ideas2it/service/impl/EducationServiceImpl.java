@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ideas2it.dao.EducationDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Designation;
 import com.ideas2it.model.Education;
-import com.ideas2it.service.DesignationService;
 import com.ideas2it.service.EducationService;
 
 /**
@@ -104,7 +102,7 @@ public class EducationServiceImpl extends GenericManagerImpl<Education, Long> im
 
     /**
      * <p>
-     * This method retrieves the Education data for given department from the
+     * This method retrieves the Education data for given user from the
      * records and returns the list of data to display.
      * </p>
      * 

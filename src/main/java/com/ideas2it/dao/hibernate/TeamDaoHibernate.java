@@ -26,7 +26,7 @@ import com.ideas2it.model.Team;
 @Repository("teamDao")
 @Transactional
 public class TeamDaoHibernate extends GenericDaoHibernate<Team, Long> implements TeamDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Team as the entity
      */
     public TeamDaoHibernate() {

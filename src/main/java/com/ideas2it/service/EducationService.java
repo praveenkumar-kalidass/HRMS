@@ -10,14 +10,14 @@ public interface EducationService {
     /**
      * Add new Education
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addEducation(Education education) throws DataException;
 
     /**
      * Update existing Education
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateEducation(Education education) throws DataException;
 
@@ -29,14 +29,14 @@ public interface EducationService {
     public Education searchEducation(int educationId) throws DataException;
 
     /**
-     * Retrive All Education
+     * Retrieve All Educations
      *
      * @return list
      */
     public List<Education> getEducations() throws DataException;
 
     /**
-     * Retrive All Education Given by user
+     * Retrieve All Educations Given by user
      *
      * @return list
      */

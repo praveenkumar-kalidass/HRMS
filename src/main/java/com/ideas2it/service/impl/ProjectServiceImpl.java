@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import com.ideas2it.dao.ProjectDao;
 import com.ideas2it.exception.DataException;
 import com.ideas2it.model.Project;
-import com.ideas2it.model.ProjectRelease;
-import com.ideas2it.service.ProjectReleaseService;
 import com.ideas2it.service.ProjectService;
 
 /**
@@ -28,7 +26,7 @@ import com.ideas2it.service.ProjectService;
 public class ProjectServiceImpl extends GenericManagerImpl<Project, Long> implements ProjectService {
 
     @Autowired
-    ProjectDao projecttDao;
+    ProjectDao projectDao;
 
     /**
      * <p>
@@ -45,7 +43,7 @@ public class ProjectServiceImpl extends GenericManagerImpl<Project, Long> implem
      *             data in the database.
      */
     public boolean addProject(Project project) throws DataException {
-        return projecttDao.insertProject(project);
+        return projectDao.insertProject(project);
     }
 
     /**
@@ -63,7 +61,7 @@ public class ProjectServiceImpl extends GenericManagerImpl<Project, Long> implem
      *             in the database.
      */
     public boolean updateProject(Project project) throws DataException {
-        return projecttDao.modifyProject(project);
+        return projectDao.modifyProject(project);
     }
 
     /**
@@ -81,7 +79,7 @@ public class ProjectServiceImpl extends GenericManagerImpl<Project, Long> implem
      */
     public boolean deleteProject(int projectId) throws DataException {
         if (searchProject(projectId) != null) {
-            return projecttDao.removeProject(searchProject(projectId));
+            return projectDao.removeProject(searchProject(projectId));
         }
         return false;
     }
@@ -103,7 +101,7 @@ public class ProjectServiceImpl extends GenericManagerImpl<Project, Long> implem
      *             data in the database.
      */
     public Project searchProject(int projectId) throws DataException {
-        return projecttDao.findProjectById(projectId);
+        return projectDao.findProjectById(projectId);
     }
 
     /**
@@ -119,7 +117,7 @@ public class ProjectServiceImpl extends GenericManagerImpl<Project, Long> implem
      *             of data from the database.
      */
     public List<Project> getProjects() throws DataException {
-        return projecttDao.retrieveProjects();
+        return projectDao.retrieveProjects();
     }
 
     /**
@@ -137,6 +135,6 @@ public class ProjectServiceImpl extends GenericManagerImpl<Project, Long> implem
      *             of data from the database.
      */
     public List<Project> getDesgignationByClient(int clientId) throws DataException {
-        return projecttDao.retrieveProjectByClient(clientId);
+        return projectDao.retrieveProjectByClient(clientId);
     }
 }

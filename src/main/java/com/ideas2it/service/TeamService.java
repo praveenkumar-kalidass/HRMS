@@ -10,21 +10,21 @@ public interface TeamService {
     /**
      * Add new team
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addTeam(Team team) throws DataException;
 
     /**
      * Update existing team
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateTeam(Team team) throws DataException;
 
     /**
      * Delete team
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteTeam(int teamId) throws DataException;
 
@@ -36,14 +36,14 @@ public interface TeamService {
     public Team searchTeam(int teamId) throws DataException;
 
     /**
-     * Retrive All team
+     * Retrieve All teams
      *
      * @return list
      */
     public List<Team> retriveTeams() throws DataException;
 
     /**
-     * Retrive All team for given Project
+     * Retrieve All teams for given Project
      *
      * @return list
      */

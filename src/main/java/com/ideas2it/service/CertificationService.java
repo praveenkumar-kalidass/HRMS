@@ -10,14 +10,14 @@ public interface CertificationService {
     /**
      * Add new Certification
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addCertification(Certification certification) throws DataException;
 
     /**
      * Update existing Certification
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateCertification(Certification certification) throws DataException;
 
@@ -29,14 +29,14 @@ public interface CertificationService {
     public Certification searchCertification(int certificationId) throws DataException;
 
     /**
-     * Retrive All Certification
+     * Retrieve All Certifications
      *
      * @return list
      */
     public List<Certification> getCertifications() throws DataException;
 
     /**
-     * Retrive All Certification for given userId
+     * Retrieve All Certifications for given userId
      *
      * @return list
      */

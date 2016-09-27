@@ -10,21 +10,21 @@ public interface ClientService {
     /**
      * Add new Client
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addClient(Client client) throws DataException;
 
     /**
      * Update existing Client
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateClient(Client client) throws DataException;
 
     /**
      * Delete Client
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteClient(int clientId) throws DataException;
 
@@ -36,7 +36,7 @@ public interface ClientService {
     public Client searchClient(int clientId) throws DataException;
 
     /**
-     * Retrive All Client
+     * Retrieve All Clients
      *
      * @return list
      */

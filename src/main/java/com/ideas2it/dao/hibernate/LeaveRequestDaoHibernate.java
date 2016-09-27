@@ -28,7 +28,7 @@ import com.ideas2it.model.LeaveRequest;
 @Repository("leaveRequestDao")
 @Transactional
 public class LeaveRequestDaoHibernate extends GenericDaoHibernate<LeaveRequest, Long> implements LeaveRequestDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Leave Request as the entity
      */
     public LeaveRequestDaoHibernate() {

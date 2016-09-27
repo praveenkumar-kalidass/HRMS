@@ -10,21 +10,21 @@ public interface LeaveRequestService {
     /**
      * Add new LeaveRequest
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean addLeaveRequest(LeaveRequest leaveRequest) throws DataException;
 
     /**
      * Update existing LeaveRequest
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean updateLeaveRequest(LeaveRequest leaveRequest) throws DataException;
 
     /**
      * Delete LeaveRequest
      *
-     * @return True or Fales
+     * @return True or False
      */
     public boolean deleteLeaveRequest(int leaveRequestId) throws DataException;
 
@@ -36,21 +36,21 @@ public interface LeaveRequestService {
     public LeaveRequest searchLeaveRequest(int leaveRequestId) throws DataException;
 
     /**
-     * Retrive All LeaveRequest
+     * Retrieve All LeaveRequests
      *
      * @return list
      */
     public List<LeaveRequest> retriveLeaveRequests() throws DataException;
 
     /**
-     * Retrive All LeaveRequest by given User
+     * Retrieve All LeaveRequests by given User
      *
      * @return list
      */
     public List<LeaveRequest> retriveLeaveRequestsByUser(long userId) throws DataException;
 
     /**
-     * Retrive No of Days Leave By given User
+     * Retrieve No of Days Leave By given User
      *
      * @return int
      */

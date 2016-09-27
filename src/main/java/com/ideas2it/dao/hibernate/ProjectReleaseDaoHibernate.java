@@ -27,7 +27,7 @@ import com.ideas2it.model.ProjectRelease;
 @Repository("projectReleaseDao")
 @Transactional
 public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelease, Long> implements ProjectReleaseDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Project Release as the entity
      */
     public ProjectReleaseDaoHibernate() {
