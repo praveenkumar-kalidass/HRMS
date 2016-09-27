@@ -103,7 +103,7 @@
         <amp.genericCore>true</amp.genericCore>
         <amp.fullSource>false</amp.fullSource>
         <dao.framework>hibernate</dao.framework>
-        <db.name>someapp</db.name>
+        <db.name>humanresource</db.name>
         <web.framework>spring</web.framework>
 
         <!-- Framework/Plugin versions -->

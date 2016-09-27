@@ -21,6 +21,7 @@ com/ideas2it/service/impl/LookupManagerImplTest.class
 com/ideas2it/service/impl/PasswordTokenManagerTest.class
 com/ideas2it/service/UserExistsExceptionTest.class
 com/ideas2it/service/impl/UserSecurityAdviceTest.class
+com/ideas2it/webapp/controller/UserControllerTest.class
 com/ideas2it/service/MockUserDetailsService.class
 com/ideas2it/webapp/filter/LocaleFilterTest.class
 com/ideas2it/service/BaseManagerTestCase.class

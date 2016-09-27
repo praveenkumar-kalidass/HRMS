@@ -29,11 +29,12 @@ import com.ideas2it.model.Attendance;
 
 @Repository("attendanceDao")
 @Transactional
-public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Long> implements AttendanceDao{
+public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long> implements AttendanceDao {
 
 	public AttendanceDaoHibernate() {
-        super(Attendance.class);
-    }
+		super(Attendance.class);
+	}
+
 	/**
 	 * <p>
 	 * This method opens a new session and Inserts the model object of the
@@ -49,16 +50,13 @@ public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Lon
 	 *             data in the database.
 	 */
 	public boolean insertAttendance(Attendance attendance) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
-			session.save(attendance);
+			Session session = getSession();
+			session.saveOrUpdate(attendance);
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in insertAttendance() : " + exception.getMessage());
 			throw new DataException("Error while adding Attendance ID : " + attendance.getAttendanceId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -77,16 +75,13 @@ public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Lon
 	 *             in the database.
 	 */
 	public boolean modifyAttendance(Attendance attendance) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.update(attendance);
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in insertAttendance() : " + exception.getMessage());
 			throw new DataException("Error while adding Attendance ID : " + attendance.getAttendanceId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -104,16 +99,13 @@ public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Lon
 	 *             in the database.
 	 */
 	public boolean removeAttendance(Attendance attendance) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.delete(attendance);
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in removeUser() : " + exception.getMessage());
 			throw new DataException("Error while deleting Attendance ID : " + attendance.getAttendanceId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -132,15 +124,12 @@ public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Lon
 	 *             data in the database.
 	 */
 	public Attendance findAttendance(int attendanceId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return (Attendance) session.get(Attendance.class, attendanceId);
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in findAttendance() : " + exception.getMessage());
 			throw new DataException("Error while searching Attendance ID : " + attendanceId);
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -156,15 +145,12 @@ public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Lon
 	 *             of data from the database.
 	 */
 	public List<Attendance> retrieveAttendances() throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createCriteria(Attendance.class).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveAttendances() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Attendances");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -180,9 +166,8 @@ public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Lon
 	 *             of data from the database.
 	 */
 	public List<Attendance> retrieveAttendancesByUserId(long userId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			Query q = session.createQuery("From Attendance WHERE user_id=" + userId + " order by id desc");
 			q.setFirstResult(0);
 			q.setMaxResults(1);
@@ -190,8 +175,6 @@ public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Lon
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveAttendances() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Attendances");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -203,24 +186,21 @@ public class AttendanceDaoHibernate  extends GenericDaoHibernate<Attendance, Lon
 	 * 
 	 * @param userId
 	 *            identity of the user
-	 * @return list Gives the list of attendance details for give user
-	 *         stored in the database.
+	 * @return list Gives the list of attendance details for give user stored in
+	 *         the database.
 	 * @throws DataException
 	 *             throws error message if problem arises with retrieving list
 	 *             of data from the database.
 	 */
 
 	public List<Attendance> retrieveCompleteAttendanceByUserId(long userId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			Query q = session.createQuery("From Attendance WHERE user_id=" + userId + " order by id desc");
 			return q.list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveAttendances() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Attendances");
-		} finally {
-			session.clear();
 		}
 	}
 }

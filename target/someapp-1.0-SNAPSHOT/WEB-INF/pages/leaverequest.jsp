@@ -29,11 +29,13 @@
                         </li>
                         <li role="presentation"><a href="#Employee-Form" aria-controls="Employee-Form" role="tab" data-toggle="tab">Add New</a>
                         </li>
+                        <c:if test="${sessionScope['currentRole']=='ROLE_ADMIN'}">
                             <li role="presentation"><a href="#All-Request" aria-controls="Employee-Form" role="tab" data-toggle="tab">All Request</a>
                             </li>
+                            </c:if>
                     </ul>
                     <div class="tab-content">
-
+                         <c:if test="${sessionScope['currentRole']=='ROLE_ADMIN'}">
                         <div id="All-Request" role="tabpanel" class="tab-pane">
                             <div class="form">
                                 <div class="main-head">
@@ -41,6 +43,7 @@
 
                                 <c:if test="${LeaveRequestList!=null}">
                                     <table class="TableSorting">
+                                    <thead>
                                             <tr>
 
                                                 <th>Employee Name</th>
@@ -141,6 +144,7 @@
 
                             </div>
                         </div>
+                        </c:if>
                         <div id="Employee-Table" role="tabpanel" class="tab-pane active">
                             <div class="form">
                                 <div class="main-head">
@@ -258,7 +262,7 @@
                                                     <div class="form-group row">
                                                         <div class="col-md-8">
 
-                                                            <spring:input type="hidden" path="user.id" class="form-control" value="${sessionScope['HRMSEmployeeId']}" />
+                                                            <spring:input type="hidden" path="user.id" class="form-control" value="${sessionScope['currentUserId']}" />
                                                         </div>
 
 

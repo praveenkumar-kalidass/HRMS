@@ -8,8 +8,8 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * Model class which stores the details associated with the
- * Departments of the company.
+ * Model class which stores the details associated with the Departments of the
+ * company.
  * </p>
  * 
  * @author Praveenkumar
@@ -19,24 +19,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "department")
 public class Department {
-    
 
-
-	@Id	
+	@Id
 	@GeneratedValue
-    @Column(name = "id", unique = true)
-    private int departmentId;
-    
-    @Column(name = "name")
-    private String departmentName;
+	@Column(name = "id", unique = true)
+	private int departmentId;
 
-    public Department(int departmentId, String departmentName) {
-    	this.departmentId = departmentId;
-    	this.departmentName = departmentName;
-    }
-    
-    public Department() {
-    }
+	@Column(name = "name")
+	private String departmentName;
+
+	public Department() {
+	}
 
 	public int getDepartmentId() {
 		return departmentId;

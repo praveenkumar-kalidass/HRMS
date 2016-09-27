@@ -18,8 +18,8 @@ import com.ideas2it.model.Certification;
 /**
  * <p>
  * DataAccessObject(Dao) for Certification model is used to insert, update and
- * delete certification detail(s) for the user Creates session and
- * transaction objects for each operation
+ * delete certification detail(s) for the user Creates session and transaction
+ * objects for each operation
  * </p>
  * 
  * @author Praveen RaJ
@@ -29,11 +29,12 @@ import com.ideas2it.model.Certification;
 
 @Repository("certificationDao")
 @Transactional
-public class CertificationDaoHibernate extends GenericDaoHibernate<Certification, Long> implements CertificationDao{
+public class CertificationDaoHibernate extends GenericDaoHibernate<Certification, Long> implements CertificationDao {
 
 	public CertificationDaoHibernate() {
-        super(Certification.class);
-    }
+		super(Certification.class);
+	}
+
 	/**
 	 * *
 	 * <p>
@@ -51,17 +52,14 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
 	 *         method
 	 */
 	public boolean insertCertification(Certification certification) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.save(certification);
 			return true;
 		} catch (HibernateException ex) {
 			FileUtil.errorLogger("Error on DesignationDao insertCertification() : " + ex.toString());
 			throw new DataException("Error Occured while Inserting this" + certification.getCourseName()
 					+ " : please verify your details... Any try again..!");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -82,17 +80,14 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
 	 * @return if updated successfully true will be return to the Calling method
 	 */
 	public boolean modifyCertification(Certification certification) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.update(certification);
 			return true;
 		} catch (HibernateException ex) {
 			FileUtil.errorLogger("Error on DesignationDao modifyCertification() : " + ex.toString());
 			throw new DataException("Error Occured while Updating this" + certification.getCourseName()
 					+ " : please verify your details... Any try again..!");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -112,15 +107,12 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
 	 *         designation info.
 	 */
 	public Certification findCertificationById(int certificationId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return (Certification) session.get(Certification.class, certificationId);
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in findCertification() : " + exception.getMessage());
 			throw new DataException("Error while searching Certification ID : " + certificationId);
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -139,15 +131,12 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
 	 *         database
 	 */
 	public List<Certification> retrieveCertifications() throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createCriteria(Certification.class).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retriveCertification() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Certification");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -166,15 +155,12 @@ public class CertificationDaoHibernate extends GenericDaoHibernate<Certification
 	 *         stored under the given user
 	 */
 	public List<Certification> retrieveCertificationsByUser(long userId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createQuery("From Certification WHERE user_id =" + userId).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveCertifications() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Certification");
-		} finally {
-			session.clear();
 		}
 	}
 }

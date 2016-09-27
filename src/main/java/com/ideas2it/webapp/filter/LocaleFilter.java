@@ -18,54 +18,58 @@ import java.util.Locale;
  */
 public class LocaleFilter extends OncePerRequestFilter {
 
-    /**
-     * This method looks for a "locale" request parameter. If it finds one, it sets it as the preferred locale
-     * and also configures it to work with JSTL.
-     *
-     * @param request the current request
-     * @param response the current response
-     * @param chain the chain
-     * @throws IOException when something goes wrong
-     * @throws ServletException when a communication failure happens
-     */
-    @SuppressWarnings("unchecked")
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-                                 FilterChain chain)
-            throws IOException, ServletException {
+	/**
+	 * This method looks for a "locale" request parameter. If it finds one, it
+	 * sets it as the preferred locale and also configures it to work with JSTL.
+	 *
+	 * @param request
+	 *            the current request
+	 * @param response
+	 *            the current response
+	 * @param chain
+	 *            the chain
+	 * @throws IOException
+	 *             when something goes wrong
+	 * @throws ServletException
+	 *             when a communication failure happens
+	 */
+	@SuppressWarnings("unchecked")
+	public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 
-        String locale = request.getParameter("locale");
-        Locale preferredLocale = null;
+		String locale = request.getParameter("locale");
+		Locale preferredLocale = null;
 
-        if (locale != null) {
-            int indexOfUnderscore = locale.indexOf('_');
-            if (indexOfUnderscore != -1) {
-                String language = locale.substring(0, indexOfUnderscore);
-                String country = locale.substring(indexOfUnderscore + 1);
-                preferredLocale = new Locale(language, country);
-            } else {
-                preferredLocale = new Locale(locale);
-            }
-        }
+		if (locale != null) {
+			int indexOfUnderscore = locale.indexOf('_');
+			if (indexOfUnderscore != -1) {
+				String language = locale.substring(0, indexOfUnderscore);
+				String country = locale.substring(indexOfUnderscore + 1);
+				preferredLocale = new Locale(language, country);
+			} else {
+				preferredLocale = new Locale(locale);
+			}
+		}
 
-        HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);
 
-        if (session != null) {
-            if (preferredLocale == null) {
-                preferredLocale = (Locale) session.getAttribute(Constants.PREFERRED_LOCALE_KEY);
-            } else {
-                session.setAttribute(Constants.PREFERRED_LOCALE_KEY, preferredLocale);
-                Config.set(session, Config.FMT_LOCALE, preferredLocale);
-            }
+		if (session != null) {
+			if (preferredLocale == null) {
+				preferredLocale = (Locale) session.getAttribute(Constants.PREFERRED_LOCALE_KEY);
+			} else {
+				session.setAttribute(Constants.PREFERRED_LOCALE_KEY, preferredLocale);
+				Config.set(session, Config.FMT_LOCALE, preferredLocale);
+			}
 
-            if (preferredLocale != null && !(request instanceof LocaleRequestWrapper)) {
-                request = new LocaleRequestWrapper(request, preferredLocale);
-                LocaleContextHolder.setLocale(preferredLocale);
-            }
-        }
+			if (preferredLocale != null && !(request instanceof LocaleRequestWrapper)) {
+				request = new LocaleRequestWrapper(request, preferredLocale);
+				LocaleContextHolder.setLocale(preferredLocale);
+			}
+		}
 
-        chain.doFilter(request, response);
+		chain.doFilter(request, response);
 
-        // Reset thread-bound LocaleContext.
-        LocaleContextHolder.setLocaleContext(null);
-    }
+		// Reset thread-bound LocaleContext.
+		LocaleContextHolder.setLocaleContext(null);
+	}
 }

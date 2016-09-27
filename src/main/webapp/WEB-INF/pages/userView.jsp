@@ -43,8 +43,10 @@
                             <div class="main-head">
                                 <h1 class="title" style="float: left; width: 80%;">
 									Personal Details</h1>
+									<c:if test="${sessionScope['currentRole']=='ROLE_ADMIN'}">
                                 <a href="personal_edit.html?id=<c:out value='${user.id}' />" style="float: right; width: 20%; padding-top: 26px;" class="edit"> <i class="fa fa-pencil"></i> Edit Personal Details
                                 </a>
+                                </c:if>
                             </div>
 
                             <div class="form">

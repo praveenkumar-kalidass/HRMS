@@ -2,139 +2,50 @@ package com.ideas2it.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.ideas2it.dao.AddressDao;
 import com.ideas2it.exception.DataException;
 import com.ideas2it.model.Address;
 
-/**
- * <p>
- * Service class which does validations with the user input of address details.
- * Passes values to the Dao class to carry out manipulations. Throws error
- * messages in case of occurrence of any exceptions.
- * </p>
- *
- * @author Praveenkumar
- *
- * @created 2016-08-15
- */
-@Service("addressService")
-public class AddressService {
-	
-	@Autowired
-	AddressDao addressDao;
+public interface AddressService {
 
 	/**
-	 * <p>
-	 * This method checks the presence of address ID in the database. Passes the
-	 * value to its dao class to insert if not present.
-	 * </p>
-	 * 
-	 * @param address
-	 *            model object that stores the address data associated with
-	 *            model.
-	 * @return boolean gives the status of the insertion into the database.
-	 * @throws DataException
-	 *             throws error message if problem arises with inserting the
-	 *             data in the database.
-	 */
-	public boolean addAddress(Address address) throws DataException {
-		return addressDao.insertAddress(address);
-
-	}
-
-	/**
-	 * <p>
-	 * This method checks the presence of address ID in the database. Passes the
-	 * value to its dao class to insert if not present.
-	 * </p>
-	 * 
-	 * @param address
-	 *            model object that stores the address data associated with
-	 *            model.
-	 * @return boolean gives the status of the insertion into the database.
-	 * @throws DataException
-	 *             throws error message if problem arises with inserting the
-	 *             data in the database.
-	 */
-	public boolean updateAddress(Address address) throws DataException {
-		return addressDao.modifyAddress(address);
-
-	}
-
-	/**
-	 * <p>
-	 * This method checks the presence of address ID in the database. Passes the
-	 * value to its dao class to delete if present.
-	 * </p>
-	 * 
-	 * @param addressId
-	 *            contains the ID of the address.
-	 * @return boolean gives the status of the deletion from the database.
-	 * @throws DataException
-	 *             throws error message if problem arises with deleting the data
-	 *             in the database.
-	 */
-	public boolean deleteAddress(int addressId) throws DataException {
-		if (addressDao.findAddress(addressId) != null) {
-			return addressDao.removeAddress(searchAddress(addressId));
-		}
-		return false;
-	}
-
-	/**
-	 * <p>
-	 * This method passes the address ID to its dao class to search in the
-	 * database. Returns the model object of the address to its controller to
-	 * display.
-	 * </p>
+	 * Add new address
 	 *
-	 * @param addressId
-	 *            contains the ID of the address.
-	 * 
-	 * @return object gives the appropriate address object for the corresponding
-	 *         address ID.
-	 * @throws DataException
-	 *             throws error message if problem arises with searching the
-	 *             data in the database.
+	 * @return True or Fales
 	 */
-	public Address searchAddress(int addressId) throws DataException {
-		return addressDao.findAddress(addressId);
-	}
+	public boolean addAddress(Address address) throws DataException;
 
 	/**
-	 * <p>
-	 * This method retrieves the Address data from the records and returns the
-	 * list of data to display.
-	 * </p>
-	 * 
-	 * @return list Gives the list of address details retrieved from the
-	 *         database.
-	 * @throws DataException
-	 *             throws error message if problem arises with retrieving list
-	 *             of data from the database.
+	 * Update existing address
+	 *
+	 * @return True or Fales
 	 */
-	public List<Address> displayAddresss() throws DataException {
-		return addressDao.retrieveAddresss();
-	}
+	public boolean updateAddress(Address address) throws DataException;
 
 	/**
-	 * <p>
-	 * This method retrieves the Address data for given user from the
-	 * records and returns the list of data to display.
-	 * </p>
-	 * 
-	 * @param userId
-	 *            contains the ID of the user.
-	 * @return list Gives the list of address details for given departmentId
-	 *         retrieved from the database.
-	 * @throws DataException
-	 *             throws error message if problem arises with retrieving list
-	 *             of data from the database.
+	 * Delete address
+	 *
+	 * @return True or Fales
 	 */
-	public List<Address> getAddressByUser(long userId) throws DataException {
-		return addressDao.retrieveAddressByUser(userId);
-	}
+	public boolean deleteAddress(int addressId) throws DataException;
+
+	/**
+	 * Search given address
+	 *
+	 * @return Address
+	 */
+	public Address searchAddress(int addressId) throws DataException;
+
+	/**
+	 * Retrive All address
+	 *
+	 * @return list
+	 */
+	public List<Address> retriveAddresss() throws DataException;
+
+	/**
+	 * Retrive address by given user
+	 *
+	 * @return list
+	 */
+	public List<Address> getAddressByUser(long userId) throws DataException;
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ideas2it.service.impl.UserSecurityAdviceTest" time="4.121" tests="7" errors="0" skipped="0" failures="0">
+<testsuite name="com.ideas2it.service.impl.UserSecurityAdviceTest" time="3.396" tests="7" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="jboss.i18n.generate-proxies" value="true"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
     <property name="java.vm.version" value="25.91-b14"/>
@@ -35,8 +34,8 @@
     <property name="user.home" value="/home/user"/>
     <property name="user.timezone" value="Asia/Kolkata"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
-    <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.8"/>
     <property name="user.name" value="user"/>
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
     <property name="org.slf4j.simpleLogger.defaultLogLevel" value="debug"/>
@@ -61,11 +60,11 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testAddUserAsAdmin" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="3.375"/>
-  <testcase name="testAddUserWithoutAdminRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.121"/>
-  <testcase name="testAddUserRoleWhenHasAdminRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.157"/>
-  <testcase name="testUpdateUserProfile" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.125"/>
-  <testcase name="testAddAdminRoleWhenAlreadyHasUserRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.148"/>
-  <testcase name="testChangeToAdminRoleFromUserRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.099"/>
-  <testcase name="testUpdateUserWithUserRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.096"/>
+  <testcase name="testAddUserAsAdmin" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="2.675"/>
+  <testcase name="testAddUserWithoutAdminRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.155"/>
+  <testcase name="testAddUserRoleWhenHasAdminRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.121"/>
+  <testcase name="testUpdateUserProfile" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.13"/>
+  <testcase name="testAddAdminRoleWhenAlreadyHasUserRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.123"/>
+  <testcase name="testChangeToAdminRoleFromUserRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.112"/>
+  <testcase name="testUpdateUserWithUserRole" classname="com.ideas2it.service.impl.UserSecurityAdviceTest" time="0.08"/>
 </testsuite>

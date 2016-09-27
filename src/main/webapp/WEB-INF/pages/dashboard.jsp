@@ -194,7 +194,7 @@
 				dataPoints: [
 					{ y: ${DeveloperCount}, label: "Developer" },
 					{ y: ${TestingCount}, label: "Testing" },
-					{ y: ${HRCount}, label: "HR" },
+					{ y: ${HRCount}, label: "Human Resource" },
 					{ y: ${ManagementCount}, label: "Management" },
 					{ y: ${OthersCount}, label: "Others" }
 				]
@@ -218,8 +218,8 @@
 					indexLabelLineColor: "darkgrey",
 					toolTipContent: "{y}%",
 					dataPoints: [
-					{ y: "${AdminPercent}", indexLabel: "Admin {y}%" },
-					{ y: "${UserPercent}", indexLabel: "Employee {y}%" }
+					{ y: "${AdminPercent}", indexLabel: "ROLE_ADMIN {y}%" },
+					{ y: "${UserPercent}", indexLabel: "ROLE_USER {y}%" }
 					]
 				}
 				]

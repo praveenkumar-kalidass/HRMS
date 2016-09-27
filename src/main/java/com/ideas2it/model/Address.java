@@ -1,17 +1,19 @@
 package com.ideas2it.model;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * Model class for Address Setter and Getter methods for the class variables
@@ -24,7 +26,12 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "address")
-public class Address {
+public class Address implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8049460673070755004L;
 
 	@Id
 	@GeneratedValue
@@ -55,10 +62,9 @@ public class Address {
 	@Column(name = "type")
 	private String addressType;
 
-	
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinColumn(name = "user_id", nullable=true, referencedColumnName="id")
-	@ManyToOne(cascade = CascadeType.PERSIST, targetEntity=User.class)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "user_id", nullable = true, updatable = true)
 	private User user;
 
 	public Address() {

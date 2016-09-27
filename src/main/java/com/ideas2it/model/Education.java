@@ -3,11 +3,15 @@ package com.ideas2it.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * <p>
@@ -24,7 +28,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "education")
 public class Education {
-	
+
 	@Id
 	@GeneratedValue
 	@Column(name = "id", unique = true)
@@ -59,8 +63,9 @@ public class Education {
 		this.type = type;
 	}
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "user_id")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "user_id", updatable = true, nullable = true)
 	private User user;
 
 	public int getEducationId() {

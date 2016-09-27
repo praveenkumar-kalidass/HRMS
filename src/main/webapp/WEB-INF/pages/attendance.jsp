@@ -5,12 +5,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<c:set value="${sessionScope['CURENT_USER']}" var="CURRENT_USER" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Attendance Details</title>
     <link href="images/logo1.png" rel="icon" />
-     <c:import url="headCss.jsp" /> </head>
-
+    <c:import url="headCss.jsp" /> </head>
 <body>
    
     <div class="containe">
@@ -32,17 +30,16 @@
                                     <div class="main-head">
                                         <h1 class="title" style="float: left; width: 90%;">
 									Attendance Details
-									<c:out value='${CURRENT_USER.id}' />
 									</h1>
 
                                         <c:if test="${CheckIn=='True'}">
-                                            <a href="check_in.html?id=<c:out value='${CURRENT_USER.id}' />" style="float: right; width: 10%; padding-top: 20px;">
+                                            <a href="check_in.html" style="float: right; width: 10%; padding-top: 20px;">
                                                 <button class="btn btn-success"> Check In </button>
                                             </a>
                                         </c:if>
 
                                         <c:if test="${CheckOut=='True'}">
-                                            <a href="check_out.html?id=<c:out value='${CURRENT_USER.id}' />" style="float: right; width: 10%; padding-top: 20px;">
+                                            <a href="check_out.html" style="float: right; width: 10%; padding-top: 20px;">
                                                 <button class="btn btn-danger"> Check Out </button>
                                             </a>
                                         </c:if>

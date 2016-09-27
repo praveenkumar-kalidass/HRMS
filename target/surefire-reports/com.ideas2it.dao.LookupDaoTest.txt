@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ideas2it.dao.LookupDaoTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.795 sec - in com.ideas2it.dao.LookupDaoTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.875 sec - in com.ideas2it.dao.LookupDaoTest

@@ -28,12 +28,11 @@ import com.ideas2it.model.Education;
  */
 @Repository("educationDao")
 @Transactional
-public class EducationDaoHibernate extends GenericDaoHibernate<Education,Long> implements EducationDao {
-
+public class EducationDaoHibernate extends GenericDaoHibernate<Education, Long> implements EducationDao {
 
 	public EducationDaoHibernate() {
-        super(Education.class);
-    }
+		super(Education.class);
+	}
 
 	/**
 	 * *
@@ -52,26 +51,23 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education,Long> i
 	 *         method
 	 */
 	public boolean insertEducation(Education education) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.save(education);
 			return true;
 		} catch (HibernateException ex) {
 			FileUtil.errorLogger("Error on DesignationDao insertEducation() : " + ex.toString());
 			throw new DataException("Error Occured while Inserting this" + education.getQualification()
 					+ " : please verify your details... Any try again..!");
-		} finally {
-			session.clear();
 		}
 	}
 
 	/**
 	 * *
 	 * <p>
-	 * Method is used to update existing education details of the user
-	 * create a new session and update the model object of the education from
-	 * the database.
+	 * Method is used to update existing education details of the user create a
+	 * new session and update the model object of the education from the
+	 * database.
 	 * </p>
 	 * 
 	 * @param education
@@ -83,17 +79,14 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education,Long> i
 	 * @return if updated successfully true will be return to the Calling method
 	 */
 	public boolean modifyEducation(Education education) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.update(education);
 			return true;
 		} catch (HibernateException ex) {
 			FileUtil.errorLogger("Error on DesignationDao modifyEducation() : " + ex.toString());
 			throw new DataException("Error Occured while Updating this" + education.getQualification()
 					+ " : please verify your details... Any try again..!");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -113,15 +106,12 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education,Long> i
 	 *         designation info.
 	 */
 	public Education findEducationById(int educationId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return (Education) session.get(Education.class, educationId);
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in findEducation() : " + exception.getMessage());
 			throw new DataException("Error while searching Education ID : " + educationId);
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -140,15 +130,12 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education,Long> i
 	 *         database
 	 */
 	public List<Education> retrieveEducations() throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createCriteria(Education.class).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retriveEducation() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Education");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -167,15 +154,12 @@ public class EducationDaoHibernate extends GenericDaoHibernate<Education,Long> i
 	 *         the given user
 	 */
 	public List<Education> retrieveEducationByUser(long userId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createQuery("From Education WHERE user_id=" + userId).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveUsers() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Education");
-		} finally {
-			session.clear();
 		}
 	}
 }

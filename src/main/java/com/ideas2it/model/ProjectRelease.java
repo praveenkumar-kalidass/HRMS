@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * <p>
@@ -36,10 +38,10 @@ public class ProjectRelease {
 	private String description;
 	@Column(name = "project_version")
 	private String projectVersion;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "project_id", nullable = false)
-	@LazyCollection(LazyCollectionOption.FALSE)
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "project_id", nullable = true, updatable = true)
 	private Project project;
 
 	public int getReleaseId() {

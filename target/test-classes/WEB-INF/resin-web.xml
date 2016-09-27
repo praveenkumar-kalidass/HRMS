@@ -4,7 +4,7 @@
     <!--database>
         <jndi-name>jdbc/appfuse</jndi-name>
         <driver type="com.mysql.jdbc.Driver">
-            <url>jdbc:mysql://localhost/someapp?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true</url>
+            <url>jdbc:mysql://localhost/humanresource?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true</url>
             <user>root</user>
             <password>root</password>
         </driver>

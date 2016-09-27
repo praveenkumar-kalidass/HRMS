@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ideas2it.service.UserManagerTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.035 sec - in com.ideas2it.service.UserManagerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.241 sec - in com.ideas2it.service.UserManagerTest

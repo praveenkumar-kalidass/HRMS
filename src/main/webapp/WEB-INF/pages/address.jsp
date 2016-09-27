@@ -2,14 +2,18 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="spring" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html> 
+
+<c:if test="${sessionScope['currentRole']=='ROLE_USER'}">
+    <c:redirect url="../../user_view.html?id=${currentUserId}" />
+</c:if>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Communication Details</title>
     <link href="images/logo1.png" rel="icon" />
     <c:import url="headCss.jsp" />
     </head>
-
 <body>
     <div class="containe">
         <div class="side-menu">
@@ -52,8 +56,8 @@
                                         <hr>
                                         <div class="form-group row">
                                             <div class="col-md-8">
-                                                <spring:input path="id" class="form-control" type="hidden" value="${User.id}" id="userId" placeHolder="User Id" />
-                                                <spring:input path="id" class="form-control" type="hidden" value="${User.id}" id="userId" placeHolder="User Id" />
+                                                <spring:input path="address[0].user.id" class="form-control" type="hidden" value="${User.id}" id="userId" placeHolder="User Id" />
+                                                <spring:input path="address[1].user.id" class="form-control" type="hidden" value="${User.id}" id="userId" placeHolder="User Id" />
                                             </div>
                                         </div>
 
@@ -216,7 +220,6 @@
                 <!-- Main End -->
             </div>
         </div>
-    </div>
     </div>
 
    <c:import url="headJs.jsp" />

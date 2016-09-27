@@ -3,6 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<c:if test="${sessionScope['currentRole']=='ROLE_USER'}">
+    <c:redirect url="../../user_view.html?id=${currentUserId}" />
+</c:if>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -173,7 +176,7 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-4 col-form-label">Department</label>
                                 <div class="col-md-8">
-                                    <spring:select path="department" class="form-control" required="required">
+                                    <spring:select path="department.departmentId" class="form-control" required="required">
                                         <c:set value="${DesignationEdit.department}" var="dep" />
                                         <spring:option value="${dep.departmentId}">${dep.departmentName}</spring:option>
                                         <spring:option value="0"> -------</spring:option>

@@ -4,8 +4,8 @@ import java.lang.Exception;
 
 /**
  * <p>
- * DataException is used to create user Defined Exception
- * Throw the exception from services and dao's 
+ * DataException is used to create user Defined Exception Throw the exception
+ * from services and dao's
  * </p>
  *
  * @author Praveen RaJ
@@ -14,13 +14,13 @@ import java.lang.Exception;
  */
 
 public class DataException extends Exception {
-    /**
-     * Handling message from the exception
-     * 
-     * @param message
-     *      contains error message
-     */
-    public DataException(String message){
-        super(message);
-    }   
+	/**
+	 * Handling message from the exception
+	 * 
+	 * @param message
+	 *            contains error message
+	 */
+	public DataException(String message) {
+		super(message);
+	}
 }

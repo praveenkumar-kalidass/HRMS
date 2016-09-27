@@ -6,6 +6,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Project Details</title>
@@ -47,9 +48,10 @@
                             <div class="main-head">
                                 <h1 class="title" style="float: left; width: 80%;">
 									Project Details</h1>
-
+                                    <c:if test="${sessionScope['currentRole']=='ROLE_ADMIN'}">
                                     <a href="project_edit.html?id=<c:out value='${project.projectId}' />" style="float: right; width: 20%; padding-top: 26px;" class="edit"> <i class="fa fa-pencil"></i> Edit Project Details
                                     </a>
+                                    </c:if>
                             </div>
 
                             <div class="form">
@@ -167,8 +169,10 @@
                             <div class="main-head">
                                 <h1 class="title" style="float: left; width: 80%;">
 									Release Details</h1>
+									<c:if test="${sessionScope['currentRole']=='ROLE_ADMIN'}">
                                     <a href="projectrelease.html?id=<c:out value='${project.projectId}' />" style="float: right; width: 20%; padding-top: 26px;" class="edit"> <i class="fa fa-plus-circle"></i> Add New Release Details
                                     </a>
+                                    </c:if>
                             </div>
                             <c:forEach items="${ReleaseList}" var="release">
 
@@ -177,10 +181,12 @@
                                         <h5 class="title" style="float: left; width: 60%;">
 											Version : <c:out value='${release.projectVersion}' />
 										</h5>
+										<c:if test="${sessionScope['currentRole']=='ROLE_ADMIN'}">
                                             <a href="projectRelease_delete.html?id=<c:out value='${release.releaseId}' />" style="float: right; width: 10%; padding-top: 5px;" class="delete"> <i class="fa fa-trash"></i> Delete
                                             </a>
                                             <a href="projectRelease_edit.html?id=<c:out value='${release.releaseId}' />" style="float: right; width: 10%; padding-top: 5px;" class="edit"> <i class="fa fa-pencil"></i> Edit
                                             </a>
+                                            </c:if>
 
                                         <div class="col-md-12" style="margin: 0px; padding: 0px;">
                                             <hr style="margin-top: 5px;">
@@ -215,8 +221,10 @@
                             <div class="main-head">
                                 <h1 class="title" style="float: left; width: 80%;">
 									Team Details</h1>
+									<c:if test="${sessionScope['currentRole']=='ROLE_ADMIN'}">
                                     <a href="team.html?id=<c:out value='${project.projectId}' />" style="float: right; width: 20%; padding-top: 26px;" class="edit"> <i class="fa fa-plus-circle"></i> Allocate New Employee
                                     </a>
+                                    </c:if>
                             </div>
                             <c:forEach items="${TeamList}" var="team">
 
@@ -225,8 +233,10 @@
                                         <h5 class="title" style="float: left; width: 60%;">
 											&nbsp;&nbsp;
 										</h5>
+										<c:if test="${sessionScope['currentRole']=='ROLE_ADMIN'}">
                                             <a href="team_delete.html?id=<c:out value='${team.teamId}' />" style="float: right; width: 10%; padding-top: 5px;" class="delete"> <i class="fa fa-user-times "></i> Deallocate
                                             </a>
+                                            </c:if>
 
                                         <div class="col-md-12" style="margin: 0px; padding: 0px;">
                                             <hr style="margin-top: 5px;">

@@ -12,25 +12,25 @@ import java.util.List;
  * @author <a href="mailto:dan@getrolling.com">Dan Kibler </a>
  */
 public interface RoleManager extends GenericManager<Role, Long> {
-    /**
-     * {@inheritDoc}
-     * @throws DataException 
-     */
-    List getRoles() throws DataException;
-   
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @throws DataException
+	 */
+	List getRoles() throws DataException;
 
-    /**
-     * {@inheritDoc}
-     */
-    Role getRole(String rolename);
+	/**
+	 * {@inheritDoc}
+	 */
+	Role getRole(String rolename);
 
-    /**
-     * {@inheritDoc}
-     */
-    Role saveRole(Role role);
+	/**
+	 * {@inheritDoc}
+	 */
+	Role saveRole(Role role);
 
-    /**
-     * {@inheritDoc}
-     */
-    void removeRole(String rolename);
+	/**
+	 * {@inheritDoc}
+	 */
+	void removeRole(String rolename);
 }

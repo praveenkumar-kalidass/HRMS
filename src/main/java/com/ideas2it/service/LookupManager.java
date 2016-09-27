@@ -5,15 +5,16 @@ import com.ideas2it.model.LabelValue;
 import java.util.List;
 
 /**
- * Business Service Interface to talk to persistence layer and
- * retrieve values for drop-down choice lists.
+ * Business Service Interface to talk to persistence layer and retrieve values
+ * for drop-down choice lists.
  *
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
 public interface LookupManager {
-    /**
-     * Retrieves all possible roles from persistence layer
-     * @return List of LabelValue objects
-     */
-    List<LabelValue> getAllRoles();
+	/**
+	 * Retrieves all possible roles from persistence layer
+	 * 
+	 * @return List of LabelValue objects
+	 */
+	List<LabelValue> getAllRoles();
 }

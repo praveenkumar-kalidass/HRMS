@@ -3,6 +3,7 @@ package com.ideas2it.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -11,6 +12,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * Model class for CLient Setter and Getter methods for the class variables Many
@@ -23,27 +26,27 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Table(name = "project")
 public class Project {
-	
+
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int projectId;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String projectName;
-	
-	@Column(name="from_date")
+
+	@Column(name = "from_date")
 	private String fromDate;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "client_id" , nullable=false)
-	@LazyCollection(LazyCollectionOption.FALSE)
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "client_id", nullable = true, updatable = true)
 	private Client client;
-	
-	@Column(name="status")
+
+	@Column(name = "status")
 	private String status;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String description;
 
 	public int getProjectId() {

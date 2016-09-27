@@ -8,42 +8,42 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
- * Model class which stores the details associated with the Designations within each department in the company.
- * Many to One mapping is established for department model class.
+ * Model class which stores the details associated with the Designations within
+ * each department in the company. Many to One mapping is established for
+ * department model class.
  * 
  * @author Praveen RaJ
  * 
  * @created 2016-09-01
  */
 @Entity
-@Table(name="designation")
+@Table(name = "designation")
 public class Designation {
-    
+
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int designationId;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String designationName;
-	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "department_id" , nullable=false)
-	@LazyCollection(LazyCollectionOption.FALSE)
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "department_id", nullable = true, updatable = true)
 	private Department department;
 
-
-	public Designation(){	
+	public Designation() {
 	}
-	
+
 	public int getDesignationId() {
 		return designationId;
 	}

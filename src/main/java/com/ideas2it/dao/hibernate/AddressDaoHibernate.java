@@ -17,8 +17,7 @@ import com.ideas2it.model.Address;
 /**
  * <p>
  * Dao(Data Access Object) class which establishes session with the database and
- * performs operation on manipulation of records associated with User
- * Addresss.
+ * performs operation on manipulation of records associated with User Addresss.
  * </p>
  *
  * @author Praveenkumar
@@ -31,8 +30,8 @@ import com.ideas2it.model.Address;
 public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> implements AddressDao {
 
 	public AddressDaoHibernate() {
-        super(Address.class);
-    }
+		super(Address.class);
+	}
 
 	/**
 	 * <p>
@@ -49,18 +48,16 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
 	 *             data in the database.
 	 */
 	public boolean insertAddress(Address address) throws DataException {
-		Session session = null;
-		Transaction transaction = null;
 		try {
-			session = getSession();
-			session.save(address);	
+			System.out.println("Dao Name : " + address.getUser().getFirstName());
+			Session session = getSession();
+			session.save(address);
+			System.out.println("Dao : " + address.getUser().getId());
 			return true;
 		} catch (HibernateException exception) {
 			exception.printStackTrace();
 			FileUtil.errorLogger("Exception in insertAddress() : " + exception.getMessage());
 			throw new DataException("Error while adding Address ID : " + address.getAddressId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -79,17 +76,14 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
 	 *             data in the database.
 	 */
 	public boolean modifyAddress(Address address) throws DataException {
-		Session session = null;
 		Transaction transaction = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.update(address);
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in insertAddress() : " + exception.getMessage());
 			throw new DataException("Error while adding Address ID : " + address.getAddressId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -106,16 +100,13 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
 	 *             in the database.
 	 */
 	public boolean removeAddress(Address address) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.delete(address);
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in removeAddress() : " + exception.getMessage());
 			throw new DataException("Error while deleting Address ID : " + address.getAddressId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -134,16 +125,13 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
 	 *             data in the database.
 	 */
 	public Address findAddress(int addressId) throws DataException {
-		Session session = null;
-		
+
 		try {
-			session = getSession();
+			Session session = getSession();
 			return (Address) session.get(Address.class, addressId);
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in findAddress() : " + exception.getMessage());
 			throw new DataException("Error while searching Address ID : " + addressId);
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -159,15 +147,12 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
 	 *             of data from the database.
 	 */
 	public List<Address> retrieveAddresss() throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createCriteria(Address.class).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveAddresss() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Addresss");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -186,15 +171,12 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
 	 *         given user
 	 */
 	public List<Address> retrieveAddressByUser(long userId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createQuery("From Address WHERE user_id =" + userId).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveAddressByUser() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Address");
-		} finally {
-			session.clear();
 		}
 	}
 }

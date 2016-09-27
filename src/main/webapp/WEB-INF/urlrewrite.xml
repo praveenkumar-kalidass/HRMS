@@ -58,7 +58,6 @@
         <from>/fonts/**</from>
         <to>/fonts/$1</to>
     </rule>
-    
     <rule>
         <from>/scripts/**</from>
         <to>/scripts/$1</to>
@@ -66,6 +65,10 @@
     <rule>
         <from>/styles/**</from>
         <to>/styles/$1</to>
+    </rule>
+    <rule>
+        <from>/upload/**</from>
+        <to>/upload/$1</to>
     </rule>
     <rule>
         <from>/webjars/**</from>

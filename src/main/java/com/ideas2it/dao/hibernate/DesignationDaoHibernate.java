@@ -28,11 +28,11 @@ import com.ideas2it.exception.DataException;
  */
 @Repository("designationDao")
 @Transactional
-public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Long> implements DesignationDao  {
+public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Long> implements DesignationDao {
 
 	public DesignationDaoHibernate() {
-        super(Designation.class);
-    }
+		super(Designation.class);
+	}
 
 	/**
 	 * *
@@ -51,17 +51,14 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
 	 *         method
 	 */
 	public boolean insertDesignation(Designation designation) throws DataException {
-		 Session session = null;
-	    	try {
-	    	session = getSession();
+		try {
+			Session session = getSession();
 			session.save(designation);
 			return true;
 		} catch (HibernateException ex) {
 			FileUtil.errorLogger("Error on DesignationDao insertDesignation() : " + ex.toString());
 			throw new DataException("Error Occured while Inserting this" + designation.getDesignationName()
 					+ " : please verify your details... Any try again..!");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -81,17 +78,14 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
 	 * @return if updated successfully true will be return to the Calling method
 	 */
 	public boolean modifyDesignation(Designation designation) throws DataException {
-		 Session session = null;
-	    	try {
-	    	session = getSession();
+		try {
+			Session session = getSession();
 			session.update(designation);
 			return true;
 		} catch (HibernateException ex) {
 			FileUtil.errorLogger("Error on DesignationDao modifyDesignation() : " + ex.toString());
 			throw new DataException("Error Occured while Updating this" + designation.getDesignationName()
 					+ " : please verify your details... Any try again..!");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -112,19 +106,15 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
 	 *         method
 	 */
 	public boolean removeDesignation(Designation designation) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.delete(designation);
 			return true;
 		} catch (HibernateException ex) {
 			FileUtil.errorLogger("Error on DesignationDao removeDesignation() : " + ex.toString());
 			throw new DataException("Error Occured while Removing this" + designation.getDesignationName()
 					+ " : please verify your details... Any try again..!");
-		} finally {
-			session.clear();
 		}
-
 	}
 
 	/**
@@ -143,15 +133,12 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
 	 *         designation info.
 	 */
 	public Designation findDesignationById(int designationId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return (Designation) session.get(Designation.class, designationId);
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in findDesignationById() : " + exception.getMessage());
 			throw new DataException("Error while searching Department ID : " + designationId);
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -170,15 +157,12 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
 	 *         database
 	 */
 	public List<Designation> retrieveDesignations() throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createCriteria(Designation.class).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveDesignations() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Designation");
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -197,15 +181,12 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
 	 *         under the given department
 	 */
 	public List<Designation> retrieveDesignationByDepartment(int departmentId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createQuery("From Designation WHERE department_id=" + departmentId).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveDesignationByDepartment() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Designation");
-		} finally {
-			session.clear();
 		}
 	}
 }

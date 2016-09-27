@@ -1,45 +1,51 @@
 package com.ideas2it.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**
- * Model class for AllowanceVarient
- * Setter and Getter methods for the class variables
- * Many to One mapping is established for AllowanceVarient model class
+ * Model class for AllowanceVarient Setter and Getter methods for the class
+ * variables Many to One mapping is established for AllowanceVarient model class
  * 
  * @author Praveen RaJ
  * 
  * @created 2016-09-15
  */
 @Entity
-@Table(name="allowance_variant")
+@Table(name = "allowance_variant")
 public class AllowanceVariant {
 
 	@Id
 	@GeneratedValue
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	
-	@OneToOne
-	@JoinColumn(name="designation_id")
-	private Designation designation; 
-	
-	@Column(name="houserent_allowance")
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "designation_id", updatable = true, nullable = true)
+	private Designation designation;
+
+	@Column(name = "houserent_allowance")
 	private float houseRentAllowance;
-	
-	@Column(name="dearness_allowance")
+
+	@Column(name = "dearness_allowance")
 	private float dearnessAllowance;
-	
-	@Column(name="provident_fund")
+
+	@Column(name = "provident_fund")
 	private float providentFund;
-	
-	@Column(name="medical_allowance")
+
+	@Column(name = "medical_allowance")
 	private float medicalAllowance;
 
 	public int getId() {
@@ -89,4 +95,4 @@ public class AllowanceVariant {
 	public void setMedicalAllowance(float medicalAllowance) {
 		this.medicalAllowance = medicalAllowance;
 	}
- }
+}

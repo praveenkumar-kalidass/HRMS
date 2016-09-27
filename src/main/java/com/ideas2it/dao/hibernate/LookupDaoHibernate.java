@@ -14,30 +14,31 @@ import org.hibernate.Session;
 /**
  * Hibernate implementation of LookupDao.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
- *      Modified by jgarcia: updated to hibernate 4
+ * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a> Modified by
+ *         jgarcia: updated to hibernate 4
  */
 @Repository
 public class LookupDaoHibernate implements LookupDao {
-    private Log log = LogFactory.getLog(LookupDaoHibernate.class);
-    private final SessionFactory sessionFactory;
+	private Log log = LogFactory.getLog(LookupDaoHibernate.class);
+	private final SessionFactory sessionFactory;
 
-    /**
-     * Initialize LookupDaoHibernate with Hibernate SessionFactory.
-     * @param sessionFactory
-     */
-    @Autowired
-    public LookupDaoHibernate(final SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+	/**
+	 * Initialize LookupDaoHibernate with Hibernate SessionFactory.
+	 * 
+	 * @param sessionFactory
+	 */
+	@Autowired
+	public LookupDaoHibernate(final SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
-    /**
-     * {@inheritDoc}
-     */
-    @SuppressWarnings("unchecked")
-    public List<Role> getRoles() {
-        log.debug("Retrieving all role names...");
-        Session session = sessionFactory.getCurrentSession();
-        return session.createCriteria(Role.class).list();
-    }
+	/**
+	 * {@inheritDoc}
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Role> getRoles() {
+		log.debug("Retrieving all role names...");
+		Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Role.class).list();
+	}
 }

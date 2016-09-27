@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ideas2it.util.DateConverterTest" time="1.646" tests="8" errors="0" skipped="0" failures="0">
+<testsuite name="com.ideas2it.util.DateConverterTest" time="1.245" tests="8" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="jboss.i18n.generate-proxies" value="true"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
     <property name="java.vm.version" value="25.91-b14"/>
@@ -35,8 +34,8 @@
     <property name="user.home" value="/home/user"/>
     <property name="user.timezone" value="Asia/Kolkata"/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
-    <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.8"/>
     <property name="user.name" value="user"/>
     <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
     <property name="org.slf4j.simpleLogger.defaultLogLevel" value="debug"/>
@@ -61,12 +60,12 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testConvertDateWithNull" classname="com.ideas2it.util.DateConverterTest" time="0.006"/>
-  <testcase name="testInternationalization" classname="com.ideas2it.util.DateConverterTest" time="1.613"/>
-  <testcase name="testConvertStringToTimestamp" classname="com.ideas2it.util.DateConverterTest" time="0.01"/>
-  <testcase name="testConvertTimestampToString" classname="com.ideas2it.util.DateConverterTest" time="0.008"/>
-  <testcase name="testConvertNotSupported" classname="com.ideas2it.util.DateConverterTest" time="0.003"/>
-  <testcase name="testConvertStringToDate" classname="com.ideas2it.util.DateConverterTest" time="0.001"/>
-  <testcase name="testConvertStringToString" classname="com.ideas2it.util.DateConverterTest" time="0.001"/>
-  <testcase name="testConvertDateToString" classname="com.ideas2it.util.DateConverterTest" time="0.004"/>
+  <testcase name="testConvertDateWithNull" classname="com.ideas2it.util.DateConverterTest" time="0.002"/>
+  <testcase name="testInternationalization" classname="com.ideas2it.util.DateConverterTest" time="1.229"/>
+  <testcase name="testConvertStringToTimestamp" classname="com.ideas2it.util.DateConverterTest" time="0.002"/>
+  <testcase name="testConvertTimestampToString" classname="com.ideas2it.util.DateConverterTest" time="0.006"/>
+  <testcase name="testConvertNotSupported" classname="com.ideas2it.util.DateConverterTest" time="0"/>
+  <testcase name="testConvertStringToDate" classname="com.ideas2it.util.DateConverterTest" time="0.002"/>
+  <testcase name="testConvertStringToString" classname="com.ideas2it.util.DateConverterTest" time="0.002"/>
+  <testcase name="testConvertDateToString" classname="com.ideas2it.util.DateConverterTest" time="0.002"/>
 </testsuite>

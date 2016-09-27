@@ -3,6 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<c:if test="${sessionScope['currentRole']=='ROLE_USER'}">
+    <c:redirect url="../../user_view.html?id=${currentUserId}" />
+</c:if>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -168,11 +171,12 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-md-4 col-form-label">Role of the Employee</label>
                                                 <div class="col-md-8">
-                                                    <spring:select path="roles" class="form-control" multiple="true" required="required">                                                        
+                                                   <select id="userRoles" name="userRoles"  class="form-control" required="required">  
+                                                        <option value="">-- Select --</option>                                                     
                                                         <c:forEach items="${RoleList}" var="role">
-                                                            <spring:option value="${role.id}">${role.name}</spring:option>
+                                                            <option value="${role.name}">${role.name}</option>
                                                         </c:forEach>
-                                                    </spring:select>
+                                                    </select>
                                                 </div>
                                             </div>
                                             

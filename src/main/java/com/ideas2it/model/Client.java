@@ -47,9 +47,9 @@ public class Client {
 	@Column(name = "website")
 	private String website;
 
-	public Client(){
+	public Client() {
 	}
-	
+
 	public int getClientId() {
 		return clientId;
 	}
@@ -57,7 +57,7 @@ public class Client {
 	public void setClientId(int clientId) {
 		this.clientId = clientId;
 	}
-	
+
 	public String getClientName() {
 		return clientName;
 	}

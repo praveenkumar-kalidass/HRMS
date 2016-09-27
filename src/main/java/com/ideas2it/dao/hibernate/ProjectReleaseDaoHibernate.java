@@ -31,8 +31,8 @@ import com.ideas2it.model.ProjectRelease;
 public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelease, Long> implements ProjectReleaseDao {
 
 	public ProjectReleaseDaoHibernate() {
-        super(ProjectRelease.class);
-    }
+		super(ProjectRelease.class);
+	}
 
 	/**
 	 * <p>
@@ -49,17 +49,14 @@ public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelea
 	 *             data in the database.
 	 */
 	public boolean insertProjectRelease(ProjectRelease projectRelease) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.save(projectRelease);
 			return true;
 		} catch (HibernateException exception) {
 			exception.printStackTrace();
 			FileUtil.errorLogger("Exception in insertProjectRelease() : " + exception.getMessage());
 			throw new DataException("Error while adding ProjectRelease ID : " + projectRelease.getReleaseId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -78,19 +75,13 @@ public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelea
 	 *             in the database.
 	 */
 	public boolean modifyProjectRelease(ProjectRelease projectRelease) throws DataException {
-		Session session = null;
-		Transaction transaction = null;
 		try {
-			session = getSession();
-			transaction = session.beginTransaction();
+			Session session = getSession();
 			session.update(projectRelease);
-			transaction.commit();
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in modifyProjectRelease() : " + exception.getMessage());
 			throw new DataException("Error while updating ProjectRelease ID : " + projectRelease.getReleaseId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -109,16 +100,13 @@ public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelea
 	 *             in the database.
 	 */
 	public boolean removeProjectRelease(ProjectRelease projectRelease) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			session.delete(projectRelease);
 			return true;
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in removeEmployee() : " + exception.getMessage());
 			throw new DataException("Error while deleting ProjectRelease ID : " + projectRelease.getReleaseId());
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -137,15 +125,12 @@ public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelea
 	 *             data in the database.
 	 */
 	public ProjectRelease findProjectRelease(int projectReleaseId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return (ProjectRelease) session.get(ProjectRelease.class, projectReleaseId);
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in findProjectRelease() : " + exception.getMessage());
 			throw new DataException("Error while searching ProjectRelease ID : " + projectReleaseId);
-		} finally {
-			session.clear();
 		}
 	}
 
@@ -162,18 +147,15 @@ public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelea
 	 *             of data from the database.
 	 */
 	public List<ProjectRelease> retrieveProjectReleases() throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createCriteria(ProjectRelease.class).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveProjectReleases() : " + exception.getMessage());
 			throw new DataException("Error while displaying all ProjectReleases");
-		} finally {
-			session.clear();
 		}
 	}
-	
+
 	/**
 	 * <p>
 	 * This method retrieves the designation data from the records and returns
@@ -185,19 +167,16 @@ public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelea
 	 * @throws DataException
 	 *             throws error message if problem arises with retrieving list
 	 *             of data from the database.
-	 * @return ProjectRelease.List return the list of designation which is stored
-	 *         under the given project
+	 * @return ProjectRelease.List return the list of designation which is
+	 *         stored under the given project
 	 */
 	public List<ProjectRelease> retrieveProjectReleaseByProject(int projectId) throws DataException {
-		Session session = null;
 		try {
-			session = getSession();
+			Session session = getSession();
 			return session.createQuery("From ProjectRelease WHERE project_id=" + projectId).list();
 		} catch (HibernateException exception) {
 			FileUtil.errorLogger("Exception in retrieveProjectReleaseByProject() : " + exception.getMessage());
 			throw new DataException("Error while displaying all Relases");
-		} finally {
-			session.clear();
 		}
 	}
 }
