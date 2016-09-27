@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.ideas2it.util.FileUtil;
@@ -17,18 +16,19 @@ import com.ideas2it.model.Address;
 /**
  * <p>
  * Dao(Data Access Object) class which establishes session with the database and
- * performs operation on manipulation of records associated with User Addresss.
+ * performs operation on manipulation of records associated with User Address.
  * </p>
  *
  * @author Praveenkumar
  *
  * @created 2016-09-02
  */
-
 @Repository("addressDao")
 @Transactional
 public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> implements AddressDao {
-
+	/**
+     * Constructor to create a Generics-based version using Address as the entity
+     */
     public AddressDaoHibernate() {
         super(Address.class);
     }
@@ -49,13 +49,10 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
      */
     public boolean insertAddress(Address address) throws DataException {
         try {
-            System.out.println("Dao Name : " + address.getUser().getFirstName());
             Session session = getSession();
             session.save(address);
-            System.out.println("Dao : " + address.getUser().getId());
             return true;
         } catch (HibernateException exception) {
-            exception.printStackTrace();
             FileUtil.errorLogger("Exception in insertAddress() : " + exception.getMessage());
             throw new DataException("Error while adding Address ID : " + address.getAddressId());
         }
@@ -63,27 +60,26 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
 
     /**
      * <p>
-     * This method opens a new session and Inserts the model object of the
-     * address into the database.
+     * This method opens a new session and Modifies the model object of the
+     * address in the database.
      * </p>
      * 
      * @param address
      *            model object that stores the address data associated with
      *            model class.
-     * @return true Gives the success status of the insertion process.
+     * @return true Gives the success status of the modification process.
      * @throws DataException
      *             throws error message if problem arises with inserting the
      *             data in the database.
      */
     public boolean modifyAddress(Address address) throws DataException {
-        Transaction transaction = null;
         try {
             Session session = getSession();
             session.update(address);
             return true;
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in insertAddress() : " + exception.getMessage());
-            throw new DataException("Error while adding Address ID : " + address.getAddressId());
+            FileUtil.errorLogger("Exception in modifyAddress() : " + exception.getMessage());
+            throw new DataException("Error while modifying Address ID : " + address.getAddressId());
         }
     }
 
@@ -92,8 +88,9 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
      * This method opens a new session and Deletes the address from the records.
      * </p>
      * 
-     * @param addressId
-     *            contains the ID of the address.
+     * @param address
+     *            model object that stores the address data associated with
+     *            model class.
      * @return true Gives the success status of the deletion process.
      * @throws DataException
      *             throws error message if problem arises with deleting the data
@@ -116,7 +113,7 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
      * returns the data as a model object to display.
      * </p>
      * 
-     * @param departementId
+     * @param addressId
      *            contains the ID of the address.
      * @return object gives the appropriate address detail for the corresponding
      *         address ID.
@@ -152,13 +149,13 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
             return session.createCriteria(Address.class).list();
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in retrieveAddresss() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Addresss");
+            throw new DataException("Error while displaying all Addresses");
         }
     }
 
     /**
      * <p>
-     * This method retrieves the address data from the records and returns the
+     * This method retrieves the address data for a particular user from the records and returns the
      * list of data.
      * </p>
      * 
@@ -176,7 +173,7 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
             return session.createQuery("From Address WHERE user_id =" + userId).list();
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in retrieveAddressByUser() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Address");
+            throw new DataException("Error while displaying all Addresses");
         }
     }
 }

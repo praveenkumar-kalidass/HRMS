@@ -28,7 +28,9 @@ import com.ideas2it.model.LeaveRequest;
 @Repository("leaveRequestDao")
 @Transactional
 public class LeaveRequestDaoHibernate extends GenericDaoHibernate<LeaveRequest, Long> implements LeaveRequestDao {
-
+	/**
+     * Constructor to create a Generics-based version using Leave Request as the entity
+     */
     public LeaveRequestDaoHibernate() {
         super(LeaveRequest.class);
     }
@@ -81,7 +83,7 @@ public class LeaveRequestDaoHibernate extends GenericDaoHibernate<LeaveRequest, 
         } catch (HibernateException exception) {
             exception.printStackTrace();
             FileUtil.errorLogger("Exception in modifyLeaveRequest() : " + exception.getMessage());
-            throw new DataException("Error while adding LeaveRequest ID : " + leaveRequest.getLeaveId());
+            throw new DataException("Error while modifying LeaveRequest ID : " + leaveRequest.getLeaveId());
         }
     }
 
@@ -104,14 +106,14 @@ public class LeaveRequestDaoHibernate extends GenericDaoHibernate<LeaveRequest, 
             session.delete(leaveRequest);
             return true;
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in removeUser() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in removeLeaveRequest() : " + exception.getMessage());
             throw new DataException("Error while deleting LeaveRequest ID : " + leaveRequest.getLeaveId());
         }
     }
 
     /**
      * <p>
-     * this method searches the leaveRequest from the records using leaveRequest
+     * This method searches the leaveRequest from the records using leaveRequest
      * ID and returns the data as a model object to display.
      * </p>
      * 
@@ -150,7 +152,6 @@ public class LeaveRequestDaoHibernate extends GenericDaoHibernate<LeaveRequest, 
             Session session = getSession();
             return session.createCriteria(LeaveRequest.class).list();
         } catch (HibernateException exception) {
-            System.out.println(exception);
             FileUtil.errorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
             throw new DataException("Error while displaying all LeaveRequests");
         }
@@ -175,14 +176,14 @@ public class LeaveRequestDaoHibernate extends GenericDaoHibernate<LeaveRequest, 
             Session session = getSession();
             return session.createQuery("From LeaveRequest WHERE user_id=" + userId + " order by id desc").list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
+            FileUtil.errorLogger("Exception in retrieveLeaveRequestsByUser() : " + exception.getMessage());
             throw new DataException("Error while displaying all LeaveRequests");
         }
     }
 
     /**
      * <p>
-     * This method retrieves the leaveRequest data for given user for given
+     * This method calculates the number of leave days for given user for given
      * period from the records and returns the list of data.
      * </p>
      * 
@@ -205,8 +206,8 @@ public class LeaveRequestDaoHibernate extends GenericDaoHibernate<LeaveRequest, 
             return session.createQuery("From LeaveRequest WHERE user_id=" + userId + " and from_date>='" + fromDate
                     + "' and to_date <='" + toDate + "' and status='Approved'").list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveLeaveRequests() : " + exception.getMessage());
-            throw new DataException("Error while displaying all LeaveRequests");
+            FileUtil.errorLogger("Exception in calculateLeaveDaysForUser() : " + exception.getMessage());
+            throw new DataException("Error while displaying all LeaveRecords");
         }
     }
 

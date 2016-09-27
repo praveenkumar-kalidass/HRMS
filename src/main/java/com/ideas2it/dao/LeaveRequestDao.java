@@ -10,21 +10,21 @@ public interface LeaveRequestDao extends GenericDao<LeaveRequest, Long> {
     /**
      * Add new LeaveRequest
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertLeaveRequest(LeaveRequest leaveRequest) throws DataException;
 
     /**
      * Update existing LeaveRequest
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyLeaveRequest(LeaveRequest leaveRequest) throws DataException;
 
     /**
      * Delete LeaveRequest
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeLeaveRequest(LeaveRequest leaveRequest) throws DataException;
 
@@ -36,14 +36,14 @@ public interface LeaveRequestDao extends GenericDao<LeaveRequest, Long> {
     LeaveRequest findLeaveRequest(int leaveId) throws DataException;
 
     /**
-     * Retrive All LeaveRequest
+     * Retrieve All LeaveRequest
      *
      * @return list
      */
     List<LeaveRequest> retrieveLeaveRequests() throws DataException;
 
     /**
-     * Retrive All LeaveRequest by given User
+     * Retrieve All LeaveRequest by given User
      *
      * @return list
      */

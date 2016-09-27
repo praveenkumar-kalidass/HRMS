@@ -1,6 +1,5 @@
 package com.ideas2it.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,15 +15,14 @@ import org.hibernate.annotations.OnDeleteAction;
 /**
  * <p>
  * Model class which stores the details associated with the Certification
- * details(s) of the employee.
+ * detail(s) of the employee.
+ * Many to One mapping is established for the User class.
  * </p>
  * 
  * @author Praveen RaJ
  * 
  * @created 2016-09-06
- *
  */
-
 @Entity
 @Table(name = "certification")
 public class Certification {

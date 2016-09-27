@@ -6,11 +6,8 @@ import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
-import com.ideas2it.model.Address;
 import com.ideas2it.model.AllowanceVariant;
 import com.ideas2it.util.FileUtil;
 import com.ideas2it.dao.AllowanceVariantDao;
@@ -32,7 +29,9 @@ import com.ideas2it.exception.DataException;
 @Transactional
 public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceVariant, Long>
         implements AllowanceVariantDao {
-
+	/**
+     * Constructor to create a Generics-based version using Allowance Variant as the entity
+     */
     public AllowanceVariantDaoHibernate() {
         super(AllowanceVariant.class);
     }
@@ -114,8 +113,8 @@ public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceV
             session.delete(allowanceVariant);
             return true;
         } catch (HibernateException ex) {
-            FileUtil.errorLogger("Error on AllowanceVariantDao insertAllowanceVariant() : " + ex.toString());
-            throw new DataException("Error Occured while Adding this" + allowanceVariant.getId()
+            FileUtil.errorLogger("Error on AllowanceVariantDao removeAllowanceVariant() : " + ex.toString());
+            throw new DataException("Error Occured while Deleting this" + allowanceVariant.getId()
                     + " : please verify your details... Any try again..!");
         }
 
@@ -123,7 +122,7 @@ public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceV
 
     /**
      * <p>
-     * this method searches the allowanceVariant from the records using
+     * This method searches the allowanceVariant from the records using
      * allowanceVariant ID and returns the data as a model object to display.
      * </p>
      * 
@@ -141,8 +140,8 @@ public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceV
             Session session = getSession();
             return (AllowanceVariant) session.get(AllowanceVariant.class, allowanceVariantId);
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in findEmployee() : " + exception.getMessage());
-            throw new DataException("Error while searching Designation ID : " + allowanceVariantId);
+            FileUtil.errorLogger("Exception in findAllowanceVariantById() : " + exception.getMessage());
+            throw new DataException("Error while searching Allowance Variant ID : " + allowanceVariantId);
         }
     }
 
@@ -165,14 +164,14 @@ public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceV
             Session session = getSession();
             return session.createCriteria(AllowanceVariant.class).list();
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Designations");
+            FileUtil.errorLogger("Exception in retrieveAllowanceVariants() : " + exception.getMessage());
+            throw new DataException("Error while displaying all Allowance Variants");
         }
     }
 
     /**
      * <p>
-     * This method retrieves the allowanceVariant data from the records and
+     * This method retrieves the allowanceVariant data for a particular designation from the records and
      * returns the list of data.
      * </p>
      * 
@@ -195,8 +194,8 @@ public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceV
             }
             return allowanceVarient;
         } catch (HibernateException exception) {
-            FileUtil.errorLogger("Exception in retrieveEmployees() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Education");
+            FileUtil.errorLogger("Exception in retrieveAllowanceVariantByDesignation() : " + exception.getMessage());
+            throw new DataException("Error while displaying all Allowance Variants");
         }
     }
 }

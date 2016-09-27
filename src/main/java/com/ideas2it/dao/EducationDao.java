@@ -10,14 +10,14 @@ public interface EducationDao extends GenericDao<Education, Long> {
     /**
      * Add new Education
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertEducation(Education education) throws DataException;
 
     /**
      * Delete Education
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyEducation(Education education) throws DataException;
 
@@ -29,14 +29,14 @@ public interface EducationDao extends GenericDao<Education, Long> {
     Education findEducationById(int educationId) throws DataException;
 
     /**
-     * Retrive All Education
+     * Retrieve All Education
      *
      * @return list
      */
     List<Education> retrieveEducations() throws DataException;
 
     /**
-     * Retrive All Education Given by user
+     * Retrieve All Education Given by user
      *
      * @return list
      */

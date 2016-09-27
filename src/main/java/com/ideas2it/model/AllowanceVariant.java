@@ -1,13 +1,11 @@
 package com.ideas2it.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -15,8 +13,11 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 /**
+ * <p>
  * Model class for AllowanceVarient Setter and Getter methods for the class
- * variables Many to One mapping is established for AllowanceVarient model class
+ * variables.
+ * One to One mapping is established for Designation model class
+ * </p>
  * 
  * @author Praveen RaJ
  * 

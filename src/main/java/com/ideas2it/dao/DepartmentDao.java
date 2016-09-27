@@ -10,21 +10,21 @@ public interface DepartmentDao extends GenericDao<Department, Long> {
     /**
      * Add new Department
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertDepartment(Department department) throws DataException;
 
     /**
      * Update existing Department
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyDepartment(Department department) throws DataException;
 
     /**
      * Delete Department
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeDepartment(Department department) throws DataException;
 
@@ -36,7 +36,7 @@ public interface DepartmentDao extends GenericDao<Department, Long> {
     Department findDepartment(int departmentId) throws DataException;
 
     /**
-     * Retrive All Department
+     * Retrieve All Departments
      *
      * @return list
      */

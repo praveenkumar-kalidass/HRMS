@@ -1,6 +1,5 @@
 package com.ideas2it.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,14 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 /**
- * Model class for CLient Setter and Getter methods for the class variables Many
- * to One mapping is established for Project model class
+ * <p>
+ * Model class for Project. Setter and Getter methods for the class variables.
+ * Many to One mapping is established for Client model class
+ * </p>
  * 
  * @author Praveen RaJ
  * 

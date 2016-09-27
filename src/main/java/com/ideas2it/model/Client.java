@@ -7,8 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Model class for CLient Setter and Getter methods for the class variables Many
- * to One mapping is established for Project model class
+ * <p>
+ * Model class for Client. Setter and Getter methods for the class variables.
+ * </p>
  * 
  * @author Praveen RaJ
  * 

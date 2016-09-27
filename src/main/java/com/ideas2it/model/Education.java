@@ -1,6 +1,5 @@
 package com.ideas2it.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,15 +15,13 @@ import org.hibernate.annotations.OnDeleteAction;
 /**
  * <p>
  * Model class which stores the details associated with the education detail(s)
- * of the employee.
+ * of the user.
  * </p>
  * 
  * @author Praveen RaJ
  * 
  * @created 2016-09-06
- *
  */
-
 @Entity
 @Table(name = "education")
 public class Education {
@@ -131,5 +128,4 @@ public class Education {
     public void setUser(User user) {
         this.user = user;
     }
-
 }

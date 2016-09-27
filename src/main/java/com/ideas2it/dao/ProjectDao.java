@@ -10,21 +10,21 @@ public interface ProjectDao {
     /**
      * Add new Project
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean insertProject(Project project) throws DataException;
 
     /**
      * Update existing Project
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean modifyProject(Project project) throws DataException;
 
     /**
      * Delete Project
      *
-     * @return True or Fales
+     * @return True or False
      */
     boolean removeProject(Project project) throws DataException;
 
@@ -36,14 +36,14 @@ public interface ProjectDao {
     Project findProjectById(int projectId) throws DataException;
 
     /**
-     * Retrive All Project
+     * Retrieve All Project
      *
      * @return list
      */
     List<Project> retrieveProjects() throws DataException;
 
     /**
-     * Retrive All Project given Clien
+     * Retrieve All Project given Clien
      *
      * @return list
      */

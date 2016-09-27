@@ -28,7 +28,9 @@ import com.ideas2it.model.Department;
 @Repository("departmentDao")
 @Transactional
 public class DepartmentDaoHibernate extends GenericDaoHibernate<Department, Long> implements DepartmentDao {
-
+	/**
+     * Constructor to create a Generics-based version using Department as the entity
+     */
     public DepartmentDaoHibernate() {
         super(Department.class);
     }

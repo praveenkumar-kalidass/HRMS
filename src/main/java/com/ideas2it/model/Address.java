@@ -2,7 +2,6 @@ package com.ideas2it.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,14 +15,15 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 /**
+ * <p>
  * Model class for Address Setter and Getter methods for the class variables
- * Many to One mapping is established for Employee model class
+ * Many to One mapping is established for User model class
+ * </p>
  * 
  * @author Praveenkumar
  * 
  * @created 2016-09-06
  */
-
 @Entity
 @Table(name = "address")
 public class Address implements Serializable {

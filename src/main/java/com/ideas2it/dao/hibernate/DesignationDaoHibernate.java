@@ -6,10 +6,8 @@ import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
-import com.ideas2it.model.Department;
 import com.ideas2it.model.Designation;
 import com.ideas2it.util.FileUtil;
 import com.ideas2it.dao.DesignationDao;
@@ -29,7 +27,9 @@ import com.ideas2it.exception.DataException;
 @Repository("designationDao")
 @Transactional
 public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Long> implements DesignationDao {
-
+	/**
+     * Constructor to create a Generics-based version using Designation as the entity
+     */
     public DesignationDaoHibernate() {
         super(Designation.class);
     }
@@ -93,7 +93,7 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
      * *
      * <p>
      * Method is used to delete existing designation create a new session and
-     * Inserts the model object of the designation into the database.
+     * Deletes the model object of the designation from the database.
      * </p>
      * 
      * @param designation
@@ -102,7 +102,7 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
      * @throws DataException
      *             if any database connection error occurred error message will
      *             be logged and send context info to user
-     * @return if inserted successfully true will be return to the Calling
+     * @return if deleted successfully true will be return to the Calling
      *         method
      */
     public boolean removeDesignation(Designation designation) throws DataException {
@@ -119,7 +119,7 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
 
     /**
      * <p>
-     * this method searches the designation from the records using designation
+     * This method searches the designation from the records using designation
      * ID and returns the data as a model object to display.
      * </p>
      * 
@@ -138,7 +138,7 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
             return (Designation) session.get(Designation.class, designationId);
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in findDesignationById() : " + exception.getMessage());
-            throw new DataException("Error while searching Department ID : " + designationId);
+            throw new DataException("Error while searching Designation ID : " + designationId);
         }
     }
 
@@ -162,13 +162,13 @@ public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Lo
             return session.createCriteria(Designation.class).list();
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in retrieveDesignations() : " + exception.getMessage());
-            throw new DataException("Error while displaying all Designation");
+            throw new DataException("Error while displaying all Designations");
         }
     }
 
     /**
      * <p>
-     * This method retrieves the designation data from the records and returns
+     * This method retrieves the designation data based on the department from the records and returns
      * the list of data.
      * </p>
      * 

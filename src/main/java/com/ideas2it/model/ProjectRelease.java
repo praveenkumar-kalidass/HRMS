@@ -1,6 +1,5 @@
 package com.ideas2it.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -32,10 +29,13 @@ public class ProjectRelease {
     @GeneratedValue
     @Column(name = "id")
     private int releaseId;
+
     @Column(name = "date")
     private String releaseDate;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "project_version")
     private String projectVersion;
 

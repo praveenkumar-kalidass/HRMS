@@ -1,9 +1,7 @@
 package com.ideas2it.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,6 +17,7 @@ import org.hibernate.annotations.OnDeleteAction;
 /**
  * <p>
  * Model class which stores the details associated with the Team of a project.
+ * One to One mapping is established for the User class and Many to One mapping for the Project class.
  * </p>
  * 
  * @author Praveenkumar
