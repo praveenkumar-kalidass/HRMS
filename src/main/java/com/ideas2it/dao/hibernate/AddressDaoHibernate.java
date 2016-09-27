@@ -26,7 +26,7 @@ import com.ideas2it.model.Address;
 @Repository("addressDao")
 @Transactional
 public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> implements AddressDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Address as the entity
      */
     public AddressDaoHibernate() {

@@ -27,7 +27,7 @@ import com.ideas2it.exception.DataException;
 @Repository("designationDao")
 @Transactional
 public class DesignationDaoHibernate extends GenericDaoHibernate<Designation, Long> implements DesignationDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Designation as the entity
      */
     public DesignationDaoHibernate() {

@@ -29,7 +29,7 @@ import com.ideas2it.exception.DataException;
 @Transactional
 public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceVariant, Long>
         implements AllowanceVariantDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Allowance Variant as the entity
      */
     public AllowanceVariantDaoHibernate() {

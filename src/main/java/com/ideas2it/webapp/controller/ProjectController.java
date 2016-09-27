@@ -21,7 +21,6 @@ import com.ideas2it.service.ProjectReleaseService;
 import com.ideas2it.service.ProjectService;
 import com.ideas2it.service.TeamService;
 import com.ideas2it.service.UserExistsException;
-import com.ideas2it.service.UserManager;
 import com.ideas2it.service.UserService;
 
 /**
@@ -55,13 +54,6 @@ public class ProjectController {
 
     @Autowired
     DepartmentService departmentService;
-
-    private UserManager userManager = null;
-
-    @Autowired
-    public void setUserManager(UserManager userManager) {
-        this.userManager = userManager;
-    }
 
     /**
      * <p>

@@ -27,7 +27,7 @@ import com.ideas2it.model.Attendance;
 @Repository("attendanceDao")
 @Transactional
 public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long> implements AttendanceDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Attendance as the entity
      */
     public AttendanceDaoHibernate() {

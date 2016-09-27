@@ -29,7 +29,7 @@ import com.ideas2it.model.Client;
 @Repository("clientDao")
 @Transactional
 public class ClientDaoHibernate extends GenericDaoHibernate<Client, Long> implements ClientDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Client as the entity
      */
     public ClientDaoHibernate() {

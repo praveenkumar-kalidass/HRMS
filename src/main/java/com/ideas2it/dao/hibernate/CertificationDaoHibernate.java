@@ -30,7 +30,7 @@ import com.ideas2it.model.Certification;
 @Repository("certificationDao")
 @Transactional
 public class CertificationDaoHibernate extends GenericDaoHibernate<Certification, Long> implements CertificationDao {
-	/**
+    /**
      * Constructor to create a Generics-based version using Certification as the entity
      */
     public CertificationDaoHibernate() {
