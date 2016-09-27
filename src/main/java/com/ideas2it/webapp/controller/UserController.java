@@ -134,12 +134,12 @@ public class UserController {
      */
     @RequestMapping("/home")
     public String homePage() {
-        return "redirect:department.html";
+        return "redirect:dashboard.html";
     }
 
     @RequestMapping("/index")
     public String indexPage() {
-        return "redirect:department.html";
+        return "redirect:dashboard.html";
     }
 
     @RequestMapping("/login")
