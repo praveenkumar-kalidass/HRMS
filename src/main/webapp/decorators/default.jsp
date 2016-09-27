@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <%@ include file="/common/taglibs.jsp"%>
-
 <%@page import="com.ideas2it.model.User"%>
 <%@page import="com.ideas2it.model.Role"%>
 <%@page import="com.ideas2it.model.Team"%>

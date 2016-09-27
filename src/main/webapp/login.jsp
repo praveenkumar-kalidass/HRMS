@@ -84,13 +84,13 @@
                 </h2>
                             <p class="fieldset">
                                 <label class="image-replace cd-email" for="signin-email">Username</label>
-                                <input type="text" name="j_username" id="j_username" class="full-width has-padding has-border" placeholder="<fmt:message key=" label.username "/>" required tabindex="1">
+                                <input type="text" name="j_username" id="j_username" class="full-width has-padding has-border" placeholder="Username" required tabindex="1">
                                 <span class="cd-error-message">Error message here!</span>
                             </p>
 
                             <p class="fieldset">
                                 <label class="image-replace cd-password" for="signin-password">Password</label>
-                                <input type="password" class="full-width has-padding has-border" name="j_password" id="signin-password" tabindex="2" placeholder="<fmt:message key=" label.password "/>" required>
+                                <input type="password" class="full-width has-padding has-border" name="j_password" id="signin-password" tabindex="2" placeholder="Password" required>
                                 <a href="#0" class="hide-password">Show</a>
                                 <span class="cd-error-message">Error message here!</span>
                             </p>
