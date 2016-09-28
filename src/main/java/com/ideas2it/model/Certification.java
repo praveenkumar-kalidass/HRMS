@@ -45,7 +45,7 @@ public class Certification {
     private String institution;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "user_id", updatable = true, nullable = true)
     private User user;
 

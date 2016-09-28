@@ -220,7 +220,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @ManyToOne
     @JoinColumn(name = "designation_id", updatable = true, nullable = true)
     @LazyCollection(LazyCollectionOption.FALSE)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     public Designation getDesignation() {
         return designation;
     }
@@ -260,7 +260,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
 
     @OneToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "team_id", nullable = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     public Team getTeam() {
         return this.team;

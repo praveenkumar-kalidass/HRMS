@@ -8,8 +8,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
@@ -132,12 +136,40 @@ public class UserController {
      * @return there is no data mapped in the url it just resolve the index view
      */
     @RequestMapping("/home")
-    public String homePage() {
+    public String homePage(HttpSession session) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	if(!(auth instanceof AnonymousAuthenticationToken)){
+    	    User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+    	    session.setAttribute("currentUserFullName", user.getFullName());
+    	    session.setAttribute("currentUserId", user.getId());
+    	    session.setAttribute("currentUserPicture", user.getPicture());
+    	    session.setAttribute("currentUser", user);
+    	    if(user.getTeam()!=null){
+    	        session.setAttribute("currentProjectId", user.getTeam().getProject().getProjectId());
+    	    }
+    	    for(Role role : user.getRoles()){
+    	        session.setAttribute("currentRole", role.getName());
+    	    }
+    	}
         return "redirect:dashboard.html";
     }
 
     @RequestMapping("/index")
-    public String indexPage() {
+    public String indexPage(HttpSession session) {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	if(!(auth instanceof AnonymousAuthenticationToken)){
+    	    User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+    	    session.setAttribute("currentUserFullName", user.getFullName());
+    	    session.setAttribute("currentUserId", user.getId());
+    	    session.setAttribute("currentUserPicture", user.getPicture());
+    	    session.setAttribute("currentUser", user);
+    	    if(user.getTeam()!=null){
+    	        session.setAttribute("currentProjectId", user.getTeam().getProject().getProjectId());
+    	    }
+    	    for(Role role : user.getRoles()){
+    	        session.setAttribute("currentRole", role.getName());
+    	    }
+    	}
         return "redirect:dashboard.html";
     }
 

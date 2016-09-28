@@ -8,6 +8,7 @@
 <%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <html lang="en">
 <head>
+    
     <meta http-equiv="Cache-Control" content="no-store"/>
     <meta http-equiv="Pragma" content="no-cache"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -18,6 +19,11 @@
     <decorator:head/>
 </head>
 <body> 
+<decorator:getProperty property="body.id" writeEntireProperty="true"/>
+<decorator:getProperty property="body.class" writeEntireProperty="true"/>
+<decorator:body/>
+<decorator:getProperty property="meta.menu"/>
+
 <% 
    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
    if(!(auth instanceof AnonymousAuthenticationToken)){
@@ -34,9 +40,6 @@
        }
    }
 %>
-<decorator:getProperty property="body.id" writeEntireProperty="true"/>
-<decorator:getProperty property="body.class" writeEntireProperty="true"/>
-<decorator:body/>
-<decorator:getProperty property="meta.menu"/>
+
 </body>
 </html>

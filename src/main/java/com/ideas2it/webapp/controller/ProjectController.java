@@ -565,6 +565,9 @@ public class ProjectController {
     public String deleteTeam(@RequestParam("id") int teamId, ModelMap model) {
         try {
             Team team = teamService.searchTeam(teamId);
+            User user = team.getUser();
+            user.setTeam(null);
+            userService.updateUser(user);
             if (teamService.deleteTeam(teamId)) {
                 model.addAttribute("message", "Team Member deallocated Successfully");
                 model.addAttribute("ProjectId", (team.getProject()).getProjectId());

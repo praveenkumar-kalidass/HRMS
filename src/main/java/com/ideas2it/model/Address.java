@@ -63,7 +63,7 @@ public class Address implements Serializable {
     private String addressType;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     @JoinColumn(name = "user_id", nullable = true, updatable = true)
     private User user;
 

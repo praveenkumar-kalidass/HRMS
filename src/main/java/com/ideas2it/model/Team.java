@@ -27,7 +27,8 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "team")
 public class Team {
-    @Id
+    
+	@Id
     @GeneratedValue
     @Column(name = "id", unique = true)
     private int teamId;
@@ -40,6 +41,7 @@ public class Team {
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = true, updatable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @LazyCollection(LazyCollectionOption.FALSE)
     private User user;
 

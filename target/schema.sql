@@ -290,8 +290,7 @@
     alter table app_user 
         add constraint FK_1mck9a7x78aoytkb3my91fbcv 
         foreign key (designation_id) 
-        references designation (id) 
-        on delete cascade;
+        references designation (id);
 
     alter table app_user 
         add constraint FK_aptlkb3iy24o828c4dtonjpdd 
@@ -354,7 +353,8 @@
     alter table team 
         add constraint FK_kisr7bcgtyyed1c9on0a593w2 
         foreign key (user_id) 
-        references app_user (id);
+        references app_user (id) 
+        on delete cascade;
 
     alter table user_role 
         add constraint FK_it77eq964jhfqtu54081ebtio 

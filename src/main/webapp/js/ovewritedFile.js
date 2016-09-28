@@ -250,3 +250,4 @@
            xhttp.open("GET", "education_form.html?noof=" + noof + "&eid=" + employeeId, true);
            xhttp.send();
        }
+      
