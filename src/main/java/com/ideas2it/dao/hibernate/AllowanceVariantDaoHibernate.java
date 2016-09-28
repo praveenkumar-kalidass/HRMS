@@ -59,7 +59,7 @@ public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceV
             return true;
         } catch (HibernateException ex) {
             FileUtil.errorLogger("Error on AllowanceVariantDao insertAllowanceVariant() : " + ex.toString());
-            throw new DataException("Error Occured while Inserting this" + allowanceVariant.getId()
+            throw new DataException("Error Occured while Inserting this" + allowanceVariant.getDesignation().getDesignationId()
                     + " : please verify your details... Any try again..!");
         }
     }

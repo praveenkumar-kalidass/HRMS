@@ -57,7 +57,7 @@ public class ClientDaoHibernate extends GenericDaoHibernate<Client, Long> implem
             return true;
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in insertClient() : " + exception.getMessage());
-            throw new DataException("Error while adding Client ID : " + client.getClientId());
+            throw new DataException("Error while adding Client : " + client.getClientName());
         }
     }
 

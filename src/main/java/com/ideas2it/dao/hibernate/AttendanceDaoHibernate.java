@@ -55,7 +55,7 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
             return true;
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in insertAttendance() : " + exception.getMessage());
-            throw new DataException("Error while adding Attendance ID : " + attendance.getAttendanceId());
+            throw new DataException("Error while adding Attendance for this time in : " + attendance.getTimeIn());
         }
     }
 
@@ -80,7 +80,7 @@ public class AttendanceDaoHibernate extends GenericDaoHibernate<Attendance, Long
             return true;
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in modifyAttendance() : " + exception.getMessage());
-            throw new DataException("Error while modifying Attendance ID : " + attendance.getAttendanceId());
+            throw new DataException("Error while modifying Attendance for this time out : " + attendance.getTimeOut());
         }
     }
 

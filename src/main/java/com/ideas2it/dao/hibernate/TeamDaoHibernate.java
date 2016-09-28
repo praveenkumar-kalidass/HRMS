@@ -54,7 +54,7 @@ public class TeamDaoHibernate extends GenericDaoHibernate<Team, Long> implements
             return true;
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in insertTeam() : " + exception.getMessage());
-            throw new DataException("Error while adding Team ID : " + team.getTeamId());
+            throw new DataException("Error while adding Team  : " + team.getTeamRole());
         }
     }
 

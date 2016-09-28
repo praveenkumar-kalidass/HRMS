@@ -54,7 +54,7 @@ public class AddressDaoHibernate extends GenericDaoHibernate<Address, Long> impl
             return true;
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in insertAddress() : " + exception.getMessage());
-            throw new DataException("Error while adding Address ID : " + address.getAddressId());
+            throw new DataException("Error while adding Address  : " + address.getAddressType());
         }
     }
 

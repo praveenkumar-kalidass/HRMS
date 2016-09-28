@@ -56,7 +56,7 @@ public class ProjectReleaseDaoHibernate extends GenericDaoHibernate<ProjectRelea
         } catch (HibernateException exception) {
             exception.printStackTrace();
             FileUtil.errorLogger("Exception in insertProjectRelease() : " + exception.getMessage());
-            throw new DataException("Error while adding ProjectRelease ID : " + projectRelease.getReleaseId());
+            throw new DataException("Error while adding thi verison : " + projectRelease.getProjectVersion());
         }
     }
 

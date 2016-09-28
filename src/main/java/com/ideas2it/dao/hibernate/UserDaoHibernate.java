@@ -123,7 +123,7 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
             return true;
         } catch (HibernateException exception) {
             FileUtil.errorLogger("Exception in insertUser() : " + exception.getMessage());
-            throw new DataException("Error while adding User ID : " + user.getId());
+            throw new DataException("Error while adding User : " + user.getFirstName());
         }
     }
 

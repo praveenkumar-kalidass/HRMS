@@ -57,7 +57,7 @@ public class DepartmentDaoHibernate extends GenericDaoHibernate<Department, Long
         } catch (HibernateException exception) {
             exception.printStackTrace();
             FileUtil.errorLogger("Exception in insertDepartment() : " + exception.getMessage());
-            throw new DataException("Error while adding Department ID : " + department.getDepartmentId());
+            throw new DataException("Error while adding Department : " + department.getDepartmentName());
         }
     }
 

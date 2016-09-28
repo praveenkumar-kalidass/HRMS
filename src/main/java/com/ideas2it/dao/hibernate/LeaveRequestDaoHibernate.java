@@ -57,7 +57,7 @@ public class LeaveRequestDaoHibernate extends GenericDaoHibernate<LeaveRequest, 
         } catch (HibernateException exception) {
             exception.printStackTrace();
             FileUtil.errorLogger("Exception in insertLeaveRequest() : " + exception.getMessage());
-            throw new DataException("Error while adding LeaveRequest ID : " + leaveRequest.getLeaveId());
+            throw new DataException("Error while adding for this reason : " + leaveRequest.getLeaveReason());
         }
     }
 
