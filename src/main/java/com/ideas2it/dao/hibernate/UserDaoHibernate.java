@@ -1,14 +1,12 @@
 package com.ideas2it.dao.hibernate;
 
-import com.ideas2it.exception.DataException;
-import com.ideas2it.model.User;
-import com.ideas2it.util.FileUtil;
-import com.ideas2it.dao.UserDao;
+import java.util.List;
 
+import javax.persistence.Table;
+import javax.transaction.Transactional;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,10 +16,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Table;
-import javax.transaction.Transactional;
-
-import java.util.List;
+import com.ideas2it.exception.DataException;
+import com.ideas2it.model.User;
+import com.ideas2it.util.FileUtil;
+import com.ideas2it.dao.UserDao;
 
 /**
  * This class interacts with Hibernate session to save/delete and retrieve User

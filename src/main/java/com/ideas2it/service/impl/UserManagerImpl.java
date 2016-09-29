@@ -1,6 +1,5 @@
 package com.ideas2it.service.impl;
 
-import org.apache.commons.lang.StringUtils;
 import com.ideas2it.dao.UserDao;
 import com.ideas2it.exception.DataException;
 import com.ideas2it.model.User;
@@ -8,6 +7,9 @@ import com.ideas2it.service.MailEngine;
 import com.ideas2it.service.UserExistsException;
 import com.ideas2it.service.UserManager;
 import com.ideas2it.service.UserService;
+
+import javax.jws.WebService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.SimpleMailMessage;
@@ -15,7 +17,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.jws.WebService;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;

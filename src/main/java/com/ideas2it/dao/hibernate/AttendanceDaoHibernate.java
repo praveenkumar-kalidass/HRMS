@@ -3,7 +3,6 @@ package com.ideas2it.dao.hibernate;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;

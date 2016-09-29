@@ -2,12 +2,11 @@ package com.ideas2it.service.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.ideas2it.dao.GenericDao;
 import com.ideas2it.service.GenericManager;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

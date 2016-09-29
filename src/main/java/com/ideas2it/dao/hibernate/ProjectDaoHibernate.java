@@ -3,18 +3,14 @@ package com.ideas2it.dao.hibernate;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.ideas2it.util.FileUtil;
 import com.ideas2it.dao.ProjectDao;
 import com.ideas2it.exception.DataException;
 import com.ideas2it.model.Project;
-import com.ideas2it.model.ProjectRelease;
 
 /**
  * <p>

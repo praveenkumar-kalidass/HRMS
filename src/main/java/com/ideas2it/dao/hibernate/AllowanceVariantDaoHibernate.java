@@ -3,7 +3,6 @@ package com.ideas2it.dao.hibernate;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -59,7 +58,7 @@ public class AllowanceVariantDaoHibernate extends GenericDaoHibernate<AllowanceV
             return true;
         } catch (HibernateException ex) {
             FileUtil.errorLogger("Error on AllowanceVariantDao insertAllowanceVariant() : " + ex.toString());
-            throw new DataException("Error Occured while Inserting this" + allowanceVariant.getDesignation().getDesignationId()
+            throw new DataException("Error Occured while Inserting this allowance varient for this designation" + allowanceVariant.getDesignation().getDesignationId()
                     + " : please verify your details... Any try again..!");
         }
     }

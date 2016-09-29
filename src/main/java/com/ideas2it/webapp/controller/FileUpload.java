@@ -10,7 +10,8 @@ package com.ideas2it.webapp.controller;
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
  */
 public class FileUpload {
-    private String name;
+    
+	private String name;
     private byte[] file;
 
     /**

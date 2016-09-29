@@ -3,16 +3,13 @@ package com.ideas2it.dao.hibernate;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.ideas2it.util.FileUtil;
 import com.ideas2it.dao.CertificationDao;
 import com.ideas2it.exception.DataException;
-import com.ideas2it.model.Attendance;
 import com.ideas2it.model.Certification;
 
 /**

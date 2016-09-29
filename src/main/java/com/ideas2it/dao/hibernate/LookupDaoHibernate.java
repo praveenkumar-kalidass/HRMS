@@ -1,15 +1,16 @@
 package com.ideas2it.dao.hibernate;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.List;
+
 import com.ideas2it.dao.LookupDao;
 import com.ideas2it.model.Role;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
-import org.hibernate.Session;
 
 /**
  * Hibernate implementation of LookupDao.

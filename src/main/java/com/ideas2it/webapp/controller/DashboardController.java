@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,6 +15,8 @@ import com.ideas2it.model.Role;
 import com.ideas2it.model.User;
 import com.ideas2it.service.UserManager;
 import com.ideas2it.service.UserService;
+
+
 
 /**
  * <p>
